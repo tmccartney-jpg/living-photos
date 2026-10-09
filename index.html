@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Living Photos</title>
+<style>
+  :root {
+    --bg: #0b0b0c;
+    --panel: #161618;
+    --line: #2a2a2e;
+    --text: #d9d6cf;
+    --muted: #8a877f;
+    --accent: #c9b98a;
+    --present: #c96a5a;
+    --clear: #7fae86;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  h1 { font: italic 22px Georgia, "Times New Roman", serif; margin: 0; letter-spacing: .02em; }
+  .sub { color: var(--muted); font-size: 12px; }
+
+  /* The frame: 800x480 (5:3) landscape, or 480x800 portrait */
+  .bezel { background: #050505; border: 1px solid var(--line); border-radius: 14px; padding: 18px; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+  .screen { position: relative; width: 100%; aspect-ratio: 800 / 480; background: #000; overflow: hidden; border-radius: 2px; margin: 0 auto; }
+  .portrait .screen { aspect-ratio: 480 / 800; max-width: 420px; }
+  .screen video, .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .screen img.intro { object-fit: contain; background: #000; }
+  .titlecard { position: absolute; inset: 0; display: grid; place-items: center; background: #000;
+    font: italic clamp(20px, 5vw, 42px) Georgia, serif; color: #e8e4da; letter-spacing: .08em; text-align: center; }
+  .caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 6% 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,.78));
+    font: italic clamp(13px, 2.4vw, 20px)/1.35 Georgia, "Times New Roman", serif; color: #eeeae0; text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9); transition: opacity .6s; }
+  .fade { opacity: 0; }
+
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
+  button { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 12px; font: inherit; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button.on { border-color: var(--accent); color: var(--accent); }
+  .presence.present { color: var(--present); border-color: var(--present); }
+  .presence.clear { color: var(--clear); border-color: var(--clear); }
+
+  .info { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+  .card b { display: block; color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+  .card span { overflow-wrap: anywhere; }
+  .err { color: var(--present); margin-top: 12px; }
+  kbd { background: #222; border: 1px solid #333; border-radius: 4px; padding: 0 5px; font-size: 12px; }
+  .help { color: var(--muted); font-size: 12px; margin-top: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Living Photos</h1>
+    <div class="sub" id="feedInfo">loading feed…</div>
+  </header>
+
+  <div class="bezel" id="bezel">
+    <div class="screen" id="screen">
+      <video id="vid" muted playsinline loop preload="auto"></video>
+      <div class="caption" id="caption"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="presenceBtn" class="presence clear">Presence: CLEAR</button>
+    <button id="nextBtn">Next scene ▸</button>
+    <button id="introBtn">Play intro</button>
+    <button id="orientBtn">Portrait</button>
+    <button id="resetBtn">Reset counts</button>
+  </div>
+
+  <div class="info">
+    <div class="card"><b>Scene</b><span id="iScene">—</span></div>
+    <div class="card"><b>Episode / mood</b><span id="iTags">—</span></div>
+    <div class="card"><b>Caption</b><span id="iCap">—</span></div>
+    <div class="card"><b>Active bag</b><span id="iBag">—</span></div>
+  </div>
+  <div class="err" id="err"></div>
+
+  <p class="help">
+    <kbd>Space</kbd> toggle presence (present = frozen, clear = moving) · <kbd>N</kbd> next scene · <kbd>I</kbd> intro.
+    Play counts are kept in this browser only, so caption rotation carries over between visits.
+  </p>
+</main>
+
+<script>
+(() => {
+  const BASE = 'twilight-zone/';
+  const $ = id => document.getElementById(id);
+  const vid = $('vid'), cap = $('caption'), screen = $('screen');
+
+  // Per-browser play counts (stand-in for the device's own counts)
+  const store = {
+    get() { try { return JSON.parse(localStorage.getItem('lp_counts') || '{}'); } catch { return {}; } },
+    set(v) { try { localStorage.setItem('lp_counts', JSON.stringify(v)); } catch {} }
+  };
+  let counts = store.get();
+  let scenes = [], state = {}, bag = [], lastShown = null, current = null, present = false;
+
+  const bust = u => u + (u.includes('?') ? '&' : '?') + 't=' + Date.now();
+
+  async function load() {
+    try {
+      const [m, s] = await Promise.all([
+        fetch(bust(BASE + 'manifest.json')).then(r => r.json()),
+        fetch(bust('state.json')).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+      ]);
+      scenes = (m.scenes || []).filter(x => x.pool === 'active');
+      state = s;
+      $('feedInfo').textContent = `${scenes.length} active scene${scenes.length === 1 ? '' : 's'} · theme: ${state.active_theme || m.theme}`;
+      await playIntro();
+      next();
+    } catch (e) {
+      $('err').textContent = 'Could not load the feed. Open this page from GitHub Pages (or a local web server), not as a file. ' + e;
+    }
+  }
+
+  // Shuffle bag with anti-clustering + boundary rule
+  function refill() {
+    const pool = [];
+    scenes.forEach(s => { for (let i = 0; i < Math.max(1, s.weight || 1); i++) pool.push(s); });
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    // anti-cluster: avoid same episode_tag back-to-back where possible
+    for (let i = 1; i < pool.length; i++) {
+      if (pool[i].episode_tag === pool[i - 1].episode_tag) {
+        const k = pool.findIndex((x, idx) => idx > i && x.episode_tag !== pool[i - 1].episode_tag);
+        if (k > 0) [pool[i], pool[k]] = [pool[k], pool[i]];
+      }
+    }
+    // boundary: first of new cycle != last shown
+    if (lastShown && pool.length > 1 && pool[0].id === lastShown) pool.push(pool.shift());
+    bag = pool;
+  }
+
+  function next() {
+    if (!scenes.length) { cap.textContent = 'No active scenes in the manifest yet.'; return; }
+    if (!bag.length) refill();
+    show(bag.shift());
+  }
+
+  function show(s) {
+    current = s; lastShown = s.id;
+    const n = counts[s.id] || 0;
+    const list = s.captions || (s.caption ? [s.caption] : []);
+    const idx = list.length ? n % list.length : 0;
+    counts[s.id] = n + 1; store.set(counts);
+
+    clearIntro();
+    cap.classList.add('fade');
+    vid.src = BASE + s.video;
+    vid.load();
+    vid.onloadeddata = () => applyPresence();
+    vid.onerror = () => { $('err').textContent = `Couldn't play ${s.video} in this browser.`; };
+    $('err').textContent = '';
+    setTimeout(() => cap.classList.remove('fade'), 400);
+    cap.textContent = list[idx] || '';
+
+    $('iScene').textContent = `${s.id} · ${s.video.replace('videos/', '')}`;
+    $('iTags').textContent = `${s.episode_tag} · ${(s.mood_tags || []).join(', ')}`;
+    $('iCap').textContent = list.length ? `${idx + 1} of ${list.length} (shown ${n + 1}×)` : 'none';
+    $('iBag').textContent = bag.length ? `${bag.length} left: ${bag.map(b => b.id).join(', ')}` : 'cycle complete';
+  }
+
+  // Intro: static portrait image until intro_motion is true
+  function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; }
+  function playIntro() {
+    return new Promise(resolve => {
+      clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; cap.classList.add('fade');
+      const done = () => setTimeout(() => { resolve(); }, 3500);
+      if (state.intro_motion) {
+        const v = document.createElement('video');
+        Object.assign(v, { muted: true, playsInline: true, autoplay: true, src: bust('intros/tz_intro.mp4') });
+        v.className = 'intro'; v.onerror = fallback; v.onended = resolve; screen.prepend(v);
+      } else {
+        const img = new Image();
+        img.className = 'intro';
+        img.onload = () => { screen.prepend(img); done(); };
+        img.onerror = fallback;
+        img.src = bust('intros/tz_intro.png');
+      }
+      function fallback() {
+        const t = document.createElement('div');
+        t.className = 'titlecard'; t.textContent = 'The Twilight Zone';
+        screen.prepend(t); done();
+      }
+    });
+  }
+
+  // Presence: someone near = freeze; nobody near = motion
+  function applyPresence() {
+    const b = $('presenceBtn');
+    b.textContent = 'Presence: ' + (present ? 'PRESENT (frozen)' : 'CLEAR (moving)');
+    b.className = 'presence ' + (present ? 'present' : 'clear');
+    if (present) vid.pause(); else vid.play().catch(() => {});
+  }
+
+  $('presenceBtn').onclick = () => { present = !present; applyPresence(); };
+  $('nextBtn').onclick = next;
+  $('introBtn').onclick = async () => { await playIntro(); if (current) show(current); };
+  $('orientBtn').onclick = () => {
+    const p = $('bezel').classList.toggle('portrait');
+    $('orientBtn').textContent = p ? 'Landscape' : 'Portrait';
+    $('orientBtn').classList.toggle('on', p);
+  };
+  $('resetBtn').onclick = () => { counts = {}; store.set(counts); if (current) show(current); };
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'BUTTON' && e.code === 'Space') e.preventDefault();
+    if (e.code === 'Space') { e.preventDefault(); $('presenceBtn').click(); }
+    else if (e.key === 'n' || e.key === 'N') next();
+    else if (e.key === 'i' || e.key === 'I') $('introBtn').click();
+  });
+
+  load();
+})();
+</script>
+</body>
+</html>
