@@ -1,5 +1,18 @@
 {
   "theme": "twilight-zone",
   "schema_version": 1,
-  "scenes": []
+  "scenes": [
+    {
+      "id": "twz_018",
+      "video": "videos/hospital_bandages_018.mp4",
+      "caption": "Everyone here already knows what you'll look like.",
+      "episode_tag": "eye_of_the_beholder",
+      "mood_tags": ["conformity", "inverted_normalcy"],
+      "pool": "active",
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null
+    }
+  ]
 }
