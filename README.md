@@ -19,7 +19,8 @@ living-photos/
 │   └── videos/
 │
 ├── intros/
-│   ├── tz_intro.mp4          ← Rod Serling-style portrait bumper (made by Kevin)
+│   ├── tz_intro.png          ← Serling-style host portrait (made by Kevin), shown static
+│   ├── tz_intro.mp4          ← moving version, used once state.json intro_motion = true
 │   └── severance_intro.mp4   ← added once crossfade begins
 │
 ├── docs/                     ← TZ Waveshare docs (Authority, Reference, etc.)

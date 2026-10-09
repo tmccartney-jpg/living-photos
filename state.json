@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "active_theme": "twilight-zone",
+  "intro_motion": false,
   "severance_premiere": null,
   "crossfade_start": null,
   "season_total_episodes": null,

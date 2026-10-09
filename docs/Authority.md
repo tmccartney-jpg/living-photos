@@ -20,6 +20,7 @@
 - Local fallback (cached manifest + video) used only when offline — never a visible error state
 - Provisioning via device-hosted Wi-Fi + web UI, entered only on missing credentials or held BOOT
 - No sound output is used or expected (hardware has no speaker)
+- Intro is the static `tz_intro.png` until `intro_motion` is manually set to `true`
 - Twilight Zone intro stays exclusive until Severance `intro_ratio` reaches 1.0
 - Severance content only enters rotation on or after its `release_date`
 - Retired scenes never redraw directly — only re-enter via Reserve once Reserve is low
@@ -40,6 +41,7 @@ To modify a locked behavior or reference fact:
 
 - 2026-10-08: Unlocked `Reference.md` repo structure — moved to the `living-photos` repo, dropped `aura/` (Praise Kier is a separate repo), added `docs/` and the manifest wrapper. Re-locked.
 - 2026-10-08: Unlocked `Reference.md` manifest schema — `caption` (string) replaced by `captions` (array), rotated in order per showing via `times_shown`. Re-locked.
+- 2026-10-08: Added intro files (`tz_intro.png` static, `tz_intro.mp4` moving) and `intro_motion` flag in `state.json`. Re-locked.
 
 ---
 

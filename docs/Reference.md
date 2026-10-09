@@ -15,7 +15,8 @@ living-photos/
 │   ├── manifest.json
 │   └── videos/
 ├── intros/
-│   ├── tz_intro.mp4
+│   ├── tz_intro.png      ← static title screen (Kevin's portrait)
+│   ├── tz_intro.mp4      ← moving version, used once intro_motion is true
 │   └── severance_intro.mp4
 ├── docs/
 └── state.json
@@ -64,6 +65,14 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - Anti-clustering: no two same-`episode_tag` scenes shown consecutively
 - Boundary rule: last scene of one shuffle cycle must not equal first scene of next
 - Retired scenes only re-enter Reserve once Reserve is low — never redrawn directly from Retired
+
+---
+
+## Intro / Title Screen
+
+- `intros/tz_intro.png` — static title screen (Kevin's Twilight Zone host portrait, 1288×1608 portrait orientation)
+- `intros/tz_intro.mp4` — moving version (6 s ping-pong)
+- `state.json` → `intro_motion`: `false` = show the PNG; `true` = play the MP4. Flipped manually.
 
 ---
 
