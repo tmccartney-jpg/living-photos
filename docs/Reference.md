@@ -33,7 +33,11 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 {
   "id": "twz_018",
   "video": "videos/hospital_bandages_018.mp4",
-  "caption": "Everyone here already knows what you'll look like.",
+  "captions": [
+    "Everyone here already knows what you'll look like.",
+    "The bandages come off today.",
+    "They only want you to be normal."
+  ],
   "episode_tag": "eye_of_the_beholder",
   "mood_tags": ["conformity", "inverted_normalcy"],
   "pool": "active",
@@ -46,6 +50,7 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 
 | Field | Values | Purpose |
 |---|---|---|
+| `captions` | array of 1+ strings | Shown in order, rotating each time the scene plays: `captions[times_shown % len]` |
 | `pool` | `active` \| `reserve` \| `retired` | Current position in the three-bag conveyor |
 | `weight` | integer, default 1 | Frequency bias within active bag (episode-lean scenes get higher weight) |
 | `release_date` | ISO date or `null` | Gates Severance scenes until their episode has aired |

@@ -39,7 +39,11 @@ Each manifest is `{ "theme", "schema_version", "scenes": [ ... ] }`. A scene ent
 {
   "id": "twz_018",
   "video": "videos/hospital_bandages_018.mp4",
-  "caption": "Everyone here already knows what you'll look like.",
+  "captions": [
+    "Everyone here already knows what you'll look like.",
+    "The bandages come off today.",
+    "They only want you to be normal."
+  ],
   "episode_tag": "eye_of_the_beholder",
   "mood_tags": ["conformity", "inverted_normalcy"],
   "pool": "active",
@@ -50,6 +54,7 @@ Each manifest is `{ "theme", "schema_version", "scenes": [ ... ] }`. A scene ent
 }
 ```
 
+- `captions`: one or more captions, rotated in order each time the scene plays (`captions[times_shown % len]`)
 - `pool`: `"active"` | `"reserve"` | `"retired"`
 - `weight`: higher = shown more often within the active bag (episode-lean bias, e.g. "It's a Good Life")
 - `release_date`: Severance scenes only — gates a scene until its episode has aired
