@@ -7,19 +7,23 @@ This document holds the flat, factual reference material for the project. It doe
 ## Repo Structure
 
 ```
-your-repo/
-├── aura/
+living-photos/
 ├── twilight-zone/
 │   ├── manifest.json
 │   └── videos/
-├── severance/
+├── severance/            ← added once the crossfade begins
 │   ├── manifest.json
 │   └── videos/
 ├── intros/
 │   ├── tz_intro.mp4
 │   └── severance_intro.mp4
+├── docs/
 └── state.json
 ```
+
+Each manifest file wraps its entries: `{ "theme", "schema_version", "scenes": [ ... ] }`.
+
+Praise Kier lives in its own repo (`praise-kier-display`) and is not part of this structure.
 
 ---
 

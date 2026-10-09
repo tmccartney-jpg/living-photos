@@ -38,7 +38,7 @@ To modify a locked behavior or reference fact:
 
 ## Change Log
 
-- *(none yet — this is the initial lock)*
+- 2026-10-08: Unlocked `Reference.md` repo structure — moved to the `living-photos` repo, dropped `aura/` (Praise Kier is a separate repo), added `docs/` and the manifest wrapper. Re-locked.
 
 ---
 
