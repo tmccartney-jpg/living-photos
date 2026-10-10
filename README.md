@@ -11,8 +11,10 @@ The Praise Kier display lives separately in [`praise-kier-display`](https://gith
 ```
 living-photos/
 ├── twilight-zone/
-│   ├── manifest.json         ← single source of truth for all TZ scenes
-│   └── videos/
+│   ├── manifest.json         ← single source of truth for all TZ scenes (all 30)
+│   ├── videos/               ← living-photo clips (MP4, 6 s loops)
+│   ├── stills/               ← every scene's still image (shown until its clip exists)
+│   └── device/               ← frame-ready copies, built automatically (<id>.lpv clip, <id>.jpg still)
 │
 ├── severance/                ← added once the crossfade begins
 │   ├── manifest.json         ← grows weekly, one entry per aired episode
@@ -25,10 +27,12 @@ living-photos/
 │
 ├── docs/                     ← TZ Waveshare docs (Authority, Reference, etc.)
 ├── tools/rotate.py           ← daily rotation + crossfade logic
-├── .github/workflows/        ← runs the rotation every morning
+├── tools/build_device.py     ← builds the frame-ready files + device_index.json
+├── .github/workflows/        ← daily rotation; device-file build on every content push
 │
 ├── rotation.json             ← today's pick — every frame shows this
-└── state.json                ← shared crossfade tracker, read by all devices
+├── state.json                ← shared crossfade tracker, read by all devices
+└── device_index.json         ← every frame-ready file with size + SHA-256 (what a frame mirrors)
 ```
 
 Captions live in the manifest as text, **not** baked into video files, so either can change without touching the other.
@@ -43,6 +47,8 @@ Each manifest is `{ "theme", "schema_version", "scenes": [ ... ] }`. A scene ent
 {
   "id": "twz_018",
   "video": "videos/hospital_bandages_018.mp4",
+  "still": "stills/hospital_bandages_018.jpg",
+  "presence": "freeze",
   "captions": [
     "Everyone here already knows what you'll look like.",
     "The bandages come off today.",
@@ -54,7 +60,8 @@ Each manifest is `{ "theme", "schema_version", "scenes": [ ... ] }`. A scene ent
   "last_shown": null,
   "times_shown": 0,
   "weight": 1,
-  "release_date": null
+  "release_date": null,
+  "device": { "clip": "device/twz_018.lpv", "still": "device/twz_018.jpg" }
 }
 ```
 
@@ -62,6 +69,10 @@ Each manifest is `{ "theme", "schema_version", "scenes": [ ... ] }`. A scene ent
 - `pool`: `"active"` | `"reserve"` | `"retired"`
 - `weight`: higher = shown more often within the active bag (episode-lean bias, e.g. "It's a Good Life")
 - `release_date`: Severance scenes only — gates a scene until its episode has aired
+- `video`: the living-photo clip, or `null` while the scene is still-only (its Kling clip isn't made yet). Adding the clip later is just filling this in.
+- `still`: the scene's still image. Shown on its own when there's no clip.
+- `presence`: `"freeze"` (default — hold the current frame while someone is there) or `"rest"` (light-only scenes — jump to frame 0, lights off, while someone is there)
+- `device`: filled in by `tools/build_device.py` — the 800×480 copies a frame plays from its SD card
 
 ---
 
@@ -117,7 +128,8 @@ Wiring (crossover): 3V3→3V3, GND→GND, board RXD→sensor TX, board TXD→sen
    ```
    ffmpeg -i raw_clip.mp4 -filter_complex "[0:v]reverse[r];[0:v][r]concat=n=2:v=1:a=0[out]" -map "[out]" pingpong_clip.mp4
    ```
-5. Rename to manifest convention, add the manifest entry, push
+5. Rename to manifest convention (`<name>_<NNN>.mp4`), put it in `videos/`, set the scene's `video`, push
+6. The **Build device files** Action makes the frame-ready `.lpv`/`.jpg` and updates `device_index.json` — frames pick it up on their next sync
 
 The display has no speaker — audio in exports is harmless.
 
@@ -127,7 +139,9 @@ The display has no speaker — audio in exports is harmless.
 
 - [ ] Full print of the base with the sensor cradle + retention bridge
 - [ ] First ffmpeg ping-pong test on the Eye of the Beholder clip
-- [ ] Generate remaining TZ scenes and add manifest entries (18 concepts written, target 30)
+- [x] All 30 TZ scenes in the manifest (9 living photos, 21 still-only)
+- [ ] Kling clips for the 21 still-only scenes (prompts in `KLING_Prompts.md` on Tony's PC)
+- [ ] Frame firmware: mirror `device_index.json` to SD, play from SD, 09:30 change, presence
 - [x] Build the crossfade GitHub Action (daily rotation)
 - [ ] Watch for Severance S3 premiere date + episode count
 - [ ] "Kevin discovers the mechanism" easter-egg scene — no rush

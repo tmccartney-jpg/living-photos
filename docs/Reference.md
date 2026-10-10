@@ -10,21 +10,27 @@ This document holds the flat, factual reference material for the project. It doe
 living-photos/
 ├── twilight-zone/
 │   ├── manifest.json
-│   └── videos/
+│   ├── videos/           ← clips (MP4)
+│   ├── stills/           ← one still per scene (JPG)
+│   └── device/           ← frame-ready copies (<id>.lpv, <id>.jpg), built by tools/build_device.py
 ├── severance/            ← added once the crossfade begins
 │   ├── manifest.json
 │   └── videos/
 ├── intros/
+│   ├── device/           ← frame-ready intro JPGs (built)
 │   ├── tz_intro.png      ← static title screen (Kevin's portrait)
 │   ├── tz_intro.mp4      ← moving version (to come), used once intro_motion is true
 │   └── severance_intro.mp4
 ├── docs/
 ├── tools/
-│   └── rotate.py         ← daily rotation + crossfade (run by the Action)
+│   ├── rotate.py         ← daily rotation + crossfade (run by the Action)
+│   └── build_device.py   ← builds device/ files + device_index.json (run by the Action)
 ├── .github/workflows/
-│   └── daily-rotation.yml ← runs rotate.py every morning (~4 am ET)
+│   ├── daily-rotation.yml ← runs rotate.py every morning (~4 am ET)
+│   └── build-device.yml   ← runs build_device.py when clips/stills/manifests change
 ├── rotation.json         ← today's pick for every frame (written by the Action)
-└── state.json
+├── state.json
+└── device_index.json     ← every frame-ready file: path, bytes, sha256
 ```
 
 Each manifest file wraps its entries: `{ "theme", "schema_version", "scenes": [ ... ] }`.
@@ -39,6 +45,8 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 {
   "id": "twz_018",
   "video": "videos/hospital_bandages_018.mp4",
+  "still": "stills/hospital_bandages_018.jpg",
+  "presence": "freeze",
   "captions": [
     "Everyone here already knows what you'll look like.",
     "The bandages come off today.",
@@ -50,7 +58,8 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
   "last_shown": null,
   "times_shown": 0,
   "weight": 1,
-  "release_date": null
+  "release_date": null,
+  "device": { "clip": "device/twz_018.lpv", "still": "device/twz_018.jpg" }
 }
 ```
 
@@ -60,6 +69,10 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 | `pool` | `active` \| `reserve` \| `retired` | Current position in the three-bag conveyor |
 | `weight` | integer, default 1 | Frequency bias within active bag (episode-lean scenes get higher weight) |
 | `release_date` | ISO date or `null` | Gates Severance scenes until their episode has aired |
+| `video` | path or `null` | Living-photo clip; `null` = still-only until its clip is made |
+| `still` | path | The scene's still image; displayed alone when `video` is `null` |
+| `presence` | `freeze` (default) \| `rest` | While someone is present: `freeze` holds the current frame; `rest` shows frame 0 (light-only scenes: lights off) |
+| `device` | `{clip, still}` | Frame-ready copies, written by `build_device.py`; `clip` is `null` for still-only scenes |
 
 ---
 
@@ -92,6 +105,16 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - Small libraries (everything fits in Active + Reserve): a played scene waits until the current cycle is used up before it can come back.
 - Extra pool values used by the rotation: `pending` (Severance scene not yet released / crossfade not started) and `retired_final` (Twilight Zone scenes after the finale).
 - Preview without changing anything: `python tools/rotate.py --simulate 30`.
+
+---
+
+## Device Files (what a frame mirrors)
+
+- Built by `tools/build_device.py` (GitHub Action **Build device files**, on every push that changes clips, stills, intros or manifests). Unchanged sources are skipped.
+- `<theme>/device/<id>.lpv` — the clip, 800×480, 15 fps; `<theme>/device/<id>.jpg` — 800×480 still (the clip's frame 0 = its rest frame, or the still artwork for still-only scenes); `intros/device/<name>.jpg` — 800×480 intro.
+- Images are scaled to fill 800×480 and centre-cropped, stored upright; the firmware rotates 180° for the upside-down panel.
+- `device_index.json` lists every device file with `bytes` and `sha256`. A frame downloads a file when its hash differs from the SD copy and deletes SD files no longer listed. `rotation.json` carries the device paths for today's and yesterday's scene and the intro.
+- **LPV1 format** (little-endian): `"LPV1"`, u16 width, u16 height, u16 fps, u16 0, u32 frame count, u32 largest frame size, 12 reserved bytes (32-byte header); then per frame u32 size + baseline JPEG.
 
 ---
 
@@ -145,7 +168,8 @@ share    = 0.05 + 0.95 × progress²        (0 before episode 1; 100% at the fin
    ```
    ffmpeg -i raw_clip.mp4 -filter_complex "[0:v]reverse[r];[0:v][r]concat=n=2:v=1:a=0[out]" -map "[out]" pingpong_clip.mp4
    ```
-5. Rename to manifest convention, add entry, push to repo
+5. Rename to manifest convention, put in `videos/`, set the scene's `video`, push
+6. The Build device files Action produces the frame-ready copies and updates `device_index.json`
 
 ---
 

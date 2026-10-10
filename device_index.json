@@ -1,0 +1,385 @@
+{
+  "schema_version": 1,
+  "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
+  "total_bytes": 30252257,
+  "files": [
+    {
+      "path": "intros/device/tz_intro.jpg",
+      "kind": "intro",
+      "bytes": 45413,
+      "sha256": "cd0c7be67071e0e9f070e187feda27d7201729293f5ed9fc2f902e07567734f3",
+      "source": "intros/tz_intro.png",
+      "source_sha256": "970e2f16d0ec81ca1e979be6e64072291c26b550b807efaf748f22e3500ccd1e"
+    },
+    {
+      "path": "twilight-zone/device/twz_001.jpg",
+      "kind": "still",
+      "bytes": 26915,
+      "sha256": "d7bac84752603e4e20ade83d98c0b5273bbd3b0f10afbd4e199d94e588a601bc",
+      "source": "twilight-zone/videos/bus_stop_001.mp4",
+      "source_sha256": "ff17534b551e9b9cf6018b13e6af85378644ceb4481eeef8e08dce9d94535d7b",
+      "scene": "twz_001"
+    },
+    {
+      "path": "twilight-zone/device/twz_001.lpv",
+      "kind": "clip",
+      "bytes": 2541542,
+      "sha256": "f8b582de4af055d5c5eef7dfaf93af8d4c090f94750e578e59ae09deaaddbcce",
+      "source": "twilight-zone/videos/bus_stop_001.mp4",
+      "source_sha256": "ff17534b551e9b9cf6018b13e6af85378644ceb4481eeef8e08dce9d94535d7b",
+      "scene": "twz_001",
+      "frames": 91,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_002.jpg",
+      "kind": "still",
+      "bytes": 86260,
+      "sha256": "0ff00849c2a6f23fd64c8253c421b956d7bb8023e22fba49e6425c2da54d5262",
+      "source": "twilight-zone/stills/cornfield_farmhouse_002.jpg",
+      "source_sha256": "e8398197d32f4cffa6d31bdf16413cbcd981f272b90b540035acf940c414d246",
+      "scene": "twz_002"
+    },
+    {
+      "path": "twilight-zone/device/twz_003.jpg",
+      "kind": "still",
+      "bytes": 56314,
+      "sha256": "4776276fd8b4d0db7c991c5b59f81bc16e28502db4eb0de997a719db54b98f9e",
+      "source": "twilight-zone/stills/train_platform_doubling_003.jpg",
+      "source_sha256": "b77518d8b4b2402a226d5395665578dedc70f89e9d3758e8e5a17a23853b686a",
+      "scene": "twz_003"
+    },
+    {
+      "path": "twilight-zone/device/twz_004.jpg",
+      "kind": "still",
+      "bytes": 76466,
+      "sha256": "f0fd11f2190a3cd20a02536a189f0be4d308bd510b063791fb6ee77a5e2bd3b2",
+      "source": "twilight-zone/stills/diner_booth_coffee_steaming_004.jpg",
+      "source_sha256": "d3fe791aeaed1d171e98906238a7ca255dd30b2e549fd99c4002da151b850229",
+      "scene": "twz_004"
+    },
+    {
+      "path": "twilight-zone/device/twz_005.jpg",
+      "kind": "still",
+      "bytes": 57535,
+      "sha256": "1b5f7a754e9ec96870304bc6354b12d7fe644db7b5d24a20f4a2d4566daddf7b",
+      "source": "twilight-zone/stills/attic_window_curtain_parted_005.jpg",
+      "source_sha256": "bf2efa0767c334903d156288c283173e44272e6f16a5ac4b2994ddf8bd4fabe5",
+      "scene": "twz_005"
+    },
+    {
+      "path": "twilight-zone/device/twz_006.jpg",
+      "kind": "still",
+      "bytes": 45922,
+      "sha256": "fb50fc975a0ea2cd06fe9f40d843f2ad8defde9cb31f069442815de7866e6436",
+      "source": "twilight-zone/stills/rotary_phone_off_the_hook_006.jpg",
+      "source_sha256": "603eb42efde60c2df3b834d9551a6da903446ef0a0e0560f3ffbe10ade0b161f",
+      "scene": "twz_006"
+    },
+    {
+      "path": "twilight-zone/device/twz_007.jpg",
+      "kind": "still",
+      "bytes": 52114,
+      "sha256": "2ad13a9f1684ad5606c6d9fb6aa7ec4b070787f8491142888e8934b95e2a59e2",
+      "source": "twilight-zone/stills/wheat_field_turned_scarecrow_007.jpg",
+      "source_sha256": "6edebc48fa4a8f333ebbfcb1b8deec3336637ec63371514a5c1bf74853994c42",
+      "scene": "twz_007"
+    },
+    {
+      "path": "twilight-zone/device/twz_008.jpg",
+      "kind": "still",
+      "bytes": 41383,
+      "sha256": "77d708c658c6a4f78fc1ca39c4a392d148d5597bd0a88314b2babc4bbff73cc5",
+      "source": "twilight-zone/videos/motel_sign_008.mp4",
+      "source_sha256": "65f8b9719cd9e4f76ba968b754f6a2429b84cb3406834613d1554f6f098f17df",
+      "scene": "twz_008"
+    },
+    {
+      "path": "twilight-zone/device/twz_008.lpv",
+      "kind": "clip",
+      "bytes": 3886914,
+      "sha256": "c3c01e58cd9526f3b638c2c02c01f9e6524604687f8ebc5b7646acfa8378ae45",
+      "source": "twilight-zone/videos/motel_sign_008.mp4",
+      "source_sha256": "65f8b9719cd9e4f76ba968b754f6a2429b84cb3406834613d1554f6f098f17df",
+      "scene": "twz_008",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_009.jpg",
+      "kind": "still",
+      "bytes": 52428,
+      "sha256": "aea316184c8305afabd3da8a1464063f42817909629c35864d5d8fed99f88c7c",
+      "source": "twilight-zone/stills/childs_rocking_chair_009.jpg",
+      "source_sha256": "3150b6a5c5620d846342237c03e4147d116e2a2757a950e2cb6b29fa1ac0240b",
+      "scene": "twz_009"
+    },
+    {
+      "path": "twilight-zone/device/twz_010.jpg",
+      "kind": "still",
+      "bytes": 33694,
+      "sha256": "1fe7a75fab5a3b49468840a8c7e04ab61afb01d929c2145227444645fbeaa023",
+      "source": "twilight-zone/videos/elevator_010.mp4",
+      "source_sha256": "bba4a73213861aab04cbf1271d2f08f1fc27cb809090d451e9da304cc3e95106",
+      "scene": "twz_010"
+    },
+    {
+      "path": "twilight-zone/device/twz_010.lpv",
+      "kind": "clip",
+      "bytes": 3117664,
+      "sha256": "fa8389238596ce41df04b628c8d570540c11f46b3aaddd2d2909501b44af3ead",
+      "source": "twilight-zone/videos/elevator_010.mp4",
+      "source_sha256": "bba4a73213861aab04cbf1271d2f08f1fc27cb809090d451e9da304cc3e95106",
+      "scene": "twz_010",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_011.jpg",
+      "kind": "still",
+      "bytes": 53879,
+      "sha256": "2b1f53d781c693378cfabf4f5a1f6a49053f9a87fa748d5f46c7d53fc19c87c2",
+      "source": "twilight-zone/stills/barbershop_mirror_011.jpg",
+      "source_sha256": "570ed5be468d6beafe9c88f7b041a2995d99ff98c1bbe52a9e06116ff60f14ec",
+      "scene": "twz_011"
+    },
+    {
+      "path": "twilight-zone/device/twz_012.jpg",
+      "kind": "still",
+      "bytes": 36266,
+      "sha256": "ea30505204c6cc7369a7e86df4ecff3d4720ad971b0a2c5f9158d3608b0d0171",
+      "source": "twilight-zone/videos/radio_dial_012.mp4",
+      "source_sha256": "1e7795b1542bbc7e3167cb0cec3785c4881b13f55a70e94737ec242cd293c26c",
+      "scene": "twz_012"
+    },
+    {
+      "path": "twilight-zone/device/twz_012.lpv",
+      "kind": "clip",
+      "bytes": 3469237,
+      "sha256": "54b16aa22c46bde09424789a39eb7d0432271615a8f4faa32d260a1d324dbba1",
+      "source": "twilight-zone/videos/radio_dial_012.mp4",
+      "source_sha256": "1e7795b1542bbc7e3167cb0cec3785c4881b13f55a70e94737ec242cd293c26c",
+      "scene": "twz_012",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_013.jpg",
+      "kind": "still",
+      "bytes": 87022,
+      "sha256": "b2a28839a5fe3c12551d32ae8b1204f0a9057587856f7a0847c66ff260974f25",
+      "source": "twilight-zone/stills/porch_swing_vs_wind_013.jpg",
+      "source_sha256": "4f85e62cdfad3b073966150a1c6d1431ca63c44612fe8ba1e40bad5bb3cb67f1",
+      "scene": "twz_013"
+    },
+    {
+      "path": "twilight-zone/device/twz_014.jpg",
+      "kind": "still",
+      "bytes": 56494,
+      "sha256": "eccf63ad1757325e56402a0ce8ce520a0d22c6395555c3f71cbb7a0c140aa6d5",
+      "source": "twilight-zone/stills/card_catalog_open_drawer_014.jpg",
+      "source_sha256": "1ba3bf108e7cc066c65432861b8e49c46926c9707aa4cd40e010c65d6046ec0e",
+      "scene": "twz_014"
+    },
+    {
+      "path": "twilight-zone/device/twz_015.jpg",
+      "kind": "still",
+      "bytes": 51356,
+      "sha256": "5ace8ac0be537585457894b65d5f0eae30f26d07d56820a3d3807f80444b8b82",
+      "source": "twilight-zone/stills/grandfather_clock_015.jpg",
+      "source_sha256": "d77caead6c4d537152763675222e8923d07046d56793f89d74ca51842f7649b8",
+      "scene": "twz_015"
+    },
+    {
+      "path": "twilight-zone/device/twz_016.jpg",
+      "kind": "still",
+      "bytes": 44465,
+      "sha256": "6119495ff8e9bb21bfe50015910eb13fa5c8d33c461757020339fb341d02ff07",
+      "source": "twilight-zone/videos/fortune_machine_016.mp4",
+      "source_sha256": "55782e8335f550fdbf505aad5b917b7e97d6187b26dd8db0384c2d820ca5f911",
+      "scene": "twz_016"
+    },
+    {
+      "path": "twilight-zone/device/twz_016.lpv",
+      "kind": "clip",
+      "bytes": 4002963,
+      "sha256": "eeeedb8039806f91ae83fbd9ec2c9ee36ae54599d6a0c7242910d0c8af3843dc",
+      "source": "twilight-zone/videos/fortune_machine_016.mp4",
+      "source_sha256": "55782e8335f550fdbf505aad5b917b7e97d6187b26dd8db0384c2d820ca5f911",
+      "scene": "twz_016",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_017.jpg",
+      "kind": "still",
+      "bytes": 65555,
+      "sha256": "3c3519c163d4254efef97faf91eebf6ee21864aaec9075a0bb349b05184f99cc",
+      "source": "twilight-zone/stills/masked_figures_017.jpg",
+      "source_sha256": "0bf3f84cd1e77cc35797db0272dad9d77e0aa66248287f4faad151a4f85b8f4a",
+      "scene": "twz_017"
+    },
+    {
+      "path": "twilight-zone/device/twz_018.jpg",
+      "kind": "still",
+      "bytes": 24032,
+      "sha256": "93d008333886762938c1c2eebd5f0b6996216cd239f1d8f146209ffd98ee683f",
+      "source": "twilight-zone/videos/hospital_bandages_018.mp4",
+      "source_sha256": "ee6bc6024a3b37fa87deecb3267ae7d3419d4d38ff7336e04d0fbc8e9f3b4ab2",
+      "scene": "twz_018"
+    },
+    {
+      "path": "twilight-zone/device/twz_018.lpv",
+      "kind": "clip",
+      "bytes": 2128184,
+      "sha256": "4a73f6039d83430055d94324f0445c563cec2e3330676339ec02fb3ebc1c3aef",
+      "source": "twilight-zone/videos/hospital_bandages_018.mp4",
+      "source_sha256": "ee6bc6024a3b37fa87deecb3267ae7d3419d4d38ff7336e04d0fbc8e9f3b4ab2",
+      "scene": "twz_018",
+      "frames": 89,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_019.jpg",
+      "kind": "still",
+      "bytes": 44529,
+      "sha256": "52307128e7a6c3b188b34ac2ef866279bebe2ebab19b1f5e6d570d336f6ad497",
+      "source": "twilight-zone/videos/maple_street_019.mp4",
+      "source_sha256": "f11199dd6e1920d82f346597af9b65efc9234e64c36fdacfe367b87524083dd7",
+      "scene": "twz_019"
+    },
+    {
+      "path": "twilight-zone/device/twz_019.lpv",
+      "kind": "clip",
+      "bytes": 4333286,
+      "sha256": "60441a65dac4cee7571f438f026351fc2203d41188f36292aac57c644f45d815",
+      "source": "twilight-zone/videos/maple_street_019.mp4",
+      "source_sha256": "f11199dd6e1920d82f346597af9b65efc9234e64c36fdacfe367b87524083dd7",
+      "scene": "twz_019",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_020.jpg",
+      "kind": "still",
+      "bytes": 74706,
+      "sha256": "71078dc493a4405f44a9baee82292eb90f8f7dd1558b4dd27d198b6a6749b41e",
+      "source": "twilight-zone/stills/broken_spectacles_020.jpg",
+      "source_sha256": "23aa6202ee00cc64ad545149547bea174170fb7a63671e5547854c692e2eb4dd",
+      "scene": "twz_020"
+    },
+    {
+      "path": "twilight-zone/device/twz_021.jpg",
+      "kind": "still",
+      "bytes": 54773,
+      "sha256": "03048a80c17e2ea7d2fd9a15935f27c633dc5f9e0588395a10e425fde1909c69",
+      "source": "twilight-zone/stills/airplane_wing_in_the_storm_021.jpg",
+      "source_sha256": "2f589a5803a9bf68831aede66449e392f678de3f528151cca6fdd06850c42e0c",
+      "scene": "twz_021"
+    },
+    {
+      "path": "twilight-zone/device/twz_022.jpg",
+      "kind": "still",
+      "bytes": 64882,
+      "sha256": "be918465fc27fde1eab3507f8fdd8f6ee52442eb29eadb9f8e26adeae07292d0",
+      "source": "twilight-zone/stills/the_cookbook_022.jpg",
+      "source_sha256": "c8a4f8e78a3754bf2fdcff506e48759c57d9c8920ed499b26ec0865d14cf6731",
+      "scene": "twz_022"
+    },
+    {
+      "path": "twilight-zone/device/twz_023.jpg",
+      "kind": "still",
+      "bytes": 99267,
+      "sha256": "203e7efe9806539706ee6aaf40d54e671249f1c40ae95444a3554661d06c3321",
+      "source": "twilight-zone/stills/park_carousel_023.jpg",
+      "source_sha256": "1bd67135a8017169c0deb6574110ad44866d2f685e7bfd8e2ee24bc9c23857f1",
+      "scene": "twz_023"
+    },
+    {
+      "path": "twilight-zone/device/twz_024.jpg",
+      "kind": "still",
+      "bytes": 46395,
+      "sha256": "8cbee9e3401a44eae0ab602a52cc190b21ee6ce885346d4522b801a24f078e25",
+      "source": "twilight-zone/stills/doll_on_the_shelf_024.jpg",
+      "source_sha256": "b929386d20cacd54e177fa6ae6729bf60195ae5341bca94b2b08171191ec9922",
+      "scene": "twz_024"
+    },
+    {
+      "path": "twilight-zone/device/twz_025.jpg",
+      "kind": "still",
+      "bytes": 78654,
+      "sha256": "e41909382ea660f5ef88d73902a22e494e8794ea5dd86392542d04ec0a5dc3fb",
+      "source": "twilight-zone/stills/kick_the_can_025.jpg",
+      "source_sha256": "a63aeb246aa7f8382e5848ee9d39621382450963ffd33748099d1ebe41d85519",
+      "scene": "twz_025"
+    },
+    {
+      "path": "twilight-zone/device/twz_026.jpg",
+      "kind": "still",
+      "bytes": 41899,
+      "sha256": "627fffee8c71d64c934362052f5468fb5157f4a713c857883e7fd759c2459f7a",
+      "source": "twilight-zone/stills/the_attic_farmhouse_026.jpg",
+      "source_sha256": "17179c920b98488f99c38211d09bf6ea8d328293c986f1f7c4d66e80e35526a3",
+      "scene": "twz_026"
+    },
+    {
+      "path": "twilight-zone/device/twz_027.jpg",
+      "kind": "still",
+      "bytes": 27001,
+      "sha256": "551677fe302a10d2a66a57bf625d36cb4e19a07aef77f40e9a7d2f7dd7d17ba0",
+      "source": "twilight-zone/videos/pool_hall_027.mp4",
+      "source_sha256": "ed2fd244df85fe0b33c215c41bf09fcd14f082b9381e1bfec70aaee56b59c807",
+      "scene": "twz_027"
+    },
+    {
+      "path": "twilight-zone/device/twz_027.lpv",
+      "kind": "clip",
+      "bytes": 2787611,
+      "sha256": "c12b6c8cad74e8824bfda75ec4243d17a35f33386dd8227b52054ccd0cb437e9",
+      "source": "twilight-zone/videos/pool_hall_027.mp4",
+      "source_sha256": "ed2fd244df85fe0b33c215c41bf09fcd14f082b9381e1bfec70aaee56b59c807",
+      "scene": "twz_027",
+      "frames": 90,
+      "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_028.jpg",
+      "kind": "still",
+      "bytes": 47917,
+      "sha256": "4c10e27228f9dbc8b7cb8d249be5a7d75264e7314f9445f89b8d95847a9699f5",
+      "source": "twilight-zone/stills/the_cylinder_028.jpg",
+      "source_sha256": "0188ea5361aede0a579ad411b92c8bcb680c78e831255c5026eb266825a66546",
+      "scene": "twz_028"
+    },
+    {
+      "path": "twilight-zone/device/twz_029.jpg",
+      "kind": "still",
+      "bytes": 40371,
+      "sha256": "fa745410b07c48ef2530018ca4e10e16c00a44a47b6468019e8cc9963c103c9a",
+      "source": "twilight-zone/stills/ventriloquist_dummy_029.jpg",
+      "source_sha256": "e2c2a3446197a5f4f905778e6040764e142b2b2238afe57013ac25ca62f4701a",
+      "scene": "twz_029"
+    },
+    {
+      "path": "twilight-zone/device/twz_030.jpg",
+      "kind": "still",
+      "bytes": 22144,
+      "sha256": "d303c6a4d46d3732b6cee513aed4ebf1a7b1364694f426334bc04c51ced8a729",
+      "source": "twilight-zone/videos/morgue_door_030.mp4",
+      "source_sha256": "cc06ac57b44842798bb399e129c7b034541b5ecc5ba46567dac244a7a1ad6c57",
+      "scene": "twz_030"
+    },
+    {
+      "path": "twilight-zone/device/twz_030.lpv",
+      "kind": "clip",
+      "bytes": 2348805,
+      "sha256": "7f6b6fab220cc24224c9e2791074b93cfdfacbb2ba84024e31dd887208aa4c33",
+      "source": "twilight-zone/videos/morgue_door_030.mp4",
+      "source_sha256": "cc06ac57b44842798bb399e129c7b034541b5ecc5ba46567dac244a7a1ad6c57",
+      "scene": "twz_030",
+      "frames": 90,
+      "fps": 15
+    }
+  ],
+  "updated_utc": "2026-10-10T21:39:15Z"
+}
