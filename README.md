@@ -73,7 +73,7 @@ Three pools, not a hard swap-and-refill:
 - **Reserve bag (15 scenes):** waiting scenes. A few get **injected** into the active bag's remaining unplayed slots periodically — not appended, not swapped in bulk.
 - **Retired bag:** a played scene moves here and can't be redrawn. Retired scenes only feed back into reserve once reserve runs low.
 
-**This runs on GitHub, not on the frames.** A daily GitHub Action (`tools/rotate.py`) picks today's scene, caption and intro and writes them to `rotation.json`. Every frame — and the PC viewer's Today mode — shows that pick, so all frames stay in step. Preview the coming days with `python tools/rotate.py --simulate 30`.
+**This runs on GitHub, not on the frames.** A daily GitHub Action (`tools/rotate.py`) picks today's scene, caption and intro and writes them to `rotation.json`. Every frame — and the PC viewer's Today mode — shows that pick, so all frames stay in step. The scene is picked overnight, but the frames keep yesterday's scene until **9:30 am**, then play the intro and switch. Preview the coming days with `python tools/rotate.py --simulate 30`.
 
 ---
 

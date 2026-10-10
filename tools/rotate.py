@@ -10,6 +10,8 @@ What it does each day (America/New_York date):
      from Reserve, refill Reserve from Retired when low
   3. Pick the caption (captions[times_shown % len]) and the intro
   4. Write rotation.json and update pool / times_shown / last_shown in the manifests
+  5. Frames keep showing yesterday's scene ("previous_scene") until "change_at"
+     local time (09:30 America/New_York), then play the intro and today's scene
 
 Rules (docs/Reference.md, README section 3-4):
   - Active bag 15, one scene per day
@@ -53,6 +55,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ACTIVE_SIZE = 15
 RESERVE_LOW = 3
 HISTORY_KEEP = 60
+CHANGE_AT = "09:30"   # local time the frames switch to today's scene (intro first)
 THEMES = [
     {"theme": "twilight-zone", "manifest": "twilight-zone/manifest.json",
      "intro_png": "intros/tz_intro.png", "intro_mp4": "intros/tz_intro.mp4"},
@@ -301,6 +304,8 @@ def draw(lib, rot, day, theme, yesterday):
 def run_day(day, state, lib, rot, quiet=False):
     rot = dict(rot)
     rot.pop("order", None)                       # old single-bag format
+    # what the frames show until CHANGE_AT: yesterday's scene (kept on a forced redraw of the same day)
+    previous = rot.get("previous_scene") if rot.get("date") == day.isoformat() else rot.get("scene")
     in_cf, aired, total, share, intro_share = crossfade(state, lib, day)
     apply_crossfade_pools(lib, day, in_cf, share)
 
@@ -349,6 +354,8 @@ def run_day(day, state, lib, rot, quiet=False):
             "episode_tag": s.get("episode_tag"),
         },
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4")},
+        "change_at": CHANGE_AT,
+        "previous_scene": previous,
         "crossfade": {
             "active": in_cf,
             "start": state.get("crossfade_start"),
