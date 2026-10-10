@@ -87,6 +87,7 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - It applies the Content Pool Rules above, then writes **`rotation.json`**: today's scene (theme, id, video path, caption), the intro to play, crossfade status, pool counts, the remaining draw order and recent history.
 - It also updates `pool`, `times_shown` and `last_shown` in the manifests.
 - **Every frame and the PC viewer read `rotation.json`**, so all of them show the same scene on the same day.
+- **Daily change at 09:30 local time.** `rotation.json` also carries `previous_scene` (yesterday's pick) and `change_at` (`"09:30"`, set by `CHANGE_AT` in `rotate.py`). Frames keep showing `previous_scene` until `change_at` on their own clock, then play the intro and switch to today's scene. The switch is time-based only, never tied to presence. The intro also plays on power-up.
 - Small libraries (everything fits in Active + Reserve): a played scene waits until the current cycle is used up before it can come back.
 - Extra pool values used by the rotation: `pending` (Severance scene not yet released / crossfade not started) and `retired_final` (Twilight Zone scenes after the finale).
 - Preview without changing anything: `python tools/rotate.py --simulate 30`.
