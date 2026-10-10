@@ -1,0 +1,37 @@
+name: Firmware build
+
+# Compiles the frame firmware (ESP-IDF, ESP32-S3) on every change under firmware/,
+# so a broken build is caught before anything is flashed. The built binaries are
+# attached to the run as an artifact.
+on:
+  push:
+    paths:
+      - "firmware/**"
+      - ".github/workflows/firmware.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with ESP-IDF v5.5.5
+        uses: espressif/esp-idf-ci-action@v1
+        with:
+          esp_idf_version: v5.5.5
+          target: esp32s3
+          path: firmware
+
+      - name: Size report
+        run: ls -la firmware/build/*.bin firmware/build/bootloader/*.bin firmware/build/partition_table/*.bin
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ github.sha }}
+          path: |
+            firmware/build/*.bin
+            firmware/build/bootloader/bootloader.bin
+            firmware/build/partition_table/partition-table.bin
+            firmware/build/flasher_args.json
+          if-no-files-found: error
