@@ -18,6 +18,8 @@ Rules (docs/Reference.md, README section 3-4):
   - No two scenes with the same episode_tag back to back
   - Last scene of one cycle never repeats as the first of the next
   - Retired scenes only come back through Reserve, once Reserve runs low
+  - Fairness: Reserve injects the longest-waiting scene first, into the back half
+    of the Active order, so no scene waits indefinitely (~every 30 days at 30 scenes)
   - Crossfade starts 14 days before the Severance premiere. Each aired episode
     (a severance scene whose release_date has passed) joins the rotation.
     Each day's theme is Severance with probability
@@ -222,8 +224,9 @@ def tag(lib, key):
 
 
 def place_no_cluster(order, key, lib, rng, prev_key):
-    """Insert key at a random slot that avoids same-episode neighbours if possible."""
-    slots = list(range(len(order) + 1))
+    """Insert key at a random slot in the back half of the order (so a waiting scene can't
+    keep getting pushed back), avoiding same-episode neighbours if possible."""
+    slots = list(range(len(order) // 2, len(order) + 1))
     rng.shuffle(slots)
     for i in slots:
         left = order[i - 1] if i > 0 else prev_key
@@ -251,7 +254,8 @@ def topup(lib, rng, theme, order, prev_key):
             lib.scene(k)["pool"] = "reserve"
 
     reserve = lib.keys(pool="reserve", theme=theme)
-    rng.shuffle(reserve)
+    rng.shuffle(reserve)                                            # random among equals...
+    reserve.sort(key=lambda k: lib.scene(k)["last_shown"] or "")    # ...longest-waiting first
     for k in reserve:
         if len(active()) >= ACTIVE_SIZE:
             break
