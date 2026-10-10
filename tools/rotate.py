@@ -352,12 +352,16 @@ def run_day(day, state, lib, rot, quiet=False):
             "key": key,
             "id": s["id"],
             "theme": theme,
-            "video": f'{mdir}/{s["video"]}',
+            "video": f'{mdir}/{s["video"]}' if s.get("video") else None,     # None = still only (no clip yet)
+            "still": f'{mdir}/{s["still"]}' if s.get("still") else None,
+            "presence": s.get("presence", "freeze"),   # freeze = hold the current frame; rest = jump to frame 0
+            "device": {k: (f"{mdir}/{v}" if v else None) for k, v in (s.get("device") or {}).items()},
             "caption": caps[cap_i],
             "caption_index": cap_i,
             "episode_tag": s.get("episode_tag"),
         },
-        "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4")},
+        "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
+                  "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},
         "change_at": CHANGE_AT,
         "previous_scene": previous,
         "crossfade": {

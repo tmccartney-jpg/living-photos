@@ -64,6 +64,7 @@
   <div class="bezel" id="bezel">
     <div class="screen" id="screen">
       <video id="vid" muted playsinline loop preload="auto"></video>
+      <img id="still" alt="" style="display:none">
       <div class="caption" id="caption"></div>
     </div>
   </div>
@@ -85,7 +86,7 @@
   <div class="err" id="err"></div>
 
   <p class="help">
-    <kbd>Space</kbd> toggle presence (present = frozen, clear = moving) · <kbd>N</kbd> next scene · <kbd>I</kbd> intro.
+    <kbd>Space</kbd> toggle presence (present = frozen, or lights off for light scenes; clear = moving) · <kbd>N</kbd> next scene · <kbd>I</kbd> intro.
     Play counts are kept in this browser only, so caption rotation carries over between visits.
   </p>
 </main>
@@ -94,7 +95,7 @@
 (() => {
   const BASE = 'twilight-zone/';
   const $ = id => document.getElementById(id);
-  const vid = $('vid'), cap = $('caption'), screen = $('screen');
+  const vid = $('vid'), still = $('still'), cap = $('caption'), screen = $('screen');
 
   // Per-browser play counts (stand-in for the device's own counts)
   const store = {
@@ -154,25 +155,31 @@
 
     clearIntro();
     cap.classList.add('fade');
-    vid.src = BASE + s.video;
-    vid.load();
-    vid.onloadeddata = () => applyPresence();
-    vid.onerror = () => { $('err').textContent = `Couldn't play ${s.video} in this browser.`; };
+    if (s.video) {                       // living photo
+      still.style.display = 'none'; vid.style.display = '';
+      vid.src = BASE + s.video;
+      vid.load();
+      vid.onloadeddata = () => applyPresence();
+      vid.onerror = () => { $('err').textContent = `Couldn't play ${s.video} in this browser.`; };
+    } else {                             // no clip yet: show the still
+      vid.pause(); vid.removeAttribute('src'); vid.style.display = 'none';
+      still.src = BASE + s.still; still.style.display = '';
+    }
     $('err').textContent = '';
     setTimeout(() => cap.classList.remove('fade'), 400);
     cap.textContent = list[idx] || '';
 
-    $('iScene').textContent = `${s.id} · ${s.video.replace('videos/', '')}`;
+    $('iScene').textContent = `${s.id} · ${s.video ? s.video.replace('videos/', '') : 'still: ' + (s.still || '').replace('stills/', '')}`;
     $('iTags').textContent = `${s.episode_tag} · ${(s.mood_tags || []).join(', ')}`;
     $('iCap').textContent = list.length ? `${idx + 1} of ${list.length} (shown ${n + 1}×)` : 'none';
     $('iBag').textContent = bag.length ? `${bag.length} left: ${bag.map(b => b.id).join(', ')}` : 'cycle complete';
   }
 
   // Intro: static portrait image until intro_motion is true
-  function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; }
+  function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; still.style.visibility = ''; }
   function playIntro() {
     return new Promise(resolve => {
-      clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; cap.classList.add('fade');
+      clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; still.style.visibility = 'hidden'; cap.classList.add('fade');
       const done = () => setTimeout(() => { resolve(); }, 3500);
       if (state.intro_motion) {
         const v = document.createElement('video');
@@ -198,7 +205,11 @@
     const b = $('presenceBtn');
     b.textContent = 'Presence: ' + (present ? 'PRESENT (frozen)' : 'CLEAR (moving)');
     b.className = 'presence ' + (present ? 'present' : 'clear');
-    if (present) vid.pause(); else vid.play().catch(() => {});
+    if (!current || !current.video) return;
+    if (present) {
+      vid.pause();
+      if (current.presence === 'rest') vid.currentTime = 0;   // light scenes: lights off when someone is there
+    } else vid.play().catch(() => {});
   }
 
   $('presenceBtn').onclick = () => { present = !present; applyPresence(); };

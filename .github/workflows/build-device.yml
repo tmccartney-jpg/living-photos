@@ -1,0 +1,56 @@
+name: Build device files
+
+# Rebuilds the frame-ready copies (<theme>/device/*.lpv / *.jpg, intros/device/*.jpg)
+# and device_index.json whenever a clip, still, intro or manifest changes.
+# See tools/build_device.py. Unchanged scenes are skipped.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "*/videos/**"
+      - "*/stills/**"
+      - "*/manifest.json"
+      - "intros/*.png"
+      - "tools/build_device.py"
+  workflow_dispatch:
+    inputs:
+      all:
+        description: "Rebuild everything"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-device
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: which ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build device files
+        run: python tools/build_device.py ${{ inputs.all && '--all' || '' }}
+
+      - name: Commit the result
+        run: |
+          git config user.name  "living-photos-build"
+          git config user.email "living-photos-build@users.noreply.github.com"
+          git add -A device_index.json intros/device */device */manifest.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Device files $(TZ=America/New_York date +%F)"
+            git pull --rebase origin main
+            git push
+          fi

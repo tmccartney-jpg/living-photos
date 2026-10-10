@@ -24,6 +24,9 @@
 - Twilight Zone intro stays exclusive until Severance `intro_ratio` reaches 1.0
 - Severance content only enters rotation on or after its `release_date`
 - Retired scenes never redraw directly — only re-enter via Reserve once Reserve is low
+- Light-only scenes (`presence: "rest"`) show frame 0 — lights off — whenever presence is detected
+- The daily scene change happens at `change_at` (09:30) on the frame's clock, never on presence
+- Frames play only from their SD card, mirrored from `device_index.json`
 - Reserve injects longest-waiting first, into the back half of the Active order
 
 ---
@@ -46,6 +49,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-10: Unlocked `Reference.md` repo structure and rotation — scene rotation and the Severance crossfade now run centrally on GitHub (daily Action, `tools/rotate.py`), writing `rotation.json`, which every frame and the PC viewer follow. Added pool values `pending` and `retired_final`; aired-episode count is derived from Severance `release_date`s. Re-locked.
 - 2026-10-10: Unlocked the Severance crossfade rule (Tony's decision) — replaced "intro_ratio = aired/total, one TZ scene retired per episode" with an ease-in curve, share = 0.05 + 0.95·(aired/total)², applied to both scenes and intro, spread evenly across days; Severance-only at the finale. Re-locked.
 - 2026-10-10: Unlocked the conveyor (Tony's decision) — Reserve → Active injection now takes the longest-waiting scene first and places it in the back half of the Active order (was: random scene, random slot). 400-day test with 30 scenes: gaps 23–65 days (was up to 116), 11–15 showings each (was 8–17), all 30 seen in 39 days (was 71). Re-locked.
+- 2026-10-10: Unlocked `Reference.md` repo structure and manifest schema (Tony's decision) — complete 30-scene set on GitHub: added `still` (every scene), `video: null` for still-only scenes, `presence` (`freeze` | `rest`), `device` (frame-ready copies); added `stills/`, `device/`, `intros/device/`, `device_index.json`, `tools/build_device.py` and the Build device files Action. Recorded the 09:30 daily change and light-scene rest behavior as locked. Re-locked.
 
 ---
 
@@ -55,5 +59,5 @@ To modify a locked behavior or reference fact:
 2. First ffmpeg ping-pong test (Eye of the Beholder clip)
 3. ~~GitHub Action script for automated crossfade/retirement bookkeeping~~ — built 2026-10-10 (daily rotation)
 4. Severance season 3 premiere date + episode count (external dependency, unlocks the crossfade trigger date)
-5. Remaining ~12-17 Twilight Zone scene concepts to complete the 30-scene library
+5. ~~Remaining Twilight Zone scene concepts~~ — all 30 in the manifest 2026-10-10 (9 living, 21 still-only until their Kling clips are made)
 6. "Kevin discovers the mechanism" easter-egg scene — deferred intentionally, no timeline
