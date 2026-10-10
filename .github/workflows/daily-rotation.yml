@@ -1,0 +1,46 @@
+name: Daily rotation
+
+# Picks today's scene, caption and intro for every frame (rotation.json),
+# and runs the Severance crossfade bookkeeping. See tools/rotate.py.
+on:
+  schedule:
+    - cron: "7 8 * * *"      # 08:07 UTC = 4:07 am EDT / 3:07 am EST
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Redraw today's scene even if already picked"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-rotation
+  cancel-in-progress: false
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pick today's scene
+        run: python tools/rotate.py ${{ inputs.force && '--force' || '' }}
+
+      - name: Commit the result
+        run: |
+          git config user.name  "living-photos-rotation"
+          git config user.email "living-photos-rotation@users.noreply.github.com"
+          git add rotation.json state.json twilight-zone/manifest.json
+          [ -f severance/manifest.json ] && git add severance/manifest.json
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Daily rotation $(TZ=America/New_York date +%F)"
+            git push
+          fi

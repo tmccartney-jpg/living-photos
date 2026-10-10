@@ -42,6 +42,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-08: Unlocked `Reference.md` repo structure — moved to the `living-photos` repo, dropped `aura/` (Praise Kier is a separate repo), added `docs/` and the manifest wrapper. Re-locked.
 - 2026-10-08: Unlocked `Reference.md` manifest schema — `caption` (string) replaced by `captions` (array), rotated in order per showing via `times_shown`. Re-locked.
 - 2026-10-08: Added intro files (`tz_intro.png` static, `tz_intro.mp4` moving) and `intro_motion` flag in `state.json`. Re-locked.
+- 2026-10-10: Unlocked `Reference.md` repo structure and rotation — scene rotation and the Severance crossfade now run centrally on GitHub (daily Action, `tools/rotate.py`), writing `rotation.json`, which every frame and the PC viewer follow. Added pool values `pending` and `retired_final`; aired-episode count is derived from Severance `release_date`s. Re-locked.
 
 ---
 
@@ -49,7 +50,7 @@ To modify a locked behavior or reference fact:
 
 1. Caliper measurement of sensor PCB → notched-slot retention redesign on `base_final_v11.stl`
 2. First ffmpeg ping-pong test (Eye of the Beholder clip)
-3. GitHub Action script for automated crossfade/retirement bookkeeping
+3. ~~GitHub Action script for automated crossfade/retirement bookkeeping~~ — built 2026-10-10 (daily rotation)
 4. Severance season 3 premiere date + episode count (external dependency, unlocks the crossfade trigger date)
 5. Remaining ~12-17 Twilight Zone scene concepts to complete the 30-scene library
 6. "Kevin discovers the mechanism" easter-egg scene — deferred intentionally, no timeline

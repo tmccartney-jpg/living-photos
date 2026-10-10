@@ -19,6 +19,11 @@ living-photos/
 │   ├── tz_intro.mp4      ← moving version (to come), used once intro_motion is true
 │   └── severance_intro.mp4
 ├── docs/
+├── tools/
+│   └── rotate.py         ← daily rotation + crossfade (run by the Action)
+├── .github/workflows/
+│   └── daily-rotation.yml ← runs rotate.py every morning (~4 am ET)
+├── rotation.json         ← today's pick for every frame (written by the Action)
 └── state.json
 ```
 
@@ -76,6 +81,18 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 
 ---
 
+## Daily Rotation (runs on GitHub)
+
+- A GitHub Action (`.github/workflows/daily-rotation.yml`) runs `tools/rotate.py` once a day, ~4 am Eastern; it can also be run by hand from the Actions tab (with a "force" option to redraw today).
+- It applies the Content Pool Rules above, then writes **`rotation.json`**: today's scene (theme, id, video path, caption), the intro to play, crossfade status, pool counts, the remaining draw order and recent history.
+- It also updates `pool`, `times_shown` and `last_shown` in the manifests.
+- **Every frame and the PC viewer read `rotation.json`**, so all of them show the same scene on the same day.
+- Small libraries (everything fits in Active + Reserve): a played scene waits until the current cycle is used up before it can come back.
+- Extra pool values used by the rotation: `pending` (Severance scene not yet released / crossfade not started) and `retired_final` (Twilight Zone scene permanently retired by the crossfade).
+- Preview without changing anything: `python tools/rotate.py --simulate 30`.
+
+---
+
 ## Severance Crossfade Formula
 
 ```
@@ -84,8 +101,10 @@ intro_ratio = severance_episodes_aired / season_total_episodes
 
 - `intro_ratio` determines probability of Severance intro playing vs. TZ intro
 - At `intro_ratio = 1.0`, TZ intro retires entirely
-- One new Severance scene added to `severance/manifest.json` per aired episode
-- Trigger for beginning the crossfade: **two weeks before season 3 episode 1 airs** (date TBD — no official premiere announced as of Aug 2026)
+- One new Severance scene added to `severance/manifest.json` per aired episode, with `release_date` = the episode's air date. `severance_episodes_aired` is counted automatically from those dates.
+- Each aired episode permanently retires one Twilight Zone scene (most-shown first).
+- Trigger for beginning the crossfade: **two weeks before season 3 episode 1 airs** (date TBD — no official premiere announced as of Aug 2026). Set `severance_premiere` and `season_total_episodes` in `state.json`; `crossfade_start` is filled in automatically.
+- `state.json` → `active_theme` is set by the rotation: `twilight-zone` → `crossfade` → `severance`.
 
 ---
 

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "timezone": "America/New_York",
+  "scene": {
+    "key": "twilight-zone/twz_001",
+    "id": "twz_001",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/bus_stop_001.mp4",
+    "caption": "He waits for a bus that stopped running years ago.",
+    "caption_index": 0,
+    "episode_tag": "mirror_image"
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false
+  },
+  "crossfade": {
+    "active": false,
+    "start": null,
+    "episodes_aired": 0,
+    "season_total_episodes": null,
+    "intro_ratio": 0.0
+  },
+  "pools": {
+    "active": 2,
+    "reserve": 0,
+    "retired": 1,
+    "retired_final": 0,
+    "pending": 0
+  },
+  "order": [
+    "twilight-zone/twz_016",
+    "twilight-zone/twz_018"
+  ],
+  "history": [
+    {
+      "date": "2026-10-10",
+      "key": "twilight-zone/twz_001",
+      "caption_index": 0
+    }
+  ]
+}

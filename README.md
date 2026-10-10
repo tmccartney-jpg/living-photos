@@ -24,7 +24,10 @@ living-photos/
 │   └── severance_intro.mp4   ← added once crossfade begins
 │
 ├── docs/                     ← TZ Waveshare docs (Authority, Reference, etc.)
+├── tools/rotate.py           ← daily rotation + crossfade logic
+├── .github/workflows/        ← runs the rotation every morning
 │
+├── rotation.json             ← today's pick — every frame shows this
 └── state.json                ← shared crossfade tracker, read by all devices
 ```
 
@@ -70,6 +73,8 @@ Three pools, not a hard swap-and-refill:
 - **Reserve bag (15 scenes):** waiting scenes. A few get **injected** into the active bag's remaining unplayed slots periodically — not appended, not swapped in bulk.
 - **Retired bag:** a played scene moves here and can't be redrawn. Retired scenes only feed back into reserve once reserve runs low.
 
+**This runs on GitHub, not on the frames.** A daily GitHub Action (`tools/rotate.py`) picks today's scene, caption and intro and writes them to `rotation.json`. Every frame — and the PC viewer's Today mode — shows that pick, so all frames stay in step. Preview the coming days with `python tools/rotate.py --simulate 30`.
+
 ---
 
 ## 4. Severance Crossfade
@@ -86,7 +91,7 @@ intro_ratio = severance_episodes_aired / season_total_episodes
 
 Reaches 100% at the season finale, then the TZ intro retires.
 
-**Automation (planned, not built):** a GitHub Action on push to `severance/` updates `state.json` and retires one TZ scene per new Severance scene.
+**Automation (built):** the daily rotation Action counts aired episodes from each Severance scene's `release_date`, brings each one into rotation as it airs, retires one TZ scene per new Severance scene, and blends the intro by `intro_ratio`. To start it, set `severance_premiere` and `season_total_episodes` in `state.json` once the date is announced.
 
 ---
 
@@ -123,6 +128,6 @@ The display has no speaker — audio in exports is harmless.
 - [ ] Full print of the base with the sensor cradle + retention bridge
 - [ ] First ffmpeg ping-pong test on the Eye of the Beholder clip
 - [ ] Generate remaining TZ scenes and add manifest entries (18 concepts written, target 30)
-- [ ] Build the crossfade GitHub Action
+- [x] Build the crossfade GitHub Action (daily rotation)
 - [ ] Watch for Severance S3 premiere date + episode count
 - [ ] "Kevin discovers the mechanism" easter-egg scene — no rush
