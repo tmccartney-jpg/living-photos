@@ -24,6 +24,7 @@
 - Twilight Zone intro stays exclusive until Severance `intro_ratio` reaches 1.0
 - Severance content only enters rotation on or after its `release_date`
 - Retired scenes never redraw directly — only re-enter via Reserve once Reserve is low
+- Reserve injects longest-waiting first, into the back half of the Active order
 
 ---
 
@@ -44,6 +45,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-08: Added intro files (`tz_intro.png` static, `tz_intro.mp4` moving) and `intro_motion` flag in `state.json`. Re-locked.
 - 2026-10-10: Unlocked `Reference.md` repo structure and rotation — scene rotation and the Severance crossfade now run centrally on GitHub (daily Action, `tools/rotate.py`), writing `rotation.json`, which every frame and the PC viewer follow. Added pool values `pending` and `retired_final`; aired-episode count is derived from Severance `release_date`s. Re-locked.
 - 2026-10-10: Unlocked the Severance crossfade rule (Tony's decision) — replaced "intro_ratio = aired/total, one TZ scene retired per episode" with an ease-in curve, share = 0.05 + 0.95·(aired/total)², applied to both scenes and intro, spread evenly across days; Severance-only at the finale. Re-locked.
+- 2026-10-10: Unlocked the conveyor (Tony's decision) — Reserve → Active injection now takes the longest-waiting scene first and places it in the back half of the Active order (was: random scene, random slot). 400-day test with 30 scenes: gaps 23–65 days (was up to 116), 11–15 showings each (was 8–17), all 30 seen in 39 days (was 71). Re-locked.
 
 ---
 

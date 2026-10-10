@@ -70,6 +70,7 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - Anti-clustering: no two same-`episode_tag` scenes shown consecutively
 - Boundary rule: last scene of one shuffle cycle must not equal first scene of next
 - Retired scenes only re-enter Reserve once Reserve is low — never redrawn directly from Retired
+- Fairness: Reserve → Active injection takes the longest-waiting scene first (never-shown first, then oldest `last_shown`; random among equals) and places it in the back half of the Active draw order. Tested over 400 days with 30 scenes: every scene returns every 23–65 days (avg ~30), all 30 seen within 39 days
 
 ---
 
