@@ -83,15 +83,15 @@ Three pools, not a hard swap-and-refill:
 
 **Story pool:** one new Severance scene added to `severance/manifest.json` per aired episode, gated by `release_date`.
 
-**Intro bumper:** stays Twilight Zone early on, then blends:
+**The blend (scenes and intro):** barely perceptible at first, then it tips over quickly:
 
 ```
-intro_ratio = severance_episodes_aired / season_total_episodes
+share = 0.05 + 0.95 × (episodes_aired / season_total)²
 ```
 
-Reaches 100% at the season finale, then the TZ intro retires.
+About 6% of days after episode 1, 29% at the halfway point, 82% after episode 9, and 100% at the finale, when it becomes Severance only. A rare Severance intro "hint" appears in the two weeks before the premiere.
 
-**Automation (built):** the daily rotation Action counts aired episodes from each Severance scene's `release_date`, brings each one into rotation as it airs, retires one TZ scene per new Severance scene, and blends the intro by `intro_ratio`. To start it, set `severance_premiere` and `season_total_episodes` in `state.json` once the date is announced.
+**Automation (built):** the daily rotation Action counts aired episodes from each Severance scene's `release_date`, brings each one into rotation as it airs, and blends scenes and intro by the curve above. To start it, set `severance_premiere` and `season_total_episodes` in `state.json` once the date is announced.
 
 ---
 

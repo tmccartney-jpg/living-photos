@@ -17,9 +17,14 @@ Rules (docs/Reference.md, README section 3-4):
   - Last scene of one cycle never repeats as the first of the next
   - Retired scenes only come back through Reserve, once Reserve runs low
   - Crossfade starts 14 days before the Severance premiere. Each aired episode
-    (a severance scene whose release_date has passed) enters rotation and
-    retires one Twilight Zone scene for good. intro_ratio = aired / total
-    decides how often the Severance intro plays; at 1.0 the TZ intro retires.
+    (a severance scene whose release_date has passed) joins the rotation.
+    Each day's theme is Severance with probability
+        share = 0.05 + 0.95 * (aired / total)^2      (0 before episode 1)
+    i.e. barely perceptible at first, then it tips over quickly. Severance days
+    are spread evenly (error diffusion + jitter), not coin flips. The intro uses
+    the same share (plus a ~1-in-14 "hint" in the two weeks before episode 1).
+    At the finale share = 100%: Severance only, Twilight Zone scenes retired.
+  - Each theme has its own conveyor (active / reserve / retired bags).
 
 Safe to run more than once a day: if rotation.json is already for today it
 does nothing (use --force to redraw).
@@ -136,8 +141,38 @@ class Library:
 
 
 # ---------------------------------------------------------------- crossfade
+PREVIEW_HINT = 0.07   # before episode 1: Severance intro on ~1 day in 14, no Severance scenes
+FLOOR = 0.05          # share right after episode 1 airs
+
+
+def severance_share(aired, total, in_cf):
+    """Ease-in curve: barely perceptible at first, then it tips over quickly.
+    share = 0.05 + 0.95 * progress^2  ->  ep1 6%, ep3 14%, ep5 29%, ep7 52%, ep9 82%, finale 100%."""
+    if not in_cf or not total:
+        return 0.0
+    if aired <= 0:
+        return 0.0
+    p = min(1.0, aired / total)
+    return 1.0 if p >= 1.0 else FLOOR + (1 - FLOOR) * p * p
+
+
+def spread(rot, name, share, day):
+    """Turn a share into yes/no days that are evenly spread (error diffusion),
+    with a little jitter so it doesn't feel mechanical. 9% -> about 1 day in 11."""
+    if share >= 1.0:
+        rot.setdefault("spread", {})[name] = 0.0
+        return True
+    acc = rot.setdefault("spread", {}).get(name, 0.0) + share
+    threshold = 1.0 + (rng_for(day, "jitter-" + name).random() - 0.5) * 0.5   # 0.75 .. 1.25
+    yes = share > 0 and acc >= threshold
+    if yes:
+        acc -= 1.0
+    rot["spread"][name] = max(-1.0, min(acc, 2.0))
+    return yes
+
+
 def crossfade(state, lib, day):
-    """Returns (in_crossfade, aired, total, intro_ratio). Updates state."""
+    """Returns (in_crossfade, aired, total, scene_share, intro_share). Updates state."""
     premiere = parse_date(state.get("severance_premiere"))
     start = parse_date(state.get("crossfade_start"))
     if premiere and not start:
@@ -150,39 +185,35 @@ def crossfade(state, lib, day):
     state["severance_episodes_aired"] = aired
 
     in_cf = bool(start and day >= start)
-    ratio = min(1.0, aired / total) if (in_cf and total) else 0.0
-    if ratio >= 1.0:
+    share = severance_share(aired, total, in_cf)
+    intro_share = PREVIEW_HINT if (in_cf and aired == 0) else share
+    if share >= 1.0:
         state["active_theme"] = "severance"
     elif in_cf:
         state["active_theme"] = "crossfade"
     else:
         state["active_theme"] = "twilight-zone"
-    return in_cf, aired, total, ratio
+    return in_cf, aired, total, share, intro_share
 
 
-def apply_crossfade_pools(lib, day, in_cf, aired):
-    """Severance scenes enter only during the crossfade and once released.
-    Each aired episode permanently retires one Twilight Zone scene."""
+def apply_crossfade_pools(lib, day, in_cf, share):
+    """Severance scenes enter once the crossfade has started and their episode has aired.
+    At the finale (share 100%) the Twilight Zone scenes are retired for good."""
     for k in lib.keys(theme="severance"):
         s = lib.scene(k)
-        ok = in_cf and lib.released(k, day)
-        if not ok:
+        if not (in_cf and lib.released(k, day)):
             s["pool"] = "pending"          # not yet in rotation
-        elif s["pool"] == "pending":
+        elif s["pool"] in ("pending", "retired_final"):
             s["pool"] = "reserve"          # newly released -> joins via reserve
-
-    tz = lib.keys(theme="twilight-zone")
-    cap = max(0, len(tz) - (aired if in_cf else 0))
-    in_play = [k for k in tz if lib.scene(k)["pool"] in ("active", "reserve")]
-    # retire the extra TZ scenes, most-shown first, from reserve before active
-    if len(in_play) > cap:
-        in_play.sort(key=lambda k: (lib.scene(k)["pool"] != "reserve", -lib.scene(k)["times_shown"]))
-        for k in in_play[: len(in_play) - cap]:
-            lib.scene(k)["pool"] = "retired_final"
-    return cap
+    for k in lib.keys(theme="twilight-zone"):
+        s = lib.scene(k)
+        if share >= 1.0:
+            s["pool"] = "retired_final"
+        elif s["pool"] == "retired_final":
+            s["pool"] = "retired"          # (only if dates were moved back)
 
 
-# ---------------------------------------------------------------- conveyor
+# ---------------------------------------------------------------- conveyor (one per theme)
 def tag(lib, key):
     return lib.scene(key).get("episode_tag")
 
@@ -201,87 +232,88 @@ def place_no_cluster(order, key, lib, rng, prev_key):
     order.insert(slots[0], key)
 
 
-def rebuild_order(order, lib):
-    """Keep the stored draw order in sync with the active pool."""
-    active = set(lib.keys(pool="active"))
-    return [k for k in order if k in active]
-
-
-def topup(lib, rng, order, prev_key, tz_cap):
-    # Retired -> Reserve when Reserve is low (never straight to Active)
-    # Small library (everything fits in Active + Reserve): wait until the current
-    # cycle is used up, so every scene gets its turn before any comes back.
-    reserve = lib.keys(pool="reserve")
-    in_rotation = len(lib.keys(pool="active")) + len(reserve) + len(lib.keys(pool="retired"))
+def topup(lib, rng, theme, order, prev_key):
+    """Retired -> Reserve when Reserve is low; Reserve -> Active injection."""
+    active = lambda: lib.keys(pool="active", theme=theme)
+    reserve = lib.keys(pool="reserve", theme=theme)
+    in_rotation = len(active()) + len(reserve) + len(lib.keys(pool="retired", theme=theme))
     small = in_rotation <= ACTIVE_SIZE + RESERVE_LOW
+    # small library: wait until the cycle is used up so every scene gets its turn
     if len(reserve) < RESERVE_LOW and (not small or not order):
-        retired = [k for k in lib.keys(pool="retired") if k != prev_key]
+        retired = [k for k in lib.keys(pool="retired", theme=theme) if k != prev_key]
         retired.sort(key=lambda k: lib.scene(k)["last_shown"] or "")
-        tz_in_play = len([k for k in lib.keys(theme="twilight-zone")
-                          if lib.scene(k)["pool"] in ("active", "reserve")])
         for k in retired:
-            if len(lib.keys(pool="reserve")) >= RESERVE_LOW:
+            if len(lib.keys(pool="reserve", theme=theme)) >= RESERVE_LOW and not small:
                 break
-            if lib.theme_of(k) == "twilight-zone":
-                if tz_in_play >= tz_cap:
-                    continue
-                tz_in_play += 1
             lib.scene(k)["pool"] = "reserve"
 
-    # Reserve -> Active injection into the remaining unplayed slots
-    reserve = lib.keys(pool="reserve")
+    reserve = lib.keys(pool="reserve", theme=theme)
     rng.shuffle(reserve)
     for k in reserve:
-        if len(lib.keys(pool="active")) >= ACTIVE_SIZE:
+        if len(active()) >= ACTIVE_SIZE:
             break
         lib.scene(k)["pool"] = "active"
         for _ in range(max(1, int(lib.scene(k).get("weight", 1)))):
             place_no_cluster(order, k, lib, rng, prev_key)
 
-    # anything active but missing from the order (new scenes, edits) gets placed
     present = set(order)
-    for k in lib.keys(pool="active"):
+    for k in active():
         if k not in present:
             for _ in range(max(1, int(lib.scene(k).get("weight", 1)))):
                 place_no_cluster(order, k, lib, rng, prev_key)
     return order
 
 
-def draw(lib, rot, day, tz_cap):
-    rng = rng_for(day, "draw")
-    hist = rot.get("history", [])
-    prev_key = hist[-1]["key"] if hist else None
-    order = rebuild_order(rot.get("order", []), lib)
-    order = topup(lib, rng, order, prev_key, tz_cap)
+def draw(lib, rot, day, theme, yesterday):
+    """Draw today's scene from one theme's bag. Returns (key, order)."""
+    rng = rng_for(day, "draw-" + theme)
+    orders = rot.setdefault("orders", {})
+    active = set(lib.keys(pool="active", theme=theme))
+    order = [k for k in orders.get(theme, []) if k in active]
+    last_of_theme = rot.get("last_by_theme", {}).get(theme)
+    prev = yesterday or last_of_theme
+    order = topup(lib, rng, theme, order, prev)
 
     if not order:
-        # tiny library: everything is retired -> bring all but yesterday back
-        for k in lib.keys(pool="retired"):
-            if k != prev_key or len(lib.keys(pool="retired")) == 1:
+        retired = lib.keys(pool="retired", theme=theme)
+        for k in retired:
+            if k != yesterday or len(retired) == 1:
                 lib.scene(k)["pool"] = "active"
-        order = topup(lib, rng, [], prev_key, tz_cap)
+        order = topup(lib, rng, theme, [], prev)
         if not order:
+            orders[theme] = []
             return None, order
 
-    # boundary + anti-clustering: first pick should differ from yesterday's scene and tag
     pick_i = 0
     for i, k in enumerate(order):
-        if k != prev_key and (prev_key is None or tag(lib, k) != tag(lib, prev_key)):
+        if k != yesterday and k != last_of_theme and (yesterday is None or tag(lib, k) != tag(lib, yesterday)):
             pick_i = i
             break
     key = order.pop(pick_i)
-    # drop extra weighted copies? keep them: weight means it comes up again this cycle
     if key not in order:
         lib.scene(key)["pool"] = "retired"
+    orders[theme] = order
+    rot.setdefault("last_by_theme", {})[theme] = key
     return key, order
 
 
 # ---------------------------------------------------------------- main step
 def run_day(day, state, lib, rot, quiet=False):
-    in_cf, aired, total, ratio = crossfade(state, lib, day)
-    tz_cap = apply_crossfade_pools(lib, day, in_cf, aired)
+    rot = dict(rot)
+    rot.pop("order", None)                       # old single-bag format
+    in_cf, aired, total, share, intro_share = crossfade(state, lib, day)
+    apply_crossfade_pools(lib, day, in_cf, share)
 
-    key, order = draw(lib, rot, day, tz_cap)
+    hist = list(rot.get("history", []))
+    yesterday = hist[-1]["key"] if hist else None
+
+    # today's theme: Severance with probability `share` (deterministic per day)
+    sev_ready = any(lib.scene(k)["pool"] in ("active", "reserve", "retired") for k in lib.keys(theme="severance"))
+    want = "severance" if (sev_ready and spread(rot, "scene", share, day)) else "twilight-zone"
+    key, _ = draw(lib, rot, day, want, yesterday)
+    if key is None:
+        other = "twilight-zone" if want == "severance" else "severance"
+        key, _ = draw(lib, rot, day, other, yesterday)
     if key is None:
         raise SystemExit("No scenes available to show")
     theme = lib.theme_of(key)
@@ -291,9 +323,9 @@ def run_day(day, state, lib, rot, quiet=False):
     s["times_shown"] += 1
     s["last_shown"] = day.isoformat()
 
-    # intro: Severance with probability intro_ratio (deterministic per day)
+    # intro: Severance with probability intro_share (deterministic per day)
     t_by = {t["theme"]: t for t in THEMES}
-    use_sev = in_cf and rng_for(day, "intro").random() < ratio
+    use_sev = in_cf and spread(rot, "intro", intro_share, day)
     intro_theme = "severance" if use_sev else "twilight-zone"
     it = t_by[intro_theme]
     motion = bool(state.get("intro_motion"))
@@ -302,9 +334,8 @@ def run_day(day, state, lib, rot, quiet=False):
         intro_theme, intro_file = "twilight-zone", t_by["twilight-zone"]["intro_png"]
 
     mdir = os.path.dirname(t_by[theme]["manifest"])
-    hist = rot.get("history", [])
     hist.append({"date": day.isoformat(), "key": key, "caption_index": cap_i})
-    rot = {
+    out = {
         "schema_version": 1,
         "date": day.isoformat(),
         "timezone": "America/New_York",
@@ -323,16 +354,19 @@ def run_day(day, state, lib, rot, quiet=False):
             "start": state.get("crossfade_start"),
             "episodes_aired": aired,
             "season_total_episodes": total or None,
-            "intro_ratio": round(ratio, 3),
+            "severance_share": round(share, 3),
+            "intro_ratio": round(intro_share, 3),
         },
         "pools": {p: len(lib.keys(pool=p)) for p in ("active", "reserve", "retired", "retired_final", "pending")},
-        "order": order,
+        "orders": rot.get("orders", {}),
+        "last_by_theme": rot.get("last_by_theme", {}),
+        "spread": rot.get("spread", {}),
         "history": hist[-HISTORY_KEEP:],
     }
     if not quiet:
         print(f'{day}  {key:<28} caption {cap_i}: "{caps[cap_i]}"   intro={intro_theme}'
-              f'{"  [crossfade %d/%s, ratio %.2f]" % (aired, total or "?", ratio) if in_cf else ""}')
-    return rot
+              f'{"  [crossfade %d/%s, Severance %d%%]" % (aired, total or "?", round(100 * share)) if in_cf else ""}')
+    return out
 
 
 def main():
@@ -345,7 +379,7 @@ def main():
     day = parse_date(a.date) if a.date else today_local()
     state = load_json("state.json", {})
     lib = Library()
-    rot = load_json("rotation.json", {"history": [], "order": []})
+    rot = load_json("rotation.json", {"history": []})
 
     if a.simulate:
         for i in range(a.simulate):
