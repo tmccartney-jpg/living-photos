@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 30136862,
+  "total_bytes": 29432582,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -117,19 +117,19 @@
     {
       "path": "twilight-zone/device/twz_010.jpg",
       "kind": "still",
-      "bytes": 33694,
-      "sha256": "1fe7a75fab5a3b49468840a8c7e04ab61afb01d929c2145227444645fbeaa023",
-      "source": "twilight-zone/videos/elevator_010.mp4",
-      "source_sha256": "bba4a73213861aab04cbf1271d2f08f1fc27cb809090d451e9da304cc3e95106",
+      "bytes": 26596,
+      "sha256": "56dabd40592163700d7fdaf8ec66ba2dfd5bee1a3463b127002cba2c16b2fc0d",
+      "source": "twilight-zone/videos/little_girl_lost_010.mp4",
+      "source_sha256": "77b0edf606e4dc31987c77767521d1546391af5cf22f8139a0093757bf081688",
       "scene": "twz_010"
     },
     {
       "path": "twilight-zone/device/twz_010.lpv",
       "kind": "clip",
-      "bytes": 3117664,
-      "sha256": "fa8389238596ce41df04b628c8d570540c11f46b3aaddd2d2909501b44af3ead",
-      "source": "twilight-zone/videos/elevator_010.mp4",
-      "source_sha256": "bba4a73213861aab04cbf1271d2f08f1fc27cb809090d451e9da304cc3e95106",
+      "bytes": 2420482,
+      "sha256": "0dc887bc20f5dabfc14ecbc6055349371ab7386921e3904a18245675acaaca06",
+      "source": "twilight-zone/videos/little_girl_lost_010.mp4",
+      "source_sha256": "77b0edf606e4dc31987c77767521d1546391af5cf22f8139a0093757bf081688",
       "scene": "twz_010",
       "frames": 90,
       "fps": 15
@@ -381,5 +381,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-10T21:56:53Z"
+  "updated_utc": "2026-10-10T22:52:40Z"
 }
