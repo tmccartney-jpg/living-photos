@@ -84,9 +84,8 @@ void app_main(void)
         diag_create();          // hidden until the 2 s corner hold
         esp_lv_adapter_unlock();
     }
-    ESP_LOGI(TAG, "internal RAM free before frame mode: %u KB (Wi-Fi %s)",
-             (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
-             wifi_boot_disabled() ? "OFF" : "ON");
+    ESP_LOGI(TAG, "internal RAM free before frame mode: %u KB",
+             (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024));
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
     if (esp_lv_adapter_lock(-1) == ESP_OK) {

@@ -305,9 +305,7 @@ static void update_cb(lv_timer_t *t)
     wifi_status_t w;
     wifi_get_status(&w);
     char wl[64];
-    if (w.radio_off)
-        snprintf(wl, sizeof(wl), "Wi-Fi OFF (test)");
-    else if (w.state == WIFI_ST_CONNECTED)
+    if (w.state == WIFI_ST_CONNECTED)
         snprintf(wl, sizeof(wl), "Wi-Fi %s %d dBm %s%s", w.ssid, w.rssi, w.ip, w.time_ok ? "" : " (no time yet)");
     else if (!w.has_creds)
         snprintf(wl, sizeof(wl), "Wi-Fi not set up");

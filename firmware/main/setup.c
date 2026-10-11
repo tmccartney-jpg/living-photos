@@ -18,6 +18,9 @@ static const char *TAG = "setup";
 #define COL_ACCENT  0x3B82C4
 #define COL_BAD     0xE07A6A
 #define COL_GOOD    0x5FBF7F
+#define COL_KEY      0x24242E   // keyboard keys
+#define COL_KEY_CTRL 0x34343F   // shift, backspace, OK ...
+#define COL_KEY_DN   0x44445A   // pressed
 
 #define IDLE_CLOSE_MS   (5 * 60 * 1000)
 #define RESCAN_MS       30000
@@ -358,6 +361,13 @@ void setup_start(void)
     lv_textarea_set_password_mode(ta, true);
     lv_textarea_set_max_length(ta, 63);
     lv_obj_set_style_text_font(ta, &lv_font_montserrat_20, 0);
+    // dark password box
+    lv_obj_set_style_bg_color(ta, lv_color_hex(COL_PANEL), 0);
+    lv_obj_set_style_text_color(ta, lv_color_hex(COL_TEXT), 0);
+    lv_obj_set_style_border_color(ta, lv_color_hex(COL_KEY_DN), 0);
+    lv_obj_set_style_border_color(ta, lv_color_hex(COL_ACCENT), LV_STATE_FOCUSED);
+    lv_obj_set_style_border_width(ta, 2, 0);
+    lv_obj_set_style_border_color(ta, lv_color_hex(COL_TEXT), LV_PART_CURSOR | LV_STATE_FOCUSED);
     lv_obj_set_pos(ta, 24, 44);
     lv_obj_set_size(ta, 500, 56);
     btn_show = button(pw_row, 536, 44, 96, 56, "Show", COL_PANEL, show_cb, &lbl_show);
@@ -367,6 +377,18 @@ void setup_start(void)
     lv_obj_set_size(kb, 800, 256);
     lv_obj_align(kb, LV_ALIGN_BOTTOM_MID, 0, 0);
     lv_keyboard_set_textarea(kb, ta);
+    // dark keyboard: letters on dark keys, control keys (shift, backspace, ...) one shade lighter
+    lv_obj_set_style_bg_color(kb, lv_color_hex(COL_BG), 0);
+    lv_obj_set_style_border_width(kb, 0, 0);
+    lv_obj_set_style_text_font(kb, &lv_font_montserrat_20, LV_PART_ITEMS);
+    lv_obj_set_style_text_color(kb, lv_color_hex(COL_TEXT), LV_PART_ITEMS);
+    lv_obj_set_style_bg_color(kb, lv_color_hex(COL_KEY), LV_PART_ITEMS);
+    lv_obj_set_style_bg_color(kb, lv_color_hex(COL_KEY_DN), LV_PART_ITEMS | LV_STATE_PRESSED);
+    lv_obj_set_style_bg_color(kb, lv_color_hex(COL_KEY_CTRL), LV_PART_ITEMS | LV_STATE_CHECKED);
+    lv_obj_set_style_bg_color(kb, lv_color_hex(COL_ACCENT), LV_PART_ITEMS | LV_STATE_CHECKED | LV_STATE_PRESSED);
+    lv_obj_set_style_text_color(kb, lv_color_hex(COL_TEXT), LV_PART_ITEMS | LV_STATE_CHECKED);
+    lv_obj_set_style_border_width(kb, 0, LV_PART_ITEMS);
+    lv_obj_set_style_shadow_width(kb, 0, LV_PART_ITEMS);
     lv_obj_add_event_cb(kb, kb_cb, LV_EVENT_READY, NULL);
     lv_obj_add_event_cb(kb, kb_cb, LV_EVENT_CANCEL, NULL);
 
