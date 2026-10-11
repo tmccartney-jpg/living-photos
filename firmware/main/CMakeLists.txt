@@ -7,6 +7,8 @@ idf_component_register(
         "sdcard.c"
         "frame.c"
         "font_caption.c"
+        "wifi.c"
+        "setup.c"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
         "."

@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 #include "lvgl.h"
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
@@ -10,6 +11,8 @@
 #include "presence.h"
 #include "sdcard.h"
 #include "frame.h"
+#include "wifi.h"
+#include "setup.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -81,8 +84,14 @@ static void test_btn_cb(lv_event_t *e)
 
 static void diag_toggle(void)
 {
-    if (frame_diag_open()) frame_show_scene();
+    if (lv_scr_act() == scr_diag) frame_show_scene();
     else frame_show_diag();
+}
+
+static void wifi_btn_cb(lv_event_t *e)
+{
+    (void)e;
+    setup_open(true);
 }
 
 // Hidden 2 s hold zone (top-left corner). The callback fires once per press.
@@ -130,7 +139,7 @@ static void source_btn_cb(lv_event_t *e)
 static void update_cb(lv_timer_t *t)
 {
     (void)t;
-    if (!frame_diag_open()) return;
+    if (lv_scr_act() != scr_diag) return;
     if (lv_disp_get_inactive_time(NULL) > 60000) {   // 60 s without a touch: back to the scene
         frame_show_scene();
         return;
@@ -250,9 +259,18 @@ static void update_cb(lv_timer_t *t)
         lv_label_set_text(lbl_sd, buf);
     }
 
-    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d    RAM %u KB free    PSRAM %.1f MB free",
+    wifi_status_t w;
+    wifi_get_status(&w);
+    char wl[64];
+    if (w.state == WIFI_ST_CONNECTED)
+        snprintf(wl, sizeof(wl), "Wi-Fi %s %d dBm %s%s", w.ssid, w.rssi, w.ip, w.time_ok ? "" : " (no time yet)");
+    else if (!w.has_creds)
+        snprintf(wl, sizeof(wl), "Wi-Fi not set up");
+    else
+        snprintf(wl, sizeof(wl), "Wi-Fi %s missing %lu min", w.ssid, (unsigned long)(w.missing_s / 60));
+    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM   %s",
              (int)(up / 3600), (int)(up / 60 % 60), (int)(up % 60),
-             (unsigned)(heap / 1024), psram / 1048576.0);
+             (unsigned)(heap / 1024), psram / 1048576.0, wl);
     lv_label_set_text(lbl_sys, buf);
 }
 
@@ -365,6 +383,15 @@ void diag_create(void)
     // system line
     lbl_sys = make_label(scr, &lv_font_montserrat_14, COL_DIM);
     lv_obj_set_pos(lbl_sys, 16, 448);
+
+    lv_obj_t *btn_wifi = lv_btn_create(scr);
+    lv_obj_set_pos(btn_wifi, 690, 442);
+    lv_obj_set_size(btn_wifi, 94, 34);
+    lv_obj_set_style_bg_color(btn_wifi, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_wifi, wifi_btn_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *lbl_wifi = make_label(btn_wifi, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_wifi, LV_SYMBOL_WIFI " Wi-Fi");
+    lv_obj_center(lbl_wifi);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
 

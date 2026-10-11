@@ -19,10 +19,12 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include "lvgl.h"
 
 void frame_start(void);                       // after diag_create(); takes over the display
 void frame_show_scene(void);                  // LVGL lock held
 void frame_show_diag(void);                   // LVGL lock held
-bool frame_diag_open(void);
+void frame_show_other(lv_obj_t *scr);         // another full screen (Wi-Fi setup); scene pauses
+bool frame_scene_visible(void);               // LVGL lock held
 void frame_test_next(void);                   // diagnostics: cycle scenes from the manifest, then back to schedule
 void frame_status(char *buf, size_t len);     // one or two lines for the diagnostics screen

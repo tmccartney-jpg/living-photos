@@ -700,6 +700,16 @@ void frame_show_scene(void)
     diag_open = false;
 }
 
+void frame_show_other(lv_obj_t *scr)
+{
+    if (!scr) return;
+    lv_scr_load(scr);
+    lv_disp_trig_activity(NULL);
+    diag_open = true;          // scene hidden: stop decoding
+}
+
+bool frame_scene_visible(void) { return scr_scene && lv_scr_act() == scr_scene; }
+
 void frame_show_diag(void)
 {
     lv_obj_t *d = diag_screen();
@@ -708,8 +718,6 @@ void frame_show_diag(void)
     lv_disp_trig_activity(NULL);
     diag_open = true;
 }
-
-bool frame_diag_open(void) { return diag_open; }
 
 void frame_test_next(void) { test_requests++; }
 

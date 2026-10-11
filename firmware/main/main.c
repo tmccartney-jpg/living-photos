@@ -14,11 +14,21 @@
 #include "presence.h"
 #include "sdcard.h"
 #include "frame.h"
+#include "wifi.h"
+#include "setup.h"
+#include "nvs_flash.h"
 
 static const char *TAG = "aura";
 
 void app_main(void)
 {
+    esp_err_t nv = nvs_flash_init();
+    if (nv == ESP_ERR_NVS_NO_FREE_PAGES || nv == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        nv = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(nv);
+
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_180;
     const esp_lv_adapter_tear_avoid_mode_t tear_mode = ESP_LV_ADAPTER_TEAR_AVOID_MODE_DEFAULT_RGB;
 
@@ -66,4 +76,9 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
+    wifi_start();
+    if (esp_lv_adapter_lock(-1) == ESP_OK) {
+        setup_start();          // opens itself at first boot / after 1 h without the saved network
+        esp_lv_adapter_unlock();
+    }
 }
