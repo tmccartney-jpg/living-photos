@@ -21,6 +21,7 @@
 - Wi-Fi setup on the touchscreen (network list + keyboard), entered only at first boot (no saved network) or when the saved network has been missing for 1 hour; "Not now" or 5 min untouched hides it for 1 h, and it keeps returning hourly until a network connects; closes itself if the saved network returns
 - No sound output is used or expected (hardware has no speaker)
 - Intro is the static `tz_intro.png` until `intro_motion` is manually set to `true`; until then captions also appear instantly (no fade or slide) — the only motion is the presence-gated scene itself. The same flag unlocks the caption fade
+- Scenes move only once `scene_motion` in `state.json` is manually set to `true`; while it is `false` (or missing) every scene holds still as if someone were watching, whatever the sensor reads (the first week at Kevin's). Diagnostics Preview still moves
 - Twilight Zone intro stays exclusive until Severance `intro_ratio` reaches 1.0
 - Severance content only enters rotation on or after its `release_date`
 - Retired scenes never redraw directly — only re-enter via Reserve once Reserve is low
@@ -55,6 +56,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-10: Unlocked the setup snooze (Tony's decision) — "Not now" / 5 min untouched now hides setup for **1 hour** (was 24 h), so it keeps asking hourly until a network is entered: without Wi-Fi a frame gets no new scenes or rotation. Re-locked.
 - 2026-10-11: Unlocked `Reference.md` manifest schema (Tony's decision) — added `motion` (`loop` default | `once`). A `once` clip plays a single time while nobody is present, then holds its last frame for the rest of the day (first use: `twz_003`, the train-platform reflection turns and stares). `rotate.py` passes it through in `rotation.json`. Re-locked.
 - 2026-10-11: Added to the motion-unlock rule (Tony's decision) — captions appear instantly, with no fade or slide-in, until `intro_motion` is set to `true`, so nothing reveals that the frame moves; the caption fade comes back with the same switch. Re-locked.
+- 2026-10-11: Added `scene_motion` to `state.json` (Tony's decision) — scenes hold still until it is set to `true`, so the frame passes as an ordinary photo for the first week; flipped on GitHub, it reaches the frame with the next sync (no firmware update). Firmware build 7. Re-locked.
 
 ---
 

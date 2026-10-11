@@ -93,6 +93,7 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - `intros/tz_intro.png` — static title screen (Kevin's Twilight Zone host portrait, landscape 16:9)
 - `intros/tz_intro.mp4` — moving version, to be made from the landscape portrait (not yet added)
 - `state.json` → `intro_motion`: `false` = show the PNG; `true` = play the MP4. Flipped manually.
+- `state.json` → `scene_motion`: `false` (or missing) = every scene holds still regardless of presence; `true` = scenes move while nobody is near. Flipped manually.
 
 ---
 

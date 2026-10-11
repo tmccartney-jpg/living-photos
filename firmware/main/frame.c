@@ -509,6 +509,25 @@ static bool motion_unlocked(void)
     return on;
 }
 
+// Scene motion switch (state.json "scene_motion"): false or missing = every scene holds
+// still whatever the sensor says (keeps the secret the first week); true = normal.
+// Re-read from the card every 10 s; flipped on GitHub, it arrives with the next sync.
+static bool scene_motion_on(void)
+{
+    static bool on;
+    static int64_t last_us = -20000000;
+    int64_t now = esp_timer_get_time();
+    if (now - last_us >= 10000000) {
+        last_us = now;
+        cJSON *st = read_json(SD "state.json");
+        bool v = cJSON_IsTrue(cJSON_GetObjectItemCaseSensitive(st, "scene_motion"));
+        cJSON_Delete(st);
+        if (v != on) ESP_LOGI(TAG, "scene motion %s (state.json)", v ? "ON" : "OFF - scenes hold still");
+        on = v;
+    }
+    return on;
+}
+
 static void caption_show(const char *text)
 {
     bool fade = text && text[0] && motion_unlocked();
@@ -713,6 +732,7 @@ static void play_scene(const scene_t *sc)
     const char *mode = is_clip ? (sc->rest ? "clip-rest" : sc->once ? "clip-once" : "clip-freeze") : "still";
     char test[16] = "";
     if (preview_secs) snprintf(test, sizeof(test), "  PREVIEW %ds", preview_secs);
+    else if (!scene_motion_on()) snprintf(test, sizeof(test), "  MOTION OFF");
     else if (test_idx >= 0) snprintf(test, sizeof(test), "  TEST");
 
     if (!is_clip) {
@@ -731,6 +751,7 @@ static void play_scene(const scene_t *sc)
         if (!diag_open) {
             presence_t p;
             presence_get(&p);
+            if (!scene_motion_on()) p.present = true; // motion switched off: behave as if watched
             if (preview_secs) p.present = false;      // preview: always moving
             if (is_clip) {
                 if (!p.present) {
@@ -753,6 +774,10 @@ static void play_scene(const scene_t *sc)
         int64_t now = esp_timer_get_time();
         if (now - t0 >= 1000000) {
             float fps = frames * 1e6f / (float)(now - t0);
+            if (preview_secs) snprintf(test, sizeof(test), "  PREVIEW %ds", preview_secs);
+            else if (test_idx >= 0) snprintf(test, sizeof(test), "  TEST");
+            else if (!scene_motion_on()) snprintf(test, sizeof(test), "  MOTION OFF");
+            else test[0] = 0;
             if (is_clip) {
                 snprintf(l1, sizeof(l1), "%s  %s  %.1f fps  %lu/%lu%s", sc->id, mode, fps,
                          (unsigned long)clip.frame, (unsigned long)clip.nframes, test);
