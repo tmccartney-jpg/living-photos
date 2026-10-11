@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 49156786,
+  "total_bytes": 53803232,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -54,21 +54,21 @@
     {
       "path": "twilight-zone/device/twz_003.jpg",
       "kind": "still",
-      "bytes": 37138,
-      "sha256": "f1532ef424b4185c2170971e8ff3e787d4e0563755f9c094c3505f0191995ee5",
+      "bytes": 37033,
+      "sha256": "2723b72aa9681f8d8da703fcd2dd892c5b4b74e8a4def43f29d5cc2b8c1ed794",
       "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
-      "source_sha256": "dfbfdd9a844043fb1b5eda179de9e75572001147154d96f560d4b5ff6ee6bfce",
+      "source_sha256": "bdff72dd5dcad7806be71f23e51f7bd23f56a18b54657350a42d32eff2efc173",
       "scene": "twz_003"
     },
     {
       "path": "twilight-zone/device/twz_003.lpv",
       "kind": "clip",
-      "bytes": 1767485,
-      "sha256": "f4b99b74e158aed7cbba47a5a2c1f4ff53d57be68e91f00fa76d9ba3a87ac282",
+      "bytes": 3452795,
+      "sha256": "11023f0cb3e57d880385331c69d78b8e9b4b5e6cfe6da290fb9b97509749fa6a",
       "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
-      "source_sha256": "dfbfdd9a844043fb1b5eda179de9e75572001147154d96f560d4b5ff6ee6bfce",
+      "source_sha256": "bdff72dd5dcad7806be71f23e51f7bd23f56a18b54657350a42d32eff2efc173",
       "scene": "twz_003",
-      "frames": 46,
+      "frames": 90,
       "fps": 15
     },
     {
@@ -134,21 +134,21 @@
     {
       "path": "twilight-zone/device/twz_007.jpg",
       "kind": "still",
-      "bytes": 33143,
-      "sha256": "a6077e2a5e0655b7bbef2e74fcadb144b70d6e43c4cc47883b0938ec8542d304",
+      "bytes": 33013,
+      "sha256": "3658ec7c9c88e9f001a2d0e454f8dde716d088bba4ed5f1f0312dab1d7a00783",
       "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
-      "source_sha256": "10959755b0a5ddf1ce341c72c6f2a8eb537799dc99832f6be1e90fbd29b375fb",
+      "source_sha256": "3f8ecb36366d22aa8f340919ef5587111de8dd2b91b3c14bef251663bfd91a17",
       "scene": "twz_007"
     },
     {
       "path": "twilight-zone/device/twz_007.lpv",
       "kind": "clip",
-      "bytes": 1387603,
-      "sha256": "d4ea7e99243acb37cb0b766597691ff83e30ada88ab96aeaa2c576b4b785fc98",
+      "bytes": 2690500,
+      "sha256": "f235f664c209a8cf50429d060b231b34debd84ed10bf078f5818a7cdc1fc710b",
       "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
-      "source_sha256": "10959755b0a5ddf1ce341c72c6f2a8eb537799dc99832f6be1e90fbd29b375fb",
+      "source_sha256": "3f8ecb36366d22aa8f340919ef5587111de8dd2b91b3c14bef251663bfd91a17",
       "scene": "twz_007",
-      "frames": 46,
+      "frames": 90,
       "fps": 15
     },
     {
@@ -214,21 +214,21 @@
     {
       "path": "twilight-zone/device/twz_011.jpg",
       "kind": "still",
-      "bytes": 36743,
-      "sha256": "e3d7d7d77dc39cec8184e16e200b6d5a45ad985b528e86cec018fd9560701b11",
+      "bytes": 36673,
+      "sha256": "3a455d057a77361fab8073d67a4cf4cb06b9c950902b17a083029dee22231df3",
       "source": "twilight-zone/videos/barbershop_mirror_011.mp4",
-      "source_sha256": "bd1bf18628f07816f2a4a7df491bf6772dcc426d4f8edc263c03366526a2179c",
+      "source_sha256": "c4adb4a06a944843cdb35957bda0c268da5dd6c62940e12055c3ccec9360194a",
       "scene": "twz_011"
     },
     {
       "path": "twilight-zone/device/twz_011.lpv",
       "kind": "clip",
-      "bytes": 1738564,
-      "sha256": "311d5356ff139a6508e90dee739c21b0c85c1968756d51439811f6e363045d6f",
+      "bytes": 3397108,
+      "sha256": "87d7e2f0c048197c7de0a956dce0ed4440cf33ba7a1b988328e71721333cba0a",
       "source": "twilight-zone/videos/barbershop_mirror_011.mp4",
-      "source_sha256": "bd1bf18628f07816f2a4a7df491bf6772dcc426d4f8edc263c03366526a2179c",
+      "source_sha256": "c4adb4a06a944843cdb35957bda0c268da5dd6c62940e12055c3ccec9360194a",
       "scene": "twz_011",
-      "frames": 46,
+      "frames": 90,
       "fps": 15
     },
     {
@@ -469,5 +469,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-11T19:06:04Z"
+  "updated_utc": "2026-10-11T19:47:23Z"
 }
