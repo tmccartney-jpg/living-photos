@@ -27,6 +27,8 @@ void frame_show_scene(void);                  // LVGL lock held
 void frame_show_diag(void);                   // LVGL lock held
 void frame_show_other(lv_obj_t *scr);         // another full screen (Wi-Fi setup); scene pauses
 bool frame_scene_visible(void);               // LVGL lock held
-void frame_test_next(void);                   // diagnostics: cycle scenes from the manifest, then back to schedule
+void frame_test_next(void);
+void frame_preview_cycle(void);               // diagnostics: Preview off -> 10 s -> 20 s -> 30 s -> off
+int  frame_preview_secs(void);                 // 0 = off                   // diagnostics: cycle scenes from the manifest, then back to schedule
 void frame_status(char *buf, size_t len);     // one or two lines for the diagnostics screen
 bool frame_file_in_use(const char *full_path); // sync: never replace the file on screen

@@ -330,25 +330,17 @@ static void check_rotation(bool force)
     load_rotation();
 }
 
-// Diagnostics "next scene" test: walk the manifest of today's theme, then back to the schedule.
-static void handle_test_requests(void)
+// Build scene number `idx` of today's theme from its manifest. Returns the scene count.
+static int manifest_scene_at(int idx, scene_t *sc)
 {
-    while (test_requests > 0) {
-        test_requests--;
-        const char *theme = rot.ok ? rot.today.theme : DEFAULT_THEME;
-        char path[96];
-        snprintf(path, sizeof(path), SD "%s/manifest.json", theme);
-        cJSON *root = read_json(path);
-        const cJSON *scenes = cJSON_GetObjectItemCaseSensitive(root, "scenes");
-        test_count = cJSON_GetArraySize(scenes);
-        test_idx++;
-        if (test_idx >= test_count) {
-            test_idx = -1;
-            cJSON_Delete(root);
-            continue;
-        }
-        const cJSON *s = cJSON_GetArrayItem(scenes, test_idx);
-        scene_t *sc = &test_scene;
+    const char *theme = rot.ok ? rot.today.theme : DEFAULT_THEME;
+    char path[96];
+    snprintf(path, sizeof(path), SD "%s/manifest.json", theme);
+    cJSON *root = read_json(path);
+    const cJSON *scenes = cJSON_GetObjectItemCaseSensitive(root, "scenes");
+    int count = cJSON_GetArraySize(scenes);
+    if (idx >= 0 && idx < count) {
+        const cJSON *s = cJSON_GetArrayItem(scenes, idx);
         memset(sc, 0, sizeof(*sc));
         snprintf(sc->id, sizeof(sc->id), "%s", jstr(s, "id") ? jstr(s, "id") : "?");
         snprintf(sc->theme, sizeof(sc->theme), "%s", theme);
@@ -364,7 +356,58 @@ static void handle_test_requests(void)
         snprintf(base, sizeof(base), "%s/", theme);
         device_paths(sc, cJSON_GetObjectItemCaseSensitive(s, "device"), base);
         derive_paths(sc);
-        cJSON_Delete(root);
+    }
+    cJSON_Delete(root);
+    return count;
+}
+
+// Diagnostics "next scene" test: walk the manifest of today's theme, then back to the schedule.
+static void handle_test_requests(void)
+{
+    while (test_requests > 0) {
+        test_requests--;
+        test_idx++;
+        test_count = manifest_scene_at(test_idx, &test_scene);
+        if (test_idx >= test_count) test_idx = -1;
+    }
+}
+
+// Preview (diagnostics): every scene of the manifest in turn, PREVIEW_SECS each, scenes move
+// regardless of presence; the intro plays at the start of each round. Off again after a restart.
+static const int preview_steps[] = { 0, 10, 20, 30 };
+static volatile int preview_requests;
+static int preview_secs;            // 0 = off
+static int preview_idx;
+static int preview_count;
+static int64_t preview_scene_us;    // when the current preview scene started
+static bool preview_intro;          // play the intro before the next scene
+static scene_t preview_scene;
+
+static void preview_load(int idx)
+{
+    preview_idx = idx;
+    preview_count = manifest_scene_at(idx, &preview_scene);
+    if (preview_idx >= preview_count) {        // wrapped: start the next round with the intro
+        preview_idx = 0;
+        preview_count = manifest_scene_at(0, &preview_scene);
+    }
+    if (preview_idx == 0) preview_intro = true;
+    preview_scene_us = 0;                       // set when it actually starts showing
+}
+
+static void handle_preview(void)
+{
+    while (preview_requests > 0) {
+        preview_requests--;
+        int i = 0;
+        while (i < 3 && preview_steps[i] != preview_secs) i++;
+        preview_secs = preview_steps[(i + 1) % 4];
+        if (preview_secs && i == 0) preview_load(0);
+        ESP_LOGI(TAG, "preview %s", preview_secs ? "on" : "off");
+    }
+    if (preview_secs && preview_scene_us &&
+        esp_timer_get_time() - preview_scene_us >= (int64_t)preview_secs * 1000000) {
+        preview_load(preview_idx + 1);
     }
 }
 
@@ -372,6 +415,7 @@ static void handle_test_requests(void)
 static const scene_t *pick(bool *before_change)
 {
     if (before_change) *before_change = false;
+    if (preview_secs && preview_count > 0) return &preview_scene;
     if (test_idx >= 0) return &test_scene;
     if (!rot.ok) return NULL;
     struct tm tm;
@@ -628,6 +672,7 @@ static bool schedule_changed(const scene_t *cur)
 {
     check_rotation(false);
     handle_test_requests();
+    handle_preview();
     const scene_t *want = pick(NULL);
     return want && !same_scene(want, cur);
 }
@@ -653,7 +698,9 @@ static void play_scene(const scene_t *sc)
     bool is_clip = sc->clip[0] && clip_open(&clip, sc->clip);
     bool have_frame = false, at_rest = false, still_ok = false;
     const char *mode = is_clip ? (sc->rest ? "clip-rest" : sc->once ? "clip-once" : "clip-freeze") : "still";
-    const char *test = test_idx >= 0 ? "  TEST" : "";
+    char test[16] = "";
+    if (preview_secs) snprintf(test, sizeof(test), "  PREVIEW %ds", preview_secs);
+    else if (test_idx >= 0) snprintf(test, sizeof(test), "  TEST");
 
     if (!is_clip) {
         still_ok = show_jpeg_file(sc->still);
@@ -670,6 +717,7 @@ static void play_scene(const scene_t *sc)
         if (!diag_open) {
             presence_t p;
             presence_get(&p);
+            if (preview_secs) p.present = false;      // preview: always moving
             if (is_clip) {
                 if (!p.present) {
                     at_rest = false;
@@ -733,6 +781,7 @@ static void frame_task(void *arg)
     while (1) {
         check_rotation(true);
         handle_test_requests();
+        handle_preview();
         const scene_t *want = pick(NULL);
         if (!want) {
             blank();
@@ -744,7 +793,12 @@ static void frame_task(void *arg)
         }
         scene_t cur = *want;     // copy: rotation may be reloaded while playing
         ESP_LOGI(TAG, "showing %s%s: \"%s\"", cur.key, cur.rest ? " (rest)" : "", cur.caption);
-        play_intro(rot.ok ? rot.intro : SD DEFAULT_INTRO);
+        bool in_preview = preview_secs && want == &preview_scene;
+        if (!in_preview || preview_intro) play_intro(rot.ok ? rot.intro : SD DEFAULT_INTRO);
+        if (in_preview) {
+            preview_intro = false;
+            preview_scene_us = esp_timer_get_time();
+        }
         play_scene(&cur);
     }
 }
@@ -777,6 +831,10 @@ void frame_show_diag(void)
 }
 
 void frame_test_next(void) { test_requests++; }
+
+void frame_preview_cycle(void) { preview_requests++; }
+
+int frame_preview_secs(void) { return preview_secs; }
 
 static void *json_malloc(size_t n)
 {

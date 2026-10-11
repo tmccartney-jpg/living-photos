@@ -79,6 +79,21 @@ static void scene_btn_cb(lv_event_t *e)
     frame_show_scene();
 }
 
+static lv_obj_t *lbl_preview;
+
+static void preview_btn_cb(lv_event_t *e)
+{
+    (void)e;
+    frame_preview_cycle();
+    // the frame task applies it within a second; show the next step now
+    int cur = frame_preview_secs();
+    int next = cur == 0 ? 10 : cur == 10 ? 20 : cur == 20 ? 30 : 0;
+    char b[32];
+    if (next) snprintf(b, sizeof(b), "Preview %ds", next);
+    else snprintf(b, sizeof(b), "Preview off");
+    lv_label_set_text(lbl_preview, b);
+}
+
 static void test_btn_cb(lv_event_t *e)
 {
     (void)e;
@@ -341,9 +356,18 @@ void diag_create(void)
     lv_obj_set_pos(lbl_config, 0, 28);
 
     // gate rows (right side)
+    lv_obj_t *btn_prev = lv_btn_create(scr);
+    lv_obj_set_pos(btn_prev, 336, 8);
+    lv_obj_set_size(btn_prev, 124, 34);
+    lv_obj_set_style_bg_color(btn_prev, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_prev, preview_btn_cb, LV_EVENT_CLICKED, NULL);
+    lbl_preview = make_label(btn_prev, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_preview, "Preview off");
+    lv_obj_center(lbl_preview);
+
     lbl_gate_title = make_label(scr, &lv_font_montserrat_16, COL_DIM);
-    lv_label_set_text(lbl_gate_title, "Gate energy  (log scale, yellow = trigger)");
-    lv_obj_set_pos(lbl_gate_title, 336, 28);
+    lv_label_set_text(lbl_gate_title, "Gate energy (yellow = trigger)");
+    lv_obj_set_pos(lbl_gate_title, 474, 17);
     for (int g = 0; g < HMMD_GATES; g++) {
         int y = ROWS_Y + g * ROW_PITCH;
         char name[24];
