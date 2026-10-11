@@ -21,4 +21,11 @@ endif()
 
 if(lvgl_lib)
     target_compile_options(${lvgl_lib} PRIVATE -Wno-format)
+    # LVGL objects in PSRAM (see lp_lv_mem.h): frees internal RAM for Wi-Fi.
+    target_include_directories(${lvgl_lib} PRIVATE "${CMAKE_CURRENT_LIST_DIR}")
+    target_compile_definitions(${lvgl_lib} PRIVATE
+        "LV_MEM_CUSTOM_INCLUDE=\"lp_lv_mem.h\""
+        "LV_MEM_CUSTOM_ALLOC=lp_lv_malloc"
+        "LV_MEM_CUSTOM_REALLOC=lp_lv_realloc"
+        "LV_MEM_CUSTOM_FREE=lp_lv_free")
 endif()

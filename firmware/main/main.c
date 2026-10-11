@@ -6,7 +6,10 @@
 
 #include <assert.h>
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "esp_log.h"
+#include "esp_heap_caps.h"
 #include "esp_lv_adapter.h"
 #include "waveshare_rgb_lcd_port.h"
 #include "hmmd.h"
@@ -66,4 +69,8 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
+    vTaskDelay(pdMS_TO_TICKS(3000));
+    ESP_LOGI(TAG, "internal RAM free after start-up: %u KB (lowest %u KB)",
+             (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
+             (unsigned)(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL) / 1024));
 }
