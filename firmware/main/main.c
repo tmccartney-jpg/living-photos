@@ -14,11 +14,25 @@
 #include "presence.h"
 #include "sdcard.h"
 #include "frame.h"
+#include "wifi.h"
+#include "nvs_flash.h"
+#include "esp_heap_caps.h"
 
 static const char *TAG = "aura";
 
 void app_main(void)
 {
+    esp_err_t nv = nvs_flash_init();
+    if (nv == ESP_ERR_NVS_NO_FREE_PAGES || nv == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        nv = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(nv);
+
+    // Bisect build: Wi-Fi first (its buffers need internal RAM); can be switched
+    // off at boot from diagnostics to compare.
+    wifi_start();
+
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_180;
     const esp_lv_adapter_tear_avoid_mode_t tear_mode = ESP_LV_ADAPTER_TEAR_AVOID_MODE_DEFAULT_RGB;
 
@@ -64,6 +78,9 @@ void app_main(void)
         diag_create();          // hidden until the 2 s corner hold
         esp_lv_adapter_unlock();
     }
+    ESP_LOGI(TAG, "internal RAM free before frame mode: %u KB (Wi-Fi %s)",
+             (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
+             wifi_boot_disabled() ? "OFF" : "ON");
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
 }
