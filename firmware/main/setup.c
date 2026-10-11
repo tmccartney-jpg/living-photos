@@ -20,7 +20,7 @@ static const char *TAG = "setup";
 #define COL_GOOD    0x5FBF7F
 
 #define IDLE_CLOSE_MS   (5 * 60 * 1000)
-#define RESCAN_MS       20000
+#define RESCAN_MS       30000
 
 typedef enum { V_LIST, V_PASSWORD, V_CONNECTING, V_DONE } view_t;
 
@@ -108,33 +108,92 @@ static void net_cb(lv_event_t *e)
     set_view(V_PASSWORD);
 }
 
+static lv_obj_t *row_info[WIFI_MAX_APS];
+static bool list_has_rows;
+
+static void row_text(char *t, size_t n, const wifi_ap_t *ap, const wifi_status_t *ws)
+{
+    bool saved = ws->has_creds && !strcmp(ws->ssid, ap->ssid);
+    snprintf(t, n, "%s%s%s", saved ? "Saved   " : "", strength(ap->rssi), ap->secure ? "   secured" : "   open");
+}
+
+static void list_message(const char *msg)
+{
+    lv_obj_clean(list);
+    list_has_rows = false;
+    lv_obj_t *t = lv_list_add_text(list, msg);
+    lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+    lv_obj_set_style_text_color(t, lv_color_hex(COL_DIM), 0);
+    lv_obj_set_style_bg_opa(t, LV_OPA_TRANSP, 0);
+}
+
+// New scan results. The list is only rebuilt when the set of networks changes;
+// otherwise rows stay put and only their signal text is updated (no redraw flash,
+// no rows swapping places).
 static void rebuild_list(void)
 {
     wifi_status_t ws;
     wifi_get_status(&ws);
-    n_shown = wifi_scan_results(shown, WIFI_MAX_APS);
     shown_gen = ws.scan_gen;
-    lv_obj_clean(list);
-    if (n_shown == 0) {
-        lv_obj_t *t = lv_list_add_text(list, ws.scanning ? "Looking for networks ..." : "No networks found - tap Refresh");
-        lv_obj_set_style_text_font(t, &lv_font_montserrat_16, 0);
+    wifi_ap_t fresh[WIFI_MAX_APS];
+    int n = wifi_scan_results(fresh, WIFI_MAX_APS);
+    if (n == 0) {
+        if (!list_has_rows) list_message(ws.scanning ? "Looking for networks ..." : "No networks found - tap Refresh");
+        return;                                   // keep the last good list through an empty scan
+    }
+
+    bool same = list_has_rows && n == n_shown;
+    for (int i = 0; same && i < n; i++) {
+        bool found = false;
+        for (int j = 0; j < n_shown; j++) if (!strcmp(fresh[i].ssid, shown[j].ssid)) found = true;
+        same = found;
+    }
+    char t[48];
+    if (same) {                                   // update in place, keep the order
+        for (int j = 0; j < n_shown; j++)
+            for (int i = 0; i < n; i++)
+                if (!strcmp(fresh[i].ssid, shown[j].ssid)) {
+                    shown[j].rssi = fresh[i].rssi;
+                    shown[j].secure = fresh[i].secure;
+                    row_text(t, sizeof(t), &shown[j], &ws);
+                    if (strcmp(lv_label_get_text(row_info[j]), t)) lv_label_set_text(row_info[j], t);
+                }
         return;
     }
+
+    // set changed: keep known networks in their place, add new ones (strongest first) below
+    wifi_ap_t merged[WIFI_MAX_APS];
+    int m = 0;
+    for (int j = 0; j < n_shown && list_has_rows; j++)
+        for (int i = 0; i < n; i++)
+            if (!strcmp(fresh[i].ssid, shown[j].ssid)) merged[m++] = fresh[i];
+    for (int i = 0; i < n && m < WIFI_MAX_APS; i++) {
+        bool known = false;
+        for (int k = 0; k < m; k++) if (!strcmp(merged[k].ssid, fresh[i].ssid)) known = true;
+        if (!known) merged[m++] = fresh[i];
+    }
+    memcpy(shown, merged, sizeof(merged));
+    n_shown = m;
+
+    lv_obj_clean(list);
+    list_has_rows = true;
     for (int i = 0; i < n_shown; i++) {
         lv_obj_t *b = lv_list_add_btn(list, LV_SYMBOL_WIFI, shown[i].ssid);
         lv_obj_set_style_text_font(b, &lv_font_montserrat_20, 0);
-        lv_obj_set_height(b, 52);
+        lv_obj_set_style_text_color(b, lv_color_hex(COL_TEXT), 0);
+        lv_obj_set_style_bg_color(b, lv_color_hex(COL_PANEL), 0);
+        lv_obj_set_style_bg_color(b, lv_color_hex(0x2C2C38), LV_STATE_PRESSED);
+        lv_obj_set_style_border_color(b, lv_color_hex(0x2C2C38), 0);
+        lv_obj_set_height(b, 56);
         lv_obj_add_event_cb(b, net_cb, LV_EVENT_CLICKED, (void *)(intptr_t)i);
         lv_obj_t *r = lv_label_create(b);
-        char t[48];
-        bool saved = ws.has_creds && !strcmp(ws.ssid, shown[i].ssid);
-        snprintf(t, sizeof(t), "%s%s%s", saved ? "Saved   " : "", strength(shown[i].rssi),
-                 shown[i].secure ? "   secured" : "   open");
+        row_text(t, sizeof(t), &shown[i], &ws);
         lv_label_set_text(r, t);
         lv_obj_set_style_text_font(r, &lv_font_montserrat_16, 0);
         lv_obj_set_style_text_color(r, lv_color_hex(COL_DIM), 0);
         lv_obj_add_flag(r, LV_OBJ_FLAG_IGNORE_LAYOUT);
         lv_obj_align(r, LV_ALIGN_RIGHT_MID, -8, 0);
+        row_info[i] = r;
     }
 }
 
@@ -245,8 +304,7 @@ void setup_open(bool manual)
     is_manual = manual;
     shown_gen = UINT32_MAX;
     n_shown = 0;
-    lv_obj_clean(list);
-    lv_list_add_text(list, "Looking for networks ...");
+    list_message("Looking for networks ...");
     status("Choose your network", COL_DIM);
     set_view(V_LIST);
     scan_now();
