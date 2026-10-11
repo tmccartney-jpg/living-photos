@@ -17,11 +17,18 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build with ESP-IDF v5.5.5
-        uses: espressif/esp-idf-ci-action@v1
-        with:
-          esp_idf_version: v5.5.5
-          target: esp32s3
-          path: firmware
+        run: |
+          set -o pipefail
+          docker run --rm -e IDF_TARGET=esp32s3 -v "$PWD/firmware:/project" -w /project \
+            espressif/idf:v5.5.5 idf.py build 2>&1 | tee build.log
+
+      # Compiler errors as annotations, so they show on the run page without opening the log.
+      - name: Report compile errors
+        if: failure()
+        run: |
+          grep -E "error:|undefined reference|FAILED:" build.log | head -40 | while IFS= read -r l; do
+            echo "::error::${l#/project/}"
+          done
 
       - name: Size report
         run: ls -la firmware/build/*.bin firmware/build/bootloader/*.bin firmware/build/partition_table/*.bin
