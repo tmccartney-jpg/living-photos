@@ -1,0 +1,44 @@
+name: Firmware build
+
+# Compiles the frame firmware (ESP-IDF, ESP32-S3) on every change under firmware/,
+# so a broken build is caught before anything is flashed. The built binaries are
+# attached to the run as an artifact.
+on:
+  push:
+    paths:
+      - "firmware/**"
+      - ".github/workflows/firmware.yml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build with ESP-IDF v5.5.5
+        run: |
+          set -o pipefail
+          docker run --rm -e IDF_TARGET=esp32s3 -v "$PWD/firmware:/project" -w /project \
+            espressif/idf:v5.5.5 idf.py build 2>&1 | tee build.log
+
+      # Compiler errors as annotations, so they show on the run page without opening the log.
+      - name: Report compile errors
+        if: failure()
+        run: |
+          grep -E "error:|undefined reference|FAILED:" build.log | head -40 | while IFS= read -r l; do
+            echo "::error::${l#/project/}"
+          done
+
+      - name: Size report
+        run: ls -la firmware/build/*.bin firmware/build/bootloader/*.bin firmware/build/partition_table/*.bin
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ github.sha }}
+          path: |
+            firmware/build/*.bin
+            firmware/build/bootloader/bootloader.bin
+            firmware/build/partition_table/partition-table.bin
+            firmware/build/flasher_args.json
+          if-no-files-found: error
