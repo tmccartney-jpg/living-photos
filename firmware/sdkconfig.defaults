@@ -52,8 +52,8 @@ CONFIG_LWIP_SNTP_MAX_SERVERS=2
 # CONFIG_ESP_WIFI_IRAM_OPT is not set
 # CONFIG_ESP_WIFI_RX_IRAM_OPT is not set
 CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=6
-# RGB panel: interrupt keeps running during flash writes; recover cleanly from a missed refill
-CONFIG_LCD_RGB_ISR_IRAM_SAFE=y
+# RGB panel: recover cleanly from a missed refill. (ISR_IRAM_SAFE stays off: it requires the
+# LVGL adapter's callback context in internal RAM, which fails once malloc prefers PSRAM -> no image.)
 CONFIG_LCD_RGB_RESTART_IN_VSYNC=y
 # Internal RAM is the bottleneck once Wi-Fi runs (log: 19 KB left, SD init failed, flicker):
 # ordinary malloc (LVGL objects, file buffers, JSON) goes to PSRAM; 64 KB kept for DMA/internal-only use.
