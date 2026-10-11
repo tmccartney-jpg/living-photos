@@ -19,6 +19,9 @@
 #include "diag.h"
 #include "frame.h"
 
+// Paths and captions are bounded on purpose; truncation is acceptable.
+#pragma GCC diagnostic ignored "-Wformat-truncation"
+
 static const char *TAG = "frame";
 
 #define SD               SD_MOUNT_POINT "/"
