@@ -133,7 +133,7 @@
     },
     {
       "id": "twz_007",
-      "video": null,
+      "video": "videos/wheat_field_turned_scarecrow_007.mp4",
       "still": "stills/wheat_field_turned_scarecrow_007.jpg",
       "captions": [
         "The scarecrow turned to face Anthony. Good thing, too.",
@@ -150,7 +150,8 @@
       "device": {
         "clip": null,
         "still": "device/twz_007.jpg"
-      }
+      },
+      "motion": "once"
     },
     {
       "id": "twz_008",
