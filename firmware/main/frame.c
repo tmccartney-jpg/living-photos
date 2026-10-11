@@ -50,6 +50,7 @@ typedef struct {
     char still[128];      // full SD path or ""
     char caption[192];
     bool rest;            // presence "rest": show frame 0 while someone is there
+    bool once;            // motion "once": play the clip one time, then hold its last frame
 } scene_t;
 
 typedef struct {
@@ -245,11 +246,14 @@ static bool scene_from_rotation(const cJSON *o, scene_t *sc)
 
     const cJSON *device = cJSON_GetObjectItemCaseSensitive(o, "device");
     const char *presence = jstr(o, "presence");
+    const char *motion = jstr(o, "motion");
     cJSON *mroot = NULL;
     const cJSON *m = NULL;
-    if (!device || !presence) m = manifest_scene(theme, id, &mroot);   // older rotation.json
+    if (!device || !presence || !motion) m = manifest_scene(theme, id, &mroot);   // older rotation.json
     if (!presence && m) presence = jstr(m, "presence");
+    if (!motion && m) motion = jstr(m, "motion");
     sc->rest = presence && !strcmp(presence, "rest");
+    sc->once = motion && !strcmp(motion, "once");
     if (device) {
         device_paths(sc, device, "");
     } else if (m && cJSON_GetObjectItemCaseSensitive(m, "device")) {
@@ -354,6 +358,8 @@ static void handle_test_requests(void)
         snprintf(sc->caption, sizeof(sc->caption), "%s", cJSON_IsString(c0) ? c0->valuestring : "");
         const char *pr = jstr(s, "presence");
         sc->rest = pr && !strcmp(pr, "rest");
+        const char *mo = jstr(s, "motion");
+        sc->once = mo && !strcmp(mo, "once");
         char base[40];
         snprintf(base, sizeof(base), "%s/", theme);
         device_paths(sc, cJSON_GetObjectItemCaseSensitive(s, "device"), base);
@@ -595,7 +601,7 @@ static bool clip_next(clip_t *c)
 
 static bool same_scene(const scene_t *a, const scene_t *b)
 {
-    return !strcmp(a->key, b->key) && !strcmp(a->caption, b->caption) && a->rest == b->rest &&
+    return !strcmp(a->key, b->key) && !strcmp(a->caption, b->caption) && a->rest == b->rest && a->once == b->once &&
            !strcmp(a->clip, b->clip) && !strcmp(a->still, b->still);
 }
 
@@ -628,7 +634,7 @@ static void play_scene(const scene_t *sc)
     set_in_use(sc->clip, sc->still, NULL);
     bool is_clip = sc->clip[0] && clip_open(&clip, sc->clip);
     bool have_frame = false, at_rest = false, still_ok = false;
-    const char *mode = is_clip ? (sc->rest ? "clip-rest" : "clip-freeze") : "still";
+    const char *mode = is_clip ? (sc->rest ? "clip-rest" : sc->once ? "clip-once" : "clip-freeze") : "still";
     const char *test = test_idx >= 0 ? "  TEST" : "";
 
     if (!is_clip) {
@@ -649,7 +655,9 @@ static void play_scene(const scene_t *sc)
             if (is_clip) {
                 if (!p.present) {
                     at_rest = false;
-                    if (clip_next(&clip)) { have_frame = true; frames++; }
+                    if (sc->once && clip.frame >= clip.nframes) {
+                        // played through once: hold the last frame for the rest of the day
+                    } else if (clip_next(&clip)) { have_frame = true; frames++; }
                 } else if (sc->rest) {
                     if (!at_rest) {   // lights off: frame 0
                         clip_rewind(&clip);
