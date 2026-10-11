@@ -52,3 +52,6 @@ CONFIG_LWIP_SNTP_MAX_SERVERS=2
 # CONFIG_ESP_WIFI_IRAM_OPT is not set
 # CONFIG_ESP_WIFI_RX_IRAM_OPT is not set
 CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=6
+# RGB panel: interrupt keeps running during flash writes; recover cleanly from a missed refill
+CONFIG_LCD_RGB_ISR_IRAM_SAFE=y
+CONFIG_LCD_RGB_RESTART_IN_VSYNC=y

@@ -6,6 +6,8 @@
 
 #include <assert.h>
 
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "esp_log.h"
 #include "esp_heap_caps.h"
 #include "esp_lv_adapter.h"
@@ -20,6 +22,27 @@
 #include "nvs_flash.h"
 
 static const char *TAG = "aura";
+
+// The RGB panel's interrupt (it refills the display's line buffers) runs on the
+// core that creates the panel. Wi-Fi lives on core 0, so the panel is created
+// from a short task on core 1; otherwise Wi-Fi interrupts delay the refills and
+// the screen flickers (stage 2).
+typedef struct {
+    esp_lv_adapter_tear_avoid_mode_t tear_mode;
+    esp_lv_adapter_rotation_t rotation;
+    esp_lcd_panel_handle_t panel;
+    esp_lcd_touch_handle_t touch;
+    esp_err_t err;
+    TaskHandle_t caller;
+} lcd_init_t;
+
+static void lcd_init_task(void *arg)
+{
+    lcd_init_t *c = arg;
+    c->err = waveshare_esp32_s3_rgb_lcd_init(c->tear_mode, c->rotation, &c->panel, &c->touch);
+    xTaskNotifyGive(c->caller);
+    vTaskDelete(NULL);
+}
 
 void app_main(void)
 {
@@ -37,19 +60,18 @@ void app_main(void)
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_180;
     const esp_lv_adapter_tear_avoid_mode_t tear_mode = ESP_LV_ADAPTER_TEAR_AVOID_MODE_DEFAULT_RGB;
 
-    esp_lcd_panel_handle_t panel_handle = NULL;
-    esp_lcd_touch_handle_t touch_handle = NULL;
-
-    ESP_ERROR_CHECK(waveshare_esp32_s3_rgb_lcd_init(
-        tear_mode,
-        rotation,
-        &panel_handle,
-        &touch_handle));
+    lcd_init_t lcd = { .tear_mode = tear_mode, .rotation = rotation, .caller = xTaskGetCurrentTaskHandle() };
+    xTaskCreatePinnedToCore(lcd_init_task, "lcd_init", 6144, &lcd, 5, NULL, 1);
+    ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+    ESP_ERROR_CHECK(lcd.err);
+    esp_lcd_panel_handle_t panel_handle = lcd.panel;
+    esp_lcd_touch_handle_t touch_handle = lcd.touch;
     ESP_ERROR_CHECK(waveshare_rgb_lcd_backlight_on());
 
     esp_lv_adapter_config_t adapter_config = ESP_LV_ADAPTER_DEFAULT_CONFIG();
     adapter_config.task_stack_size = 12 * 1024;
     adapter_config.stack_in_psram = true;
+    adapter_config.task_core_id = 1;          // drawing stays off the Wi-Fi core
     ESP_ERROR_CHECK(esp_lv_adapter_init(&adapter_config));
 
     esp_lv_adapter_display_config_t disp_config = ESP_LV_ADAPTER_DISPLAY_RGB_DEFAULT_CONFIG(
