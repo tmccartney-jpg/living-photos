@@ -654,6 +654,14 @@ static void play_scene(const scene_t *sc)
             set_status(l1, l2);
             t0 = now;
             frames = 0;
+            static int64_t last_mem_us;
+            if (now - last_mem_us > 30000000) {
+                last_mem_us = now;
+                ESP_LOGI(TAG, "memory: internal %u KB free (lowest %u KB), PSRAM %u KB free",
+                         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
+                         (unsigned)(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL) / 1024),
+                         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024));
+            }
             if (schedule_changed(sc)) break;
         }
 
@@ -701,6 +709,16 @@ void frame_show_scene(void)
     diag_open = false;
 }
 
+void frame_show_other(lv_obj_t *scr)
+{
+    if (!scr) return;
+    lv_scr_load(scr);
+    lv_disp_trig_activity(NULL);
+    diag_open = true;          // scene hidden: stop decoding
+}
+
+bool frame_scene_visible(void) { return scr_scene && lv_scr_act() == scr_scene; }
+
 void frame_show_diag(void)
 {
     lv_obj_t *d = diag_screen();
@@ -710,12 +728,20 @@ void frame_show_diag(void)
     diag_open = true;
 }
 
-bool frame_diag_open(void) { return diag_open; }
-
 void frame_test_next(void) { test_requests++; }
+
+static void *json_malloc(size_t n)
+{
+    return heap_caps_malloc_prefer(n, 2, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT, MALLOC_CAP_DEFAULT);
+}
 
 void frame_start(void)
 {
+    // JSON parsing makes thousands of tiny allocations; keep them out of internal RAM
+    // (step 1c log: internal RAM dipped to 7 KB while the manifest was parsed).
+    cJSON_Hooks hooks = { .malloc_fn = json_malloc, .free_fn = heap_caps_free };
+    cJSON_InitHooks(&hooks);
+
     setenv("TZ", "EST5EDT,M3.2.0,M11.1.0", 1);   // US Eastern
     tzset();
 
@@ -735,6 +761,9 @@ void frame_start(void)
         build_screen();
         esp_lv_adapter_unlock();
     }
+    // Stack in PSRAM: internal RAM is needed by Wi-Fi and the display (stage 2:
+    // with Wi-Fi running, an 8 KB internal stack could not be allocated and the
+    // frame stayed blank on "Starting").
     if (xTaskCreatePinnedToCoreWithCaps(frame_task, "frame", 8192, NULL, 3, NULL, 0,
                                         MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT) != pdPASS) {
         ESP_LOGE(TAG, "could not start the frame task");

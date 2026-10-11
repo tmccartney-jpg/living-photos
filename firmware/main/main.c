@@ -18,6 +18,7 @@
 #include "sdcard.h"
 #include "frame.h"
 #include "wifi.h"
+#include "setup.h"
 #include "nvs_flash.h"
 #include "esp_heap_caps.h"
 
@@ -32,8 +33,7 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(nv);
 
-    // Bisect build: Wi-Fi first (its buffers need internal RAM); can be switched
-    // off at boot from diagnostics to compare.
+    // Wi-Fi first: its buffers need internal RAM. (Diagnostics can boot with it off, for tests.)
     wifi_start();
 
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_180;
@@ -86,6 +86,10 @@ void app_main(void)
              wifi_boot_disabled() ? "OFF" : "ON");
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
+    if (esp_lv_adapter_lock(-1) == ESP_OK) {
+        setup_start();          // opens itself at first boot / after 1 h without the saved network
+        esp_lv_adapter_unlock();
+    }
     vTaskDelay(pdMS_TO_TICKS(3000));
     ESP_LOGI(TAG, "internal RAM free after start-up: %u KB (lowest %u KB)",
              (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),

@@ -3,15 +3,17 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 #include "lvgl.h"
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
+#include "esp_system.h"
 #include "hmmd.h"
 #include "presence.h"
 #include "sdcard.h"
 #include "frame.h"
 #include "wifi.h"
-#include "esp_system.h"
+#include "setup.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -81,22 +83,28 @@ static void test_btn_cb(lv_event_t *e)
     frame_test_next();
 }
 
-static lv_obj_t *lbl_wboot;
+static void diag_toggle(void)
+{
+    if (lv_scr_act() == scr_diag) frame_show_scene();
+    else frame_show_diag();
+}
 
-// Bisect test: restart with Wi-Fi never started (or back on).
-static void wboot_cb(lv_event_t *e)
+static lv_obj_t *lbl_radio;
+
+// Test: restart with Wi-Fi not started at all (or back on).
+static void radio_btn_cb(lv_event_t *e)
 {
     (void)e;
     wifi_set_boot_disabled(!wifi_boot_disabled());
-    lv_label_set_text(lbl_wboot, "Restarting");
+    lv_label_set_text(lbl_radio, "Restarting");
     lv_refr_now(NULL);
     esp_restart();
 }
 
-static void diag_toggle(void)
+static void wifi_btn_cb(lv_event_t *e)
 {
-    if (frame_diag_open()) frame_show_scene();
-    else frame_show_diag();
+    (void)e;
+    setup_open(true);
 }
 
 // Hidden 2 s hold zone (top-left corner). The callback fires once per press.
@@ -144,7 +152,7 @@ static void source_btn_cb(lv_event_t *e)
 static void update_cb(lv_timer_t *t)
 {
     (void)t;
-    if (!frame_diag_open()) return;
+    if (lv_scr_act() != scr_diag) return;
     if (lv_disp_get_inactive_time(NULL) > 60000) {   // 60 s without a touch: back to the scene
         frame_show_scene();
         return;
@@ -264,9 +272,20 @@ static void update_cb(lv_timer_t *t)
         lv_label_set_text(lbl_sd, buf);
     }
 
-    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM  Wi-Fi %s",
+    wifi_status_t w;
+    wifi_get_status(&w);
+    char wl[64];
+    if (w.radio_off)
+        snprintf(wl, sizeof(wl), "Wi-Fi OFF (test)");
+    else if (w.state == WIFI_ST_CONNECTED)
+        snprintf(wl, sizeof(wl), "Wi-Fi %s %d dBm %s%s", w.ssid, w.rssi, w.ip, w.time_ok ? "" : " (no time yet)");
+    else if (!w.has_creds)
+        snprintf(wl, sizeof(wl), "Wi-Fi not set up");
+    else
+        snprintf(wl, sizeof(wl), "Wi-Fi %s missing %lu min", w.ssid, (unsigned long)(w.missing_s / 60));
+    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM   %s",
              (int)(up / 3600), (int)(up / 60 % 60), (int)(up % 60),
-             (unsigned)(heap / 1024), psram / 1048576.0, wifi_boot_disabled() ? "OFF" : "ON (idle)");
+             (unsigned)(heap / 1024), psram / 1048576.0, wl);
     lv_label_set_text(lbl_sys, buf);
 }
 
@@ -380,14 +399,23 @@ void diag_create(void)
     lbl_sys = make_label(scr, &lv_font_montserrat_14, COL_DIM);
     lv_obj_set_pos(lbl_sys, 16, 448);
 
-    lv_obj_t *b = lv_btn_create(scr);
-    lv_obj_set_pos(b, 650, 442);
-    lv_obj_set_size(b, 134, 34);
-    lv_obj_set_style_bg_color(b, lv_color_hex(COL_PANEL), 0);
-    lv_obj_add_event_cb(b, wboot_cb, LV_EVENT_CLICKED, NULL);
-    lbl_wboot = make_label(b, &lv_font_montserrat_16, COL_TEXT);
-    lv_label_set_text(lbl_wboot, wifi_boot_disabled() ? "Wi-Fi: OFF" : "Wi-Fi: ON");
-    lv_obj_center(lbl_wboot);
+    lv_obj_t *btn_wifi = lv_btn_create(scr);
+    lv_obj_set_pos(btn_wifi, 690, 442);
+    lv_obj_set_size(btn_wifi, 94, 34);
+    lv_obj_set_style_bg_color(btn_wifi, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_wifi, wifi_btn_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *lbl_wifi = make_label(btn_wifi, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_wifi, LV_SYMBOL_WIFI " Wi-Fi");
+    lv_obj_center(lbl_wifi);
+
+    lv_obj_t *btn_radio = lv_btn_create(scr);
+    lv_obj_set_pos(btn_radio, 586, 442);
+    lv_obj_set_size(btn_radio, 96, 34);
+    lv_obj_set_style_bg_color(btn_radio, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_radio, radio_btn_cb, LV_EVENT_CLICKED, NULL);
+    lbl_radio = make_label(btn_radio, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_radio, wifi_boot_disabled() ? "Wi-Fi OFF" : "Wi-Fi ON");
+    lv_obj_center(lbl_radio);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
 
