@@ -53,6 +53,7 @@ To modify a locked behavior or reference fact:
 
 - 2026-10-10: Unlocked provisioning (Tony's decision) — replaced device-hosted Wi-Fi + web page (entered on missing credentials or held BOOT) with touchscreen setup: network list + on-screen keyboard, at first boot and again only when the saved network has been missing for 1 hour. Safeguards: the saved network keeps being retried while setup is up and setup closes itself when it returns; "Not now" (or 5 minutes untouched) goes back to the scene and waits 24 h before asking again. Also updated `Design_Principles.md` ("never forces reprovisioning" → 1-hour rule). Internet time (SNTP) on US Eastern. Re-locked.
 - 2026-10-10: Unlocked the setup snooze (Tony's decision) — "Not now" / 5 min untouched now hides setup for **1 hour** (was 24 h), so it keeps asking hourly until a network is entered: without Wi-Fi a frame gets no new scenes or rotation. Re-locked.
+- 2026-10-11: Unlocked `Reference.md` manifest schema (Tony's decision) — added `motion` (`loop` default | `once`). A `once` clip plays a single time while nobody is present, then holds its last frame for the rest of the day (first use: `twz_003`, the train-platform reflection turns and stares). `rotate.py` passes it through in `rotation.json`. Re-locked.
 
 ---
 

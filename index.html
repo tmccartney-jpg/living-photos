@@ -157,6 +157,7 @@
     cap.classList.add('fade');
     if (s.video) {                       // living photo
       still.style.display = 'none'; vid.style.display = '';
+      vid.loop = s.motion !== 'once';      // once: play through, then hold the last frame
       vid.src = BASE + s.video;
       vid.load();
       vid.onloadeddata = () => applyPresence();

@@ -355,6 +355,7 @@ def run_day(day, state, lib, rot, quiet=False):
             "video": f'{mdir}/{s["video"]}' if s.get("video") else None,     # None = still only (no clip yet)
             "still": f'{mdir}/{s["still"]}' if s.get("still") else None,
             "presence": s.get("presence", "freeze"),   # freeze = hold the current frame; rest = jump to frame 0
+            "motion": s.get("motion", "loop"),         # loop = clip repeats; once = plays once, then holds its last frame
             "device": {k: (f"{mdir}/{v}" if v else None) for k, v in (s.get("device") or {}).items()},
             "caption": caps[cap_i],
             "caption_index": cap_i,

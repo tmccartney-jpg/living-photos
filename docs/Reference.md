@@ -72,6 +72,7 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 | `video` | path or `null` | Living-photo clip; `null` = still-only until its clip is made |
 | `still` | path | The scene's still image; displayed alone when `video` is `null` |
 | `presence` | `freeze` (default) \| `rest` | While someone is present: `freeze` holds the current frame; `rest` shows frame 0 (light-only scenes: lights off) |
+| `motion` | `loop` (default) \| `once` | `loop`: the clip repeats. `once`: the clip plays through once (only while nobody is present), then holds its last frame for the rest of the day; it starts over at the next scene change or power-up |
 | `device` | `{clip, still}` | Frame-ready copies, written by `build_device.py`; `clip` is `null` for still-only scenes |
 
 ---

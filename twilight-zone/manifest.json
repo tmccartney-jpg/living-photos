@@ -27,7 +27,7 @@
     },
     {
       "id": "twz_002",
-      "video": null,
+      "video": "videos/cornfield_farmhouse_002.mp4",
       "still": "stills/cornfield_farmhouse_002.jpg",
       "captions": [
         "Anthony sent him to the cornfield. It's a good thing he did.",
@@ -48,7 +48,7 @@
     },
     {
       "id": "twz_003",
-      "video": null,
+      "video": "videos/train_platform_doubling_003.mp4",
       "still": "stills/train_platform_doubling_003.jpg",
       "captions": [
         "Jackie's reflection is done waiting for him to change.",
@@ -65,11 +65,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_003.jpg"
-      }
+      },
+      "motion": "once"
     },
     {
       "id": "twz_004",
-      "video": null,
+      "video": "videos/diner_booth_coffee_steaming_004.mp4",
       "still": "stills/diner_booth_coffee_steaming_004.jpg",
       "captions": [
         "Oakwood's coffee is still hot. Oakwood's people are gone.",
