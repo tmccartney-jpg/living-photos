@@ -54,3 +54,6 @@ CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=6
 # Stage 3: TLS (mbedTLS) buffers in PSRAM, so HTTPS downloads leave internal RAM alone
 # CONFIG_MBEDTLS_INTERNAL_MEM_ALLOC is not set
 CONFIG_MBEDTLS_EXTERNAL_MEM_ALLOC=y
+
+# Stage 4: firmware updates over Wi-Fi with automatic rollback
+CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE=y

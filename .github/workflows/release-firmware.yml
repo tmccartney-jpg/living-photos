@@ -1,0 +1,64 @@
+name: Release firmware
+
+# Publishes the firmware in firmware/ as an over-the-air update for the frames.
+# Run it by hand (Actions -> Release firmware -> Run workflow) once a build has been
+# tested on the frame by USB. It builds, then commits ota/aura_fw.bin and
+# ota/firmware.json; frames see it on their next sync and install it 3-4 a.m.
+# The build number is firmware/version.txt and must be higher than the last release.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-firmware
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the build number
+        id: ver
+        run: |
+          build=$(tr -dc '0-9' < firmware/version.txt)
+          last=0
+          if [ -f ota/firmware.json ]; then last=$(python3 -c "import json;print(json.load(open('ota/firmware.json'))['build'])"); fi
+          echo "build=$build last=$last"
+          if [ -z "$build" ] || [ "$build" -le "$last" ]; then
+            echo "::error::firmware/version.txt ($build) must be higher than the last release ($last)"
+            exit 1
+          fi
+          echo "build=$build" >> "$GITHUB_OUTPUT"
+
+      - name: Build with ESP-IDF v5.5.5
+        run: |
+          set -o pipefail
+          docker run --rm -e IDF_TARGET=esp32s3 -v "$PWD/firmware:/project" -w /project \
+            espressif/idf:v5.5.5 idf.py build 2>&1 | tee build.log
+
+      - name: Publish ota/
+        run: |
+          mkdir -p ota
+          cp firmware/build/lvgl_porting.bin ota/aura_fw.bin
+          python3 - <<'EOF'
+          import hashlib, json, os
+          b = open('ota/aura_fw.bin', 'rb').read()
+          json.dump({
+              "build": int("${{ steps.ver.outputs.build }}"),
+              "bin": "ota/aura_fw.bin",
+              "bytes": len(b),
+              "sha256": hashlib.sha256(b).hexdigest(),
+              "source": os.environ["GITHUB_SHA"],
+          }, open('ota/firmware.json', 'w'), indent=2)
+          EOF
+          cat ota/firmware.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ota/aura_fw.bin ota/firmware.json
+          git commit -m "Firmware ${{ steps.ver.outputs.build }} released"
+          git pull --rebase origin main
+          git push origin HEAD:main

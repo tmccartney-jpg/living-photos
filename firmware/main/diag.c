@@ -16,6 +16,7 @@
 #include "wifi.h"
 #include "setup.h"
 #include "sync.h"
+#include "ota.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -105,11 +106,19 @@ static void diag_toggle(void)
 
 static lv_obj_t *lbl_radio;
 
-static void radio_btn_cb(lv_event_t *e)     // "Sync now"
+static uint32_t radio_tap_ms;
+
+static void radio_btn_cb(lv_event_t *e)     // "Sync now", or "Update" when new firmware is waiting
 {
     (void)e;
-    sync_now();
-    lv_label_set_text(lbl_radio, "Syncing");
+    radio_tap_ms = lv_tick_get();
+    if (ota_waiting()) {
+        ota_install_now();
+        lv_label_set_text(lbl_radio, "Updating");
+    } else {
+        sync_now();
+        lv_label_set_text(lbl_radio, "Syncing");
+    }
 }
 
 static void wifi_btn_cb(lv_event_t *e)
@@ -278,14 +287,18 @@ static void update_cb(lv_timer_t *t)
     } else {
         char fs[192];
         frame_status(fs, sizeof(fs));
-        char sy[96];
+        char sy[96], ot[80];
         sync_status(sy, sizeof(sy));
-        if (!strncmp(sy, "Sync", 4) && lbl_radio) {
+        ota_status(ot, sizeof(ot));
+        if (lbl_radio && lv_tick_elaps(radio_tap_ms) > 2000) {
             const char *cur = lv_label_get_text(lbl_radio);
-            if (strcmp(cur, LV_SYMBOL_REFRESH " Sync") && strstr(sy, ":") && !strstr(sy, "checking") && !strstr(sy, "downloading"))
-                lv_label_set_text(lbl_radio, LV_SYMBOL_REFRESH " Sync");
+            const char *want = ota_waiting() ? LV_SYMBOL_DOWNLOAD " Update" : LV_SYMBOL_REFRESH " Sync";
+            bool hold = (!strcmp(cur, "Syncing") && sync_busy()) ||
+                        (!strcmp(cur, "Updating") && !strstr(ot, "failed") && !strstr(ot, "memory"));
+            if (!hold && strcmp(cur, want)) lv_label_set_text(lbl_radio, want);
         }
-        snprintf(buf, sizeof(buf), "%s\n%s", sy, fs);
+        if (ot[0]) snprintf(buf, sizeof(buf), "%s\n%s\n%s", sy, ot, fs);
+        else snprintf(buf, sizeof(buf), "%s\n%s", sy, fs);
         lv_label_set_text(lbl_sd, buf);
     }
 
@@ -300,7 +313,7 @@ static void update_cb(lv_timer_t *t)
         snprintf(wl, sizeof(wl), "Wi-Fi not set up");
     else
         snprintf(wl, sizeof(wl), "Wi-Fi %s missing %lu min", w.ssid, (unsigned long)(w.missing_s / 60));
-    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM   %s",
+    snprintf(buf, sizeof(buf), "fw %d  Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM   %s", ota_running_build(),
              (int)(up / 3600), (int)(up / 60 % 60), (int)(up % 60),
              (unsigned)(heap / 1024), psram / 1048576.0, wl);
     lv_label_set_text(lbl_sys, buf);

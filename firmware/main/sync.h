@@ -19,3 +19,4 @@
 void sync_start(void);                    // after wifi_start() and frame_start()
 void sync_now(void);                      // diagnostics button
 void sync_status(char *buf, size_t len);  // one short line
+bool sync_busy(void);                     // a pass is running (OTA waits for it)

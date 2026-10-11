@@ -32,3 +32,5 @@ int  frame_preview_cycle(void);               // diagnostics: Preview off -> 10 
 int  frame_preview_secs(void);                // 0 = off
 void frame_status(char *buf, size_t len);     // one or two lines for the diagnostics screen
 bool frame_file_in_use(const char *full_path); // sync: never replace the file on screen
+#include <stdint.h>
+int64_t frame_heartbeat_us(void);             // last time the frame task looped (esp_timer us); 0 = never

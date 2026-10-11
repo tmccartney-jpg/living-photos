@@ -699,6 +699,9 @@ static void play_intro(const char *path)
     vTaskDelay(pdMS_TO_TICKS(INTRO_MS));
 }
 
+static volatile int64_t hb_us;      // frame task heartbeat (OTA health check)
+int64_t frame_heartbeat_us(void) { return hb_us; }
+
 // Plays `sc` until the schedule picks something else.
 static void play_scene(const scene_t *sc)
 {
@@ -724,6 +727,7 @@ static void play_scene(const scene_t *sc)
     uint32_t frames = 0;
 
     while (1) {
+        hb_us = esp_timer_get_time();
         if (!diag_open) {
             presence_t p;
             presence_get(&p);
@@ -795,6 +799,7 @@ static void frame_task(void *arg)
     (void)arg;
     sd_state_t sd;
     do {
+        hb_us = esp_timer_get_time();
         vTaskDelay(pdMS_TO_TICKS(200));
         sdcard_get(&sd);
     } while (!sd.done);
@@ -806,6 +811,7 @@ static void frame_task(void *arg)
         handle_test_requests();
         handle_preview();
         const scene_t *want = pick(NULL);
+        hb_us = esp_timer_get_time();
         if (!want) {
             blank();
             caption_show(NULL);

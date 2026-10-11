@@ -20,6 +20,7 @@
 #include "wifi.h"
 #include "setup.h"
 #include "sync.h"
+#include "ota.h"
 #include "nvs_flash.h"
 #include "esp_heap_caps.h"
 
@@ -93,6 +94,7 @@ void app_main(void)
         esp_lv_adapter_unlock();
     }
     sync_start();               // GitHub -> SD card every 5 minutes
+    ota_start();                // firmware updates; keeps a new build only if the frame runs
     vTaskDelay(pdMS_TO_TICKS(3000));
     ESP_LOGI(TAG, "internal RAM free after start-up: %u KB (lowest %u KB)",
              (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),

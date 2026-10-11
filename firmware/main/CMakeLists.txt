@@ -10,6 +10,7 @@ idf_component_register(
         "wifi.c"
         "setup.c"
         "sync.c"
+        "ota.c"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
         "."

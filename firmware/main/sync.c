@@ -22,6 +22,7 @@
 #include "wifi.h"
 #include "frame.h"
 #include "sync.h"
+#include "ota.h"
 
 #pragma GCC diagnostic ignored "-Wformat-truncation"
 
@@ -49,6 +50,9 @@ static int n_known;
 static bool known_dirty;
 
 static volatile bool kick;
+static volatile bool busy;
+
+bool sync_busy(void) { return busy; }
 static portMUX_TYPE st_lock = portMUX_INITIALIZER_UNLOCKED;
 static char st_line[96] = "Sync: waiting for Wi-Fi";
 
@@ -575,7 +579,15 @@ static void sync_task(void *arg)
         if (!due) continue;
         kick = false;
 
+        busy = true;
         run_pass();
+        // firmware updates: is there a newer build? (installs at night, see ota.c)
+        size_t olen = 0;
+        int ocode = 0;
+        char *ojs = fetch_small(OTA_JSON, true, &olen, &ocode);
+        ota_check(ojs);
+        free(ojs);
+        busy = false;
 
         // next pass: on the next 5-minute mark (+20 s), or 5 minutes from now without a clock
         if (clock_ok()) {
