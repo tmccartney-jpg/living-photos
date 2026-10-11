@@ -41,6 +41,7 @@ static volatile uint8_t last_reason;
 static char got_ip[16];
 static int64_t missing_since_us;   // 0 = connected
 static int64_t snooze_until_us;
+static volatile bool radio_off;
 
 // ---------------------------------------------------------------- NVS
 
@@ -261,6 +262,7 @@ static void wifi_task(void *arg)
         }
 
         // scanning (a connection attempt in progress blocks scans, so stop it first)
+        if (radio_off) { scan_pending = false; connecting = false; }
         if (scan_pending) {
             if (connecting) { esp_wifi_disconnect(); connecting = false; }
             if (esp_wifi_scan_start(NULL, false) == ESP_OK) {
@@ -297,7 +299,7 @@ static void wifi_task(void *arg)
             connecting = false;
         }
 
-        if (!connected && !connecting && !scanning && !scan_pending && now >= next_retry) {
+        if (!radio_off && !connected && !connecting && !scanning && !scan_pending && now >= next_retry) {
             if (trying) {
                 try_pending = false;
                 connect_to(try_ssid, try_pass);
@@ -318,6 +320,7 @@ static void wifi_task(void *arg)
         }
 
         portENTER_CRITICAL(&lock);
+        st.radio_off = radio_off;
         st.has_creds = saved_ssid[0] != 0;
         snprintf(st.ssid, sizeof(st.ssid), "%s", saved_ssid);
         st.state = connected ? WIFI_ST_CONNECTED
@@ -381,6 +384,22 @@ void wifi_snooze(void)
 {
     snooze_until_us = esp_timer_get_time() + (int64_t)WIFI_SNOOZE_S * 1000000;
     ESP_LOGI(TAG, "setup hidden for %d min", WIFI_SNOOZE_S / 60);
+}
+
+bool wifi_radio_on(void) { return !radio_off; }
+
+void wifi_radio_set(bool on)
+{
+    if (on == !radio_off) return;
+    if (on) {
+        radio_off = false;
+        esp_wifi_start();
+        ESP_LOGI(TAG, "radio ON (test)");
+    } else {
+        radio_off = true;
+        esp_wifi_stop();
+        ESP_LOGI(TAG, "radio OFF (test)");
+    }
 }
 
 void wifi_start(void)

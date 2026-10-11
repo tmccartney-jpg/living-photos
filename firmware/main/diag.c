@@ -88,6 +88,15 @@ static void diag_toggle(void)
     else frame_show_diag();
 }
 
+static lv_obj_t *lbl_radio;
+
+static void radio_btn_cb(lv_event_t *e)
+{
+    (void)e;
+    wifi_radio_set(!wifi_radio_on());
+    lv_label_set_text(lbl_radio, wifi_radio_on() ? "Radio ON" : "Radio OFF");
+}
+
 static void wifi_btn_cb(lv_event_t *e)
 {
     (void)e;
@@ -262,7 +271,9 @@ static void update_cb(lv_timer_t *t)
     wifi_status_t w;
     wifi_get_status(&w);
     char wl[64];
-    if (w.state == WIFI_ST_CONNECTED)
+    if (w.radio_off)
+        snprintf(wl, sizeof(wl), "Wi-Fi radio OFF (test)");
+    else if (w.state == WIFI_ST_CONNECTED)
         snprintf(wl, sizeof(wl), "Wi-Fi %s %d dBm %s%s", w.ssid, w.rssi, w.ip, w.time_ok ? "" : " (no time yet)");
     else if (!w.has_creds)
         snprintf(wl, sizeof(wl), "Wi-Fi not set up");
@@ -392,6 +403,15 @@ void diag_create(void)
     lv_obj_t *lbl_wifi = make_label(btn_wifi, &lv_font_montserrat_16, COL_TEXT);
     lv_label_set_text(lbl_wifi, LV_SYMBOL_WIFI " Wi-Fi");
     lv_obj_center(lbl_wifi);
+
+    lv_obj_t *btn_radio = lv_btn_create(scr);
+    lv_obj_set_pos(btn_radio, 586, 442);
+    lv_obj_set_size(btn_radio, 96, 34);
+    lv_obj_set_style_bg_color(btn_radio, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_radio, radio_btn_cb, LV_EVENT_CLICKED, NULL);
+    lbl_radio = make_label(btn_radio, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_radio, "Radio ON");
+    lv_obj_center(lbl_radio);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
 

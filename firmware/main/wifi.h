@@ -39,6 +39,7 @@ typedef struct {
     char try_msg[48];       // why a try failed
     bool scanning;
     uint32_t scan_gen;      // bumps when new scan results are ready
+    bool radio_off;         // stopped from diagnostics (test)
 } wifi_status_t;
 
 typedef struct {
@@ -54,3 +55,5 @@ int  wifi_scan_results(wifi_ap_t *out, int max);
 void wifi_try(const char *ssid, const char *pass);   // async; saved only if it connects
 bool wifi_setup_wanted(void);
 void wifi_snooze(void);
+void wifi_radio_set(bool on);                   // diagnostics test: stop/start the radio
+bool wifi_radio_on(void);
