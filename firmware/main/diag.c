@@ -84,10 +84,7 @@ static lv_obj_t *lbl_preview;
 static void preview_btn_cb(lv_event_t *e)
 {
     (void)e;
-    frame_preview_cycle();
-    // the frame task applies it within a second; show the next step now
-    int cur = frame_preview_secs();
-    int next = cur == 0 ? 10 : cur == 10 ? 20 : cur == 20 ? 30 : 0;
+    int next = frame_preview_cycle();    // the frame task applies it within a second
     char b[32];
     if (next) snprintf(b, sizeof(b), "Preview %ds", next);
     else snprintf(b, sizeof(b), "Preview off");

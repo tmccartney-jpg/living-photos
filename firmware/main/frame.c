@@ -375,7 +375,7 @@ static void handle_test_requests(void)
 // Preview (diagnostics): every scene of the manifest in turn, PREVIEW_SECS each, scenes move
 // regardless of presence; the intro plays at the start of each round. Off again after a restart.
 static const int preview_steps[] = { 0, 10, 20, 30 };
-static volatile int preview_requests;
+static volatile int preview_want;   // set by the diagnostics button, applied by the frame task
 static int preview_secs;            // 0 = off
 static int preview_idx;
 static int preview_count;
@@ -397,13 +397,12 @@ static void preview_load(int idx)
 
 static void handle_preview(void)
 {
-    while (preview_requests > 0) {
-        preview_requests--;
-        int i = 0;
-        while (i < 3 && preview_steps[i] != preview_secs) i++;
-        preview_secs = preview_steps[(i + 1) % 4];
-        if (preview_secs && i == 0) preview_load(0);
-        ESP_LOGI(TAG, "preview %s", preview_secs ? "on" : "off");
+    int want = preview_want;
+    if (want != preview_secs) {
+        bool starting = !preview_secs;
+        preview_secs = want;
+        if (preview_secs && starting) preview_load(0);
+        ESP_LOGI(TAG, "preview %d s", preview_secs);
     }
     if (preview_secs && preview_scene_us &&
         esp_timer_get_time() - preview_scene_us >= (int64_t)preview_secs * 1000000) {
@@ -548,9 +547,14 @@ static void blank(void)
     }
 }
 
+// Playback timing, summed per clip frame and logged every 10 s (see play_scene).
+static int64_t t_read_us, t_dec_us, t_lock_us;
+static uint32_t t_frames, t_late;
+
 // Decode one baseline JPEG into the back buffer and put it on screen.
 static bool show_jpeg(const uint8_t *data, size_t len)
 {
+    int64_t ta = esp_timer_get_time();
     jpeg_dec_io_t io = { .inbuf = (uint8_t *)data, .inbuf_len = (int)len, .outbuf = pixbuf[back] };
     jpeg_dec_header_info_t info;
     if (jpeg_dec_parse_header(dec, &io, &info) != JPEG_ERR_OK) return false;
@@ -559,6 +563,8 @@ static bool show_jpeg(const uint8_t *data, size_t len)
         return false;
     }
     if (jpeg_dec_process(dec, &io) != JPEG_ERR_OK) return false;
+    int64_t tb = esp_timer_get_time();
+    t_dec_us += tb - ta;
     lv_img_dsc_t *d = &dsc[back];
     d->header.cf = LV_IMG_CF_TRUE_COLOR;
     d->header.w = info.width;
@@ -566,6 +572,7 @@ static bool show_jpeg(const uint8_t *data, size_t len)
     d->data_size = (uint32_t)info.width * info.height * 2;
     d->data = pixbuf[back];
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
+        t_lock_us += esp_timer_get_time() - tb;
         lv_img_cache_invalidate_src(d);
         lv_img_set_src(img, d);
         lv_obj_center(img);
@@ -641,6 +648,7 @@ static bool clip_next(clip_t *c)
 {
     for (int attempt = 0; attempt < 2; attempt++) {
         uint8_t lenb[4];
+        int64_t tr = esp_timer_get_time();
         if (c->frame >= c->nframes || fread(lenb, 1, 4, c->f) != 4) {
             clip_rewind(c);
             continue;
@@ -652,6 +660,8 @@ static bool clip_next(clip_t *c)
             continue;
         }
         c->frame++;
+        t_read_us += esp_timer_get_time() - tr;
+        t_frames++;
         if (show_jpeg(jbuf, len)) return true;
         ESP_LOGW(TAG, "decode error on frame %lu", (unsigned long)c->frame);
         return true;   // skip a bad frame, keep going
@@ -757,11 +767,24 @@ static void play_scene(const scene_t *sc)
                          (unsigned)(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL) / 1024),
                          (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024));
             }
+            static int64_t last_perf_us;
+            if (now - last_perf_us >= 10000000) {
+                if (t_frames) {
+                    ESP_LOGI(TAG, "playback: %.1f fps target %d, per frame: read %d ms, decode %d ms, "
+                             "wait for screen %d ms; %lu late",
+                             t_frames * 1e6f / (float)(now - last_perf_us), is_clip ? clip.fps : 0,
+                             (int)(t_read_us / t_frames / 1000), (int)(t_dec_us / t_frames / 1000),
+                             (int)(t_lock_us / t_frames / 1000), (unsigned long)t_late);
+                }
+                last_perf_us = now;
+                t_read_us = t_dec_us = t_lock_us = 0;
+                t_frames = t_late = 0;
+            }
             if (schedule_changed(sc)) break;
         }
 
         vTaskDelayUntil(&wake, diag_open ? pdMS_TO_TICKS(100) : period);
-        if ((int32_t)(xTaskGetTickCount() - wake) > (int32_t)period) wake = xTaskGetTickCount();
+        if ((int32_t)(xTaskGetTickCount() - wake) > (int32_t)period) { wake = xTaskGetTickCount(); t_late++; }
     }
     clip_close(&clip);
     set_in_use(NULL, NULL, NULL);
@@ -832,9 +855,15 @@ void frame_show_diag(void)
 
 void frame_test_next(void) { test_requests++; }
 
-void frame_preview_cycle(void) { preview_requests++; }
+int frame_preview_cycle(void)
+{
+    int i = 0;
+    while (i < 3 && preview_steps[i] != preview_want) i++;
+    preview_want = preview_steps[(i + 1) % 4];
+    return preview_want;
+}
 
-int frame_preview_secs(void) { return preview_secs; }
+int frame_preview_secs(void) { return preview_want; }
 
 static void *json_malloc(size_t n)
 {

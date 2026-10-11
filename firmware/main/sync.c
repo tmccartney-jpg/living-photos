@@ -36,11 +36,17 @@ typedef struct {
     char path[96];       // repo-relative, e.g. twilight-zone/device/twz_001.lpv
     char sha[65];
     long bytes;
+    long mtime;          // card file time when it was verified (known[] only)
+    bool seen;           // size + time re-checked this boot (known[] only)
 } entry_t;
 
-// Files verified on the card this boot (path + sha), so we don't re-hash every 5 minutes.
+// Files verified on the card (path, sha, size, time). Saved to CACHE_FILE so a restart
+// doesn't re-read every file: a file whose size and time still match is trusted.
+#define CACHE_FILE    SD ".sync_cache"
+#define HASH_PAUSE_MS 15                // per 8 KB while hashing: leave the card to the player
 static entry_t *known;
 static int n_known;
+static bool known_dirty;
 
 static volatile bool kick;
 static portMUX_TYPE st_lock = portMUX_INITIALIZER_UNLOCKED;
@@ -211,7 +217,7 @@ static bool hash_file(const char *full, char *sha_out)
     size_t r;
     while ((r = fread(buf, 1, CHUNK, f)) > 0) {
         mbedtls_sha256_update(&h, buf, r);
-        taskYIELD();                      // share the card with the player
+        vTaskDelay(pdMS_TO_TICKS(HASH_PAUSE_MS));   // share the card with the player
     }
     unsigned char d[32];
     mbedtls_sha256_finish(&h, d);
@@ -226,6 +232,12 @@ static long file_size(const char *full)
 {
     struct stat st;
     return stat(full, &st) == 0 ? (long)st.st_size : -1;
+}
+
+static long file_mtime(const char *full)
+{
+    struct stat st;
+    return stat(full, &st) == 0 ? (long)st.st_mtime : -1;
 }
 
 static bool replace(const char *tmp, const char *full)
@@ -252,8 +264,60 @@ static void known_set(const char *path, const char *sha)
         if (n_known >= MAX_FILES) return;
         i = n_known++;
     }
+    char full[160];
+    sd_path(full, sizeof(full), path);
     snprintf(known[i].path, sizeof(known[i].path), "%s", path);
     snprintf(known[i].sha, sizeof(known[i].sha), "%s", sha);
+    known[i].bytes = file_size(full);
+    known[i].mtime = file_mtime(full);
+    known[i].seen = true;
+    known_dirty = true;
+}
+
+// One line per file: sha size mtime path
+static void cache_load(void)
+{
+    FILE *f = fopen(CACHE_FILE, "r");
+    if (!f) return;
+    char line[200];
+    while (n_known < MAX_FILES && fgets(line, sizeof(line), f)) {
+        entry_t *e = &known[n_known];
+        char path[100];
+        if (sscanf(line, "%64s %ld %ld %99s", e->sha, &e->bytes, &e->mtime, path) != 4) continue;
+        snprintf(e->path, sizeof(e->path), "%s", path);
+        e->seen = false;
+        n_known++;
+    }
+    fclose(f);
+    ESP_LOGI(TAG, "%d file fingerprints from the card", n_known);
+}
+
+static void cache_save(void)
+{
+    if (!known_dirty) return;
+    FILE *f = fopen(CACHE_FILE ".tmp", "w");
+    if (!f) return;
+    for (int i = 0; i < n_known; i++)
+        fprintf(f, "%s %ld %ld %s\n", known[i].sha, known[i].bytes, known[i].mtime, known[i].path);
+    bool ok = fclose(f) == 0;
+    if (ok && replace(CACHE_FILE ".tmp", CACHE_FILE)) known_dirty = false;
+}
+
+// True if the card's copy of `path` is already known to have `sha`.
+static bool known_good(const char *path, const char *sha)
+{
+    int k = known_find(path);
+    if (k < 0 || strcmp(known[k].sha, sha)) return false;
+    if (known[k].seen) return true;
+    char full[160];
+    sd_path(full, sizeof(full), path);
+    if (file_size(full) != known[k].bytes || file_mtime(full) != known[k].mtime) {
+        known[k].path[0] = 0;          // changed behind our back: hash it again
+        known_dirty = true;
+        return false;
+    }
+    known[k].seen = true;
+    return true;
 }
 
 // Small text file: write only if the content differs from the card.
@@ -331,10 +395,10 @@ static int run_pass(void)
 
     // 1. device files
     for (int i = 0; i < n; i++) {
-        int k = known_find(want[i].path);
-        if (k >= 0 && !strcmp(known[k].sha, want[i].sha)) continue;
+        if (known_good(want[i].path, want[i].sha)) continue;
         sd_path(full, sizeof(full), want[i].path);
-        if (k < 0 && file_size(full) == want[i].bytes) {         // first look this boot: verify
+        int k = known_find(want[i].path);
+        if ((k < 0 || !known[k].seen) && file_size(full) == want[i].bytes) {   // not verified yet
             status("Sync: checking card %d/%d", i + 1, n);
             if (hash_file(full, sha) && !strcmp(sha, want[i].sha)) {
                 known_set(want[i].path, sha);
@@ -415,6 +479,7 @@ static int run_pass(void)
         if (!dup && nt < 4) snprintf(themes[nt++], sizeof(themes[0]), "%s", th);
     }
     free(want);
+    cache_save();
     int small_changed = 0;
     const char *extra[6];
     char mpaths[4][64];
@@ -490,6 +555,7 @@ static void sync_task(void *arg)
         vTaskDelete(NULL);
     }
     clean_tmp(SD_MOUNT_POINT);
+    cache_load();
 
     int64_t next_us = 0;          // 0 = as soon as Wi-Fi is up (+15 s)
     int64_t connected_since = 0;
