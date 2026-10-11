@@ -66,7 +66,7 @@
         "clip": "device/twz_003.lpv",
         "still": "device/twz_003.jpg"
       },
-      "motion": "once"
+      "motion": "loop"
     },
     {
       "id": "twz_004",
@@ -151,7 +151,7 @@
         "clip": "device/twz_007.lpv",
         "still": "device/twz_007.jpg"
       },
-      "motion": "once"
+      "motion": "loop"
     },
     {
       "id": "twz_008",
@@ -238,7 +238,7 @@
         "clip": "device/twz_011.lpv",
         "still": "device/twz_011.jpg"
       },
-      "motion": "once"
+      "motion": "loop"
     },
     {
       "id": "twz_012",
