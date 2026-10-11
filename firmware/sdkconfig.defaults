@@ -55,3 +55,7 @@ CONFIG_ESP_WIFI_STATIC_RX_BUFFER_NUM=6
 # RGB panel: interrupt keeps running during flash writes; recover cleanly from a missed refill
 CONFIG_LCD_RGB_ISR_IRAM_SAFE=y
 CONFIG_LCD_RGB_RESTART_IN_VSYNC=y
+# Internal RAM is the bottleneck once Wi-Fi runs (log: 19 KB left, SD init failed, flicker):
+# ordinary malloc (LVGL objects, file buffers, JSON) goes to PSRAM; 64 KB kept for DMA/internal-only use.
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=256
+CONFIG_SPIRAM_MALLOC_RESERVE_INTERNAL=65536
