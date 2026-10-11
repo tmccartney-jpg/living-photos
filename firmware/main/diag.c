@@ -1,6 +1,7 @@
 // Diagnostics screen (step 5).
 // Left: presence panel, sensor settings, system info. Right: live gate energy bars.
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include <stdlib.h>
 #pragma GCC diagnostic ignored "-Wformat-truncation"
@@ -14,6 +15,7 @@
 #include "frame.h"
 #include "wifi.h"
 #include "setup.h"
+#include "sync.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -91,14 +93,11 @@ static void diag_toggle(void)
 
 static lv_obj_t *lbl_radio;
 
-// Test: restart with Wi-Fi not started at all (or back on).
-static void radio_btn_cb(lv_event_t *e)
+static void radio_btn_cb(lv_event_t *e)     // "Sync now"
 {
     (void)e;
-    wifi_set_boot_disabled(!wifi_boot_disabled());
-    lv_label_set_text(lbl_radio, "Restarting");
-    lv_refr_now(NULL);
-    esp_restart();
+    sync_now();
+    lv_label_set_text(lbl_radio, "Syncing");
 }
 
 static void wifi_btn_cb(lv_event_t *e)
@@ -267,8 +266,14 @@ static void update_cb(lv_timer_t *t)
     } else {
         char fs[192];
         frame_status(fs, sizeof(fs));
-        snprintf(buf, sizeof(buf), "SD %.1f GB, %.1f GB free\n%s",
-                 sd.size_mb / 1024.0, sd.free_mb / 1024.0, fs);
+        char sy[96];
+        sync_status(sy, sizeof(sy));
+        if (!strncmp(sy, "Sync", 4) && lbl_radio) {
+            const char *cur = lv_label_get_text(lbl_radio);
+            if (strcmp(cur, LV_SYMBOL_REFRESH " Sync") && strstr(sy, ":") && !strstr(sy, "checking") && !strstr(sy, "downloading"))
+                lv_label_set_text(lbl_radio, LV_SYMBOL_REFRESH " Sync");
+        }
+        snprintf(buf, sizeof(buf), "%s\n%s", sy, fs);
         lv_label_set_text(lbl_sd, buf);
     }
 
@@ -414,7 +419,7 @@ void diag_create(void)
     lv_obj_set_style_bg_color(btn_radio, lv_color_hex(COL_PANEL), 0);
     lv_obj_add_event_cb(btn_radio, radio_btn_cb, LV_EVENT_CLICKED, NULL);
     lbl_radio = make_label(btn_radio, &lv_font_montserrat_16, COL_TEXT);
-    lv_label_set_text(lbl_radio, wifi_boot_disabled() ? "Wi-Fi OFF" : "Wi-Fi ON");
+    lv_label_set_text(lbl_radio, LV_SYMBOL_REFRESH " Sync");
     lv_obj_center(lbl_radio);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves

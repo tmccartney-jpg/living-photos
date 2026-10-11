@@ -9,6 +9,7 @@ idf_component_register(
         "font_caption.c"
         "wifi.c"
         "setup.c"
+        "sync.c"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
         "."

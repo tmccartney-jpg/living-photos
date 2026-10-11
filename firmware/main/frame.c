@@ -75,6 +75,25 @@ static scene_t test_scene;
 static volatile bool diag_open;
 
 static portMUX_TYPE st_lock = portMUX_INITIALIZER_UNLOCKED;
+static char in_use[3][128];   // clip, still, intro currently shown (for the SD sync)
+
+static void set_in_use(const char *clip, const char *still, const char *intro)
+{
+    portENTER_CRITICAL(&st_lock);
+    snprintf(in_use[0], sizeof(in_use[0]), "%s", clip ? clip : "");
+    snprintf(in_use[1], sizeof(in_use[1]), "%s", still ? still : "");
+    snprintf(in_use[2], sizeof(in_use[2]), "%s", intro ? intro : "");
+    portEXIT_CRITICAL(&st_lock);
+}
+
+bool frame_file_in_use(const char *full_path)
+{
+    bool r = false;
+    portENTER_CRITICAL(&st_lock);
+    for (int i = 0; i < 3; i++) if (in_use[i][0] && !strcmp(in_use[i], full_path)) r = true;
+    portEXIT_CRITICAL(&st_lock);
+    return r;
+}
 static char st_line1[96] = "Starting";
 static char st_line2[96] = "";
 
@@ -591,6 +610,7 @@ static bool schedule_changed(const scene_t *cur)
 
 static void play_intro(const char *path)
 {
+    set_in_use(NULL, NULL, path);
     caption_show(NULL);
     set_status("Intro", NULL);
     if (!path[0] || !show_jpeg_file(path)) {
@@ -605,6 +625,7 @@ static void play_scene(const scene_t *sc)
 {
     char l1[96], l2[96];
     clip_t clip = {0};
+    set_in_use(sc->clip, sc->still, NULL);
     bool is_clip = sc->clip[0] && clip_open(&clip, sc->clip);
     bool have_frame = false, at_rest = false, still_ok = false;
     const char *mode = is_clip ? (sc->rest ? "clip-rest" : "clip-freeze") : "still";
@@ -669,6 +690,7 @@ static void play_scene(const scene_t *sc)
         if ((int32_t)(xTaskGetTickCount() - wake) > (int32_t)period) wake = xTaskGetTickCount();
     }
     clip_close(&clip);
+    set_in_use(NULL, NULL, NULL);
 }
 
 static void frame_task(void *arg)

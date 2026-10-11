@@ -19,6 +19,7 @@
 #include "frame.h"
 #include "wifi.h"
 #include "setup.h"
+#include "sync.h"
 #include "nvs_flash.h"
 #include "esp_heap_caps.h"
 
@@ -90,6 +91,7 @@ void app_main(void)
         setup_start();          // opens itself at first boot / after 1 h without the saved network
         esp_lv_adapter_unlock();
     }
+    sync_start();               // GitHub -> SD card every 5 minutes
     vTaskDelay(pdMS_TO_TICKS(3000));
     ESP_LOGI(TAG, "internal RAM free after start-up: %u KB (lowest %u KB)",
              (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
