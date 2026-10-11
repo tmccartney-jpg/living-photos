@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 45200058,
+  "total_bytes": 49156786,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -174,11 +174,22 @@
     {
       "path": "twilight-zone/device/twz_009.jpg",
       "kind": "still",
-      "bytes": 52428,
-      "sha256": "aea316184c8305afabd3da8a1464063f42817909629c35864d5d8fed99f88c7c",
-      "source": "twilight-zone/stills/childs_rocking_chair_009.jpg",
-      "source_sha256": "3150b6a5c5620d846342237c03e4147d116e2a2757a950e2cb6b29fa1ac0240b",
+      "bytes": 37196,
+      "sha256": "dbed2e764d859229e22b112d0e36c071196fcb4a574234e51cec587f67d7441a",
+      "source": "twilight-zone/videos/childs_rocking_chair_009.mp4",
+      "source_sha256": "4fd654ac0b80e1472e7ae9108bca4d7014814a149e25cb1ba778e543cfe6ec36",
       "scene": "twz_009"
+    },
+    {
+      "path": "twilight-zone/device/twz_009.lpv",
+      "kind": "clip",
+      "bytes": 2250532,
+      "sha256": "4a19e2091ea826df40032c03bd3be908cac5fca6d9b236459f63cb6d7d3f60e3",
+      "source": "twilight-zone/videos/childs_rocking_chair_009.mp4",
+      "source_sha256": "4fd654ac0b80e1472e7ae9108bca4d7014814a149e25cb1ba778e543cfe6ec36",
+      "scene": "twz_009",
+      "frames": 60,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_010.jpg",
@@ -203,11 +214,22 @@
     {
       "path": "twilight-zone/device/twz_011.jpg",
       "kind": "still",
-      "bytes": 53879,
-      "sha256": "2b1f53d781c693378cfabf4f5a1f6a49053f9a87fa748d5f46c7d53fc19c87c2",
-      "source": "twilight-zone/stills/barbershop_mirror_011.jpg",
-      "source_sha256": "570ed5be468d6beafe9c88f7b041a2995d99ff98c1bbe52a9e06116ff60f14ec",
+      "bytes": 36743,
+      "sha256": "e3d7d7d77dc39cec8184e16e200b6d5a45ad985b528e86cec018fd9560701b11",
+      "source": "twilight-zone/videos/barbershop_mirror_011.mp4",
+      "source_sha256": "bd1bf18628f07816f2a4a7df491bf6772dcc426d4f8edc263c03366526a2179c",
       "scene": "twz_011"
+    },
+    {
+      "path": "twilight-zone/device/twz_011.lpv",
+      "kind": "clip",
+      "bytes": 1738564,
+      "sha256": "311d5356ff139a6508e90dee739c21b0c85c1968756d51439811f6e363045d6f",
+      "source": "twilight-zone/videos/barbershop_mirror_011.mp4",
+      "source_sha256": "bd1bf18628f07816f2a4a7df491bf6772dcc426d4f8edc263c03366526a2179c",
+      "scene": "twz_011",
+      "frames": 46,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_012.jpg",
@@ -447,5 +469,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-11T18:53:52Z"
+  "updated_utc": "2026-10-11T19:06:04Z"
 }
