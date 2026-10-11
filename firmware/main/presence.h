@@ -25,6 +25,7 @@ typedef struct {
     uint32_t clear_ms;     // how long the sensor has been clear
     uint32_t hold_ms;      // clear time needed before AWAY
     uint32_t changes;      // decision changes since boot
+    bool frame_decides;    // raw_present comes from state.json limits, not the sensor
 } presence_t;
 
 void presence_start(void);

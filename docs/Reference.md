@@ -94,6 +94,8 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - `intros/tz_intro.mp4` — moving version, to be made from the landscape portrait (not yet added)
 - `state.json` → `intro_motion`: `false` = show the PNG; `true` = play the MP4. Flipped manually.
 - `state.json` → `scene_motion`: `false` (or missing) = every scene holds still regardless of presence; `true` = scenes move while nobody is near. Flipped manually.
+- `state.json` → `sensor` (firmware build 8+): `mode` `"sensor"` = the sensor's own present/absent (default) or `"frame"` = the frame compares each gate's energy with `trigger` (to start counting) and `hold` (to keep counting), gates 0..`max_gate` (0.7 m each); `away_after_s` = clear time before scenes move. The values in the file are the sensor's own settings read back on Oct 10, so switching to `"frame"` starts from the same behaviour. Re-read every 30 s after a sync.
+- `state.json` → `easter_egg` (build 8+): fires when someone stays within `max_cm`, with their distance varying less than `jitter_cm` over 5 s and no gate energy above `still_max`, for `hold_s` seconds; at most once per `every_h` hours; plays `clip` once over the scene, only while `scene_motion` is on. Off (`enabled: false`) until the clip exists. While enabled, the log prints an `egg:` line each second someone is near, for tuning.
 
 ---
 

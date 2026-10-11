@@ -11,6 +11,7 @@ idf_component_register(
         "setup.c"
         "sync.c"
         "ota.c"
+        "tuning.c"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
         "."

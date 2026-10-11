@@ -17,6 +17,7 @@
 #include "setup.h"
 #include "sync.h"
 #include "ota.h"
+#include "tuning.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -224,7 +225,7 @@ static void update_cb(lv_timer_t *t)
     lv_obj_set_style_bg_color(btn_source, lv_color_hex(p.source == PRES_SRC_REAL ? COL_BAR : COL_TICK), 0);
     lv_obj_set_style_text_color(lbl_source, lv_color_hex(p.source == PRES_SRC_REAL ? COL_TEXT : COL_BG), 0);
     if (!p.sensor_ok) {
-        snprintf(buf, sizeof(buf), "Sensor says:  NO DATA (treated as present)\nChanges since boot: %lu",
+        snprintf(buf, sizeof(buf), "Sensor:  NO DATA (treated as present)\nChanges since boot: %lu",
                  (unsigned long)p.changes);
     } else if (p.raw_present) {
         snprintf(buf, sizeof(buf), "Sensor says:  PRESENT\nAway after %lu s clear\nChanges since boot: %lu",
@@ -240,10 +241,25 @@ static void update_cb(lv_timer_t *t)
                      (unsigned long)(p.clear_ms / 1000), (unsigned long)left, (unsigned long)p.changes);
         }
     }
+    {
+        // who decides + easter egg, appended to the logic text
+        char extra[96];
+        egg_status_t eg;
+        egg_get_status(&eg);
+        char el[48];
+        if (!eg.enabled) snprintf(el, sizeof(el), "Egg: off");
+        else if (eg.cooldown_min) snprintf(el, sizeof(el), "Egg: rests %d min", eg.cooldown_min);
+        else snprintf(el, sizeof(el), "Egg: still %d/%d s", eg.still_s, eg.need_s);
+        snprintf(extra, sizeof(extra), "\n%s  |  %s", p.frame_decides ? "Frame limits" : "Sensor limits", el);
+        size_t bl = strlen(buf);
+        if (bl + strlen(extra) < sizeof(buf)) strcat(buf, extra);
+    }
     lv_label_set_text(lbl_logic, buf);
 
     // gate rows
-    int shown = s.config_valid ? (int)s.max_gate + 1 : MAX_ROWS;
+    static tuning_t tn;
+    tuning_get(&tn);
+    int shown = tn.frame_decides ? tn.max_gate + 1 : s.config_valid ? (int)s.max_gate + 1 : MAX_ROWS;
     if (shown > MAX_ROWS) shown = MAX_ROWS;
     for (int g = 0; g < HMMD_GATES; g++) {
         if (g >= shown) {
@@ -257,11 +273,12 @@ static void update_cb(lv_timer_t *t)
         lv_obj_clear_flag(row_bar[g], LV_OBJ_FLAG_HIDDEN);
         lv_obj_clear_flag(row_val[g], LV_OBJ_FLAG_HIDDEN);
         uint32_t e = s.energy[g];
-        uint32_t trig = s.trigger[g];
+        uint32_t trig = tn.frame_decides ? tn.trigger[g] : s.trigger[g];
+        bool have_lim = tn.frame_decides || s.config_valid;
         lv_bar_set_value(row_bar[g], log_scale(e), LV_ANIM_OFF);
-        bool hot = s.config_valid && e >= trig;
+        bool hot = have_lim && trig && e >= trig;
         lv_obj_set_style_bg_color(row_bar[g], lv_color_hex(hot ? COL_BAR_HOT : COL_BAR), LV_PART_INDICATOR);
-        if (s.config_valid) {
+        if (have_lim) {
             lv_obj_clear_flag(row_tick[g], LV_OBJ_FLAG_HIDDEN);
             int x = BAR_X + (log_scale(trig) * BAR_W) / BAR_MAX;
             lv_obj_set_x(row_tick[g], x - 1);

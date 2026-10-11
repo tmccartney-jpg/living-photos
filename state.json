@@ -6,5 +6,33 @@
   "severance_premiere": null,
   "crossfade_start": null,
   "season_total_episodes": null,
-  "severance_episodes_aired": 0
+  "severance_episodes_aired": 0,
+  "sensor": {
+    "mode": "sensor",
+    "max_gate": 4,
+    "trigger": [
+      31550,
+      6918,
+      144,
+      2000,
+      500
+    ],
+    "hold": [
+      22131,
+      4853,
+      101,
+      300,
+      300
+    ],
+    "away_after_s": 10
+  },
+  "easter_egg": {
+    "enabled": false,
+    "max_cm": 80,
+    "jitter_cm": 15,
+    "still_max": 65535,
+    "hold_s": 30,
+    "every_h": 24,
+    "clip": "intros/device/tz_egg.lpv"
+  }
 }

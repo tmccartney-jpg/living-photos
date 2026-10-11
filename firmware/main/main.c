@@ -21,6 +21,7 @@
 #include "setup.h"
 #include "sync.h"
 #include "ota.h"
+#include "tuning.h"
 #include "nvs_flash.h"
 #include "esp_heap_caps.h"
 
@@ -88,6 +89,7 @@ void app_main(void)
              (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024));
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
+    tuning_start();             // state.json sensor limits + easter egg (after frame_start: JSON in PSRAM)
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
         setup_start();          // opens itself at first boot / after 1 h without the saved network
         esp_lv_adapter_unlock();

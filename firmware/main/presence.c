@@ -6,6 +6,7 @@
 #include "esp_timer.h"
 #include "hmmd.h"
 #include "presence.h"
+#include "tuning.h"
 
 static const char *TAG = "presence";
 static presence_t ps = { .present = true, .hold_ms = PRESENCE_AWAY_HOLD_MS };
@@ -43,12 +44,28 @@ static void presence_task(void *arg)
     int64_t clear_since = 0;   // 0 = sensor currently sees someone
     bool decided = true;
     hmmd_state_t s;
+    static tuning_t t;         // static: keeps it off this task's small stack
+    bool prev_raw = true;
 
     while (1) {
         hmmd_get_state(&s);
+        tuning_get(&t);
         int64_t now = esp_timer_get_time();
         bool sensor_ok = s.connected && s.last_frame_us && (now - s.last_frame_us) < 2000000;
-        bool raw = sensor_ok ? s.present : true;   // fail safe
+        bool raw;
+        if (!sensor_ok) {
+            raw = true;                            // fail safe
+        } else if (t.frame_decides) {              // state.json limits: trigger to start, hold to stay
+            raw = false;
+            for (int g = 0; g <= t.max_gate; g++) {
+                uint32_t lim = prev_raw ? t.hold[g] : t.trigger[g];
+                if (lim && s.energy[g] >= lim) { raw = true; break; }
+            }
+        } else {
+            raw = s.present;                       // the sensor's own decision
+        }
+        prev_raw = raw;
+        uint32_t hold_ms = t.away_ms ? t.away_ms : PRESENCE_AWAY_HOLD_MS;
 
         presence_t cur;
         presence_get(&cur);
@@ -71,7 +88,7 @@ static void presence_task(void *arg)
         case PRES_SRC_FORCE_AWAY:    next = false; break;
         default:
             if (raw) next = true;
-            else if (clear_ms >= PRESENCE_AWAY_HOLD_MS) next = false;
+            else if (clear_ms >= hold_ms) next = false;
             break;
         }
 
@@ -81,6 +98,8 @@ static void presence_task(void *arg)
         ps.raw_present = raw;
         ps.sensor_ok = sensor_ok;
         ps.clear_ms = clear_ms;
+        ps.hold_ms = hold_ms;
+        ps.frame_decides = t.frame_decides;
         portEXIT_CRITICAL(&ps_lock);
 
         if (next != decided) {

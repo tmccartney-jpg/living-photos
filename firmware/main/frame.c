@@ -19,6 +19,7 @@
 #include "presence.h"
 #include "diag.h"
 #include "frame.h"
+#include "tuning.h"
 
 // Paths and captions are bounded on purpose; truncation is acceptable.
 #pragma GCC diagnostic ignored "-Wformat-truncation"
@@ -721,6 +722,23 @@ static void play_intro(const char *path)
 static volatile int64_t hb_us;      // frame task heartbeat (OTA health check)
 int64_t frame_heartbeat_us(void) { return hb_us; }
 
+// Easter egg: play `path` once from start to end over the current scene (caption hidden).
+static void play_egg(const scene_t *sc, const char *path)
+{
+    clip_t e;
+    if (!clip_open(&e, path)) { ESP_LOGW(TAG, "easter egg clip %s missing", path); return; }
+    ESP_LOGI(TAG, "easter egg: playing %s", path);
+    set_in_use(sc->clip, sc->still, path);
+    caption_show(NULL);
+    TickType_t period = pdMS_TO_TICKS(1000 / e.fps), wake = xTaskGetTickCount();
+    while (e.frame < e.nframes && clip_next(&e)) {
+        hb_us = esp_timer_get_time();
+        vTaskDelayUntil(&wake, period);
+    }
+    clip_close(&e);
+    set_in_use(sc->clip, sc->still, NULL);
+}
+
 // Plays `sc` until the schedule picks something else.
 static void play_scene(const scene_t *sc)
 {
@@ -748,6 +766,14 @@ static void play_scene(const scene_t *sc)
 
     while (1) {
         hb_us = esp_timer_get_time();
+        char egg[96];
+        if (!diag_open && !preview_secs && scene_motion_on() && egg_take(egg, sizeof(egg))) {
+            play_egg(sc, egg);
+            if (is_clip) have_frame = false, at_rest = false;   // redraw the scene's frame next
+            else if (still_ok) show_jpeg_file(sc->still);
+            caption_show(sc->caption);
+            wake = xTaskGetTickCount();
+        }
         if (!diag_open) {
             presence_t p;
             presence_get(&p);
