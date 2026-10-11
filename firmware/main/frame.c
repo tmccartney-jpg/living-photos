@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/idf_additions.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "esp_heap_caps.h"
@@ -653,6 +654,14 @@ static void play_scene(const scene_t *sc)
             set_status(l1, l2);
             t0 = now;
             frames = 0;
+            static int64_t last_mem_us;
+            if (now - last_mem_us > 30000000) {
+                last_mem_us = now;
+                ESP_LOGI(TAG, "memory: internal %u KB free (lowest %u KB), PSRAM %u KB free",
+                         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
+                         (unsigned)(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL) / 1024),
+                         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024));
+            }
             if (schedule_changed(sc)) break;
         }
 
@@ -742,5 +751,12 @@ void frame_start(void)
         build_screen();
         esp_lv_adapter_unlock();
     }
-    xTaskCreatePinnedToCore(frame_task, "frame", 8192, NULL, 3, NULL, 0);
+    // Stack in PSRAM: internal RAM is needed by Wi-Fi and the display (stage 2:
+    // with Wi-Fi running, an 8 KB internal stack could not be allocated and the
+    // frame stayed blank on "Starting").
+    if (xTaskCreatePinnedToCoreWithCaps(frame_task, "frame", 8192, NULL, 3, NULL, 0,
+                                        MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT) != pdPASS) {
+        ESP_LOGE(TAG, "could not start the frame task");
+        set_status("Frame task failed to start", "");
+    }
 }
