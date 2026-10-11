@@ -148,7 +148,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_007.lpv",
         "still": "device/twz_007.jpg"
       },
       "motion": "once"

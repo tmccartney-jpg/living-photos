@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 43831426,
+  "total_bytes": 45200058,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -134,11 +134,22 @@
     {
       "path": "twilight-zone/device/twz_007.jpg",
       "kind": "still",
-      "bytes": 52114,
-      "sha256": "2ad13a9f1684ad5606c6d9fb6aa7ec4b070787f8491142888e8934b95e2a59e2",
-      "source": "twilight-zone/stills/wheat_field_turned_scarecrow_007.jpg",
-      "source_sha256": "6edebc48fa4a8f333ebbfcb1b8deec3336637ec63371514a5c1bf74853994c42",
+      "bytes": 33143,
+      "sha256": "a6077e2a5e0655b7bbef2e74fcadb144b70d6e43c4cc47883b0938ec8542d304",
+      "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
+      "source_sha256": "10959755b0a5ddf1ce341c72c6f2a8eb537799dc99832f6be1e90fbd29b375fb",
       "scene": "twz_007"
+    },
+    {
+      "path": "twilight-zone/device/twz_007.lpv",
+      "kind": "clip",
+      "bytes": 1387603,
+      "sha256": "d4ea7e99243acb37cb0b766597691ff83e30ada88ab96aeaa2c576b4b785fc98",
+      "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
+      "source_sha256": "10959755b0a5ddf1ce341c72c6f2a8eb537799dc99832f6be1e90fbd29b375fb",
+      "scene": "twz_007",
+      "frames": 46,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_008.jpg",
@@ -436,5 +447,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-11T18:45:27Z"
+  "updated_utc": "2026-10-11T18:53:52Z"
 }
