@@ -380,7 +380,7 @@ bool wifi_setup_wanted(void)
 void wifi_snooze(void)
 {
     snooze_until_us = esp_timer_get_time() + (int64_t)WIFI_SNOOZE_S * 1000000;
-    ESP_LOGI(TAG, "setup snoozed for %d h", WIFI_SNOOZE_S / 3600);
+    ESP_LOGI(TAG, "setup hidden for %d min", WIFI_SNOOZE_S / 60);
 }
 
 void wifi_start(void)

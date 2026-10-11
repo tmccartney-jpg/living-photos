@@ -5,12 +5,12 @@
 // Setup policy (docs/Provisioning.md):
 //   - no saved network                         -> setup wanted
 //   - saved network missing for WIFI_MISSING_S -> setup wanted
-//   - "Not now" / untouched setup              -> not wanted again for WIFI_SNOOZE_S
+//   - "Not now" / untouched setup              -> asks again after WIFI_SNOOZE_S (1 h), until connected
 #include <stdbool.h>
 #include <stdint.h>
 
 #define WIFI_MISSING_S   3600        // 1 hour
-#define WIFI_SNOOZE_S    (24 * 3600) // 24 hours
+#define WIFI_SNOOZE_S    3600        // 1 hour: keeps asking until a network connects
 #define WIFI_MAX_APS     24
 
 typedef enum {
