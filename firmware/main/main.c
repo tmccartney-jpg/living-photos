@@ -13,7 +13,7 @@
 #include "diag.h"
 #include "presence.h"
 #include "sdcard.h"
-#include "player.h"
+#include "frame.h"
 
 static const char *TAG = "aura";
 
@@ -60,10 +60,10 @@ void app_main(void)
     presence_start();
     sdcard_start();
 
-    ESP_LOGI(TAG, "Starting diagnostics screen");
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
-        diag_create();
+        diag_create();          // hidden until the 2 s corner hold
         esp_lv_adapter_unlock();
     }
-    player_start();
+    ESP_LOGI(TAG, "Starting frame mode");
+    frame_start();
 }

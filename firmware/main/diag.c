@@ -2,13 +2,14 @@
 // Left: presence panel, sensor settings, system info. Right: live gate energy bars.
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #include "lvgl.h"
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
 #include "hmmd.h"
 #include "presence.h"
 #include "sdcard.h"
-#include "player.h"
+#include "frame.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -62,10 +63,62 @@ static lv_obj_t *make_panel(lv_obj_t *parent, int x, int y, int w, int h, uint32
     return p;
 }
 
+static lv_obj_t *scr_diag;
+
+lv_obj_t *diag_screen(void) { return scr_diag; }
+
 static void scene_btn_cb(lv_event_t *e)
 {
     (void)e;
-    player_show();
+    frame_show_scene();
+}
+
+static void test_btn_cb(lv_event_t *e)
+{
+    (void)e;
+    frame_test_next();
+}
+
+static void diag_toggle(void)
+{
+    if (frame_diag_open()) frame_show_scene();
+    else frame_show_diag();
+}
+
+// Hidden 2 s hold zone (top-left corner). The callback fires once per press.
+typedef struct { uint32_t t0; bool fired; void (*cb)(void); } hold_t;
+
+static void hold_cb(lv_event_t *e)
+{
+    hold_t *h = lv_event_get_user_data(e);
+    switch (lv_event_get_code(e)) {
+    case LV_EVENT_PRESSED:
+        h->t0 = lv_tick_get();
+        h->fired = false;
+        break;
+    case LV_EVENT_PRESSING:
+        if (!h->fired && lv_tick_elaps(h->t0) >= 2000) {
+            h->fired = true;
+            h->cb();
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void diag_corner_hold(lv_obj_t *parent, int w, int h, void (*cb)(void))
+{
+    hold_t *ud = calloc(1, sizeof(hold_t));
+    ud->cb = cb;
+    lv_obj_t *z = lv_obj_create(parent);
+    lv_obj_remove_style_all(z);
+    lv_obj_set_pos(z, 0, 0);
+    lv_obj_set_size(z, w, h);
+    lv_obj_add_flag(z, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_clear_flag(z, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_add_event_cb(z, hold_cb, LV_EVENT_PRESSED, ud);
+    lv_obj_add_event_cb(z, hold_cb, LV_EVENT_PRESSING, ud);
 }
 
 static void source_btn_cb(lv_event_t *e)
@@ -77,10 +130,15 @@ static void source_btn_cb(lv_event_t *e)
 static void update_cb(lv_timer_t *t)
 {
     (void)t;
+    if (!frame_diag_open()) return;
+    if (lv_disp_get_inactive_time(NULL) > 60000) {   // 60 s without a touch: back to the scene
+        frame_show_scene();
+        return;
+    }
     hmmd_state_t s;
     hmmd_get_state(&s);
     int64_t now = esp_timer_get_time();
-    char buf[160];
+    char buf[256];
 
     // presence panel
     bool fresh = s.last_frame_us && (now - s.last_frame_us) < 2000000;
@@ -185,9 +243,10 @@ static void update_cb(lv_timer_t *t)
         snprintf(buf, sizeof(buf), "SD card: NOT MOUNTED\n%s", sd.error);
         lv_label_set_text(lbl_sd, buf);
     } else {
-        snprintf(buf, sizeof(buf), "SD card: %.1f GB, %.1f GB free\n%d items: %s",
-                 sd.size_mb / 1024.0, sd.free_mb / 1024.0, sd.file_count,
-                 sd.file_count ? sd.listing : "(empty)");
+        char fs[192];
+        frame_status(fs, sizeof(fs));
+        snprintf(buf, sizeof(buf), "SD %.1f GB, %.1f GB free\n%s",
+                 sd.size_mb / 1024.0, sd.free_mb / 1024.0, fs);
         lv_label_set_text(lbl_sd, buf);
     }
 
@@ -199,14 +258,14 @@ static void update_cb(lv_timer_t *t)
 
 void diag_create(void)
 {
-    lv_obj_t *scr = lv_scr_act();
-    lv_obj_clean(scr);
+    scr_diag = lv_obj_create(NULL);
+    lv_obj_t *scr = scr_diag;
     lv_obj_set_style_bg_color(scr, lv_color_hex(COL_BG), 0);
     lv_obj_set_style_bg_opa(scr, LV_OPA_COVER, 0);
     lv_obj_clear_flag(scr, LV_OBJ_FLAG_SCROLLABLE);
 
     lv_obj_t *title = make_label(scr, &lv_font_montserrat_20, COL_DIM);
-    lv_label_set_text(title, "AURA  -  Diagnostics");
+    lv_label_set_text(title, "Diagnostics");
     lv_obj_set_pos(title, 16, 14);
 
     lv_obj_t *btn_scene = lv_btn_create(scr);
@@ -218,6 +277,15 @@ void diag_create(void)
     lv_label_set_text(lbl_scene, LV_SYMBOL_PLAY " Scene");
     lv_obj_center(lbl_scene);
 
+    lv_obj_t *btn_test = lv_btn_create(scr);
+    lv_obj_set_pos(btn_test, 130, 8);
+    lv_obj_set_size(btn_test, 86, 34);
+    lv_obj_set_style_bg_color(btn_test, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_test, test_btn_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *lbl_test = make_label(btn_test, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_test, "Next " LV_SYMBOL_RIGHT);
+    lv_obj_center(lbl_test);
+
     // presence panel
     presence_panel = make_panel(scr, 16, 50, 300, 170, COL_AWAY);
     lbl_presence = make_label(presence_panel, &lv_font_montserrat_24, COL_TEXT);
@@ -228,7 +296,7 @@ void diag_create(void)
     lv_obj_set_pos(lbl_link, 0, 116);
 
     // settings panel
-    lv_obj_t *cfg = make_panel(scr, 16, 232, 300, 130, COL_PANEL);
+    lv_obj_t *cfg = make_panel(scr, 16, 228, 300, 112, COL_PANEL);
     lv_obj_t *cfg_title = make_label(cfg, &lv_font_montserrat_16, COL_DIM);
     lv_label_set_text(cfg_title, "Sensor settings");
     lbl_config = make_label(cfg, &lv_font_montserrat_16, COL_TEXT);
@@ -287,17 +355,18 @@ void diag_create(void)
     lv_obj_set_pos(lbl_logic, 186, 20);
 
     // SD card panel (left, under the settings)
-    lv_obj_t *sdp = make_panel(scr, 16, 372, 300, 66, COL_PANEL);
+    lv_obj_t *sdp = make_panel(scr, 16, 348, 300, 92, COL_PANEL);
     lv_obj_set_style_pad_all(sdp, 8, 0);
     lbl_sd = make_label(sdp, &lv_font_montserrat_14, COL_TEXT);
     lv_obj_set_width(lbl_sd, 284);
-    lv_label_set_long_mode(lbl_sd, LV_LABEL_LONG_DOT);
-    lv_obj_set_height(lbl_sd, 50);
+    lv_label_set_long_mode(lbl_sd, LV_LABEL_LONG_WRAP);
+    lv_obj_set_height(lbl_sd, 76);
 
     // system line
     lbl_sys = make_label(scr, &lv_font_montserrat_14, COL_DIM);
     lv_obj_set_pos(lbl_sys, 16, 448);
 
+    diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
+
     lv_timer_create(update_cb, 200, NULL);
-    update_cb(NULL);
 }

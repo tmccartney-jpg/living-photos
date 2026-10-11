@@ -5,7 +5,8 @@ idf_component_register(
         "diag.c"
         "presence.c"
         "sdcard.c"
-        "player.c"
+        "frame.c"
+        "font_caption.c"
         "../components/waveshare_rgb_lcd_port.c"
     INCLUDE_DIRS
         "."
