@@ -62,9 +62,10 @@ To modify a locked behavior or reference fact:
 
 ## Current Open Items (Not Yet Locked)
 
-1. Caliper measurement of sensor PCB → notched-slot retention redesign on `base_final_v11.stl`
-2. First ffmpeg ping-pong test (Eye of the Beholder clip)
+1. ~~Caliper measurement of sensor PCB → retention redesign~~ — base with keeper printed 2026-10-09
+2. ~~First ffmpeg ping-pong test~~ — done 2026-10-11 (8 Kling clips processed)
 3. ~~GitHub Action script for automated crossfade/retirement bookkeeping~~ — built 2026-10-10 (daily rotation)
 4. Severance season 3 premiere date + episode count (external dependency, unlocks the crossfade trigger date)
 5. ~~Remaining Twilight Zone scene concepts~~ — all 30 in the manifest 2026-10-10 (9 living, 21 still-only until their Kling clips are made)
-6. "Kevin discovers the mechanism" easter-egg scene — deferred intentionally, no timeline
+6. "Kevin discovers the mechanism" easter-egg scene — now on the list (2026-10-11): the clip, and what triggers it
+7. Kling clips for the 13 still-only TZ scenes; Severance clips as episodes air

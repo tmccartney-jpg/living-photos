@@ -137,11 +137,19 @@ The display has no speaker — audio in exports is harmless.
 
 ## 7. Open Items
 
-- [ ] Full print of the base with the sensor cradle + retention bridge
-- [ ] First ffmpeg ping-pong test on the Eye of the Beholder clip
-- [x] All 30 TZ scenes in the manifest (9 living photos, 21 still-only)
-- [ ] Kling clips for the 21 still-only scenes (prompts in `KLING_Prompts.md` on Tony's PC)
-- [ ] Frame firmware: mirror `device_index.json` to SD, play from SD, 09:30 change, presence
+*Updated 2026-10-11*
+
+- [x] Base printed with the sensor cradle + keeper (Oct 9)
+- [x] ffmpeg ping-pong / loop processing (8 Kling clips done Oct 11)
+- [x] All 30 TZ scenes in the manifest
 - [x] Build the crossfade GitHub Action (daily rotation)
-- [ ] Watch for Severance S3 premiere date + episode count
-- [ ] "Kevin discovers the mechanism" easter-egg scene — no rush
+- [x] Frame firmware: SD playback, 09:30 change, presence, Wi-Fi setup, GitHub → SD sync, over-the-air updates with rollback (stages 1–4, build 7)
+- [x] Scene motion switch (`state.json` `scene_motion`) — off for Kevin's first week
+- [ ] Kling clips for the 13 still-only TZ scenes (13, 14, 15, 17, 20–26, 28, 29; prompts in `KLING_Prompts.md` on Tony's PC)
+- [ ] Severance Kling clips (one per S3 episode, added as each airs)
+- [ ] "Kevin discovers the mechanism" easter-egg scene: the clip, and what triggers it
+- [ ] Moving intro (`tz_intro.mp4`)
+- [ ] Retune the sensor once mounted in the real base
+- [ ] Turn on GitHub Pages (browser viewer)
+- [ ] Watch for Severance S3 premiere date + episode count → `state.json`
+- [ ] Turn `scene_motion` on after the first week
