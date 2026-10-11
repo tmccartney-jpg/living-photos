@@ -374,6 +374,7 @@ bool wifi_setup_wanted(void)
     int64_t now = esp_timer_get_time();
     wifi_status_t s;
     wifi_get_status(&s);
+    if (boot_disabled) return false;
     if (now < snooze_until_us) return false;
     if (s.try_state == WIFI_TRY_BUSY) return false;
     if (!s.has_creds) return true;
@@ -386,11 +387,38 @@ void wifi_snooze(void)
     ESP_LOGI(TAG, "setup hidden for %d min", WIFI_SNOOZE_S / 60);
 }
 
-bool wifi_radio_on(void) { return !radio_off; }
+static bool boot_disabled;
+
+bool wifi_boot_disabled(void)
+{
+    static int cached = -1;
+    if (cached < 0) {
+        uint8_t v = 0;
+        nvs_handle_t h;
+        if (nvs_open("wifi", NVS_READONLY, &h) == ESP_OK) {
+            nvs_get_u8(h, "off", &v);
+            nvs_close(h);
+        }
+        cached = v ? 1 : 0;
+    }
+    return cached == 1;
+}
+
+void wifi_set_boot_disabled(bool off)
+{
+    nvs_handle_t h;
+    if (nvs_open("wifi", NVS_READWRITE, &h) != ESP_OK) return;
+    nvs_set_u8(h, "off", off ? 1 : 0);
+    nvs_commit(h);
+    nvs_close(h);
+    ESP_LOGI(TAG, "Wi-Fi %s at next boot (test)", off ? "DISABLED" : "enabled");
+}
+
+bool wifi_radio_on(void) { return !radio_off && !boot_disabled; }
 
 void wifi_radio_set(bool on)
 {
-    if (on == !radio_off) return;
+    if (boot_disabled || on == !radio_off) return;
     if (on) {
         radio_off = false;
         esp_wifi_start();
@@ -404,6 +432,12 @@ void wifi_radio_set(bool on)
 
 void wifi_start(void)
 {
+    if (wifi_boot_disabled()) {
+        boot_disabled = true;
+        st.radio_off = true;
+        ESP_LOGW(TAG, "Wi-Fi disabled for this boot (test flag in diagnostics)");
+        return;
+    }
     creds_load();
     st.has_creds = saved_ssid[0] != 0;
     snprintf(st.ssid, sizeof(st.ssid), "%s", saved_ssid);

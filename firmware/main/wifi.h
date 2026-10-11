@@ -57,3 +57,5 @@ bool wifi_setup_wanted(void);
 void wifi_snooze(void);
 void wifi_radio_set(bool on);                   // diagnostics test: stop/start the radio
 bool wifi_radio_on(void);
+bool wifi_boot_disabled(void);                  // test: Wi-Fi not started at all this boot (NVS flag)
+void wifi_set_boot_disabled(bool off);          // saves the flag; takes effect after a restart

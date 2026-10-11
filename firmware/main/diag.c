@@ -7,6 +7,7 @@
 #include "lvgl.h"
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
+#include "esp_system.h"
 #include "hmmd.h"
 #include "presence.h"
 #include "sdcard.h"
@@ -90,11 +91,14 @@ static void diag_toggle(void)
 
 static lv_obj_t *lbl_radio;
 
+// Test: restart with Wi-Fi not started at all (or back on).
 static void radio_btn_cb(lv_event_t *e)
 {
     (void)e;
-    wifi_radio_set(!wifi_radio_on());
-    lv_label_set_text(lbl_radio, wifi_radio_on() ? "Radio ON" : "Radio OFF");
+    wifi_set_boot_disabled(!wifi_boot_disabled());
+    lv_label_set_text(lbl_radio, "Restarting");
+    lv_refr_now(NULL);
+    esp_restart();
 }
 
 static void wifi_btn_cb(lv_event_t *e)
@@ -272,7 +276,7 @@ static void update_cb(lv_timer_t *t)
     wifi_get_status(&w);
     char wl[64];
     if (w.radio_off)
-        snprintf(wl, sizeof(wl), "Wi-Fi radio OFF (test)");
+        snprintf(wl, sizeof(wl), "Wi-Fi OFF (test)");
     else if (w.state == WIFI_ST_CONNECTED)
         snprintf(wl, sizeof(wl), "Wi-Fi %s %d dBm %s%s", w.ssid, w.rssi, w.ip, w.time_ok ? "" : " (no time yet)");
     else if (!w.has_creds)
@@ -410,7 +414,7 @@ void diag_create(void)
     lv_obj_set_style_bg_color(btn_radio, lv_color_hex(COL_PANEL), 0);
     lv_obj_add_event_cb(btn_radio, radio_btn_cb, LV_EVENT_CLICKED, NULL);
     lbl_radio = make_label(btn_radio, &lv_font_montserrat_16, COL_TEXT);
-    lv_label_set_text(lbl_radio, "Radio ON");
+    lv_label_set_text(lbl_radio, wifi_boot_disabled() ? "Wi-Fi OFF" : "Wi-Fi ON");
     lv_obj_center(lbl_radio);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
