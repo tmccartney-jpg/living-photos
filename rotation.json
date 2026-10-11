@@ -1,8 +1,30 @@
 {
   "schema_version": 1,
-  "date": "2026-10-10",
+  "date": "2026-10-11",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_026",
+    "id": "twz_026",
+    "theme": "twilight-zone",
+    "video": null,
+    "still": "twilight-zone/stills/the_attic_farmhouse_026.jpg",
+    "presence": "freeze",
+    "device": {
+      "clip": null,
+      "still": "twilight-zone/device/twz_026.jpg"
+    },
+    "caption": "It's small. It's not alone.",
+    "caption_index": 0,
+    "episode_tag": "the_invaders"
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_001",
     "id": "twz_001",
     "theme": "twilight-zone",
@@ -11,33 +33,52 @@
     "caption_index": 0,
     "episode_tag": "mirror_image"
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false
-  },
   "crossfade": {
     "active": false,
     "start": null,
     "episodes_aired": 0,
     "season_total_episodes": null,
+    "severance_share": 0.0,
     "intro_ratio": 0.0
   },
   "pools": {
-    "active": 2,
-    "reserve": 0,
-    "retired": 1,
+    "active": 14,
+    "reserve": 14,
+    "retired": 2,
     "retired_final": 0,
     "pending": 0
   },
-  "order": [
-    "twilight-zone/twz_016",
-    "twilight-zone/twz_018"
-  ],
+  "orders": {
+    "twilight-zone": [
+      "twilight-zone/twz_005",
+      "twilight-zone/twz_021",
+      "twilight-zone/twz_019",
+      "twilight-zone/twz_017",
+      "twilight-zone/twz_013",
+      "twilight-zone/twz_008",
+      "twilight-zone/twz_004",
+      "twilight-zone/twz_016",
+      "twilight-zone/twz_007",
+      "twilight-zone/twz_015",
+      "twilight-zone/twz_028",
+      "twilight-zone/twz_018",
+      "twilight-zone/twz_014",
+      "twilight-zone/twz_020"
+    ]
+  },
+  "last_by_theme": {
+    "twilight-zone": "twilight-zone/twz_026"
+  },
+  "spread": {},
   "history": [
     {
       "date": "2026-10-10",
       "key": "twilight-zone/twz_001",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-11",
+      "key": "twilight-zone/twz_026",
       "caption_index": 0
     }
   ]
