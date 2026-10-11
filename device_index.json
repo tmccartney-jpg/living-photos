@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 37606130,
+  "total_bytes": 43831426,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -94,20 +94,42 @@
     {
       "path": "twilight-zone/device/twz_005.jpg",
       "kind": "still",
-      "bytes": 57535,
-      "sha256": "1b5f7a754e9ec96870304bc6354b12d7fe644db7b5d24a20f4a2d4566daddf7b",
-      "source": "twilight-zone/stills/attic_window_curtain_parted_005.jpg",
-      "source_sha256": "bf2efa0767c334903d156288c283173e44272e6f16a5ac4b2994ddf8bd4fabe5",
+      "bytes": 37197,
+      "sha256": "6ba7a2a4c36a09e15b1b9baab8374aed9285ffb2b46d2364ee7c0d3014b78aed",
+      "source": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
+      "source_sha256": "1d4450d6a72961da7e9cc73ccd681f268cbc604462619dd0f4c1aeb19712e971",
       "scene": "twz_005"
+    },
+    {
+      "path": "twilight-zone/device/twz_005.lpv",
+      "kind": "clip",
+      "bytes": 3372875,
+      "sha256": "0f92aa452da89d6803164c032a9d59a89e1a6b69e041c0c0143b9aa21bd0936c",
+      "source": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
+      "source_sha256": "1d4450d6a72961da7e9cc73ccd681f268cbc604462619dd0f4c1aeb19712e971",
+      "scene": "twz_005",
+      "frames": 90,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_006.jpg",
       "kind": "still",
-      "bytes": 45922,
-      "sha256": "fb50fc975a0ea2cd06fe9f40d843f2ad8defde9cb31f069442815de7866e6436",
-      "source": "twilight-zone/stills/rotary_phone_off_the_hook_006.jpg",
-      "source_sha256": "603eb42efde60c2df3b834d9551a6da903446ef0a0e0560f3ffbe10ade0b161f",
+      "bytes": 30979,
+      "sha256": "3efa2eb9ff8b9b82f21f80e73d5eac0d326914bad1a90f412e10c14e55e0e2d6",
+      "source": "twilight-zone/videos/rotary_phone_off_the_hook_006.mp4",
+      "source_sha256": "0c05b8065bbede3f5b190e17fb246fb6377c45f2dc2eb1dc833cf3e555944135",
       "scene": "twz_006"
+    },
+    {
+      "path": "twilight-zone/device/twz_006.lpv",
+      "kind": "clip",
+      "bytes": 2887702,
+      "sha256": "40957566b120bedf3547fbeefd0a229145bbfec498492551b36e8214b9cf9867",
+      "source": "twilight-zone/videos/rotary_phone_off_the_hook_006.mp4",
+      "source_sha256": "0c05b8065bbede3f5b190e17fb246fb6377c45f2dc2eb1dc833cf3e555944135",
+      "scene": "twz_006",
+      "frames": 90,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_007.jpg",
@@ -414,5 +436,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-11T18:13:30Z"
+  "updated_utc": "2026-10-11T18:45:27Z"
 }
