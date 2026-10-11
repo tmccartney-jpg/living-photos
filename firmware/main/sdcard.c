@@ -78,7 +78,19 @@ static void sd_task(void *arg)
         .max_files = 5,
         .allocation_unit_size = 16 * 1024,
     };
-    esp_err_t err = esp_vfs_fat_sdspi_mount(SD_MOUNT_POINT, &host, &slot, &mcfg, &card);
+    // The card sometimes doesn't answer while Wi-Fi is connecting at boot (0x104 / 0x109),
+    // so try a few times; from the third try on, talk to it more slowly.
+    esp_err_t err = ESP_FAIL;
+    for (int attempt = 1; attempt <= 5; attempt++) {
+        if (attempt >= 3) host.max_freq_khz = SDMMC_FREQ_DEFAULT / 2;   // 10 MHz
+        err = esp_vfs_fat_sdspi_mount(SD_MOUNT_POINT, &host, &slot, &mcfg, &card);
+        if (err == ESP_OK) {
+            if (attempt > 1) ESP_LOGI(TAG, "card answered on try %d", attempt);
+            break;
+        }
+        ESP_LOGW(TAG, "mount try %d failed (0x%x), retrying", attempt, err);
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
     if (err != ESP_OK) {
         fail(err == ESP_FAIL ? "no FAT32 filesystem" : "no card / card not responding");
         vTaskDelete(NULL);
