@@ -10,6 +10,8 @@
 #include "presence.h"
 #include "sdcard.h"
 #include "frame.h"
+#include "wifi.h"
+#include "esp_system.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -77,6 +79,18 @@ static void test_btn_cb(lv_event_t *e)
 {
     (void)e;
     frame_test_next();
+}
+
+static lv_obj_t *lbl_wboot;
+
+// Bisect test: restart with Wi-Fi never started (or back on).
+static void wboot_cb(lv_event_t *e)
+{
+    (void)e;
+    wifi_set_boot_disabled(!wifi_boot_disabled());
+    lv_label_set_text(lbl_wboot, "Restarting");
+    lv_refr_now(NULL);
+    esp_restart();
 }
 
 static void diag_toggle(void)
@@ -250,9 +264,9 @@ static void update_cb(lv_timer_t *t)
         lv_label_set_text(lbl_sd, buf);
     }
 
-    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d    RAM %u KB free    PSRAM %.1f MB free",
+    snprintf(buf, sizeof(buf), "Up %02d:%02d:%02d  RAM %uK  PSRAM %.1fM  Wi-Fi %s",
              (int)(up / 3600), (int)(up / 60 % 60), (int)(up % 60),
-             (unsigned)(heap / 1024), psram / 1048576.0);
+             (unsigned)(heap / 1024), psram / 1048576.0, wifi_boot_disabled() ? "OFF" : "ON (idle)");
     lv_label_set_text(lbl_sys, buf);
 }
 
@@ -365,6 +379,15 @@ void diag_create(void)
     // system line
     lbl_sys = make_label(scr, &lv_font_montserrat_14, COL_DIM);
     lv_obj_set_pos(lbl_sys, 16, 448);
+
+    lv_obj_t *b = lv_btn_create(scr);
+    lv_obj_set_pos(b, 650, 442);
+    lv_obj_set_size(b, 134, 34);
+    lv_obj_set_style_bg_color(b, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(b, wboot_cb, LV_EVENT_CLICKED, NULL);
+    lbl_wboot = make_label(b, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_wboot, wifi_boot_disabled() ? "Wi-Fi: OFF" : "Wi-Fi: ON");
+    lv_obj_center(lbl_wboot);
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
 

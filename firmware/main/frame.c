@@ -7,6 +7,7 @@
 #include <sys/stat.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/idf_additions.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "esp_heap_caps.h"
@@ -734,5 +735,9 @@ void frame_start(void)
         build_screen();
         esp_lv_adapter_unlock();
     }
-    xTaskCreatePinnedToCore(frame_task, "frame", 8192, NULL, 3, NULL, 0);
+    if (xTaskCreatePinnedToCoreWithCaps(frame_task, "frame", 8192, NULL, 3, NULL, 0,
+                                        MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT) != pdPASS) {
+        ESP_LOGE(TAG, "could not start the frame task");
+        set_status("Frame task failed to start", "");
+    }
 }
