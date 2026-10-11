@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 29432582,
+  "total_bytes": 37606130,
   "files": [
     {
       "path": "intros/device/tz_intro.jpg",
@@ -34,29 +34,62 @@
     {
       "path": "twilight-zone/device/twz_002.jpg",
       "kind": "still",
-      "bytes": 86260,
-      "sha256": "0ff00849c2a6f23fd64c8253c421b956d7bb8023e22fba49e6425c2da54d5262",
-      "source": "twilight-zone/stills/cornfield_farmhouse_002.jpg",
-      "source_sha256": "e8398197d32f4cffa6d31bdf16413cbcd981f272b90b540035acf940c414d246",
+      "bytes": 54060,
+      "sha256": "660d331b521025809e6fd037d13626dfb26bd3d113c5a3a00195fffd8ce98320",
+      "source": "twilight-zone/videos/cornfield_farmhouse_002.mp4",
+      "source_sha256": "1917e95365bcd11b6078c20081ea865f3da0c663c6908ecde61f6ccdd51e6f50",
       "scene": "twz_002"
+    },
+    {
+      "path": "twilight-zone/device/twz_002.lpv",
+      "kind": "clip",
+      "bytes": 4966510,
+      "sha256": "e0ebb675de64236292f938b9649a3ca7d83c88d9bc8eec6872464824b134d504",
+      "source": "twilight-zone/videos/cornfield_farmhouse_002.mp4",
+      "source_sha256": "1917e95365bcd11b6078c20081ea865f3da0c663c6908ecde61f6ccdd51e6f50",
+      "scene": "twz_002",
+      "frames": 90,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_003.jpg",
       "kind": "still",
-      "bytes": 56314,
-      "sha256": "4776276fd8b4d0db7c991c5b59f81bc16e28502db4eb0de997a719db54b98f9e",
-      "source": "twilight-zone/stills/train_platform_doubling_003.jpg",
-      "source_sha256": "b77518d8b4b2402a226d5395665578dedc70f89e9d3758e8e5a17a23853b686a",
+      "bytes": 37138,
+      "sha256": "f1532ef424b4185c2170971e8ff3e787d4e0563755f9c094c3505f0191995ee5",
+      "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
+      "source_sha256": "dfbfdd9a844043fb1b5eda179de9e75572001147154d96f560d4b5ff6ee6bfce",
       "scene": "twz_003"
+    },
+    {
+      "path": "twilight-zone/device/twz_003.lpv",
+      "kind": "clip",
+      "bytes": 1767485,
+      "sha256": "f4b99b74e158aed7cbba47a5a2c1f4ff53d57be68e91f00fa76d9ba3a87ac282",
+      "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
+      "source_sha256": "dfbfdd9a844043fb1b5eda179de9e75572001147154d96f560d4b5ff6ee6bfce",
+      "scene": "twz_003",
+      "frames": 46,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_004.jpg",
       "kind": "still",
-      "bytes": 76466,
-      "sha256": "f0fd11f2190a3cd20a02536a189f0be4d308bd510b063791fb6ee77a5e2bd3b2",
-      "source": "twilight-zone/stills/diner_booth_coffee_steaming_004.jpg",
-      "source_sha256": "d3fe791aeaed1d171e98906238a7ca255dd30b2e549fd99c4002da151b850229",
+      "bytes": 50099,
+      "sha256": "d49692c195c528636a512bff49ed3667a8b587f0bc33ddefafb01f08b55ed14c",
+      "source": "twilight-zone/videos/diner_booth_coffee_steaming_004.mp4",
+      "source_sha256": "62352df1276e7ebb905642b4b6fda6de042a391e862f8d21e20a42955ef43edc",
       "scene": "twz_004"
+    },
+    {
+      "path": "twilight-zone/device/twz_004.lpv",
+      "kind": "clip",
+      "bytes": 1517296,
+      "sha256": "e8d63541836076ecf53fbf059547ef057311f44eb1011f4bbd280d36cb6fa17b",
+      "source": "twilight-zone/videos/diner_booth_coffee_steaming_004.mp4",
+      "source_sha256": "62352df1276e7ebb905642b4b6fda6de042a391e862f8d21e20a42955ef43edc",
+      "scene": "twz_004",
+      "frames": 31,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_005.jpg",
@@ -381,5 +414,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-10T22:52:40Z"
+  "updated_utc": "2026-10-11T18:13:30Z"
 }
