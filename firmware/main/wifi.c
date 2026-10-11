@@ -42,6 +42,7 @@ static char got_ip[16];
 static int64_t missing_since_us;   // 0 = connected
 static int64_t snooze_until_us;
 static volatile bool radio_off;
+static bool boot_disabled;       // Wi-Fi not started this boot (test flag)
 
 // ---------------------------------------------------------------- NVS
 
@@ -386,8 +387,6 @@ void wifi_snooze(void)
     snooze_until_us = esp_timer_get_time() + (int64_t)WIFI_SNOOZE_S * 1000000;
     ESP_LOGI(TAG, "setup hidden for %d min", WIFI_SNOOZE_S / 60);
 }
-
-static bool boot_disabled;
 
 bool wifi_boot_disabled(void)
 {
