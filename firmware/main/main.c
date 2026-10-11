@@ -29,6 +29,10 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(nv);
 
+    // Wi-Fi first: its buffers need internal RAM, which the display and LVGL
+    // otherwise use up (stage 2 boot loop: esp_wifi_init -> ESP_ERR_NO_MEM).
+    wifi_start();
+
     const esp_lv_adapter_rotation_t rotation = ESP_LV_ADAPTER_ROTATE_180;
     const esp_lv_adapter_tear_avoid_mode_t tear_mode = ESP_LV_ADAPTER_TEAR_AVOID_MODE_DEFAULT_RGB;
 
@@ -76,7 +80,6 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "Starting frame mode");
     frame_start();
-    wifi_start();
     if (esp_lv_adapter_lock(-1) == ESP_OK) {
         setup_start();          // opens itself at first boot / after 1 h without the saved network
         esp_lv_adapter_unlock();
