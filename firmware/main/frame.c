@@ -455,10 +455,28 @@ static void build_screen(void)
 
 static void fade_cb(void *obj, int32_t v) { lv_obj_set_style_opa(obj, (lv_opa_t)v, 0); }
 
+// Motion unlock (state.json "intro_motion"): until then nothing on screen may move
+// except the presence-gated scene itself, so captions appear instantly.
+static bool motion_unlocked(void)
+{
+    cJSON *st = read_json(SD "state.json");
+    const cJSON *v = cJSON_GetObjectItemCaseSensitive(st, "intro_motion");
+    bool on = cJSON_IsTrue(v);
+    cJSON_Delete(st);
+    return on;
+}
+
 static void caption_show(const char *text)
 {
+    bool fade = text && text[0] && motion_unlocked();
     if (esp_lv_adapter_lock(-1) != ESP_OK) return;
-    if (text && text[0]) {
+    if (text && text[0] && !fade) {
+        lv_anim_del(cap_box, fade_cb);
+        lv_label_set_text(cap_shadow, text);
+        lv_label_set_text(cap_text, text);
+        lv_obj_set_style_opa(cap_box, LV_OPA_COVER, 0);
+        lv_obj_clear_flag(cap_box, LV_OBJ_FLAG_HIDDEN);
+    } else if (fade) {
         lv_label_set_text(cap_shadow, text);
         lv_label_set_text(cap_text, text);
         lv_obj_set_style_opa(cap_box, LV_OPA_TRANSP, 0);
