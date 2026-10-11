@@ -177,7 +177,7 @@
     },
     {
       "id": "twz_009",
-      "video": null,
+      "video": "videos/childs_rocking_chair_009.mp4",
       "still": "stills/childs_rocking_chair_009.jpg",
       "captions": [
         "The little girl on the steps knows Helen better than Helen does.",
@@ -220,7 +220,7 @@
     },
     {
       "id": "twz_011",
-      "video": null,
+      "video": "videos/barbershop_mirror_011.mp4",
       "still": "stills/barbershop_mirror_011.jpg",
       "captions": [
         "Arch Hammer can wear any face he's looked at.",
@@ -237,7 +237,8 @@
       "device": {
         "clip": null,
         "still": "device/twz_011.jpg"
-      }
+      },
+      "motion": "once"
     },
     {
       "id": "twz_012",
