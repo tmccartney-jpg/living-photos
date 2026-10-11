@@ -18,7 +18,7 @@
 - Motion only occurs when presence is not detected nearby (mmWave near/far gate)
 - GitHub manifest is authoritative when reachable
 - Local fallback (cached manifest + video) used only when offline — never a visible error state
-- Wi-Fi setup on the touchscreen (network list + keyboard), entered only at first boot (no saved network) or when the saved network has been missing for 1 hour; "Not now" or 5 min untouched waits 24 h; closes itself if the saved network returns
+- Wi-Fi setup on the touchscreen (network list + keyboard), entered only at first boot (no saved network) or when the saved network has been missing for 1 hour; "Not now" or 5 min untouched hides it for 1 h, and it keeps returning hourly until a network connects; closes itself if the saved network returns
 - No sound output is used or expected (hardware has no speaker)
 - Intro is the static `tz_intro.png` until `intro_motion` is manually set to `true`
 - Twilight Zone intro stays exclusive until Severance `intro_ratio` reaches 1.0
@@ -52,6 +52,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-10: Unlocked `Reference.md` repo structure and manifest schema (Tony's decision) — complete 30-scene set on GitHub: added `still` (every scene), `video: null` for still-only scenes, `presence` (`freeze` | `rest`), `device` (frame-ready copies); added `stills/`, `device/`, `intros/device/`, `device_index.json`, `tools/build_device.py` and the Build device files Action. Recorded the 09:30 daily change and light-scene rest behavior as locked. Re-locked.
 
 - 2026-10-10: Unlocked provisioning (Tony's decision) — replaced device-hosted Wi-Fi + web page (entered on missing credentials or held BOOT) with touchscreen setup: network list + on-screen keyboard, at first boot and again only when the saved network has been missing for 1 hour. Safeguards: the saved network keeps being retried while setup is up and setup closes itself when it returns; "Not now" (or 5 minutes untouched) goes back to the scene and waits 24 h before asking again. Also updated `Design_Principles.md` ("never forces reprovisioning" → 1-hour rule). Internet time (SNTP) on US Eastern. Re-locked.
+- 2026-10-10: Unlocked the setup snooze (Tony's decision) — "Not now" / 5 min untouched now hides setup for **1 hour** (was 24 h), so it keeps asking hourly until a network is entered: without Wi-Fi a frame gets no new scenes or rotation. Re-locked.
 
 ---
 
