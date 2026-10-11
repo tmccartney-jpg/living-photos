@@ -19,11 +19,11 @@ Each frame is a calm, purpose-built object.
 ### Wi-Fi
 - Used to fetch the shared GitHub manifest and sync crossfade state
 - Automatically retries if offline
-- Never forces reprovisioning if credentials exist
+- Keeps retrying a saved network; setup reappears only after it has been missing for 1 hour (see `Provisioning.md`)
 
 ### Provisioning
-- Device-hosted Wi-Fi + web page (see `Provisioning.md`)
-- Triggered only when needed (no credentials, or BOOT held)
+- On the frame's touchscreen: network list + on-screen keyboard (see `Provisioning.md`)
+- Triggered only when needed (no credentials, or the saved network missing for 1 hour), or opened by hand from diagnostics
 
 ---
 

@@ -2,38 +2,52 @@
 
 Each frame is not meant to be interacted with daily. However, it requires occasional configuration:
 - Wi-Fi credentials
-- Data source (GitHub manifest URL, shared across all 30 frames)
-- Recovery/reset
+- Recovery when the home network changes (new router, new password)
 
 Provisioning exists to support this **without turning the frame into an interactive device**.
+
+The data source (the `living-photos` GitHub repo) is built into the firmware and needs no setup.
 
 ---
 
 ## Provisioning Model
 
-Each frame uses **device-hosted Wi-Fi and a web page** — same pattern as Praise Kier, reused deliberately so the setup experience is consistent across every device in the ecosystem.
+Setup happens **on the frame's own touchscreen**: a list of nearby networks and an on-screen keyboard. No phone, laptop or setup network is needed.
 
 ### Entry Conditions
 
-Provisioning is entered only when:
-- No saved Wi-Fi credentials exist, OR
-- BOOT button is intentionally held during startup
+The setup screen appears only when:
+- No Wi-Fi network has been saved yet (first boot), OR
+- The saved network has been missing for **1 hour**
+
+It can also be opened by hand from the hidden diagnostics screen (**Wi-Fi** button).
 
 ---
 
 ## Provisioning Flow
 
-1. Device creates a Wi-Fi network, e.g. `Frame-Setup-##` (numbered per unit, so 30 devices don't collide during setup)
-2. User connects via phone/computer
-3. Navigate to `http://192.168.4.1`
-4. Enter Wi-Fi credentials
-5. Device saves and restarts
+1. The frame lists the networks it can see (strongest first) — tap one
+2. Secured networks: type the password on the on-screen keyboard (a **Show** button reveals it), tap **Connect**
+3. On success the network is saved and the frame returns to its scene
+4. On failure the frame says why ("wrong password?", "network not found") and keeps the typed password for another try
+
+The previously saved network stays saved until a new one connects successfully.
+
+---
+
+## Safeguards (calm object)
+
+- **While the setup screen is up, the frame keeps retrying the saved network.** If it comes back, setup closes by itself and the scene returns.
+- **"Not now"** returns to the scene; the frame keeps playing from its SD card and does not ask again for **24 hours**.
+- **Untouched for 5 minutes**, the setup screen acts like "Not now", so it never sits on the wall.
+- Router reboots and short outages never show setup (the 1-hour rule).
 
 ---
 
 ## After Provisioning
 
 - Device connects automatically on future boots
+- Sets its clock from internet time (SNTP), US Eastern with daylight saving
 - No ongoing interaction required
 - Returns to normal presence-gated scene rotation
 
@@ -42,17 +56,10 @@ Provisioning is entered only when:
 ## Offline Behavior
 
 If Wi-Fi becomes unavailable:
-- Device continues operating normally using its local fallback (last cached manifest + video)
-- No visible error or "offline" indicator shown to the viewer — unlike Praise Kier, this device has no directive text UI to display a status on, so failure should be invisible, not flagged
-- Automatically retries connection in the background
-- Does NOT require reprovisioning
-
----
-
-## Scaling to 30 Units
-
-- Each frame should have a distinct hostname/AP name (e.g. incorporating a short device ID) so provisioning 30 units doesn't create ambiguity about which physical frame you're currently configuring
-- Credentials only need to be entered once per frame, at setup or if hardware is replaced/reset
+- Device continues operating normally from its SD card
+- No visible error or "offline" indicator shown to the viewer
+- Automatically retries the connection in the background (5 s backoff, up to once a minute)
+- Shows setup only under the 1-hour rule above
 
 ---
 
