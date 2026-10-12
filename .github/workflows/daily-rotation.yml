@@ -4,7 +4,13 @@ name: Daily rotation
 # and runs the Severance crossfade bookkeeping. See tools/rotate.py.
 on:
   schedule:
-    - cron: "7 8 * * *"      # 08:07 UTC = 4:07 am EDT / 3:07 am EST
+    # Five tries each morning: GitHub runs scheduled jobs late (or skips them) when busy.
+    # The first run that gets through picks the day's scene; later ones see it's done and skip.
+    - cron: "7 8 * * *"      # 4:07 am EDT / 3:07 am EST
+    - cron: "7 9 * * *"      # 5:07 am EDT / 4:07 am EST
+    - cron: "7 10 * * *"     # 6:07 am EDT / 5:07 am EST
+    - cron: "7 11 * * *"     # 7:07 am EDT / 6:07 am EST
+    - cron: "7 12 * * *"     # 8:07 am EDT / 7:07 am EST
   workflow_dispatch:
     inputs:
       force:
