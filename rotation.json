@@ -1,8 +1,37 @@
 {
   "schema_version": 1,
-  "date": "2026-10-11",
+  "date": "2026-10-12",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_005",
+    "id": "twz_005",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
+    "still": "twilight-zone/stills/attic_window_curtain_parted_005.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_005.lpv",
+      "still": "twilight-zone/device/twz_005.jpg"
+    },
+    "caption": "Nan keeps passing the same man on the road.",
+    "caption_index": 0,
+    "episode_tag": "the_hitch_hiker",
+    "episode": {
+      "title": "The Hitch-Hiker",
+      "season": 1,
+      "number": 16,
+      "year": 1960
+    }
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_026",
     "id": "twz_026",
     "theme": "twilight-zone",
@@ -17,22 +46,6 @@
     "caption_index": 0,
     "episode_tag": "the_invaders"
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_001",
-    "id": "twz_001",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/bus_stop_001.mp4",
-    "caption": "He waits for a bus that stopped running years ago.",
-    "caption_index": 0,
-    "episode_tag": "mirror_image"
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -43,14 +56,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 14,
-    "retired": 2,
+    "reserve": 13,
+    "retired": 3,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_005",
       "twilight-zone/twz_021",
       "twilight-zone/twz_019",
       "twilight-zone/twz_017",
@@ -60,6 +72,7 @@
       "twilight-zone/twz_016",
       "twilight-zone/twz_007",
       "twilight-zone/twz_015",
+      "twilight-zone/twz_002",
       "twilight-zone/twz_028",
       "twilight-zone/twz_018",
       "twilight-zone/twz_014",
@@ -67,7 +80,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_026"
+    "twilight-zone": "twilight-zone/twz_005"
   },
   "spread": {},
   "history": [
@@ -79,6 +92,11 @@
     {
       "date": "2026-10-11",
       "key": "twilight-zone/twz_026",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-12",
+      "key": "twilight-zone/twz_005",
       "caption_index": 0
     }
   ]
