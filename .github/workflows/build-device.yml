@@ -11,6 +11,7 @@ on:
       - "*/stills/**"
       - "*/manifest.json"
       - "intros/*.png"
+      - "intros/*.mp4"
       - "tools/build_device.py"
   workflow_dispatch:
     inputs:

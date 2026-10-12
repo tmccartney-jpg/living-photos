@@ -9,6 +9,7 @@ For each scene in each theme's manifest:
   <theme>/device/<id>.jpg   800x480 still: the clip's first frame (its rest frame) if the
                             scene has a clip, otherwise the scene's "still" artwork
 For each intro PNG:      intros/device/<name>.jpg   (800x480)
+For each intro MP4:      intros/device/<name>.lpv   (e.g. tz_egg.mp4, the easter egg)
 
 It also writes:
   - scene["device"] = {"clip": "device/<id>.lpv" | null, "still": "device/<id>.jpg"}
@@ -184,6 +185,21 @@ def main():
             record(out, src, "intro")
             built += 1
             print(f"  built {out}")
+
+    for mp4 in sorted(glob.glob(p("intros/*.mp4"))):
+        src = os.path.relpath(mp4, ROOT).replace(os.sep, "/")
+        name = os.path.splitext(os.path.basename(mp4))[0]
+        out = f"intros/device/{name}.lpv"
+        if fresh(out, src):
+            entries.append(old[out])
+        else:
+            tmp_still = p(f"intros/device/.{name}_frame0.jpg")
+            n = build_lpv(mp4, p(out), tmp_still)
+            if os.path.exists(tmp_still):
+                os.remove(tmp_still)
+            record(out, src, "intro_clip", None, {"frames": n, "fps": FPS})
+            built += 1
+            print(f"  built {out}: {n} frames")
 
     index = {"schema_version": 1,
              "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). "

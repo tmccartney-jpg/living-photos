@@ -1,8 +1,18 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 53803232,
+  "total_bytes": 56166662,
   "files": [
+    {
+      "path": "intros/device/tz_egg.lpv",
+      "kind": "intro_clip",
+      "bytes": 2363430,
+      "sha256": "2be3475af4f2179dd5d607e5c5e85e1bf3e1140a719469ae93e9bfabd4966557",
+      "source": "intros/tz_egg.mp4",
+      "source_sha256": "9cff6eb797c08be75c88c53592f7ee3cb97747f987345d79b887f05a2e7737ee",
+      "frames": 76,
+      "fps": 15
+    },
     {
       "path": "intros/device/tz_intro.jpg",
       "kind": "intro",
@@ -469,5 +479,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-11T19:47:23Z"
+  "updated_utc": "2026-10-12T00:09:19Z"
 }
