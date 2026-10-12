@@ -3,25 +3,25 @@
   "date": "2026-10-12",
   "timezone": "America/New_York",
   "scene": {
-    "key": "twilight-zone/twz_005",
-    "id": "twz_005",
+    "key": "twilight-zone/twz_021",
+    "id": "twz_021",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
-    "still": "twilight-zone/stills/attic_window_curtain_parted_005.jpg",
+    "video": null,
+    "still": "twilight-zone/stills/airplane_wing_in_the_storm_021.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_005.lpv",
-      "still": "twilight-zone/device/twz_005.jpg"
+      "clip": null,
+      "still": "twilight-zone/device/twz_021.jpg"
     },
-    "caption": "Nan keeps passing the same man on the road.",
+    "caption": "There's something on the wing. There always is.",
     "caption_index": 0,
-    "episode_tag": "the_hitch_hiker",
+    "episode_tag": "nightmare_at_20_000_feet",
     "episode": {
-      "title": "The Hitch-Hiker",
-      "season": 1,
-      "number": 16,
-      "year": 1960
+      "title": "Nightmare at 20,000 Feet",
+      "season": 5,
+      "number": 3,
+      "year": 1963
     }
   },
   "intro": {
@@ -56,31 +56,31 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 13,
-    "retired": 3,
+    "reserve": 6,
+    "retired": 2,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_021",
       "twilight-zone/twz_019",
       "twilight-zone/twz_017",
       "twilight-zone/twz_013",
-      "twilight-zone/twz_008",
       "twilight-zone/twz_004",
       "twilight-zone/twz_016",
-      "twilight-zone/twz_007",
-      "twilight-zone/twz_015",
       "twilight-zone/twz_002",
+      "twilight-zone/twz_011",
       "twilight-zone/twz_028",
-      "twilight-zone/twz_018",
-      "twilight-zone/twz_014",
-      "twilight-zone/twz_020"
+      "twilight-zone/twz_029",
+      "twilight-zone/twz_009",
+      "twilight-zone/twz_006",
+      "twilight-zone/twz_030",
+      "twilight-zone/twz_020",
+      "twilight-zone/twz_012"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_005"
+    "twilight-zone": "twilight-zone/twz_021"
   },
   "spread": {},
   "history": [
@@ -96,7 +96,7 @@
     },
     {
       "date": "2026-10-12",
-      "key": "twilight-zone/twz_005",
+      "key": "twilight-zone/twz_021",
       "caption_index": 0
     }
   ]

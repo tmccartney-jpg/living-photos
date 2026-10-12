@@ -109,6 +109,8 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - **Daily change at 09:30 local time.** `rotation.json` also carries `previous_scene` (yesterday's pick) and `change_at` (`"09:30"`, set by `CHANGE_AT` in `rotate.py`). Frames keep showing `previous_scene` until `change_at` on their own clock, then play the intro and switch to today's scene. The switch is time-based only, never tied to presence. The intro also plays on power-up.
 - Small libraries (everything fits in Active + Reserve): a played scene waits until the current cycle is used up before it can come back.
 - Extra pool values used by the rotation: `pending` (Severance scene not yet released / crossfade not started) and `retired_final` (Twilight Zone scenes after the finale).
+- `hold` (set by hand): the scene is out of rotation until it is reworked; the rotation never picks or moves it. Set it back to `reserve` to return it.
+- `captions_later` (optional): extra captions parked for later; only `captions` is used.
 - Preview without changing anything: `python tools/rotate.py --simulate 30`.
 
 ---
