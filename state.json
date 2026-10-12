@@ -30,7 +30,7 @@
   "stare_s": 30,
   "easter_egg": {
     "enabled": true,
-    "max_cm": 80,
+    "max_cm": 50,
     "jitter_cm": 30,
     "still_max": 15000,
     "hold_s": 30,
