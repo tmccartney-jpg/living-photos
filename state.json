@@ -36,5 +36,8 @@
     "hold_s": 30,
     "every_h": 24,
     "clip": "intros/device/tz_egg.lpv"
+  },
+  "change_at_once": {
+    "2026-10-13": "10:30"
   }
 }

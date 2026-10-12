@@ -364,7 +364,7 @@ def run_day(day, state, lib, rot, quiet=False):
         },
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
                   "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},
-        "change_at": CHANGE_AT,
+        "change_at": (state.get("change_at_once") or {}).get(day.isoformat(), CHANGE_AT),   # one-off later change
         "previous_scene": previous,
         "crossfade": {
             "active": in_cf,
