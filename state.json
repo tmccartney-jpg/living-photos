@@ -2,7 +2,7 @@
   "schema_version": 1,
   "active_theme": "twilight-zone",
   "intro_motion": false,
-  "scene_motion": true,
+  "scene_motion": false,
   "severance_premiere": null,
   "crossfade_start": null,
   "season_total_episodes": null,
@@ -26,15 +26,15 @@
     ],
     "away_after_s": 10
   },
-  "reveal": "stare",
+  "reveal": "hidden",
   "stare_s": 30,
   "easter_egg": {
-    "enabled": true,
+    "enabled": false,
     "max_cm": 50,
     "jitter_cm": 30,
     "still_max": 15000,
     "hold_s": 30,
-    "every_h": 0,
+    "every_h": 24,
     "clip": "intros/device/tz_egg.lpv"
   }
 }
