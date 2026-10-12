@@ -2,7 +2,7 @@
   "schema_version": 1,
   "active_theme": "twilight-zone",
   "intro_motion": false,
-  "scene_motion": false,
+  "scene_motion": true,
   "severance_premiere": null,
   "crossfade_start": null,
   "season_total_episodes": null,
@@ -27,7 +27,7 @@
     "away_after_s": 10
   },
   "easter_egg": {
-    "enabled": false,
+    "enabled": true,
     "max_cm": 80,
     "jitter_cm": 15,
     "still_max": 65535,
