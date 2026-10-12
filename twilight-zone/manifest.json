@@ -23,6 +23,12 @@
       "device": {
         "clip": "device/twz_001.lpv",
         "still": "device/twz_001.jpg"
+      },
+      "episode": {
+        "title": "Mirror Image",
+        "season": 1,
+        "number": 21,
+        "year": 1960
       }
     },
     {
@@ -44,6 +50,12 @@
       "device": {
         "clip": "device/twz_002.lpv",
         "still": "device/twz_002.jpg"
+      },
+      "episode": {
+        "title": "It's a Good Life",
+        "season": 3,
+        "number": 8,
+        "year": 1961
       }
     },
     {
@@ -66,7 +78,13 @@
         "clip": "device/twz_003.lpv",
         "still": "device/twz_003.jpg"
       },
-      "motion": "loop"
+      "motion": "loop",
+      "episode": {
+        "title": "Nervous Man in a Four Dollar Room",
+        "season": 2,
+        "number": 3,
+        "year": 1960
+      }
     },
     {
       "id": "twz_004",
@@ -87,6 +105,12 @@
       "device": {
         "clip": "device/twz_004.lpv",
         "still": "device/twz_004.jpg"
+      },
+      "episode": {
+        "title": "Where Is Everybody?",
+        "season": 1,
+        "number": 1,
+        "year": 1959
       }
     },
     {
@@ -108,6 +132,12 @@
       "device": {
         "clip": "device/twz_005.lpv",
         "still": "device/twz_005.jpg"
+      },
+      "episode": {
+        "title": "The Hitch-Hiker",
+        "season": 1,
+        "number": 16,
+        "year": 1960
       }
     },
     {
@@ -129,6 +159,12 @@
       "device": {
         "clip": "device/twz_006.lpv",
         "still": "device/twz_006.jpg"
+      },
+      "episode": {
+        "title": "Long Distance Call",
+        "season": 2,
+        "number": 22,
+        "year": 1961
       }
     },
     {
@@ -151,7 +187,13 @@
         "clip": "device/twz_007.lpv",
         "still": "device/twz_007.jpg"
       },
-      "motion": "loop"
+      "motion": "loop",
+      "episode": {
+        "title": "It's a Good Life",
+        "season": 3,
+        "number": 8,
+        "year": 1961
+      }
     },
     {
       "id": "twz_008",
@@ -173,6 +215,12 @@
       "device": {
         "clip": "device/twz_008.lpv",
         "still": "device/twz_008.jpg"
+      },
+      "episode": {
+        "title": "A Stop at Willoughby",
+        "season": 1,
+        "number": 30,
+        "year": 1960
       }
     },
     {
@@ -194,6 +242,12 @@
       "device": {
         "clip": "device/twz_009.lpv",
         "still": "device/twz_009.jpg"
+      },
+      "episode": {
+        "title": "Nightmare as a Child",
+        "season": 1,
+        "number": 29,
+        "year": 1960
       }
     },
     {
@@ -216,6 +270,12 @@
       "device": {
         "clip": "device/twz_010.lpv",
         "still": "device/twz_010.jpg"
+      },
+      "episode": {
+        "title": "Little Girl Lost",
+        "season": 3,
+        "number": 26,
+        "year": 1962
       }
     },
     {
@@ -238,7 +298,13 @@
         "clip": "device/twz_011.lpv",
         "still": "device/twz_011.jpg"
       },
-      "motion": "loop"
+      "motion": "loop",
+      "episode": {
+        "title": "The Four of Us Are Dying",
+        "season": 1,
+        "number": 13,
+        "year": 1960
+      }
     },
     {
       "id": "twz_012",
@@ -260,6 +326,12 @@
       "device": {
         "clip": "device/twz_012.lpv",
         "still": "device/twz_012.jpg"
+      },
+      "episode": {
+        "title": "Static",
+        "season": 2,
+        "number": 20,
+        "year": 1961
       }
     },
     {
@@ -281,6 +353,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_013.jpg"
+      },
+      "episode": {
+        "title": "It's a Good Life",
+        "season": 3,
+        "number": 8,
+        "year": 1961
       }
     },
     {
@@ -302,6 +380,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_014.jpg"
+      },
+      "episode": {
+        "title": "The After Hours",
+        "season": 1,
+        "number": 34,
+        "year": 1960
       }
     },
     {
@@ -323,6 +407,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_015.jpg"
+      },
+      "episode": {
+        "title": "The Midnight Sun",
+        "season": 3,
+        "number": 10,
+        "year": 1961
       }
     },
     {
@@ -348,6 +438,12 @@
       "device": {
         "clip": "device/twz_016.lpv",
         "still": "device/twz_016.jpg"
+      },
+      "episode": {
+        "title": "Nick of Time",
+        "season": 2,
+        "number": 7,
+        "year": 1960
       }
     },
     {
@@ -369,6 +465,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_017.jpg"
+      },
+      "episode": {
+        "title": "The Masks",
+        "season": 5,
+        "number": 25,
+        "year": 1964
       }
     },
     {
@@ -393,6 +495,12 @@
       "device": {
         "clip": "device/twz_018.lpv",
         "still": "device/twz_018.jpg"
+      },
+      "episode": {
+        "title": "Eye of the Beholder",
+        "season": 2,
+        "number": 6,
+        "year": 1960
       }
     },
     {
@@ -415,6 +523,12 @@
       "device": {
         "clip": "device/twz_019.lpv",
         "still": "device/twz_019.jpg"
+      },
+      "episode": {
+        "title": "The Monsters Are Due on Maple Street",
+        "season": 1,
+        "number": 22,
+        "year": 1960
       }
     },
     {
@@ -436,6 +550,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_020.jpg"
+      },
+      "episode": {
+        "title": "Time Enough at Last",
+        "season": 1,
+        "number": 8,
+        "year": 1959
       }
     },
     {
@@ -457,6 +577,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_021.jpg"
+      },
+      "episode": {
+        "title": "Nightmare at 20,000 Feet",
+        "season": 5,
+        "number": 3,
+        "year": 1963
       }
     },
     {
@@ -478,6 +604,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_022.jpg"
+      },
+      "episode": {
+        "title": "To Serve Man",
+        "season": 3,
+        "number": 24,
+        "year": 1962
       }
     },
     {
@@ -499,6 +631,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_023.jpg"
+      },
+      "episode": {
+        "title": "Walking Distance",
+        "season": 1,
+        "number": 5,
+        "year": 1959
       }
     },
     {
@@ -520,6 +658,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_024.jpg"
+      },
+      "episode": {
+        "title": "Living Doll",
+        "season": 5,
+        "number": 6,
+        "year": 1963
       }
     },
     {
@@ -541,6 +685,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_025.jpg"
+      },
+      "episode": {
+        "title": "Kick the Can",
+        "season": 3,
+        "number": 21,
+        "year": 1962
       }
     },
     {
@@ -562,6 +712,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_026.jpg"
+      },
+      "episode": {
+        "title": "The Invaders",
+        "season": 2,
+        "number": 15,
+        "year": 1961
       }
     },
     {
@@ -584,6 +740,12 @@
       "device": {
         "clip": "device/twz_027.lpv",
         "still": "device/twz_027.jpg"
+      },
+      "episode": {
+        "title": "A Game of Pool",
+        "season": 3,
+        "number": 5,
+        "year": 1961
       }
     },
     {
@@ -605,6 +767,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_028.jpg"
+      },
+      "episode": {
+        "title": "Five Characters in Search of an Exit",
+        "season": 3,
+        "number": 14,
+        "year": 1961
       }
     },
     {
@@ -626,6 +794,12 @@
       "device": {
         "clip": null,
         "still": "device/twz_029.jpg"
+      },
+      "episode": {
+        "title": "The Dummy",
+        "season": 3,
+        "number": 33,
+        "year": 1962
       }
     },
     {
@@ -648,6 +822,12 @@
       "device": {
         "clip": "device/twz_030.lpv",
         "still": "device/twz_030.jpg"
+      },
+      "episode": {
+        "title": "Twenty Two",
+        "season": 2,
+        "number": 17,
+        "year": 1961
       }
     }
   ]

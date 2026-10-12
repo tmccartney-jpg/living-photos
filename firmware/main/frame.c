@@ -38,6 +38,7 @@ static const char *TAG = "frame";
 #define CORNER_H         120
 #define CAP_BOX_H        150
 #define CAPTION_COLOR    0xEEEAE0
+#define EPISODE_COLOR    0xA8A49A
 
 LV_FONT_DECLARE(font_caption);
 
@@ -50,6 +51,7 @@ typedef struct {
     char clip[128];       // full SD path or ""
     char still[128];      // full SD path or ""
     char caption[192];
+    char episode[112];    // "Mirror Image  |  S1 E21  |  1960", small line under the caption
     bool rest;            // presence "rest": show frame 0 while someone is there
     bool once;            // motion "once": play the clip one time, then hold its last frame
 } scene_t;
@@ -101,7 +103,7 @@ static char st_line2[96] = "";
 
 // ---------------------------------------------------------------- display objects
 
-static lv_obj_t *scr_scene, *img, *cap_box, *cap_text, *cap_shadow;
+static lv_obj_t *scr_scene, *img, *cap_box, *cap_text, *cap_shadow, *cap_ep;
 static lv_img_dsc_t dsc[2];
 static uint8_t *pixbuf[2];
 static int back;
@@ -230,6 +232,22 @@ static void derive_paths(scene_t *sc)
     }
 }
 
+// manifest/rotation "episode": {"title", "season", "number", "year"} -> one short line
+static void episode_line(const cJSON *e, char *out, size_t len)
+{
+    out[0] = 0;
+    const char *t = cJSON_IsObject(e) ? jstr(e, "title") : NULL;
+    if (!t || !t[0]) return;
+    const cJSON *se = cJSON_GetObjectItemCaseSensitive(e, "season");
+    const cJSON *nu = cJSON_GetObjectItemCaseSensitive(e, "number");
+    const cJSON *yr = cJSON_GetObjectItemCaseSensitive(e, "year");
+    int n = snprintf(out, len, "%s", t);
+    if (cJSON_IsNumber(se) && cJSON_IsNumber(nu) && n < (int)len)
+        n += snprintf(out + n, len - n, "  |  S%d E%d", se->valueint, nu->valueint);
+    if (cJSON_IsNumber(yr) && n < (int)len)
+        snprintf(out + n, len - n, "  |  %d", yr->valueint);
+}
+
 // Scene object from rotation.json ("scene" or "previous_scene").
 static bool scene_from_rotation(const cJSON *o, scene_t *sc)
 {
@@ -248,9 +266,13 @@ static bool scene_from_rotation(const cJSON *o, scene_t *sc)
     const cJSON *device = cJSON_GetObjectItemCaseSensitive(o, "device");
     const char *presence = jstr(o, "presence");
     const char *motion = jstr(o, "motion");
+    const cJSON *ep = cJSON_GetObjectItemCaseSensitive(o, "episode");
     cJSON *mroot = NULL;
     const cJSON *m = NULL;
-    if (!device || !presence || !motion) m = manifest_scene(theme, id, &mroot);   // older rotation.json
+    if (!device || !presence || !motion || !cJSON_IsObject(ep))
+        m = manifest_scene(theme, id, &mroot);   // older rotation.json
+    if (!cJSON_IsObject(ep) && m) ep = cJSON_GetObjectItemCaseSensitive(m, "episode");
+    episode_line(ep, sc->episode, sizeof(sc->episode));
     if (!presence && m) presence = jstr(m, "presence");
     if (!motion && m) motion = jstr(m, "motion");
     sc->rest = presence && !strcmp(presence, "rest");
@@ -349,6 +371,7 @@ static int manifest_scene_at(int idx, scene_t *sc)
         const cJSON *caps = cJSON_GetObjectItemCaseSensitive(s, "captions");
         const cJSON *c0 = cJSON_GetArrayItem(caps, 0);
         snprintf(sc->caption, sizeof(sc->caption), "%s", cJSON_IsString(c0) ? c0->valuestring : "");
+        episode_line(cJSON_GetObjectItemCaseSensitive(s, "episode"), sc->episode, sizeof(sc->episode));
         const char *pr = jstr(s, "presence");
         sc->rest = pr && !strcmp(pr, "rest");
         const char *mo = jstr(s, "motion");
@@ -490,8 +513,19 @@ static void build_screen(void)
     lv_obj_set_style_text_color(cap_shadow, lv_color_black(), 0);
     lv_obj_set_style_text_opa(cap_shadow, LV_OPA_80, 0);
     lv_obj_set_style_text_color(cap_text, lv_color_hex(CAPTION_COLOR), 0);
-    lv_obj_align(cap_shadow, LV_ALIGN_BOTTOM_MID, 2, -16);
-    lv_obj_align(cap_text, LV_ALIGN_BOTTOM_MID, 0, -18);
+    lv_obj_align(cap_shadow, LV_ALIGN_BOTTOM_MID, 2, -32);
+    lv_obj_align(cap_text, LV_ALIGN_BOTTOM_MID, 0, -34);
+
+    // episode: small, dimmer line under the caption
+    cap_ep = lv_label_create(cap_box);
+    lv_obj_set_width(cap_ep, 720);
+    lv_label_set_long_mode(cap_ep, LV_LABEL_LONG_DOT);
+    lv_obj_set_style_text_font(cap_ep, &lv_font_montserrat_14, 0);
+    lv_obj_set_style_text_align(cap_ep, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_style_text_letter_space(cap_ep, 1, 0);
+    lv_obj_set_style_text_color(cap_ep, lv_color_hex(EPISODE_COLOR), 0);
+    lv_label_set_text(cap_ep, "");
+    lv_obj_align(cap_ep, LV_ALIGN_BOTTOM_MID, 0, -10);
 
     diag_corner_hold(scr_scene, CORNER_W, CORNER_H, frame_show_diag);
     lv_scr_load(scr_scene);
@@ -529,10 +563,11 @@ static bool scene_motion_on(void)
     return on;
 }
 
-static void caption_show(const char *text)
+static void caption_show(const char *text, const char *episode)
 {
     bool fade = text && text[0] && motion_unlocked();
     if (esp_lv_adapter_lock(-1) != ESP_OK) return;
+    lv_label_set_text(cap_ep, episode ? episode : "");
     if (text && text[0] && !fade) {
         lv_anim_del(cap_box, fade_cb);
         lv_label_set_text(cap_shadow, text);
@@ -710,7 +745,7 @@ static bool schedule_changed(const scene_t *cur)
 static void play_intro(const char *path)
 {
     set_in_use(NULL, NULL, path);
-    caption_show(NULL);
+    caption_show(NULL, NULL);
     set_status("Intro", NULL);
     if (!path[0] || !show_jpeg_file(path)) {
         blank();
@@ -729,7 +764,7 @@ static void play_egg(const scene_t *sc, const char *path)
     if (!clip_open(&e, path)) { ESP_LOGW(TAG, "easter egg clip %s missing", path); return; }
     ESP_LOGI(TAG, "easter egg: playing %s", path);
     set_in_use(sc->clip, sc->still, path);
-    caption_show(NULL);
+    caption_show(NULL, NULL);
     TickType_t period = pdMS_TO_TICKS(1000 / e.fps), wake = xTaskGetTickCount();
     while (e.frame < e.nframes && clip_next(&e)) {
         hb_us = esp_timer_get_time();
@@ -757,7 +792,7 @@ static void play_scene(const scene_t *sc)
         still_ok = show_jpeg_file(sc->still);
         if (!still_ok) blank();
     }
-    caption_show(sc->caption);
+    caption_show(sc->caption, sc->episode);
 
     TickType_t period = pdMS_TO_TICKS(is_clip ? 1000 / clip.fps : 200);
     TickType_t wake = xTaskGetTickCount();
@@ -771,7 +806,7 @@ static void play_scene(const scene_t *sc)
             play_egg(sc, egg);
             if (is_clip) have_frame = false, at_rest = false;   // redraw the scene's frame next
             else if (still_ok) show_jpeg_file(sc->still);
-            caption_show(sc->caption);
+            caption_show(sc->caption, sc->episode);
             wake = xTaskGetTickCount();
         }
         if (!diag_open) {
@@ -866,7 +901,7 @@ static void frame_task(void *arg)
         hb_us = esp_timer_get_time();
         if (!want) {
             blank();
-            caption_show(NULL);
+            caption_show(NULL, NULL);
             clock_line(l2, sizeof(l2));
             set_status(sd.mounted ? "No rotation.json on SD" : "No SD card", l2);
             vTaskDelay(pdMS_TO_TICKS(2000));

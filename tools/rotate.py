@@ -360,6 +360,7 @@ def run_day(day, state, lib, rot, quiet=False):
             "caption": caps[cap_i],
             "caption_index": cap_i,
             "episode_tag": s.get("episode_tag"),
+            "episode": s.get("episode"),               # {"title", "season", "number", "year"}: small line under the caption
         },
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
                   "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},
