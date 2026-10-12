@@ -246,10 +246,15 @@ static void update_cb(lv_timer_t *t)
         char extra[96];
         egg_status_t eg;
         egg_get_status(&eg);
-        char el[48];
+        char el[64];
         if (!eg.enabled) snprintf(el, sizeof(el), "Egg: off");
         else if (eg.cooldown_min) snprintf(el, sizeof(el), "Egg: rests %d min", eg.cooldown_min);
         else snprintf(el, sizeof(el), "Egg: still %d/%d s", eg.still_s, eg.need_s);
+        if (eg.stare_mode) {
+            size_t l = strlen(el);
+            if (eg.stare_active) snprintf(el + l, sizeof(el) - l, "  Stare: ALIVE");
+            else snprintf(el + l, sizeof(el) - l, "  Stare %d/%d", eg.still_s, eg.stare_need_s);
+        }
         snprintf(extra, sizeof(extra), "\n%s  |  %s", p.frame_decides ? "Frame limits" : "Sensor limits", el);
         size_t bl = strlen(buf);
         if (bl + strlen(extra) < sizeof(buf)) strcat(buf, extra);

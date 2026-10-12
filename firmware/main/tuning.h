@@ -9,7 +9,12 @@
 //     "hold": [..],                 lower energy that keeps it counting (optional; default = trigger)
 //     "away_after_s": 10            clear this long before the scene may move
 //   },
-//   "easter_egg": {
+//   "reveal": "hidden" | "stare",   hidden = scenes move only while nobody is near (default)
+//                                   stare  = also come alive when someone stands close and still
+//                                            for "stare_s" seconds, until they walk away
+//   "stare_s": 15,
+//   "easter_egg": {                 (its max_cm / jitter_cm / still_max also define "close and still"
+//                                    for the stare)
 //     "enabled": false,
 //     "max_cm": 80,                 someone this close ...
 //     "jitter_cm": 15,              ... whose distance wanders less than this over 5 s ...
@@ -34,6 +39,9 @@ typedef struct {
     int egg_max_cm, egg_jitter_cm;
     uint32_t egg_still_max, egg_hold_s, egg_every_h;
     char egg_clip[96];                // full SD path
+
+    bool stare_mode;                  // reveal == "stare"
+    uint32_t stare_s;
 } tuning_t;
 
 typedef struct {
@@ -42,7 +50,11 @@ typedef struct {
     int dist_cm, range_cm;
     uint32_t peak;
     int cooldown_min;                 // minutes until it may fire again (0 = ready)
+    bool stare_mode, stare_active;    // reveal "stare"; someone is watching it come alive
+    int stare_need_s;
 } egg_status_t;
+
+bool stare_active(void);              // frame: scene should move although someone is present
 
 void tuning_start(void);              // after sdcard_start()
 void tuning_get(tuning_t *out);

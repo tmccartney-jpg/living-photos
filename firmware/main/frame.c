@@ -778,6 +778,7 @@ static void play_scene(const scene_t *sc)
             presence_t p;
             presence_get(&p);
             if (!scene_motion_on()) p.present = true; // motion switched off: behave as if watched
+            else if (stare_active()) p.present = false; // reveal "stare": someone stared it to life
             if (preview_secs) p.present = false;      // preview: always moving
             if (is_clip) {
                 if (!p.present) {
