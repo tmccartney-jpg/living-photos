@@ -29,9 +29,9 @@
   "easter_egg": {
     "enabled": true,
     "max_cm": 80,
-    "jitter_cm": 15,
+    "jitter_cm": 30,
     "still_max": 65535,
-    "hold_s": 30,
+    "hold_s": 15,
     "every_h": 0,
     "clip": "intros/device/tz_egg.lpv"
   }
