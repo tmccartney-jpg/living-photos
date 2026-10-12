@@ -27,13 +27,13 @@
     "away_after_s": 10
   },
   "reveal": "stare",
-  "stare_s": 15,
+  "stare_s": 30,
   "easter_egg": {
     "enabled": true,
     "max_cm": 80,
     "jitter_cm": 30,
     "still_max": 15000,
-    "hold_s": 15,
+    "hold_s": 30,
     "every_h": 0,
     "clip": "intros/device/tz_egg.lpv"
   }
