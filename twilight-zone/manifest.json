@@ -881,7 +881,7 @@
     {
       "id": "twz_sp01",
       "video": null,
-      "still": null,
+      "still": "stills/sp01_new_year.jpg",
       "captions": [
         "The clock strikes midnight. A new year begins in the Twilight Zone."
       ],
@@ -899,13 +899,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "Ninety Years Without Slumbering"
-      }
+        "title": "Ninety Years Without Slumbering",
+        "season": 5,
+        "number": 16,
+        "year": 1963
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp02",
       "video": null,
-      "still": null,
+      "still": "stills/sp02_memorial_day.jpg",
       "captions": [
         "Remembrance demands quiet passage through the shadows."
       ],
@@ -923,13 +927,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Purple Testament"
-      }
+        "title": "The Purple Testament",
+        "season": 1,
+        "number": 19,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp03",
       "video": null,
-      "still": null,
+      "still": "stills/sp03_labor_day.jpg",
       "captions": [
         "No machine has replaced this crew. Enjoy the day off."
       ],
@@ -948,8 +956,12 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Brain Center at Whipple's"
-      }
+        "title": "The Brain Center at Whipple's",
+        "season": 5,
+        "number": 33,
+        "year": 1964
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp04",
@@ -987,7 +999,7 @@
     {
       "id": "twz_sp05",
       "video": null,
-      "still": null,
+      "still": "stills/sp05_thanksgiving.jpg",
       "captions": [
         "Stop the clock. Have seconds."
       ],
@@ -1006,13 +1018,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "A Kind of a Stopwatch"
-      }
+        "title": "A Kind of a Stopwatch",
+        "season": 5,
+        "number": 4,
+        "year": 1963
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp06",
       "video": null,
-      "still": null,
+      "still": "stills/sp06_christmas.jpg",
       "captions": [
         "Merry Christmas, from the other side of the signpost."
       ],
@@ -1030,13 +1046,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Night of the Meek"
-      }
+        "title": "The Night of the Meek",
+        "season": 2,
+        "number": 11,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp07",
       "video": null,
-      "still": null,
+      "still": "stills/sp07_tom.jpg",
       "captions": [
         "Tom Echorst, author of another year. Lee approved the final draft."
       ],
@@ -1054,13 +1074,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "A World of His Own"
-      }
+        "title": "A World of His Own",
+        "season": 1,
+        "number": 36,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp08",
       "video": null,
-      "still": null,
+      "still": "stills/sp08_randy.jpg",
       "captions": [
         "Randy Bullock steps up to the plate. Another year, another swing."
       ],
@@ -1078,13 +1102,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Mighty Casey"
-      }
+        "title": "The Mighty Casey",
+        "season": 1,
+        "number": 35,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp09",
       "video": null,
-      "still": null,
+      "still": "stills/sp09_amber.jpg",
       "captions": [
         "Every birthday deserves a guardian angel. Today it's Amber's turn."
       ],
@@ -1102,8 +1130,12 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "Mr. Bevis"
-      }
+        "title": "Mr. Bevis",
+        "season": 1,
+        "number": 33,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp10",
@@ -1140,7 +1172,7 @@
     {
       "id": "twz_sp11",
       "video": null,
-      "still": null,
+      "still": "stills/sp11_bill.jpg",
       "captions": [
         "The machines have agreed to behave today. Happy birthday, Bill."
       ],
@@ -1158,13 +1190,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "A Thing About Machines"
-      }
+        "title": "A Thing About Machines",
+        "season": 2,
+        "number": 4,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp12",
       "video": null,
-      "still": null,
+      "still": "stills/sp12_ella.jpg",
       "captions": [
         "One Ella Wilcox, celebrated today in the zone of gladness."
       ],
@@ -1182,13 +1218,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "I Sing the Body Electric"
-      }
+        "title": "I Sing the Body Electric",
+        "season": 3,
+        "number": 35,
+        "year": 1962
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp13",
       "video": null,
-      "still": null,
+      "still": "stills/sp13_adam.jpg",
       "captions": [
         "Adam Truax, teller of tall tales. This one happens to be true: happy birthday."
       ],
@@ -1206,13 +1246,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "Hocus-Pocus and Frisby"
-      }
+        "title": "Hocus-Pocus and Frisby",
+        "season": 3,
+        "number": 30,
+        "year": 1962
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp14",
       "video": null,
-      "still": null,
+      "still": "stills/sp14_tammy.jpg",
       "captions": [
         "The longest day of the year belongs to Tammy Truax."
       ],
@@ -1230,13 +1274,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Bewitchin' Pool"
-      }
+        "title": "The Bewitchin' Pool",
+        "season": 5,
+        "number": 36,
+        "year": 1964
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp15",
       "video": null,
-      "still": null,
+      "still": "stills/sp15_ethan_july4.jpg",
       "captions": [
         "Fireworks for the nation. Candles for Ethan."
       ],
@@ -1254,13 +1302,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "A Hundred Yards Over the Rim"
-      }
+        "title": "A Hundred Yards Over the Rim",
+        "season": 2,
+        "number": 23,
+        "year": 1961
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp16",
       "video": null,
-      "still": null,
+      "still": "stills/sp16_joe_lyle.jpg",
       "captions": [
         "Two birthdays, one day. Joe and Lyle, submitted for your approval."
       ],
@@ -1278,13 +1330,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "Two"
-      }
+        "title": "Two",
+        "season": 3,
+        "number": 1,
+        "year": 1961
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp17",
       "video": null,
-      "still": null,
+      "still": "stills/sp17_jeff.jpg",
       "captions": [
         "Jeff Truax gets one big tall wish this year."
       ],
@@ -1302,13 +1358,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Big Tall Wish"
-      }
+        "title": "The Big Tall Wish",
+        "season": 1,
+        "number": 27,
+        "year": 1960
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp18",
       "video": null,
-      "still": null,
+      "still": "stills/sp18_rich.jpg",
       "captions": [
         "Every shipment lands on time. Even Rich's birthday."
       ],
@@ -1326,13 +1386,17 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Odyssey of Flight 33"
-      }
+        "title": "The Odyssey of Flight 33",
+        "season": 2,
+        "number": 18,
+        "year": 1961
+      },
+      "presence": "freeze"
     },
     {
       "id": "twz_sp19",
       "video": null,
-      "still": null,
+      "still": "stills/sp19_kevin.jpg",
       "captions": [
         "Kevin Wilcox: four wishes, one birthday. Choose carefully."
       ],
@@ -1350,8 +1414,12 @@
       "weight": 1,
       "release_date": null,
       "episode": {
-        "title": "The Man in the Bottle"
-      }
+        "title": "The Man in the Bottle",
+        "season": 2,
+        "number": 2,
+        "year": 1960
+      },
+      "presence": "freeze"
     }
   ]
 }
