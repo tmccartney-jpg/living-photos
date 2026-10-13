@@ -1127,7 +1127,11 @@
         "number": 2,
         "year": 1959
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp10.jpg"
+      }
     },
     {
       "id": "twz_sp11",
