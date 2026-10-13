@@ -974,7 +974,11 @@
         "year": 1961
       },
       "crop_x": 1.0,
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": "device/twz_sp04.lpv",
+        "still": "device/twz_sp04.jpg"
+      }
     },
     {
       "id": "twz_sp05",

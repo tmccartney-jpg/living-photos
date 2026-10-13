@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 56166662,
+  "total_bytes": 59737015,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -477,7 +477,29 @@
       "scene": "twz_030",
       "frames": 90,
       "fps": 15
+    },
+    {
+      "path": "twilight-zone/device/twz_sp04.jpg",
+      "kind": "still",
+      "bytes": 50761,
+      "sha256": "490a0c39544d2f1ead739c4207124a45716bb5b6fb0bc43f803d1028d882ec1f",
+      "source": "twilight-zone/videos/sp04_halloween_pingpong.mp4",
+      "source_sha256": "8137ba8ae7c1afecf6d6402e59e90bb42bd40a2cc91d868104e29ba79a9eaa0c",
+      "scene": "twz_sp04",
+      "crop_x": 1.0
+    },
+    {
+      "path": "twilight-zone/device/twz_sp04.lpv",
+      "kind": "clip",
+      "bytes": 3519592,
+      "sha256": "600b6cf52f5d05180f56fbdd868a58d7a5dbdd76c9f20f4868c482aa82a7a8a2",
+      "source": "twilight-zone/videos/sp04_halloween_pingpong.mp4",
+      "source_sha256": "8137ba8ae7c1afecf6d6402e59e90bb42bd40a2cc91d868104e29ba79a9eaa0c",
+      "scene": "twz_sp04",
+      "frames": 68,
+      "fps": 15,
+      "crop_x": 1.0
     }
   ],
-  "updated_utc": "2026-10-12T00:09:19Z"
+  "updated_utc": "2026-10-13T19:10:08Z"
 }
