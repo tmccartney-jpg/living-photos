@@ -53,7 +53,13 @@ JPEG_Q = 5            # ffmpeg mjpeg quality (2 = best ... 31 = worst); ~25-35 K
 STILL_Q = 3
 THEMES = ["twilight-zone", "severance"]
 INDEX = "device_index.json"
-FILL = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}"
+def fill(cx=0.5):
+    """Scale to fill 800x480, then crop. cx = which part of the width to keep:
+    0 = left edge, 0.5 = centre (default), 1 = right edge (manifest "crop_x")."""
+    return f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-{W})*{cx}:(ih-{H})/2"
+
+
+FILL = fill()
 
 
 def p(rel):
@@ -72,11 +78,11 @@ def ffmpeg(*args):
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *args], check=True)
 
 
-def build_lpv(src, out_lpv, out_jpg):
+def build_lpv(src, out_lpv, out_jpg, cx=0.5):
     """Clip -> LPV1; its first frame -> the still."""
     tmp = tempfile.mkdtemp()
     try:
-        ffmpeg("-i", src, "-vf", f"{FILL},fps={FPS}", "-pix_fmt", "yuvj420p",
+        ffmpeg("-i", src, "-vf", f"{fill(cx)},fps={FPS}", "-pix_fmt", "yuvj420p",
                "-q:v", str(JPEG_Q), os.path.join(tmp, "f_%05d.jpg"))
         frames = sorted(glob.glob(os.path.join(tmp, "f_*.jpg")))
         if not frames:
@@ -93,8 +99,8 @@ def build_lpv(src, out_lpv, out_jpg):
         shutil.rmtree(tmp, ignore_errors=True)
 
 
-def build_jpg(src, out_jpg):
-    ffmpeg("-i", src, "-vf", FILL, "-pix_fmt", "yuvj420p", "-frames:v", "1", "-q:v", str(STILL_Q), out_jpg)
+def build_jpg(src, out_jpg, cx=0.5):
+    ffmpeg("-i", src, "-vf", fill(cx), "-pix_fmt", "yuvj420p", "-frames:v", "1", "-q:v", str(STILL_Q), out_jpg)
 
 
 def main():
@@ -111,10 +117,11 @@ def main():
 
     entries, built = [], 0
 
-    def fresh(rel_out, src_rel):
-        """True if rel_out is up to date for this source."""
+    def fresh(rel_out, src_rel, cx=0.5):
+        """True if rel_out is up to date for this source (and crop)."""
         e = old.get(rel_out)
         return bool(e and os.path.exists(p(rel_out)) and e.get("source") == src_rel
+                    and e.get("crop_x", 0.5) == cx
                     and e.get("source_sha256") == sha256(p(src_rel)) and e.get("sha256") == sha256(p(rel_out)))
 
     def record(rel_out, src_rel, kind, scene_id=None, extra=None):
@@ -134,18 +141,20 @@ def main():
         os.makedirs(p(f"{theme}/device"), exist_ok=True)
         for s in man.get("scenes", []):
             sid = s["id"]
+            cx = min(1.0, max(0.0, float(s.get("crop_x", 0.5))))
+            cxe = {"crop_x": cx} if cx != 0.5 else {}
             clip_rel, still_rel = f"{theme}/device/{sid}.lpv", f"{theme}/device/{sid}.jpg"
             if s.get("video"):
                 src = f"{theme}/{s['video']}"
                 if not os.path.exists(p(src)):
                     print(f"  ! {sid}: missing {src}")
                     continue
-                if fresh(clip_rel, src) and fresh(still_rel, src):
+                if fresh(clip_rel, src, cx) and fresh(still_rel, src, cx):
                     entries.append(old[clip_rel]); entries.append(old[still_rel])
                 else:
-                    n = build_lpv(p(src), p(clip_rel), p(still_rel))
-                    record(clip_rel, src, "clip", sid, {"frames": n, "fps": FPS})
-                    record(still_rel, src, "still", sid)
+                    n = build_lpv(p(src), p(clip_rel), p(still_rel), cx)
+                    record(clip_rel, src, "clip", sid, {"frames": n, "fps": FPS, **cxe})
+                    record(still_rel, src, "still", sid, cxe)
                     built += 1
                     print(f"  built {sid}: {n} frames")
                 s["device"] = {"clip": f"device/{sid}.lpv", "still": f"device/{sid}.jpg"}
@@ -157,11 +166,11 @@ def main():
                 if not src or not os.path.exists(p(src)):
                     print(f"  ! {sid}: no video and no still")
                     continue
-                if fresh(still_rel, src):
+                if fresh(still_rel, src, cx):
                     entries.append(old[still_rel])
                 else:
-                    build_jpg(p(src), p(still_rel))
-                    record(still_rel, src, "still", sid)
+                    build_jpg(p(src), p(still_rel), cx)
+                    record(still_rel, src, "still", sid, cxe)
                     built += 1
                     print(f"  built {sid}: still")
                 s["device"] = {"clip": None, "still": f"device/{sid}.jpg"}
