@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 60685442,
+  "total_bytes": 60685245,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -656,12 +656,12 @@
     {
       "path": "twilight-zone/device/twz_sp19.jpg",
       "kind": "still",
-      "bytes": 70921,
-      "sha256": "f7550411e9713a41cd51d46e21c1a25521493451e0c2ffacaa15efd5b604e3ed",
+      "bytes": 70724,
+      "sha256": "33025fff0ec1a19d41c6b18268942113c571e66d2f2b0df2264e3b64a4f74f60",
       "source": "twilight-zone/stills/sp19_kevin.jpg",
-      "source_sha256": "bb07c083cf67df9940c37294023a50913572b550afe4d2cd698f55c9f943157c",
+      "source_sha256": "5958aa908b2b2f75b0121275cfb503d6e3df5a7b124aefbce662f3f0e8287819",
       "scene": "twz_sp19"
     }
   ],
-  "updated_utc": "2026-10-13T22:36:50Z"
+  "updated_utc": "2026-10-13T23:45:54Z"
 }
