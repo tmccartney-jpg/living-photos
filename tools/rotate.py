@@ -342,13 +342,29 @@ def special_matches(rule, day):
 
 
 def special_for(lib, day, state):
+    """The special scene for `day`, or None.
+    Weekend dates (Kevin's office is closed) are also shown on the Friday before; if that
+    Friday has its own special, on the Monday after. They still show on the day itself."""
     if state.get("special_days") is False:           # state.json switch (default on)
         return None
-    for k in sorted(lib.keys(pool="special")):
-        s = lib.scene(k)
-        if (s.get("video") or s.get("still")) and special_matches(s.get("special"), day):
-            return k
-    return None
+    ready = [k for k in sorted(lib.keys(pool="special"))
+             if lib.scene(k).get("video") or lib.scene(k).get("still")]
+    on = lambda d: [k for k in ready if special_matches(lib.scene(k).get("special"), d)]
+    one = dt.timedelta(days=1)
+    exact = on(day)
+    wd = day.weekday()                               # Monday = 0
+    if wd < 5 and exact:
+        return exact[0]
+    if wd == 4:                                      # Friday: this weekend's specials
+        wk = on(day + one) + on(day + 2 * one)
+        if wk:
+            return wk[0]
+    if wd == 0:                                      # Monday: whatever last Friday couldn't take
+        wk = on(day - 2 * one) + on(day - one)
+        rest = wk if on(day - 3 * one) else wk[1:]
+        if rest:
+            return rest[0]
+    return exact[0] if exact else None
 
 
 # ---------------------------------------------------------------- main step
