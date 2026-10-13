@@ -56,7 +56,8 @@ INDEX = "device_index.json"
 def fill(cx=0.5):
     """Scale to fill 800x480, then crop. cx = which part of the width to keep:
     0 = left edge, 0.5 = centre (default), 1 = right edge (manifest "crop_x")."""
-    return f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-{W})*{cx}:(ih-{H})/2"
+    # format=gray: every frame copy is pure black and white (no faint sepia or blue tints)
+    return f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H}:(iw-{W})*{cx}:(ih-{H})/2,format=gray"
 
 
 FILL = fill()
