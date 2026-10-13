@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 59329440,
+  "total_bytes": 60685442,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -479,6 +479,33 @@
       "fps": 15
     },
     {
+      "path": "twilight-zone/device/twz_sp01.jpg",
+      "kind": "still",
+      "bytes": 77092,
+      "sha256": "bb8319ee84060c1fe26784bfeddeb661c62d206cd732380fe975ee885fd18c4b",
+      "source": "twilight-zone/stills/sp01_new_year.jpg",
+      "source_sha256": "01898671da32190a4b979f5db0092dd353d742c61623c87b4e6daa7b79148feb",
+      "scene": "twz_sp01"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp02.jpg",
+      "kind": "still",
+      "bytes": 93662,
+      "sha256": "1bf6dea527f88cd7794eb357be015697b0799721c6a5148da5cd96b4af70de5a",
+      "source": "twilight-zone/stills/sp02_memorial_day.jpg",
+      "source_sha256": "ff7895d46a5347ec15f8868406d5c5e15215ecfedd67f1c707e1f8e972ca1180",
+      "scene": "twz_sp02"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp03.jpg",
+      "kind": "still",
+      "bytes": 68258,
+      "sha256": "0fdd6ea49b5fd52f69c0b71f64c003c5408bb75b00564f50b41e196e3ed6192f",
+      "source": "twilight-zone/stills/sp03_labor_day.jpg",
+      "source_sha256": "b5dbaa6a1cc42d9c06a90e60f5eeb92835e43b175feda571559f3de4468a18cd",
+      "scene": "twz_sp03"
+    },
+    {
       "path": "twilight-zone/device/twz_sp04.jpg",
       "kind": "still",
       "bytes": 50761,
@@ -501,14 +528,140 @@
       "crop_x": 1.0
     },
     {
+      "path": "twilight-zone/device/twz_sp05.jpg",
+      "kind": "still",
+      "bytes": 85792,
+      "sha256": "fc77e0bb815b1646dc1fc6ab404ba9ec8b51a0eb51ce2ed9f2a298c0a6107ed6",
+      "source": "twilight-zone/stills/sp05_thanksgiving.jpg",
+      "source_sha256": "062e71d88d0ad126eda28356cf80eeb09dcb7b87b64b3b486edb3790479ee777",
+      "scene": "twz_sp05"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp06.jpg",
+      "kind": "still",
+      "bytes": 110270,
+      "sha256": "a91d23b0cdb30ad4c866836d38d0d7196a9efbfecb2b5b3f4176230b566092e8",
+      "source": "twilight-zone/stills/sp06_christmas.jpg",
+      "source_sha256": "df1306e0cfe336d8e5b63de0d80b69f7c27eb7888726fc55fd54854e7c27d95c",
+      "scene": "twz_sp06"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp07.jpg",
+      "kind": "still",
+      "bytes": 69142,
+      "sha256": "d208cc6417f42de2419de20de535f7b0643ecb742edae1567320a7b59261ca4f",
+      "source": "twilight-zone/stills/sp07_tom.jpg",
+      "source_sha256": "762550da213e4d37d1ed4c7ed9cd12b28e1e13d07bbaa2f68ef2f9aec8b9908d",
+      "scene": "twz_sp07"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp08.jpg",
+      "kind": "still",
+      "bytes": 68989,
+      "sha256": "57a11904494ace9ab232059a5552ff143037f1c4604aaaf08cec9e4eb8f889ec",
+      "source": "twilight-zone/stills/sp08_randy.jpg",
+      "source_sha256": "4d810095c2572796115b0751c1d70ef12a10b471d1869caf3cc9386a33d42bea",
+      "scene": "twz_sp08"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp09.jpg",
+      "kind": "still",
+      "bytes": 85349,
+      "sha256": "b62c2972d415a4c954acb0a6ace9a74325cbaa85f56e5eb435c946126fba4f55",
+      "source": "twilight-zone/stills/sp09_amber.jpg",
+      "source_sha256": "1d5b45805f87a00119b850ccf251f1c87dd61d34bf8371028dd866c7e2c07420",
+      "scene": "twz_sp09"
+    },
+    {
       "path": "twilight-zone/device/twz_sp10.jpg",
       "kind": "still",
-      "bytes": 77878,
-      "sha256": "35cbc7f7b2e64e89b6e09a195fd55ea49b1dbeb58c963e8d25cf4acc0e416f99",
+      "bytes": 92651,
+      "sha256": "a104568fc6c91251525ce2db0561e313c69a59109b9ef1ec3c529ea49f6d413b",
       "source": "twilight-zone/stills/sp10_vern.jpg",
-      "source_sha256": "9ba0747ba8b405948a290df61e7cb42efece5f9c4d755f96ef513fa1986e5d7a",
+      "source_sha256": "2104c558930dc53caa2236516ba5ff4827ef0f603d1b2998ccf790fb14c4ccfb",
       "scene": "twz_sp10"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp11.jpg",
+      "kind": "still",
+      "bytes": 64700,
+      "sha256": "259131d1553baf717f1cc3a875f0f67c1d4d500a5f09488e4276114d294703ad",
+      "source": "twilight-zone/stills/sp11_bill.jpg",
+      "source_sha256": "35eee794cb8c63fe354d45a60beb8fb53053233bda48966716bf55b6e266e756",
+      "scene": "twz_sp11"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp12.jpg",
+      "kind": "still",
+      "bytes": 88572,
+      "sha256": "cafa9b9ec393cc9836a8c4e10ef94fc89c7f7386dd570134ab6029acaf22e686",
+      "source": "twilight-zone/stills/sp12_ella.jpg",
+      "source_sha256": "9393f12de96f330071bf5bc5a9482677a894617248136f889dcbe8053403876e",
+      "scene": "twz_sp12"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp13.jpg",
+      "kind": "still",
+      "bytes": 85035,
+      "sha256": "1b671af6331add57e7df9f7f447a8fa85a15722f5bf6edd9f40e38dd74e227b9",
+      "source": "twilight-zone/stills/sp13_adam.jpg",
+      "source_sha256": "900a2367181d5bff80bf2a4c64332b4f7068b0500cb3993a2d12d448e461559c",
+      "scene": "twz_sp13"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp14.jpg",
+      "kind": "still",
+      "bytes": 85545,
+      "sha256": "cfa897b09d020548e1f1b723a0c1f99285ef672f84dea60744d2433ee4afa9e7",
+      "source": "twilight-zone/stills/sp14_tammy.jpg",
+      "source_sha256": "6403ef91c82250bef00fbd4179b458525293d7ae0f93fd11860647f23b073566",
+      "scene": "twz_sp14"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp15.jpg",
+      "kind": "still",
+      "bytes": 68628,
+      "sha256": "36dfef194220b081a081c9059edea6c881be39fdd1fb39ed5464537ec5197c2e",
+      "source": "twilight-zone/stills/sp15_ethan_july4.jpg",
+      "source_sha256": "7b6745183c7fd76d019f5a42ab3cf170122113435e5f3b0aa39f7b30433e6bfe",
+      "scene": "twz_sp15"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp16.jpg",
+      "kind": "still",
+      "bytes": 85595,
+      "sha256": "acd83c95b7680f3390c5b90ea712ef2c5af9bffc476a1738d4bb8bb9a90783b6",
+      "source": "twilight-zone/stills/sp16_joe_lyle.jpg",
+      "source_sha256": "6f5f8f19c2c2c22f220c5bdccc2e0a4328b7cbd3be85a1faa043394c9df499d3",
+      "scene": "twz_sp16"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp17.jpg",
+      "kind": "still",
+      "bytes": 51402,
+      "sha256": "90c8445e29eeaa35625b3b18ba31e0c295686cacf9ae75512a259e88d8dd5bdf",
+      "source": "twilight-zone/stills/sp17_jeff.jpg",
+      "source_sha256": "0d6ed4da3818ecf6b699dc92e389cc14de933fcb1b66c12c9073a35bd30b7438",
+      "scene": "twz_sp17"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp18.jpg",
+      "kind": "still",
+      "bytes": 82277,
+      "sha256": "34f5554b275ce209eafb9373791ec0dc9d3f0bc6aa5017f49f691c0cef541713",
+      "source": "twilight-zone/stills/sp18_rich.jpg",
+      "source_sha256": "660589f44128d753198aba1d358657e41b81c07e35f168d708e81dbda66f98fd",
+      "scene": "twz_sp18"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp19.jpg",
+      "kind": "still",
+      "bytes": 70921,
+      "sha256": "f7550411e9713a41cd51d46e21c1a25521493451e0c2ffacaa15efd5b604e3ed",
+      "source": "twilight-zone/stills/sp19_kevin.jpg",
+      "source_sha256": "bb07c083cf67df9940c37294023a50913572b550afe4d2cd698f55c9f943157c",
+      "scene": "twz_sp19"
     }
   ],
-  "updated_utc": "2026-10-13T21:48:22Z"
+  "updated_utc": "2026-10-13T22:36:50Z"
 }

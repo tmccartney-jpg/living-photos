@@ -904,7 +904,11 @@
         "number": 16,
         "year": 1963
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp01.jpg"
+      }
     },
     {
       "id": "twz_sp02",
@@ -932,7 +936,11 @@
         "number": 19,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp02.jpg"
+      }
     },
     {
       "id": "twz_sp03",
@@ -961,7 +969,11 @@
         "number": 33,
         "year": 1964
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp03.jpg"
+      }
     },
     {
       "id": "twz_sp04",
@@ -1023,7 +1035,11 @@
         "number": 4,
         "year": 1963
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp05.jpg"
+      }
     },
     {
       "id": "twz_sp06",
@@ -1051,7 +1067,11 @@
         "number": 11,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp06.jpg"
+      }
     },
     {
       "id": "twz_sp07",
@@ -1079,7 +1099,11 @@
         "number": 36,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp07.jpg"
+      }
     },
     {
       "id": "twz_sp08",
@@ -1107,7 +1131,11 @@
         "number": 35,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp08.jpg"
+      }
     },
     {
       "id": "twz_sp09",
@@ -1135,7 +1163,11 @@
         "number": 33,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp09.jpg"
+      }
     },
     {
       "id": "twz_sp10",
@@ -1195,7 +1227,11 @@
         "number": 4,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp11.jpg"
+      }
     },
     {
       "id": "twz_sp12",
@@ -1223,7 +1259,11 @@
         "number": 35,
         "year": 1962
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp12.jpg"
+      }
     },
     {
       "id": "twz_sp13",
@@ -1251,7 +1291,11 @@
         "number": 30,
         "year": 1962
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp13.jpg"
+      }
     },
     {
       "id": "twz_sp14",
@@ -1279,7 +1323,11 @@
         "number": 36,
         "year": 1964
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp14.jpg"
+      }
     },
     {
       "id": "twz_sp15",
@@ -1307,7 +1355,11 @@
         "number": 23,
         "year": 1961
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp15.jpg"
+      }
     },
     {
       "id": "twz_sp16",
@@ -1335,7 +1387,11 @@
         "number": 1,
         "year": 1961
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp16.jpg"
+      }
     },
     {
       "id": "twz_sp17",
@@ -1363,7 +1419,11 @@
         "number": 27,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp17.jpg"
+      }
     },
     {
       "id": "twz_sp18",
@@ -1391,7 +1451,11 @@
         "number": 18,
         "year": 1961
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp18.jpg"
+      }
     },
     {
       "id": "twz_sp19",
@@ -1419,7 +1483,11 @@
         "number": 2,
         "year": 1960
       },
-      "presence": "freeze"
+      "presence": "freeze",
+      "device": {
+        "clip": null,
+        "still": "device/twz_sp19.jpg"
+      }
     }
   ]
 }
