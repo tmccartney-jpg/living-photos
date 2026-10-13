@@ -42,6 +42,7 @@ Usage:
 """
 import argparse
 import copy
+import calendar
 import datetime as dt
 import hashlib
 import json
@@ -223,6 +224,8 @@ def apply_crossfade_pools(lib, day, in_cf, share):
             s["pool"] = "reserve"          # newly released -> joins via reserve
     for k in lib.keys(theme="twilight-zone"):
         s = lib.scene(k)
+        if s["pool"] in ("special", "hold"):
+            continue
         if share >= 1.0:
             s["pool"] = "retired_final"
         elif s["pool"] == "retired_final":
@@ -315,6 +318,39 @@ def draw(lib, rot, day, theme, yesterday):
     return key, order
 
 
+# ---------------------------------------------------------------- special days
+# A scene with pool "special" never joins the normal rotation; it replaces the day's pick on
+# the date(s) its "special" rule matches. Same rule format as the Praise Kier display
+# (directives.json annual_events), including its weekday numbering (0 = Sunday ... 6 = Saturday):
+#   {"type": "fixed",        "month": 10, "day": 31}
+#   {"type": "nth_weekday",  "month": 11, "weekday": 4, "nth": 4}    4th Thursday of November
+#   {"type": "last_weekday", "month": 5,  "weekday": 1}              last Monday of May
+# Leap years: Python's calendar handles them (Feb has 29 days in 2028, not in 2100).
+# A special scene without a still or video yet is skipped (the normal pick runs).
+def special_matches(rule, day):
+    if not rule or rule.get("month") != day.month:
+        return False
+    wd = (day.weekday() + 1) % 7                     # Python Monday=0 -> Praise Kier Sunday=0
+    t = rule.get("type")
+    if t == "fixed":
+        return rule.get("day") == day.day
+    if t == "nth_weekday":
+        return wd == rule.get("weekday") and (day.day - 1) // 7 + 1 == rule.get("nth")
+    if t == "last_weekday":
+        return wd == rule.get("weekday") and day.day + 7 > calendar.monthrange(day.year, day.month)[1]
+    return False
+
+
+def special_for(lib, day, state):
+    if state.get("special_days") is False:           # state.json switch (default on)
+        return None
+    for k in sorted(lib.keys(pool="special")):
+        s = lib.scene(k)
+        if (s.get("video") or s.get("still")) and special_matches(s.get("special"), day):
+            return k
+    return None
+
+
 # ---------------------------------------------------------------- main step
 def run_day(day, state, lib, rot, quiet=False):
     rot = dict(rot)
@@ -330,7 +366,9 @@ def run_day(day, state, lib, rot, quiet=False):
     # today's theme: Severance with probability `share` (deterministic per day)
     sev_ready = any(lib.scene(k)["pool"] in ("active", "reserve", "retired") for k in lib.keys(theme="severance"))
     want = "severance" if (sev_ready and spread(rot, "scene", share, day)) else "twilight-zone"
-    key, _ = draw(lib, rot, day, want, yesterday)
+    key = special_for(lib, day, state)
+    if key is None:
+        key, _ = draw(lib, rot, day, want, yesterday)
     if key is None:
         other = "twilight-zone" if want == "severance" else "severance"
         key, _ = draw(lib, rot, day, other, yesterday)
@@ -372,6 +410,7 @@ def run_day(day, state, lib, rot, quiet=False):
             "caption_index": cap_i,
             "episode_tag": s.get("episode_tag"),
             "episode": s.get("episode"),               # {"title", "season", "number", "year"}: small line under the caption
+            "special": (s.get("special") or {}).get("label") if s["pool"] == "special" else None,
         },
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
                   "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},

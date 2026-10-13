@@ -873,6 +873,469 @@
         "Liz keeps waking up in front of Room 22.",
         "Don't board Flight 22."
       ]
+    },
+    {
+      "id": "twz_sp01",
+      "video": null,
+      "still": null,
+      "captions": [
+        "The clock strikes midnight. A new year begins in the Twilight Zone."
+      ],
+      "episode_tag": "ninety_years_without_slumbering",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 1,
+        "day": 1,
+        "label": "New Year's Day"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "Ninety Years Without Slumbering"
+      }
+    },
+    {
+      "id": "twz_sp02",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Remembrance demands quiet passage through the shadows."
+      ],
+      "episode_tag": "the_purple_testament",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "last_weekday",
+        "month": 5,
+        "weekday": 1,
+        "label": "Memorial Day"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Purple Testament"
+      }
+    },
+    {
+      "id": "twz_sp03",
+      "video": null,
+      "still": null,
+      "captions": [
+        "No machine has replaced this crew. Enjoy the day off."
+      ],
+      "episode_tag": "the_brain_center_at_whipples",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "nth_weekday",
+        "month": 9,
+        "weekday": 1,
+        "nth": 1,
+        "label": "Labor Day"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Brain Center at Whipple's"
+      }
+    },
+    {
+      "id": "twz_sp04",
+      "video": "videos/sp04_halloween_pingpong.mp4",
+      "still": "stills/sp04_halloween.jpg",
+      "captions": [
+        "Unusual masking has been noted. Proceed with caution."
+      ],
+      "episode_tag": "the_grave",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31,
+        "label": "Halloween"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Grave",
+        "season": 3,
+        "number": 7,
+        "year": 1961
+      },
+      "crop_x": 1.0,
+      "presence": "freeze"
+    },
+    {
+      "id": "twz_sp05",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Stop the clock. Have seconds."
+      ],
+      "episode_tag": "a_kind_of_a_stopwatch",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "nth_weekday",
+        "month": 11,
+        "weekday": 4,
+        "nth": 4,
+        "label": "Thanksgiving"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "A Kind of a Stopwatch"
+      }
+    },
+    {
+      "id": "twz_sp06",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Merry Christmas, from the other side of the signpost."
+      ],
+      "episode_tag": "the_night_of_the_meek",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 12,
+        "day": 25,
+        "label": "Christmas"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Night of the Meek"
+      }
+    },
+    {
+      "id": "twz_sp07",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Submitted for your approval: Tom Echorst, author of another year."
+      ],
+      "episode_tag": "a_world_of_his_own",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 1,
+        "day": 15,
+        "label": "Tom Echorst's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "A World of His Own"
+      }
+    },
+    {
+      "id": "twz_sp08",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Randy Bullock steps up to the plate. Another year, another swing."
+      ],
+      "episode_tag": "the_mighty_casey",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 2,
+        "day": 22,
+        "label": "Randy Bullock's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Mighty Casey"
+      }
+    },
+    {
+      "id": "twz_sp09",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Every birthday deserves a guardian angel. Today it's Amber's turn."
+      ],
+      "episode_tag": "mr_bevis",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 3,
+        "day": 18,
+        "label": "Amber Wilcox's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "Mr. Bevis"
+      }
+    },
+    {
+      "id": "twz_sp10",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Vern Andrews makes his greatest pitch yet: another year."
+      ],
+      "episode_tag": "one_for_the_angels",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 5,
+        "day": 1,
+        "label": "Vern Andrews' birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "One for the Angels"
+      }
+    },
+    {
+      "id": "twz_sp11",
+      "video": null,
+      "still": null,
+      "captions": [
+        "The machines have agreed to behave today. Happy birthday, Bill."
+      ],
+      "episode_tag": "a_thing_about_machines",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 5,
+        "day": 21,
+        "label": "Bill Walker's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "A Thing About Machines"
+      }
+    },
+    {
+      "id": "twz_sp12",
+      "video": null,
+      "still": null,
+      "captions": [
+        "One Ella Wilcox, celebrated today in the zone of gladness."
+      ],
+      "episode_tag": "i_sing_the_body_electric",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 5,
+        "day": 22,
+        "label": "Ella Wilcox's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "I Sing the Body Electric"
+      }
+    },
+    {
+      "id": "twz_sp13",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Adam Truax, teller of tall tales. This one happens to be true: happy birthday."
+      ],
+      "episode_tag": "hocus-pocus_and_frisby",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 6,
+        "day": 18,
+        "label": "Adam Truax's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "Hocus-Pocus and Frisby"
+      }
+    },
+    {
+      "id": "twz_sp14",
+      "video": null,
+      "still": null,
+      "captions": [
+        "The longest day of the year belongs to Tammy Truax."
+      ],
+      "episode_tag": "the_bewitchin_pool",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 6,
+        "day": 21,
+        "label": "Tammy Truax's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Bewitchin' Pool"
+      }
+    },
+    {
+      "id": "twz_sp15",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Fireworks for the nation. Candles for Ethan."
+      ],
+      "episode_tag": "a_hundred_yards_over_the_rim",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 7,
+        "day": 4,
+        "label": "Ethan Wilcox's birthday + July 4th"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "A Hundred Yards Over the Rim"
+      }
+    },
+    {
+      "id": "twz_sp16",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Two birthdays, one day. Joe and Lyle, submitted for your approval."
+      ],
+      "episode_tag": "two",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 8,
+        "day": 11,
+        "label": "Joe Battaglini + Lyle Campbell's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "Two"
+      }
+    },
+    {
+      "id": "twz_sp17",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Jeff Truax gets one big tall wish today."
+      ],
+      "episode_tag": "the_big_tall_wish",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 8,
+        "day": 29,
+        "label": "Jeff Truax's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Big Tall Wish"
+      }
+    },
+    {
+      "id": "twz_sp18",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Every shipment lands on time. Even Rich's birthday."
+      ],
+      "episode_tag": "the_odyssey_of_flight_33",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 12,
+        "day": 9,
+        "label": "Rich DiOrio's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Odyssey of Flight 33"
+      }
+    },
+    {
+      "id": "twz_sp19",
+      "video": null,
+      "still": null,
+      "captions": [
+        "Kevin Wilcox: four wishes, one birthday. Choose carefully."
+      ],
+      "episode_tag": "the_man_in_the_bottle",
+      "mood_tags": [],
+      "pool": "special",
+      "special": {
+        "type": "fixed",
+        "month": 12,
+        "day": 14,
+        "label": "Kevin Wilcox's birthday"
+      },
+      "last_shown": null,
+      "times_shown": 0,
+      "weight": 1,
+      "release_date": null,
+      "episode": {
+        "title": "The Man in the Bottle"
+      }
     }
   ]
 }

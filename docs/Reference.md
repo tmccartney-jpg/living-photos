@@ -112,6 +112,8 @@ Praise Kier lives in its own repo (`praise-kier-display`) and is not part of thi
 - Extra pool values used by the rotation: `pending` (Severance scene not yet released / crossfade not started) and `retired_final` (Twilight Zone scenes after the finale).
 - `hold` (set by hand): the scene is out of rotation until it is reworked; the rotation never picks or moves it. Set it back to `reserve` to return it.
 - `captions_later` (optional): extra captions parked for later; only `captions` is used.
+- `special` pool (birthdays and holidays, `twz_sp01`–`twz_sp19`): never in the normal rotation. On a date matching the scene's `special` rule it replaces that day's pick; the next day the normal rotation carries on where it left off. Rules use the Praise Kier format and weekday numbering (0 = Sunday): `{"type": "fixed", "month": 10, "day": 31}`, `{"type": "nth_weekday", "month": 11, "weekday": 4, "nth": 4}` (4th Thursday), `{"type": "last_weekday", "month": 5, "weekday": 1}` (last Monday); `label` names the day. Leap years come from Python's calendar. A special scene with no `still` or `video` yet is skipped. `state.json` → `special_days: false` turns them all off.
+- `crop_x` (optional, 0–1): which part of a wide image the 800×480 crop keeps: 0 left edge, 0.5 centre (default), 1 right edge.
 - Preview without changing anything: `python tools/rotate.py --simulate 30`.
 
 ---
