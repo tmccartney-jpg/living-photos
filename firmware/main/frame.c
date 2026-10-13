@@ -445,7 +445,10 @@ static const scene_t *pick(bool *before_change)
     if (rot.has_prev && clock_now(&tm)) {
         char today[12];
         strftime(today, sizeof(today), "%Y-%m-%d", &tm);
-        if (!strcmp(today, rot.date) && tm.tm_hour * 60 + tm.tm_min < rot.change_min) {
+        // rotation.json may be picked the evening before (date = tomorrow): keep the
+        // current scene until change_at on that date
+        int cmp = strcmp(today, rot.date);
+        if (cmp < 0 || (cmp == 0 && tm.tm_hour * 60 + tm.tm_min < rot.change_min)) {
             if (before_change) *before_change = true;
             return &rot.prev;
         }

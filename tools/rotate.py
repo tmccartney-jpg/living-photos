@@ -30,8 +30,10 @@ Rules (docs/Reference.md, README section 3-4):
     At the finale share = 100%: Severance only, Twilight Zone scenes retired.
   - Each theme has its own conveyor (active / reserve / retired bags).
 
-Safe to run more than once a day: if rotation.json is already for today it
-does nothing (use --force to redraw).
+Runs from 6 pm on pick TOMORROW's scene (the frames keep today's until CHANGE_AT
+on that date), so GitHub's late scheduled runs can't make the change late.
+Safe to run more than once: if rotation.json is already for that day (or later)
+it does nothing (use --force to redraw).
 
 Usage:
   python tools/rotate.py                 # normal daily run
@@ -89,9 +91,18 @@ def parse_date(s):
     return dt.date.fromisoformat(s) if s else None
 
 
+PREPICK_HOUR = 18     # runs from 6 pm local on pick tomorrow's scene (frames hold it until CHANGE_AT)
+
+
 def today_local():
     now = dt.datetime.now(TZ) if TZ else dt.datetime.now()
     return now.date()
+
+
+def target_day():
+    """The day to pick: tomorrow in the evening, otherwise today."""
+    now = dt.datetime.now(TZ) if TZ else dt.datetime.now()
+    return now.date() + dt.timedelta(days=1) if now.hour >= PREPICK_HOUR else now.date()
 
 
 def rng_for(day, salt=""):
@@ -393,7 +404,7 @@ def main():
     ap.add_argument("--simulate", type=int, metavar="DAYS", help="preview DAYS days, write nothing")
     a = ap.parse_args()
 
-    day = parse_date(a.date) if a.date else today_local()
+    day = parse_date(a.date) if a.date else target_day()
     state = load_json("state.json", {})
     lib = Library()
     rot = load_json("rotation.json", {"history": []})
@@ -404,8 +415,8 @@ def main():
         print("(simulation only - nothing written)")
         return
 
-    if rot.get("date") == day.isoformat() and not a.force:
-        print(f"rotation.json is already for {day}; nothing to do")
+    if (parse_date(rot.get("date")) or dt.date.min) >= day and not a.force:
+        print(f"rotation.json is already for {rot.get('date')}; nothing to do")
         return
     if a.force and rot.get("date") == day.isoformat() and rot.get("history"):
         # undo today's entry so a forced redraw doesn't double-count
