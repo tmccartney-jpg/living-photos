@@ -1,8 +1,37 @@
 {
   "schema_version": 1,
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_019",
+    "id": "twz_019",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/maple_street_019.mp4",
+    "still": "twilight-zone/stills/maple_street_019.jpg",
+    "presence": "rest",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_019.lpv",
+      "still": "twilight-zone/device/twz_019.jpg"
+    },
+    "caption": "The lights went out on Maple Street. Then the neighbors turned.",
+    "caption_index": 0,
+    "episode_tag": "the_monsters_are_due_on_maple_street",
+    "episode": {
+      "title": "The Monsters Are Due on Maple Street",
+      "season": 1,
+      "number": 22,
+      "year": 1960
+    }
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "10:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_021",
     "id": "twz_021",
     "theme": "twilight-zone",
@@ -24,28 +53,6 @@
       "year": 1963
     }
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_026",
-    "id": "twz_026",
-    "theme": "twilight-zone",
-    "video": null,
-    "still": "twilight-zone/stills/the_attic_farmhouse_026.jpg",
-    "presence": "freeze",
-    "device": {
-      "clip": null,
-      "still": "twilight-zone/device/twz_026.jpg"
-    },
-    "caption": "It's small. It's not alone.",
-    "caption_index": 0,
-    "episode_tag": "the_invaders"
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -56,14 +63,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 6,
-    "retired": 2,
+    "reserve": 5,
+    "retired": 3,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_019",
       "twilight-zone/twz_017",
       "twilight-zone/twz_013",
       "twilight-zone/twz_004",
@@ -73,6 +79,7 @@
       "twilight-zone/twz_028",
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
+      "twilight-zone/twz_022",
       "twilight-zone/twz_006",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -80,7 +87,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_021"
+    "twilight-zone": "twilight-zone/twz_019"
   },
   "spread": {},
   "history": [
@@ -97,6 +104,11 @@
     {
       "date": "2026-10-12",
       "key": "twilight-zone/twz_021",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-13",
+      "key": "twilight-zone/twz_019",
       "caption_index": 0
     }
   ]
