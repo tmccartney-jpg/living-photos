@@ -5,7 +5,7 @@
 // Setup policy (docs/Provisioning.md):
 //   - no saved network                         -> setup wanted
 //   - saved network missing for WIFI_MISSING_S -> setup wanted
-//   - "Not now" / untouched setup              -> asks again after WIFI_SNOOZE_S (1 h), until connected
+//   - "Not now"                                -> asks again after WIFI_SNOOZE_S (1 h), until connected
 #include <stdbool.h>
 #include <stdint.h>
 

@@ -284,8 +284,9 @@ static void tick_cb(lv_timer_t *t)
         close_setup();
         return;
     }
-    // nobody is using it: don't leave it on the wall
-    if (lv_disp_get_inactive_time(NULL) > IDLE_CLOSE_MS) {
+    // opened by hand from diagnostics and left alone: back to the scene.
+    // Opened automatically: stays up until a network connects or someone taps "Not now".
+    if (is_manual && lv_disp_get_inactive_time(NULL) > IDLE_CLOSE_MS) {
         ESP_LOGI(TAG, "untouched for 5 min");
         not_now();
         return;

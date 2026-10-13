@@ -39,7 +39,8 @@ The previously saved network stays saved until a new one connects successfully.
 
 - **While the setup screen is up, the frame keeps retrying the saved network.** If it comes back, setup closes by itself and the scene returns.
 - **"Not now"** returns to the scene; the frame keeps playing from its SD card and **asks again after 1 hour** — every hour until a network connects, because without Wi-Fi the frame gets no new scenes or daily rotation.
-- **Untouched for 5 minutes**, the setup screen acts like "Not now", so it never sits on the wall.
+- **Opened automatically**, the setup screen stays up until a network connects or someone taps "Not now" (fw 12; before that it hid itself after 5 minutes untouched, which was easy to miss).
+- **Opened by hand** from diagnostics and left untouched for 5 minutes, it goes back to the scene.
 - Router reboots and short outages never show setup (the 1-hour rule).
 
 ---
