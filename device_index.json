@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 59814893,
+  "total_bytes": 59329440,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -24,19 +24,19 @@
     {
       "path": "twilight-zone/device/twz_001.jpg",
       "kind": "still",
-      "bytes": 26451,
-      "sha256": "f2d2d8eb7e72b16a3effe47cb34568b9ad05d7a4a636ef27d953b44812ff4c9d",
+      "bytes": 23184,
+      "sha256": "7ca0f472a36cdf5aceef4e06074f604b609c31d9bce7c9e776d54d665d2c0a3a",
       "source": "twilight-zone/videos/bus_stop_001.mp4",
-      "source_sha256": "949509c0c17923b1790a1e5c9c9861ee7553478d008d0e6d6bd16b0953207200",
+      "source_sha256": "2fe4215d70816189a19aad5a29b80371f777811eb99e25220a24b9a612673cbd",
       "scene": "twz_001"
     },
     {
       "path": "twilight-zone/device/twz_001.lpv",
       "kind": "clip",
-      "bytes": 2496434,
-      "sha256": "48237a3aa4d8919b7134ce05be7254985e521fadff6002c6b4b8b130c3bd1c1d",
+      "bytes": 2189847,
+      "sha256": "8fe25d5ed5ed8e9ce826b26c8a735811a0bcd60d5c00b85d029cd87b06828c06",
       "source": "twilight-zone/videos/bus_stop_001.mp4",
-      "source_sha256": "949509c0c17923b1790a1e5c9c9861ee7553478d008d0e6d6bd16b0953207200",
+      "source_sha256": "2fe4215d70816189a19aad5a29b80371f777811eb99e25220a24b9a612673cbd",
       "scene": "twz_001",
       "frames": 91,
       "fps": 15
@@ -320,19 +320,19 @@
     {
       "path": "twilight-zone/device/twz_018.jpg",
       "kind": "still",
-      "bytes": 23244,
-      "sha256": "657924f00be36c0e67abaea8d0dfb8d85e8bda5483ee0f780cb0887ddef2870f",
+      "bytes": 21353,
+      "sha256": "902a5a42126d06f8f049c05a199e8e0015840b2cb0be134422419ef481861724",
       "source": "twilight-zone/videos/hospital_bandages_018.mp4",
-      "source_sha256": "2784adda71d488abb2cafca117ab79b52a9ed6d3c9128a2a61d49324aa2f8810",
+      "source_sha256": "7815ba24931323171bbf9b896214ce1a1cd59c1c9ed3891e238f806f9c048e58",
       "scene": "twz_018"
     },
     {
       "path": "twilight-zone/device/twz_018.lpv",
       "kind": "clip",
-      "bytes": 2059149,
-      "sha256": "340469313c43fbfcb845fbbb3d689394f76166923eb71e1307adb225015db843",
+      "bytes": 1885441,
+      "sha256": "53701a46f26012e8d3418e8663f783c9c34fd51d8573506abe79927fbaaf6437",
       "source": "twilight-zone/videos/hospital_bandages_018.mp4",
-      "source_sha256": "2784adda71d488abb2cafca117ab79b52a9ed6d3c9128a2a61d49324aa2f8810",
+      "source_sha256": "7815ba24931323171bbf9b896214ce1a1cd59c1c9ed3891e238f806f9c048e58",
       "scene": "twz_018",
       "frames": 89,
       "fps": 15
@@ -510,5 +510,5 @@
       "scene": "twz_sp10"
     }
   ],
-  "updated_utc": "2026-10-13T21:43:51Z"
+  "updated_utc": "2026-10-13T21:48:22Z"
 }
