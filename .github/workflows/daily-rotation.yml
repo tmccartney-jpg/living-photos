@@ -1,6 +1,6 @@
 name: Daily rotation
 
-# Picks today's scene, caption and intro for every frame (rotation.json),
+# Picks the day's scene, caption and intro for every frame (rotation.json),
 # and runs the Severance crossfade bookkeeping. See tools/rotate.py.
 on:
   schedule:
@@ -11,10 +11,18 @@ on:
     - cron: "7 10 * * *"     # 6:07 am EDT / 5:07 am EST
     - cron: "7 11 * * *"     # 7:07 am EDT / 6:07 am EST
     - cron: "7 12 * * *"     # 8:07 am EDT / 7:07 am EST
+    # Evening runs pick TOMORROW's scene the night before (rotate.py, from 6 pm local);
+    # the frames (fw 11+) hold it until change_at, so a late GitHub run can't make the change late.
+    # The morning runs above stay as a backup and skip when the day is already picked.
+    - cron: "7 23 * * *"     # 7:07 pm EDT / 6:07 pm EST
+    - cron: "7 0 * * *"      # 8:07 pm EDT / 7:07 pm EST
+    - cron: "7 1 * * *"      # 9:07 pm EDT / 8:07 pm EST
+    - cron: "7 2 * * *"      # 10:07 pm EDT / 9:07 pm EST
+    - cron: "7 3 * * *"      # 11:07 pm EDT / 10:07 pm EST
   workflow_dispatch:
     inputs:
       force:
-        description: "Redraw today's scene even if already picked"
+        description: "Redraw the scene even if already picked (after 6 pm: tomorrow's)"
         type: boolean
         default: false
 
@@ -47,7 +55,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nothing changed."
           else
-            git commit -m "Daily rotation $(TZ=America/New_York date +%F)"
+            git commit -m "Daily rotation $(python3 -c 'import json;print(json.load(open("rotation.json"))["date"])')"
             git pull --rebase origin main
             git push
           fi
