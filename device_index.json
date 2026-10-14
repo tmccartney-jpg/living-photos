@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 153185878,
+  "total_bytes": 153827371,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -284,21 +284,21 @@
     {
       "path": "twilight-zone/device/twz_014.jpg",
       "kind": "still",
-      "bytes": 45489,
-      "sha256": "af0e8f97fdf5e37d9a442b27f43ff6e34e26b405ffc9125b9e03ecff7094c812",
-      "source": "twilight-zone/videos/14_department_store_v2_pingpong.mp4",
-      "source_sha256": "973e3df63a693f00966256bfdcb68ace517de7d9b3cd3cd83aa67695c20b9082",
+      "bytes": 45702,
+      "sha256": "c3288b7b3e7b1ef27ff1adb056027bb22b4e699d36cb008939889fab461549d1",
+      "source": "twilight-zone/videos/14_department_store_v2_turn.mp4",
+      "source_sha256": "d5cad7a275b4520c07ee87cd2e6c020b1e48bd85634972efb55975d50477832e",
       "scene": "twz_014"
     },
     {
       "path": "twilight-zone/device/twz_014.lpv",
       "kind": "clip",
-      "bytes": 4011785,
-      "sha256": "431e8941ac321d5f534581e2694563f7541fdb0ff0cb94af241c699e5a3eaf5d",
-      "source": "twilight-zone/videos/14_department_store_v2_pingpong.mp4",
-      "source_sha256": "973e3df63a693f00966256bfdcb68ace517de7d9b3cd3cd83aa67695c20b9082",
+      "bytes": 3043745,
+      "sha256": "fa232dc22a73e9428ba3cd4d3b570e62031e9634cbc6b46352c64de0d247a26d",
+      "source": "twilight-zone/videos/14_department_store_v2_turn.mp4",
+      "source_sha256": "d5cad7a275b4520c07ee87cd2e6c020b1e48bd85634972efb55975d50477832e",
       "scene": "twz_014",
-      "frames": 90,
+      "frames": 68,
       "fps": 15
     },
     {
@@ -384,21 +384,21 @@
     {
       "path": "twilight-zone/device/twz_019.jpg",
       "kind": "still",
-      "bytes": 44529,
-      "sha256": "52307128e7a6c3b188b34ac2ef866279bebe2ebab19b1f5e6d570d336f6ad497",
-      "source": "twilight-zone/videos/maple_street_019.mp4",
-      "source_sha256": "f11199dd6e1920d82f346597af9b65efc9234e64c36fdacfe367b87524083dd7",
+      "bytes": 50218,
+      "sha256": "444e828d4423b5e6a010915f9c0ef531d5a4abe71ea63bac6a3c9ec5c38c8bc5",
+      "source": "twilight-zone/videos/19_maple_street_lightsout.mp4",
+      "source_sha256": "c3f126ef303699db7312239395be3d285247c6c88d24325d12a02b8321ecb634",
       "scene": "twz_019"
     },
     {
       "path": "twilight-zone/device/twz_019.lpv",
       "kind": "clip",
-      "bytes": 4333286,
-      "sha256": "60441a65dac4cee7571f438f026351fc2203d41188f36292aac57c644f45d815",
-      "source": "twilight-zone/videos/maple_street_019.mp4",
-      "source_sha256": "f11199dd6e1920d82f346597af9b65efc9234e64c36fdacfe367b87524083dd7",
+      "bytes": 6560036,
+      "sha256": "002d521655889e050688b9da3f66a0cf0a3b57f35c2d0677ef93fdac36ab5dc9",
+      "source": "twilight-zone/videos/19_maple_street_lightsout.mp4",
+      "source_sha256": "c3f126ef303699db7312239395be3d285247c6c88d24325d12a02b8321ecb634",
       "scene": "twz_019",
-      "frames": 90,
+      "frames": 143,
       "fps": 15
     },
     {
@@ -484,21 +484,21 @@
     {
       "path": "twilight-zone/device/twz_024.jpg",
       "kind": "still",
-      "bytes": 28845,
-      "sha256": "8ea91c19f2b12d5e6d2681beefe330c7f422e2f7a641165777b8b2f03759ef46",
-      "source": "twilight-zone/videos/24_doll_on_shelf_pingpong.mp4",
-      "source_sha256": "df4a291318ef0e784d8f3f0b258e152182d79f0ac25067b8590f09fb66758822",
+      "bytes": 28979,
+      "sha256": "54d30178bdf1f9e6dd9a4ea12a71d4ded2439a12916ea55cf299accfc824f2b5",
+      "source": "twilight-zone/videos/24_doll_on_shelf_turn.mp4",
+      "source_sha256": "500135e7463b5b74cd4a20b897c9062bd82c6eb8dbc8c88968b25ca200c0ebc8",
       "scene": "twz_024"
     },
     {
       "path": "twilight-zone/device/twz_024.lpv",
       "kind": "clip",
-      "bytes": 2617018,
-      "sha256": "381999823dcf6490aa66df6f5d9bf02ca1e7b2dc4bfad618b86ed8b3b768008f",
-      "source": "twilight-zone/videos/24_doll_on_shelf_pingpong.mp4",
-      "source_sha256": "df4a291318ef0e784d8f3f0b258e152182d79f0ac25067b8590f09fb66758822",
+      "bytes": 1993765,
+      "sha256": "b1af17bf48cc3f5e6559c3f025252b6081d7ebc98071ecc59c483c5eb6ff7bbe",
+      "source": "twilight-zone/videos/24_doll_on_shelf_turn.mp4",
+      "source_sha256": "500135e7463b5b74cd4a20b897c9062bd82c6eb8dbc8c88968b25ca200c0ebc8",
       "scene": "twz_024",
-      "frames": 90,
+      "frames": 68,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:17:39Z"
+  "updated_utc": "2026-10-14T13:20:36Z"
 }
