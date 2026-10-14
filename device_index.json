@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 150660164,
+  "total_bytes": 146833729,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -124,22 +124,11 @@
     {
       "path": "twilight-zone/device/twz_006.jpg",
       "kind": "still",
-      "bytes": 30979,
-      "sha256": "3efa2eb9ff8b9b82f21f80e73d5eac0d326914bad1a90f412e10c14e55e0e2d6",
-      "source": "twilight-zone/videos/rotary_phone_off_the_hook_006.mp4",
-      "source_sha256": "0c05b8065bbede3f5b190e17fb246fb6377c45f2dc2eb1dc833cf3e555944135",
+      "bytes": 45405,
+      "sha256": "9d9c8b74443b9b56f078540a1d5698c0ba036effacbdac05ed146ad0a8016b45",
+      "source": "twilight-zone/stills/rotary_phone_off_the_hook_006.jpg",
+      "source_sha256": "603eb42efde60c2df3b834d9551a6da903446ef0a0e0560f3ffbe10ade0b161f",
       "scene": "twz_006"
-    },
-    {
-      "path": "twilight-zone/device/twz_006.lpv",
-      "kind": "clip",
-      "bytes": 2887702,
-      "sha256": "40957566b120bedf3547fbeefd0a229145bbfec498492551b36e8214b9cf9867",
-      "source": "twilight-zone/videos/rotary_phone_off_the_hook_006.mp4",
-      "source_sha256": "0c05b8065bbede3f5b190e17fb246fb6377c45f2dc2eb1dc833cf3e555944135",
-      "scene": "twz_006",
-      "frames": 90,
-      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_007.jpg",
@@ -464,21 +453,21 @@
     {
       "path": "twilight-zone/device/twz_023.jpg",
       "kind": "still",
-      "bytes": 54481,
-      "sha256": "d722f1e1d584bc10f5ba8830c8efd5c46e1ddf0b5fa489b5dfc6756ae5c912a0",
-      "source": "twilight-zone/videos/23_park_carousel_v2_loop.mp4",
-      "source_sha256": "822ce104b318bc7fa47d0d6fd0fdae8139d7639bd727a401d52082698e7cb8a1",
+      "bytes": 55347,
+      "sha256": "89fc9b6b5d8e46b45d77dc97171daeb76e0bc1b580e59e32fb5dbedceafb831c",
+      "source": "twilight-zone/videos/23_park_carousel_v3_loop.mp4",
+      "source_sha256": "1fdd076fd0f5c37a952a5741fe4bc5c7a4a4076455b17dc6798df1592efb741b",
       "scene": "twz_023"
     },
     {
       "path": "twilight-zone/device/twz_023.lpv",
       "kind": "clip",
-      "bytes": 4443389,
-      "sha256": "9fffd52dbbaa00ddb0921969a90cf617653c34c3141eaaf6167c6a2edd6aacf2",
-      "source": "twilight-zone/videos/23_park_carousel_v2_loop.mp4",
-      "source_sha256": "822ce104b318bc7fa47d0d6fd0fdae8139d7639bd727a401d52082698e7cb8a1",
+      "bytes": 3489364,
+      "sha256": "8e5a3561f60127fa4451ea464c6d75a68d843e1d00f8fafe51a98c5396106d84",
+      "source": "twilight-zone/videos/23_park_carousel_v3_loop.mp4",
+      "source_sha256": "1fdd076fd0f5c37a952a5741fe4bc5c7a4a4076455b17dc6798df1592efb741b",
       "scene": "twz_023",
-      "frames": 81,
+      "frames": 64,
       "fps": 15
     },
     {
@@ -1004,5 +993,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:33:57Z"
+  "updated_utc": "2026-10-14T13:48:24Z"
 }
