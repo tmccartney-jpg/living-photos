@@ -77,7 +77,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_003.lpv",
         "still": "device/twz_003.jpg"
       },
       "episode": {
@@ -135,7 +135,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_005.lpv",
         "still": "device/twz_005.jpg"
       },
       "episode": {
@@ -193,7 +193,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_007.lpv",
         "still": "device/twz_007.jpg"
       },
       "episode": {
@@ -224,7 +224,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_008.lpv",
         "still": "device/twz_008.jpg"
       },
       "episode": {
@@ -372,7 +372,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_013.lpv",
         "still": "device/twz_013.jpg"
       },
       "episode": {
@@ -401,7 +401,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_014.lpv",
         "still": "device/twz_014.jpg"
       },
       "episode": {
@@ -430,7 +430,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_015.lpv",
         "still": "device/twz_015.jpg"
       },
       "episode": {
@@ -492,7 +492,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_017.lpv",
         "still": "device/twz_017.jpg"
       },
       "episode": {
@@ -583,7 +583,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_020.lpv",
         "still": "device/twz_020.jpg"
       },
       "episode": {
@@ -612,7 +612,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_021.lpv",
         "still": "device/twz_021.jpg"
       },
       "episode": {
@@ -641,7 +641,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_022.lpv",
         "still": "device/twz_022.jpg"
       },
       "episode": {
@@ -670,7 +670,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_023.lpv",
         "still": "device/twz_023.jpg"
       },
       "episode": {
@@ -699,7 +699,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_024.lpv",
         "still": "device/twz_024.jpg"
       },
       "episode": {
@@ -728,7 +728,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_025.lpv",
         "still": "device/twz_025.jpg"
       },
       "episode": {
@@ -757,7 +757,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_026.lpv",
         "still": "device/twz_026.jpg"
       },
       "episode": {
@@ -816,7 +816,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_028.lpv",
         "still": "device/twz_028.jpg"
       },
       "episode": {
@@ -845,7 +845,7 @@
       "weight": 1,
       "release_date": null,
       "device": {
-        "clip": null,
+        "clip": "device/twz_029.lpv",
         "still": "device/twz_029.jpg"
       },
       "episode": {
@@ -917,7 +917,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp01.lpv",
         "still": "device/twz_sp01.jpg"
       }
     },
@@ -949,7 +949,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp02.lpv",
         "still": "device/twz_sp02.jpg"
       }
     },
@@ -982,7 +982,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp03.lpv",
         "still": "device/twz_sp03.jpg"
       }
     },
@@ -1080,7 +1080,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp06.lpv",
         "still": "device/twz_sp06.jpg"
       }
     },
@@ -1112,7 +1112,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp07.lpv",
         "still": "device/twz_sp07.jpg"
       }
     },
@@ -1144,7 +1144,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp08.lpv",
         "still": "device/twz_sp08.jpg"
       }
     },
@@ -1176,7 +1176,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp09.lpv",
         "still": "device/twz_sp09.jpg"
       }
     },
@@ -1208,7 +1208,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp10.lpv",
         "still": "device/twz_sp10.jpg"
       }
     },
@@ -1240,7 +1240,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp11.lpv",
         "still": "device/twz_sp11.jpg"
       }
     },
@@ -1272,7 +1272,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp12.lpv",
         "still": "device/twz_sp12.jpg"
       }
     },
@@ -1304,7 +1304,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp13.lpv",
         "still": "device/twz_sp13.jpg"
       }
     },
@@ -1336,7 +1336,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp14.lpv",
         "still": "device/twz_sp14.jpg"
       }
     },
@@ -1368,7 +1368,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp15.lpv",
         "still": "device/twz_sp15.jpg"
       }
     },
@@ -1400,7 +1400,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp16.lpv",
         "still": "device/twz_sp16.jpg"
       }
     },
@@ -1432,7 +1432,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp17.lpv",
         "still": "device/twz_sp17.jpg"
       }
     },
@@ -1464,7 +1464,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp18.lpv",
         "still": "device/twz_sp18.jpg"
       }
     },
@@ -1496,7 +1496,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp19.lpv",
         "still": "device/twz_sp19.jpg"
       }
     }
