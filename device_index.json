@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 147432017,
+  "total_bytes": 145694498,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -133,21 +133,21 @@
     {
       "path": "twilight-zone/device/twz_007.jpg",
       "kind": "still",
-      "bytes": 48516,
-      "sha256": "3719e4587625566a7bd0532126fc73c75816de3f52cf50faca88b9db26caadc2",
-      "source": "twilight-zone/videos/07_peaksville_parlor_v3_static.mp4",
-      "source_sha256": "ac9c8ca5c8422ee020e7e36d2cbc3d17751585f4d09d3e2112a249e040876f9c",
+      "bytes": 45619,
+      "sha256": "95bdf9a112fef45193fb7ca61b2f6668e2781d39d4af90c02911f0d525de15e6",
+      "source": "twilight-zone/videos/07_peaksville_parlor_v4_static_clown.mp4",
+      "source_sha256": "1a0cdfb6449f189d0e33079cec4fc0d336ff192150af4eb9da0391611ec006c6",
       "scene": "twz_007"
     },
     {
       "path": "twilight-zone/device/twz_007.lpv",
       "kind": "clip",
-      "bytes": 5824981,
-      "sha256": "4cb45facaeb3ea9d85fb75cf7d8113359afdf097786805ed9813d933c19454c7",
-      "source": "twilight-zone/videos/07_peaksville_parlor_v3_static.mp4",
-      "source_sha256": "ac9c8ca5c8422ee020e7e36d2cbc3d17751585f4d09d3e2112a249e040876f9c",
+      "bytes": 4090359,
+      "sha256": "66722e857e6dfd7c4ef4a21ef4cf6f4b0926270237396186dd0c3751b8e1490b",
+      "source": "twilight-zone/videos/07_peaksville_parlor_v4_static_clown.mp4",
+      "source_sha256": "1a0cdfb6449f189d0e33079cec4fc0d336ff192150af4eb9da0391611ec006c6",
       "scene": "twz_007",
-      "frames": 120,
+      "frames": 90,
       "fps": 15
     },
     {
@@ -993,5 +993,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T14:15:38Z"
+  "updated_utc": "2026-10-14T15:02:22Z"
 }
