@@ -142,6 +142,21 @@
     }
   }
 
+  // Re-read the manifest so a page left open (iPad home-screen app) picks up clips swapped since it loaded.
+  async function refreshScenes() {
+    try {
+      const m = await fetch(bust(BASE + 'manifest.json')).then(r => r.json());
+      const fresh = (m.scenes || []).filter(x => ['active', 'reserve', 'retired', 'special'].includes(x.pool) && (x.video || x.still));
+      if (!fresh.length) return;
+      const byId = Object.fromEntries(fresh.map(x => [x.id, x]));
+      scenes = fresh;
+      bag = bag.map(x => byId[x.id]).filter(Boolean);
+      if (current && byId[current.id]) current = byId[current.id];
+    } catch (e) { /* keep what we have */ }
+  }
+  setInterval(refreshScenes, 5 * 60 * 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshScenes(); });
+
   // Shuffle bag with anti-clustering + boundary rule
   function refill() {
     const pool = [];
@@ -187,7 +202,14 @@
       vid.src = BASE + s.video;
       vid.load();
       vid.onloadeddata = () => applyPresence();
-      vid.onerror = () => { $('err').textContent = `Couldn't play ${s.video} in this browser.`; };
+      vid.onerror = async () => {          // usually a clip renamed since this page loaded: re-read the manifest, retry once
+        if (!s._retried) {
+          await refreshScenes();
+          const f = scenes.find(x => x.id === s.id);
+          if (f && f.video !== s.video) { f._retried = true; show(f); return; }
+        }
+        $('err').textContent = `Couldn't play ${s.video} in this browser.`;
+      };
     } else {                             // no clip yet: show the still
       vid.pause(); vid.removeAttribute('src'); vid.style.display = 'none';
       still.src = BASE + s.still; still.style.display = '';

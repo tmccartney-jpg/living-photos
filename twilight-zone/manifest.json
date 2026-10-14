@@ -924,7 +924,7 @@
     },
     {
       "id": "twz_sp02",
-      "video": "videos/sp02_memorial_day_pingpong.mp4",
+      "video": "videos/sp02_memorial_day_once.mp4",
       "still": "stills/sp02_memorial_day.jpg",
       "captions": [
         "Remembrance demands quiet passage through the shadows."
@@ -952,7 +952,8 @@
       "device": {
         "clip": "device/twz_sp02.lpv",
         "still": "device/twz_sp02.jpg"
-      }
+      },
+      "motion": "once"
     },
     {
       "id": "twz_sp03",
