@@ -234,7 +234,9 @@
       "captions_later": [
         "Gart Williams finally stepped off the train.",
         "The only way to Willoughby is the 5:25."
-      ]
+      ],
+      "video": "videos/08_willoughby_train_v5_once.mp4",
+      "motion": "once"
     },
     {
       "id": "twz_009",
@@ -772,7 +774,7 @@
     },
     {
       "id": "twz_027",
-      "video": "videos/pool_hall_027.mp4",
+      "video": "videos/27_pool_hall_v2_smoke_loop.mp4",
       "still": "stills/pool_hall_027.jpg",
       "presence": "rest",
       "captions": [
