@@ -388,7 +388,7 @@
     },
     {
       "id": "twz_014",
-      "video": "videos/14_department_store_v2_pingpong.mp4",
+      "video": "videos/14_department_store_v2_turn.mp4",
       "still": "stills/14_department_store_v2.jpg",
       "captions": [
         "The saleswoman on nine stands very, very still."
@@ -540,7 +540,7 @@
     },
     {
       "id": "twz_019",
-      "video": "videos/maple_street_019.mp4",
+      "video": "videos/19_maple_street_lightsout.mp4",
       "still": "stills/maple_street_019.jpg",
       "presence": "rest",
       "captions": [
@@ -686,7 +686,7 @@
     },
     {
       "id": "twz_024",
-      "video": "videos/24_doll_on_shelf_pingpong.mp4",
+      "video": "videos/24_doll_on_shelf_turn.mp4",
       "still": "stills/doll_on_the_shelf_024.jpg",
       "captions": [
         "She says she doesn't like you."
