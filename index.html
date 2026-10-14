@@ -32,7 +32,7 @@
   .screen { position: relative; width: 100%; aspect-ratio: 800 / 480; background: #000; overflow: hidden; border-radius: 2px; margin: 0 auto; }
   .portrait .screen { aspect-ratio: 480 / 800; max-width: 420px; }
   .screen video, .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .screen img.intro { object-fit: contain; background: #000; }
+  .screen img.intro, .screen video.intro { object-fit: contain; background: #000; }
   .titlecard { position: absolute; inset: 0; display: grid; place-items: center; background: #000;
     font: italic clamp(20px, 5vw, 42px) Georgia, serif; color: #e8e4da; letter-spacing: .08em; text-align: center; }
   .caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 6% 16px;
@@ -230,17 +230,24 @@
     $('iBag').textContent = bag.length ? `${bag.length} left: ${bag.map(b => b.id).join(', ')}` : 'cycle complete';
   }
 
-  // Intro: static portrait image until intro_motion is true
+  // Intro follows the Presence switch (iPad viewer only; the frame is unchanged):
+  //   PRESENT (frozen) -> the still host picture;  CLEAR (moving) -> the easter-egg wink plays as the intro.
   function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; still.style.visibility = ''; $('ep').style.visibility = ''; }
   function playIntro() {
     return new Promise(resolve => {
       clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; still.style.visibility = 'hidden'; cap.classList.add('fade'); $('ep').style.visibility = 'hidden';
-      const done = () => setTimeout(() => { resolve(); }, 3500);
-      if (state.intro_motion) {
+      let finished = false;
+      const finish = () => { if (!finished) { finished = true; resolve(); } };
+      const done = () => setTimeout(finish, 3500);
+      if (!present) {
         const v = document.createElement('video');
-        Object.assign(v, { muted: true, playsInline: true, autoplay: true, src: bust('intros/tz_intro.mp4') });
-        v.className = 'intro'; v.onerror = fallback; v.onended = resolve; screen.prepend(v);
-      } else {
+        Object.assign(v, { muted: true, playsInline: true, autoplay: true, src: 'intros/tz_egg.mp4' });
+        v.className = 'intro'; v.onerror = still_; v.onended = () => setTimeout(finish, 600); screen.prepend(v);
+        v.play().catch(() => {});
+        setTimeout(finish, 9000);                       // safety: never hang if the clip stalls
+      } else still_();
+      function still_() {
+        screen.querySelectorAll('video.intro').forEach(el => el.remove());
         const img = new Image();
         img.className = 'intro';
         img.onload = () => { screen.prepend(img); done(); };
