@@ -540,7 +540,7 @@
     },
     {
       "id": "twz_019",
-      "video": "videos/19_maple_street_lightsout.mp4",
+      "video": "videos/19_maple_street_lightsout_once.mp4",
       "still": "stills/maple_street_019.jpg",
       "presence": "rest",
       "captions": [
@@ -566,7 +566,8 @@
       "captions_later": [
         "It was the neighbors all along.",
         "Only Les Goodman's car started by itself."
-      ]
+      ],
+      "motion": "once"
     },
     {
       "id": "twz_020",
