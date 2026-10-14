@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 154171963,
+  "total_bytes": 153432623,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -24,21 +24,21 @@
     {
       "path": "twilight-zone/device/twz_001.jpg",
       "kind": "still",
-      "bytes": 23184,
-      "sha256": "7ca0f472a36cdf5aceef4e06074f604b609c31d9bce7c9e776d54d665d2c0a3a",
-      "source": "twilight-zone/videos/bus_stop_001.mp4",
-      "source_sha256": "2fe4215d70816189a19aad5a29b80371f777811eb99e25220a24b9a612673cbd",
+      "bytes": 24085,
+      "sha256": "888e28519a85a80ba3c8c680a35cae13cb367edcf27a23099603e9a81bf6f6d4",
+      "source": "twilight-zone/videos/bus_stop_001_loop.mp4",
+      "source_sha256": "9df4ffcb5ca7d23ccbca86081523fdb8d75413ee83568bf448f05ec8e11fb733",
       "scene": "twz_001"
     },
     {
       "path": "twilight-zone/device/twz_001.lpv",
       "kind": "clip",
-      "bytes": 2189847,
-      "sha256": "8fe25d5ed5ed8e9ce826b26c8a735811a0bcd60d5c00b85d029cd87b06828c06",
-      "source": "twilight-zone/videos/bus_stop_001.mp4",
-      "source_sha256": "2fe4215d70816189a19aad5a29b80371f777811eb99e25220a24b9a612673cbd",
+      "bytes": 1449606,
+      "sha256": "897e02616085a0c7bb15df40755b3d31fe8987a2b293db9fa320ec164c6efcc7",
+      "source": "twilight-zone/videos/bus_stop_001_loop.mp4",
+      "source_sha256": "9df4ffcb5ca7d23ccbca86081523fdb8d75413ee83568bf448f05ec8e11fb733",
       "scene": "twz_001",
-      "frames": 91,
+      "frames": 61,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T01:17:04Z"
+  "updated_utc": "2026-10-14T02:40:17Z"
 }
