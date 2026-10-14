@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 154032017,
+  "total_bytes": 153640267,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -524,21 +524,21 @@
     {
       "path": "twilight-zone/device/twz_026.jpg",
       "kind": "still",
-      "bytes": 26236,
-      "sha256": "30359f769bac44cffa033f50fa13c09d86ebb5c65311edcd134245f400a7e264",
-      "source": "twilight-zone/videos/26_attic_farmhouse_pingpong.mp4",
-      "source_sha256": "4b0bffec0aa2f5a391e9becfa61d640520d1d30ed341f449df2c8b1738663aad",
+      "bytes": 27434,
+      "sha256": "6738f447664e835d0e4a739d85c97e71149ac02a7269b33a4ffb4014da4a7ece",
+      "source": "twilight-zone/videos/26_attic_farmhouse_v2_pingpong.mp4",
+      "source_sha256": "61cc54924fbc51eeeb3728c2ec5423b6496c06a5358e16976938382c9849ed84",
       "scene": "twz_026"
     },
     {
       "path": "twilight-zone/device/twz_026.lpv",
       "kind": "clip",
-      "bytes": 2459995,
-      "sha256": "5cbd2914016ea646d017c22502cf466b231f8815bad56210d81e1f324b0e80e1",
-      "source": "twilight-zone/videos/26_attic_farmhouse_pingpong.mp4",
-      "source_sha256": "4b0bffec0aa2f5a391e9becfa61d640520d1d30ed341f449df2c8b1738663aad",
+      "bytes": 2067047,
+      "sha256": "7d629ce51378ac0c4990044dff89ed1460cc72a20feef8df011814fd0a5b9f3f",
+      "source": "twilight-zone/videos/26_attic_farmhouse_v2_pingpong.mp4",
+      "source_sha256": "61cc54924fbc51eeeb3728c2ec5423b6496c06a5358e16976938382c9849ed84",
       "scene": "twz_026",
-      "frames": 90,
+      "frames": 75,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:11:13Z"
+  "updated_utc": "2026-10-14T13:15:42Z"
 }
