@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 153827371,
+  "total_bytes": 150120088,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -384,21 +384,21 @@
     {
       "path": "twilight-zone/device/twz_019.jpg",
       "kind": "still",
-      "bytes": 50218,
-      "sha256": "444e828d4423b5e6a010915f9c0ef531d5a4abe71ea63bac6a3c9ec5c38c8bc5",
-      "source": "twilight-zone/videos/19_maple_street_lightsout.mp4",
-      "source_sha256": "c3f126ef303699db7312239395be3d285247c6c88d24325d12a02b8321ecb634",
+      "bytes": 50197,
+      "sha256": "e9e715ff9ec607257a365b7ad2ee7af0d45e43d5aec2d70f8ce743e46b12ec3f",
+      "source": "twilight-zone/videos/19_maple_street_lightsout_once.mp4",
+      "source_sha256": "f24e75df09522bbfb050e1d8a232a80a87a6e61a1bca97e01b46394f11aac632",
       "scene": "twz_019"
     },
     {
       "path": "twilight-zone/device/twz_019.lpv",
       "kind": "clip",
-      "bytes": 6560036,
-      "sha256": "002d521655889e050688b9da3f66a0cf0a3b57f35c2d0677ef93fdac36ab5dc9",
-      "source": "twilight-zone/videos/19_maple_street_lightsout.mp4",
-      "source_sha256": "c3f126ef303699db7312239395be3d285247c6c88d24325d12a02b8321ecb634",
+      "bytes": 2852774,
+      "sha256": "65652dc9bf03a5ea517558882d70bdba2155f4db01ff47a7069ad496a16a9560",
+      "source": "twilight-zone/videos/19_maple_street_lightsout_once.mp4",
+      "source_sha256": "f24e75df09522bbfb050e1d8a232a80a87a6e61a1bca97e01b46394f11aac632",
       "scene": "twz_019",
-      "frames": 143,
+      "frames": 60,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:20:36Z"
+  "updated_utc": "2026-10-14T13:28:03Z"
 }
