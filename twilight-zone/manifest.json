@@ -64,7 +64,7 @@
     },
     {
       "id": "twz_003",
-      "video": null,
+      "video": "videos/03_four_dollar_room_v2_pingpong.mp4",
       "still": "stills/03_four_dollar_room_v2.jpg",
       "captions": [
         "Jackie's reflection is done waiting for him to change."
@@ -122,7 +122,7 @@
     },
     {
       "id": "twz_005",
-      "video": null,
+      "video": "videos/05_hitch_hiker_road_v2_loop.mp4",
       "still": "stills/05_hitch_hiker_road_v2.jpg",
       "captions": [
         "Nan keeps passing the same man on the road."
@@ -180,7 +180,7 @@
     },
     {
       "id": "twz_007",
-      "video": null,
+      "video": "videos/07_peaksville_parlor_v2_pingpong.mp4",
       "still": "stills/07_peaksville_parlor_v2.jpg",
       "captions": [
         "Everybody in Peaksville watches what Anthony wants."
@@ -210,7 +210,7 @@
     },
     {
       "id": "twz_008",
-      "video": null,
+      "video": "videos/08_willoughby_train_v2_loop.mp4",
       "still": "stills/08_willoughby_train_v2.jpg",
       "presence": "rest",
       "captions": [
@@ -359,7 +359,7 @@
     },
     {
       "id": "twz_013",
-      "video": null,
+      "video": "videos/13_porch_swing_pingpong.mp4",
       "still": "stills/porch_swing_vs_wind_013.jpg",
       "captions": [
         "It snowed on the crops tonight. Anthony was in a mood."
@@ -388,7 +388,7 @@
     },
     {
       "id": "twz_014",
-      "video": null,
+      "video": "videos/14_department_store_v2_pingpong.mp4",
       "still": "stills/14_department_store_v2.jpg",
       "captions": [
         "The saleswoman on nine stands very, very still."
@@ -417,7 +417,7 @@
     },
     {
       "id": "twz_015",
-      "video": null,
+      "video": "videos/15_midnight_sun_v2_loop.mp4",
       "still": "stills/15_midnight_sun_v2.jpg",
       "captions": [
         "It's never this hot at midnight."
@@ -479,7 +479,7 @@
     },
     {
       "id": "twz_017",
-      "video": null,
+      "video": "videos/17_masked_figures_pingpong.mp4",
       "still": "stills/masked_figures_017.jpg",
       "captions": [
         "Take it off now. See what's underneath."
@@ -570,7 +570,7 @@
     },
     {
       "id": "twz_020",
-      "video": null,
+      "video": "videos/20_broken_spectacles_loop.mp4",
       "still": "stills/broken_spectacles_020.jpg",
       "captions": [
         "All the time in the world, and none of it to read."
@@ -599,7 +599,7 @@
     },
     {
       "id": "twz_021",
-      "video": null,
+      "video": "videos/21_airplane_wing_loop.mp4",
       "still": "stills/airplane_wing_in_the_storm_021.jpg",
       "captions": [
         "There's something on the wing. There always is."
@@ -628,7 +628,7 @@
     },
     {
       "id": "twz_022",
-      "video": null,
+      "video": "videos/22_cookbook_loop.mp4",
       "still": "stills/the_cookbook_022.jpg",
       "captions": [
         "Read past the first page."
@@ -657,7 +657,7 @@
     },
     {
       "id": "twz_023",
-      "video": null,
+      "video": "videos/23_park_carousel_loop.mp4",
       "still": "stills/park_carousel_023.jpg",
       "captions": [
         "You can visit. You just can't stay."
@@ -686,7 +686,7 @@
     },
     {
       "id": "twz_024",
-      "video": null,
+      "video": "videos/24_doll_on_shelf_pingpong.mp4",
       "still": "stills/doll_on_the_shelf_024.jpg",
       "captions": [
         "She says she doesn't like you."
@@ -715,7 +715,7 @@
     },
     {
       "id": "twz_025",
-      "video": null,
+      "video": "videos/25_kick_the_can_pingpong.mp4",
       "still": "stills/kick_the_can_025.jpg",
       "captions": [
         "Somebody's still playing."
@@ -744,7 +744,7 @@
     },
     {
       "id": "twz_026",
-      "video": null,
+      "video": "videos/26_attic_farmhouse_pingpong.mp4",
       "still": "stills/the_attic_farmhouse_026.jpg",
       "captions": [
         "It's small. It's not alone."
@@ -803,7 +803,7 @@
     },
     {
       "id": "twz_028",
-      "video": null,
+      "video": "videos/28_cylinder_loop.mp4",
       "still": "stills/the_cylinder_028.jpg",
       "captions": [
         "Everyone in here thinks they're a person."
@@ -832,7 +832,7 @@
     },
     {
       "id": "twz_029",
-      "video": null,
+      "video": "videos/29_ventriloquist_dummy_pingpong.mp4",
       "still": "stills/ventriloquist_dummy_029.jpg",
       "captions": [
         "Who's working whom?"
@@ -891,7 +891,7 @@
     },
     {
       "id": "twz_sp01",
-      "video": null,
+      "video": "videos/sp01_new_year_pingpong.mp4",
       "still": "stills/sp01_new_year.jpg",
       "captions": [
         "The clock strikes midnight. A new year begins in the Twilight Zone."
@@ -923,7 +923,7 @@
     },
     {
       "id": "twz_sp02",
-      "video": null,
+      "video": "videos/sp02_memorial_day_pingpong.mp4",
       "still": "stills/sp02_memorial_day.jpg",
       "captions": [
         "Remembrance demands quiet passage through the shadows."
@@ -955,7 +955,7 @@
     },
     {
       "id": "twz_sp03",
-      "video": null,
+      "video": "videos/sp03_labor_day_loop.mp4",
       "still": "stills/sp03_labor_day.jpg",
       "captions": [
         "No machine has replaced this crew. Enjoy the day off."
@@ -1054,7 +1054,7 @@
     },
     {
       "id": "twz_sp06",
-      "video": null,
+      "video": "videos/sp06_christmas_loop.mp4",
       "still": "stills/sp06_christmas.jpg",
       "captions": [
         "Merry Christmas, from the other side of the signpost."
@@ -1086,7 +1086,7 @@
     },
     {
       "id": "twz_sp07",
-      "video": null,
+      "video": "videos/sp07_tom_loop.mp4",
       "still": "stills/sp07_tom.jpg",
       "captions": [
         "Tom Echorst, author of another year. Lee approved the final draft."
@@ -1118,7 +1118,7 @@
     },
     {
       "id": "twz_sp08",
-      "video": null,
+      "video": "videos/sp08_randy_loop.mp4",
       "still": "stills/sp08_randy.jpg",
       "captions": [
         "Randy Bullock steps up to the plate. Another year, another swing."
@@ -1150,7 +1150,7 @@
     },
     {
       "id": "twz_sp09",
-      "video": null,
+      "video": "videos/sp09_amber_loop.mp4",
       "still": "stills/sp09_amber.jpg",
       "captions": [
         "Every birthday deserves a guardian angel. Today it's Amber's turn."
@@ -1182,7 +1182,7 @@
     },
     {
       "id": "twz_sp10",
-      "video": null,
+      "video": "videos/sp10_vern_pingpong.mp4",
       "still": "stills/sp10_vern.jpg",
       "captions": [
         "Vern Andrews makes his greatest pitch yet: another year."
@@ -1214,7 +1214,7 @@
     },
     {
       "id": "twz_sp11",
-      "video": null,
+      "video": "videos/sp11_bill_loop.mp4",
       "still": "stills/sp11_bill.jpg",
       "captions": [
         "The machines have agreed to behave today. Happy birthday, Bill."
@@ -1246,7 +1246,7 @@
     },
     {
       "id": "twz_sp12",
-      "video": null,
+      "video": "videos/sp12_ella_loop.mp4",
       "still": "stills/sp12_ella.jpg",
       "captions": [
         "One Ella Wilcox, celebrated today in the zone of gladness."
@@ -1278,7 +1278,7 @@
     },
     {
       "id": "twz_sp13",
-      "video": null,
+      "video": "videos/sp13_adam_loop.mp4",
       "still": "stills/sp13_adam.jpg",
       "captions": [
         "Adam Truax, teller of tall tales. This one happens to be true: happy birthday."
@@ -1310,7 +1310,7 @@
     },
     {
       "id": "twz_sp14",
-      "video": null,
+      "video": "videos/sp14_tammy_loop.mp4",
       "still": "stills/sp14_tammy.jpg",
       "captions": [
         "The longest day of the year belongs to Tammy Truax."
@@ -1342,7 +1342,7 @@
     },
     {
       "id": "twz_sp15",
-      "video": null,
+      "video": "videos/sp15_ethan_july4_loop.mp4",
       "still": "stills/sp15_ethan_july4.jpg",
       "captions": [
         "Fireworks for the nation. Candles for Ethan."
@@ -1374,7 +1374,7 @@
     },
     {
       "id": "twz_sp16",
-      "video": null,
+      "video": "videos/sp16_joe_lyle_loop.mp4",
       "still": "stills/sp16_joe_lyle.jpg",
       "captions": [
         "Two birthdays, one day. Joe and Lyle, submitted for your approval."
@@ -1406,7 +1406,7 @@
     },
     {
       "id": "twz_sp17",
-      "video": null,
+      "video": "videos/sp17_jeff_loop.mp4",
       "still": "stills/sp17_jeff.jpg",
       "captions": [
         "Jeff Truax gets one big tall wish this year."
@@ -1438,7 +1438,7 @@
     },
     {
       "id": "twz_sp18",
-      "video": null,
+      "video": "videos/sp18_rich_loop.mp4",
       "still": "stills/sp18_rich.jpg",
       "captions": [
         "Every shipment lands on time. Even Rich's birthday."
@@ -1470,7 +1470,7 @@
     },
     {
       "id": "twz_sp19",
-      "video": null,
+      "video": "videos/sp19_kevin_loop.mp4",
       "still": "stills/sp19_kevin.jpg",
       "captions": [
         "Kevin Wilcox: four wishes, one birthday. Choose carefully."
