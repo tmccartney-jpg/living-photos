@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 154741147,
+  "total_bytes": 154032017,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -504,21 +504,21 @@
     {
       "path": "twilight-zone/device/twz_025.jpg",
       "kind": "still",
-      "bytes": 50565,
-      "sha256": "7e1813cbb7189a6fd70b2b09783fe2720e401c2a648020624e0bc861fa65acdc",
-      "source": "twilight-zone/videos/25_kick_the_can_pingpong.mp4",
-      "source_sha256": "6555cd02bc5e9248a9b27e50081f52f031bf688dd833efdeb298a90f49185b57",
+      "bytes": 49375,
+      "sha256": "1212caa0becbf300f79c360474122afd60992c05ccbc6a7542ddd07b79be6a17",
+      "source": "twilight-zone/videos/25_kick_the_can_loop.mp4",
+      "source_sha256": "8915ea1e9dd01d2106213a85c6bdeec09016560773040e5f6cfc9228309b3504",
       "scene": "twz_025"
     },
     {
       "path": "twilight-zone/device/twz_025.lpv",
       "kind": "clip",
-      "bytes": 4466866,
-      "sha256": "755e8305130a76b725a0c2bf3df0ab5403f7bf01cfdba51af1b2d7423ca37d1d",
-      "source": "twilight-zone/videos/25_kick_the_can_pingpong.mp4",
-      "source_sha256": "6555cd02bc5e9248a9b27e50081f52f031bf688dd833efdeb298a90f49185b57",
+      "bytes": 3519236,
+      "sha256": "772c3e60637c8d52d9fdb82146c94303fa44bdb732d1bf74604affd153a24e30",
+      "source": "twilight-zone/videos/25_kick_the_can_loop.mp4",
+      "source_sha256": "8915ea1e9dd01d2106213a85c6bdeec09016560773040e5f6cfc9228309b3504",
       "scene": "twz_025",
-      "frames": 90,
+      "frames": 71,
       "fps": 15
     },
     {
@@ -684,22 +684,22 @@
     {
       "path": "twilight-zone/device/twz_sp04.jpg",
       "kind": "still",
-      "bytes": 50761,
-      "sha256": "490a0c39544d2f1ead739c4207124a45716bb5b6fb0bc43f803d1028d882ec1f",
-      "source": "twilight-zone/videos/sp04_halloween_pingpong.mp4",
-      "source_sha256": "8137ba8ae7c1afecf6d6402e59e90bb42bd40a2cc91d868104e29ba79a9eaa0c",
+      "bytes": 51627,
+      "sha256": "57284180cb0f92d317030b1dfa48e70afc78123a780d802cb957684c492bbfc4",
+      "source": "twilight-zone/videos/sp04_halloween_loop.mp4",
+      "source_sha256": "d60d3906ab8696d0eef98a75fdfe6b00ff351d8d20e29c636f7e0999fbda9336",
       "scene": "twz_sp04",
       "crop_x": 1.0
     },
     {
       "path": "twilight-zone/device/twz_sp04.lpv",
       "kind": "clip",
-      "bytes": 3519592,
-      "sha256": "600b6cf52f5d05180f56fbdd868a58d7a5dbdd76c9f20f4868c482aa82a7a8a2",
-      "source": "twilight-zone/videos/sp04_halloween_pingpong.mp4",
-      "source_sha256": "8137ba8ae7c1afecf6d6402e59e90bb42bd40a2cc91d868104e29ba79a9eaa0c",
+      "bytes": 3758416,
+      "sha256": "244a2db8f9d0c38ce6b624dbc5f3349fa38171d904aebe6af97dd9af43d59dd5",
+      "source": "twilight-zone/videos/sp04_halloween_loop.mp4",
+      "source_sha256": "d60d3906ab8696d0eef98a75fdfe6b00ff351d8d20e29c636f7e0999fbda9336",
       "scene": "twz_sp04",
-      "frames": 68,
+      "frames": 73,
       "fps": 15,
       "crop_x": 1.0
     },
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:09:28Z"
+  "updated_utc": "2026-10-14T13:11:13Z"
 }
