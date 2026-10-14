@@ -177,7 +177,10 @@
   function next() {
     if (!scenes.length) { cap.textContent = 'No active scenes in the manifest yet.'; return; }
     if (inOrder) {                       // 001, 002 ... 030, then sp01 ... sp19, then round again
-      const list = [...scenes].sort((a, b) => a.id.localeCompare(b.id));
+      // explicit key: regular scenes by number, then the special days by number (no locale-dependent sorting)
+      const key = s => { const n = s.id.replace('twz_', ''); const sp = n.startsWith('sp');
+                         return (sp ? 1000 : 0) + parseInt(sp ? n.slice(2) : n, 10); };
+      const list = [...scenes].sort((a, b) => key(a) - key(b));
       const i = current ? list.findIndex(x => x.id === current.id) : -1;
       show(list[(i + 1) % list.length]); return;
     }
