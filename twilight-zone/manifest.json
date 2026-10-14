@@ -64,16 +64,14 @@
     },
     {
       "id": "twz_003",
-      "video": "videos/train_platform_doubling_003.mp4",
-      "still": "stills/train_platform_doubling_003.jpg",
+      "video": null,
+      "still": "stills/03_four_dollar_room_v2.jpg",
       "captions": [
-        "Jackie's reflection is done waiting for him to change.",
-        "The man in the mirror wants the room. And the life.",
-        "Four dollars a night. Two of him checked in."
+        "Jackie's reflection is done waiting for him to change."
       ],
       "episode_tag": "nervous_man_in_a_four_dollar_room",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -82,13 +80,16 @@
         "clip": "device/twz_003.lpv",
         "still": "device/twz_003.jpg"
       },
-      "motion": "loop",
       "episode": {
         "title": "Nervous Man in a Four Dollar Room",
         "season": 2,
         "number": 3,
         "year": 1960
-      }
+      },
+      "captions_later": [
+        "The man in the mirror wants the room. And the life.",
+        "Four dollars a night. Two of him checked in."
+      ]
     },
     {
       "id": "twz_004",
@@ -121,16 +122,14 @@
     },
     {
       "id": "twz_005",
-      "video": "videos/attic_window_curtain_parted_005.mp4",
-      "still": "stills/attic_window_curtain_parted_005.jpg",
+      "video": null,
+      "still": "stills/05_hitch_hiker_road_v2.jpg",
       "captions": [
-        "Nan keeps passing the same man on the road.",
-        "He's always just ahead, thumb out, waiting for her.",
-        "Her mother says Nan never came home from the accident."
+        "Nan keeps passing the same man on the road."
       ],
       "episode_tag": "the_hitch_hiker",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": "2026-10-12",
       "times_shown": 0,
       "weight": 1,
@@ -144,7 +143,11 @@
         "season": 1,
         "number": 16,
         "year": 1960
-      }
+      },
+      "captions_later": [
+        "He's always just ahead, thumb out, waiting for her.",
+        "Her mother says Nan never came home from the accident."
+      ]
     },
     {
       "id": "twz_006",
@@ -177,16 +180,14 @@
     },
     {
       "id": "twz_007",
-      "video": "videos/wheat_field_turned_scarecrow_007.mp4",
-      "still": "stills/wheat_field_turned_scarecrow_007.jpg",
+      "video": null,
+      "still": "stills/07_peaksville_parlor_v2.jpg",
       "captions": [
-        "The scarecrow turned to face Anthony. Good thing, too.",
-        "Don't think anything bad about the cornfield.",
-        "Anthony wished it, so it's real."
+        "Everybody in Peaksville watches what Anthony wants."
       ],
       "episode_tag": "its_a_good_life",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -195,27 +196,29 @@
         "clip": "device/twz_007.lpv",
         "still": "device/twz_007.jpg"
       },
-      "motion": "loop",
       "episode": {
         "title": "It's a Good Life",
         "season": 3,
         "number": 8,
         "year": 1961
-      }
+      },
+      "captions_later": [
+        "The scarecrow turned to face Anthony. Good thing, too.",
+        "Don't think anything bad about the cornfield.",
+        "Anthony wished it, so it's real."
+      ]
     },
     {
       "id": "twz_008",
-      "video": "videos/motel_sign_008.mp4",
-      "still": "stills/motel_sign_008.jpg",
+      "video": null,
+      "still": "stills/08_willoughby_train_v2.jpg",
       "presence": "rest",
       "captions": [
-        "Next stop, Willoughby. Peaceful, restful, 1888.",
-        "Gart Williams finally stepped off the train.",
-        "The only way to Willoughby is the 5:25."
+        "Next stop, Willoughby. Peaceful, restful, 1888."
       ],
       "episode_tag": "a_stop_at_willoughby",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -229,7 +232,11 @@
         "season": 1,
         "number": 30,
         "year": 1960
-      }
+      },
+      "captions_later": [
+        "Gart Williams finally stepped off the train.",
+        "The only way to Willoughby is the 5:25."
+      ]
     },
     {
       "id": "twz_009",
@@ -382,15 +389,13 @@
     {
       "id": "twz_014",
       "video": null,
-      "still": "stills/card_catalog_open_drawer_014.jpg",
+      "still": "stills/14_department_store_v2.jpg",
       "captions": [
-        "There is no ninth floor. Marsha bought a thimble there anyway.",
-        "The saleswoman on nine stands very, very still.",
-        "Every mannequin gets one month outside. Marsha overstayed."
+        "There is no ninth floor. Marsha bought a thimble there anyway."
       ],
       "episode_tag": "the_after_hours",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -404,20 +409,22 @@
         "season": 1,
         "number": 34,
         "year": 1960
-      }
+      },
+      "captions_later": [
+        "The saleswoman on nine stands very, very still.",
+        "Every mannequin gets one month outside. Marsha overstayed."
+      ]
     },
     {
       "id": "twz_015",
       "video": null,
-      "still": "stills/grandfather_clock_015.jpg",
+      "still": "stills/15_midnight_sun_v2.jpg",
       "captions": [
-        "It's never this hot at midnight.",
-        "The Earth is falling toward the sun. Norma keeps painting.",
-        "Wake up, Norma. It's getting colder."
+        "It's never this hot at midnight."
       ],
       "episode_tag": "the_midnight_sun",
       "mood_tags": [],
-      "pool": "hold",
+      "pool": "reserve",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -431,7 +438,11 @@
         "season": 3,
         "number": 10,
         "year": 1961
-      }
+      },
+      "captions_later": [
+        "The Earth is falling toward the sun. Norma keeps painting.",
+        "Wake up, Norma. It's getting colder."
+      ]
     },
     {
       "id": "twz_016",
