@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 150554800,
+  "total_bytes": 152884425,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -184,21 +184,21 @@
     {
       "path": "twilight-zone/device/twz_009.jpg",
       "kind": "still",
-      "bytes": 37196,
-      "sha256": "dbed2e764d859229e22b112d0e36c071196fcb4a574234e51cec587f67d7441a",
-      "source": "twilight-zone/videos/childs_rocking_chair_009.mp4",
-      "source_sha256": "4fd654ac0b80e1472e7ae9108bca4d7014814a149e25cb1ba778e543cfe6ec36",
+      "bytes": 37383,
+      "sha256": "dd312ab8015189d998eac8445d7cba5a5da54df8e22911b222c63dc607d70a79",
+      "source": "twilight-zone/videos/09_rocking_chair_v2_pingpong.mp4",
+      "source_sha256": "de322f34df0255fab9d6fba1afe9c32acb543be555c065db3dfa90863f82c4a3",
       "scene": "twz_009"
     },
     {
       "path": "twilight-zone/device/twz_009.lpv",
       "kind": "clip",
-      "bytes": 2250532,
-      "sha256": "4a19e2091ea826df40032c03bd3be908cac5fca6d9b236459f63cb6d7d3f60e3",
-      "source": "twilight-zone/videos/childs_rocking_chair_009.mp4",
-      "source_sha256": "4fd654ac0b80e1472e7ae9108bca4d7014814a149e25cb1ba778e543cfe6ec36",
+      "bytes": 3352056,
+      "sha256": "6030aca533073d7281516f7ba6b16b47540ab8389b213f50ccd0cf959aab6037",
+      "source": "twilight-zone/videos/09_rocking_chair_v2_pingpong.mp4",
+      "source_sha256": "de322f34df0255fab9d6fba1afe9c32acb543be555c065db3dfa90863f82c4a3",
       "scene": "twz_009",
-      "frames": 60,
+      "frames": 90,
       "fps": 15
     },
     {
@@ -464,21 +464,21 @@
     {
       "path": "twilight-zone/device/twz_023.jpg",
       "kind": "still",
-      "bytes": 54133,
-      "sha256": "89abdc39df8fa05e60ef1952b8d7af5865abdb5fb5045573aaaa987bd9ad66c7",
-      "source": "twilight-zone/videos/23_park_carousel_loop.mp4",
-      "source_sha256": "1a228b24c3cf39e22df0a7c3abe3ffaec25d354c36b5ed286018b84a54889465",
+      "bytes": 54481,
+      "sha256": "d722f1e1d584bc10f5ba8830c8efd5c46e1ddf0b5fa489b5dfc6756ae5c912a0",
+      "source": "twilight-zone/videos/23_park_carousel_v2_loop.mp4",
+      "source_sha256": "822ce104b318bc7fa47d0d6fd0fdae8139d7639bd727a401d52082698e7cb8a1",
       "scene": "twz_023"
     },
     {
       "path": "twilight-zone/device/twz_023.lpv",
       "kind": "clip",
-      "bytes": 3215823,
-      "sha256": "45dec8f9b89e1d7f92c051c321ec20f02a486b220ef07a48c254ef7dc6afd977",
-      "source": "twilight-zone/videos/23_park_carousel_loop.mp4",
-      "source_sha256": "1a228b24c3cf39e22df0a7c3abe3ffaec25d354c36b5ed286018b84a54889465",
+      "bytes": 4443389,
+      "sha256": "9fffd52dbbaa00ddb0921969a90cf617653c34c3141eaaf6167c6a2edd6aacf2",
+      "source": "twilight-zone/videos/23_park_carousel_v2_loop.mp4",
+      "source_sha256": "822ce104b318bc7fa47d0d6fd0fdae8139d7639bd727a401d52082698e7cb8a1",
       "scene": "twz_023",
-      "frames": 61,
+      "frames": 81,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:31:11Z"
+  "updated_utc": "2026-10-14T13:32:56Z"
 }
