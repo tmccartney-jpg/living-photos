@@ -120,7 +120,7 @@
   };
   let counts = store.get();
   const AUTO_MS = 12000;               // auto-advance: 12 s per scene, like the PC "All Scenes" view
-  let auto = true, autoTimer = null, inOrder = false;
+  let auto = true, autoTimer = null, inOrder = false, introOn = false;
   let scenes = [], state = {}, bag = [], lastShown = null, current = null, present = false;
 
   const bust = u => u + (u.includes('?') ? '&' : '?') + 't=' + Date.now();
@@ -135,7 +135,7 @@
       scenes = (m.scenes || []).filter(x => ['active', 'reserve', 'retired', 'special'].includes(x.pool) && (x.video || x.still));
       state = s;
       $('feedInfo').textContent = `${scenes.length} scene${scenes.length === 1 ? '' : 's'} · theme: ${state.active_theme || m.theme}`;
-      await playIntro();
+      introOn = true; await playIntro(); introOn = false;
       next();
     } catch (e) {
       $('err').textContent = 'Could not load the feed. Open this page from GitHub Pages (or a local web server), not as a file. ' + e;
@@ -175,6 +175,7 @@
   }
 
   function next() {
+    if (introOn) return;                 // never advance underneath the intro
     if (!scenes.length) { cap.textContent = 'No active scenes in the manifest yet.'; return; }
     if (inOrder) {                       // 001, 002 ... 030, then sp01 ... sp19, then round again
       // explicit key: regular scenes by number, then the special days by number (no locale-dependent sorting)
@@ -289,7 +290,8 @@
     clearTimeout(autoTimer);
     if (auto) autoTimer = setTimeout(next, AUTO_MS);
   };
-  $('introBtn').onclick = async () => { await playIntro(); if (current) show(current); };
+  // Hold the auto-advance clock while the intro is on screen, so the scene after it gets its full 12 s
+  $('introBtn').onclick = async () => { clearTimeout(autoTimer); introOn = true; await playIntro(); introOn = false; if (current) show(current); };
   $('orientBtn').onclick = () => {
     const p = $('bezel').classList.toggle('portrait');
     $('orientBtn').textContent = p ? 'Landscape' : 'Portrait';
