@@ -179,7 +179,7 @@
     },
     {
       "id": "twz_007",
-      "video": "videos/07_peaksville_parlor_v2_pingpong.mp4",
+      "video": "videos/07_peaksville_parlor_v3_static.mp4",
       "still": "stills/07_peaksville_parlor_v2.jpg",
       "captions": [
         "Everybody in Peaksville watches what Anthony wants."
@@ -209,7 +209,7 @@
     },
     {
       "id": "twz_008",
-      "video": "videos/08_willoughby_train_v3_loop.mp4",
+      "video": "videos/08_willoughby_train_v4_loop.mp4",
       "still": "stills/08_willoughby_train_v2.jpg",
       "presence": "rest",
       "captions": [
