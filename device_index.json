@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 153640267,
+  "total_bytes": 153185878,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -806,21 +806,21 @@
     {
       "path": "twilight-zone/device/twz_sp10.jpg",
       "kind": "still",
-      "bytes": 58533,
-      "sha256": "658a66011eea1d15005ffd847a1adae91ca1b19fc8b0dcbb1e7181832509805c",
-      "source": "twilight-zone/videos/sp10_vern_pingpong.mp4",
-      "source_sha256": "06d94d859db7c4e3848d6649774c1ee143d4af6e9728833986589757f48f16c7",
+      "bytes": 58935,
+      "sha256": "2977c53be88e67be706cb4a294639510530a86c52fede790584d0a3b9a818b85",
+      "source": "twilight-zone/videos/sp10_vern_loop.mp4",
+      "source_sha256": "d9f3404fffe60d3719b5ca9ed6e32d7e960f7330e55468d5c6937b5df8c3b1e5",
       "scene": "twz_sp10"
     },
     {
       "path": "twilight-zone/device/twz_sp10.lpv",
       "kind": "clip",
-      "bytes": 4933522,
-      "sha256": "1e75f9d3bbbd072df8d8221b7771106051cf941dfc0cfd13c9f4dc7461868d72",
-      "source": "twilight-zone/videos/sp10_vern_pingpong.mp4",
-      "source_sha256": "06d94d859db7c4e3848d6649774c1ee143d4af6e9728833986589757f48f16c7",
+      "bytes": 4478731,
+      "sha256": "b342c11e019617855711110d93d74f19884f36d90118261068a8606b3b68a9af",
+      "source": "twilight-zone/videos/sp10_vern_loop.mp4",
+      "source_sha256": "d9f3404fffe60d3719b5ca9ed6e32d7e960f7330e55468d5c6937b5df8c3b1e5",
       "scene": "twz_sp10",
-      "frames": 90,
+      "frames": 76,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:15:42Z"
+  "updated_utc": "2026-10-14T13:17:39Z"
 }
