@@ -62,10 +62,12 @@
     const e = s.episode || {};
     $('ep').textContent = e.title ? [e.title, e.season ? `S${e.season} E${e.number}` : '', e.year || ''].filter(Boolean).join('  |  ') : '';
     $('tag').textContent = `${s.id} · ${motion ? 'motion on (room empty)' : 'motion off'}`;
+    // the frame's own copy of the picture (800x480, grey, same crop), so this is a true mirror
+    const devStill = (s.device && s.device.still) || s.still || '';
     if (s.video) {
       still.style.display = 'none'; vid.style.display = '';
       vid.loop = s.motion !== 'once';      // once: play through, then hold the last frame
-      vid.poster = s.still || ''; vid.src = s.video; vid.load();
+      vid.poster = devStill; vid.src = s.video; vid.load();
       vid.onloadeddata = () => {
         if (motion) vid.play().catch(() => {});
         else { vid.play().then(() => { vid.pause(); vid.currentTime = 0; }).catch(() => {}); }
