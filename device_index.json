@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 152884425,
+  "total_bytes": 150660164,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -644,21 +644,21 @@
     {
       "path": "twilight-zone/device/twz_sp02.jpg",
       "kind": "still",
-      "bytes": 55361,
-      "sha256": "6df3d795087326d5da1310d981d6cb60e19dcc1a82ff772845b894b3781f5bd0",
-      "source": "twilight-zone/videos/sp02_memorial_day_pingpong.mp4",
-      "source_sha256": "641561a3ae9df34c0c3a16400e6ee6462d8a1ce2f7a3ba715b43ad4d01adea09",
+      "bytes": 55588,
+      "sha256": "576468b143a71fa219da2bd14c0d9ad5970c8e931dba08cff744fec7e5e38724",
+      "source": "twilight-zone/videos/sp02_memorial_day_once.mp4",
+      "source_sha256": "dd8cbaa4bb96414d4d9ae255751a71c75540a40374f1e9c9e9526e43f6ab05b8",
       "scene": "twz_sp02"
     },
     {
       "path": "twilight-zone/device/twz_sp02.lpv",
       "kind": "clip",
-      "bytes": 4564856,
-      "sha256": "51235ebbb664e603040d49b3facbd1e37f2d90d7f5156f983ce54e4157cdfe68",
-      "source": "twilight-zone/videos/sp02_memorial_day_pingpong.mp4",
-      "source_sha256": "641561a3ae9df34c0c3a16400e6ee6462d8a1ce2f7a3ba715b43ad4d01adea09",
+      "bytes": 2340368,
+      "sha256": "a88ea507d0581fcc6100fda785f143c89ee96f72fd5a7652eab022c65e7305bd",
+      "source": "twilight-zone/videos/sp02_memorial_day_once.mp4",
+      "source_sha256": "dd8cbaa4bb96414d4d9ae255751a71c75540a40374f1e9c9e9526e43f6ab05b8",
       "scene": "twz_sp02",
-      "frames": 90,
+      "frames": 46,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:32:56Z"
+  "updated_utc": "2026-10-14T13:33:57Z"
 }
