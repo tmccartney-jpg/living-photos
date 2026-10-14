@@ -1,27 +1,27 @@
 {
   "schema_version": 1,
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "timezone": "America/New_York",
   "scene": {
-    "key": "twilight-zone/twz_017",
-    "id": "twz_017",
+    "key": "twilight-zone/twz_013",
+    "id": "twz_013",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
-    "still": "twilight-zone/stills/masked_figures_017.jpg",
+    "video": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
+    "still": "twilight-zone/stills/porch_swing_vs_wind_013.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_017.lpv",
-      "still": "twilight-zone/device/twz_017.jpg"
+      "clip": "twilight-zone/device/twz_013.lpv",
+      "still": "twilight-zone/device/twz_013.jpg"
     },
-    "caption": "Take it off now. See what's underneath.",
+    "caption": "It snowed on the crops tonight. Anthony was in a mood.",
     "caption_index": 0,
-    "episode_tag": "the_masks",
+    "episode_tag": "its_a_good_life",
     "episode": {
-      "title": "The Masks",
-      "season": 5,
-      "number": 25,
-      "year": 1964
+      "title": "It's a Good Life",
+      "season": 3,
+      "number": 8,
+      "year": 1961
     },
     "special": null
   },
@@ -33,26 +33,23 @@
   },
   "change_at": "09:30",
   "previous_scene": {
-    "key": "twilight-zone/twz_019",
-    "id": "twz_019",
+    "key": "twilight-zone/twz_ov01",
+    "id": "twz_ov01",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/maple_street_019.mp4",
-    "still": "twilight-zone/stills/maple_street_019.jpg",
-    "presence": "rest",
+    "video": null,
+    "still": "twilight-zone/stills/override_rms_van.jpg",
+    "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_019.lpv",
-      "still": "twilight-zone/device/twz_019.jpg"
+      "clip": null,
+      "still": "twilight-zone/device/twz_ov01.jpg"
     },
-    "caption": "The lights went out on Maple Street. Then the neighbors turned.",
+    "caption": "",
     "caption_index": 0,
-    "episode_tag": "the_monsters_are_due_on_maple_street",
-    "episode": {
-      "title": "The Monsters Are Due on Maple Street",
-      "season": 1,
-      "number": 22,
-      "year": 1960
-    }
+    "episode_tag": "override",
+    "episode": null,
+    "special": null,
+    "override": true
   },
   "crossfade": {
     "active": false,
@@ -64,20 +61,20 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 12,
-    "retired": 4,
+    "reserve": 11,
+    "retired": 5,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_013",
       "twilight-zone/twz_004",
       "twilight-zone/twz_016",
       "twilight-zone/twz_002",
       "twilight-zone/twz_011",
       "twilight-zone/twz_028",
       "twilight-zone/twz_018",
+      "twilight-zone/twz_024",
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
@@ -88,7 +85,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_017"
+    "twilight-zone": "twilight-zone/twz_013"
   },
   "spread": {},
   "history": [
@@ -116,6 +113,40 @@
       "date": "2026-10-14",
       "key": "twilight-zone/twz_017",
       "caption_index": 0
+    },
+    {
+      "date": "2026-10-15",
+      "key": "twilight-zone/twz_013",
+      "caption_index": 0
     }
-  ]
+  ],
+  "override_last": {
+    "scene": "twilight-zone/twz_ov01",
+    "caption": "",
+    "applied": "2026-10-14T14:50-04:00",
+    "until": "2026-10-15 09:30",
+    "replaced_previous": {
+      "key": "twilight-zone/twz_017",
+      "id": "twz_017",
+      "theme": "twilight-zone",
+      "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
+      "still": "twilight-zone/stills/masked_figures_017.jpg",
+      "presence": "freeze",
+      "motion": "loop",
+      "device": {
+        "clip": "twilight-zone/device/twz_017.lpv",
+        "still": "twilight-zone/device/twz_017.jpg"
+      },
+      "caption": "Take it off now. See what's underneath.",
+      "caption_index": 0,
+      "episode_tag": "the_masks",
+      "episode": {
+        "title": "The Masks",
+        "season": 5,
+        "number": 25,
+        "year": 1964
+      },
+      "special": null
+    }
+  }
 }
