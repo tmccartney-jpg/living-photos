@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 154733826,
+  "total_bytes": 154741147,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -424,19 +424,19 @@
     {
       "path": "twilight-zone/device/twz_021.jpg",
       "kind": "still",
-      "bytes": 30517,
-      "sha256": "74dbcde8cf9224a384895a6fe38391eb34a426a1240ecf43befcf6dbc2fafa38",
-      "source": "twilight-zone/videos/21_airplane_wing_loop.mp4",
-      "source_sha256": "9b5f40b3dd0480bab3bd194f4fc8ee49cc81c56f8e75ebac6043528892ca4c47",
+      "bytes": 30684,
+      "sha256": "21518544c175b8109c1e2fb1e3bc324ae2052e9c28038d712889a89e6044cc34",
+      "source": "twilight-zone/videos/21_airplane_wing_v2_loop.mp4",
+      "source_sha256": "41a6ef51b5c791bd299cd2a5ae38909487a832f591a76467509e0c96432f6765",
       "scene": "twz_021"
     },
     {
       "path": "twilight-zone/device/twz_021.lpv",
       "kind": "clip",
-      "bytes": 1756715,
-      "sha256": "2d919a60cd4c17ee649b5d986ed63bd9543d333420b46e3010d3e379e363458f",
-      "source": "twilight-zone/videos/21_airplane_wing_loop.mp4",
-      "source_sha256": "9b5f40b3dd0480bab3bd194f4fc8ee49cc81c56f8e75ebac6043528892ca4c47",
+      "bytes": 1763869,
+      "sha256": "a9daaa64b7a2260aa3d4372e9e17cc6a1528ea2bae21102b39deb476d8fb1bff",
+      "source": "twilight-zone/videos/21_airplane_wing_v2_loop.mp4",
+      "source_sha256": "41a6ef51b5c791bd299cd2a5ae38909487a832f591a76467509e0c96432f6765",
       "scene": "twz_021",
       "frames": 61,
       "fps": 15
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:05:40Z"
+  "updated_utc": "2026-10-14T13:09:28Z"
 }
