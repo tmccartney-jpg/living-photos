@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 153432623,
+  "total_bytes": 154733826,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -164,21 +164,21 @@
     {
       "path": "twilight-zone/device/twz_008.jpg",
       "kind": "still",
-      "bytes": 42129,
-      "sha256": "4b36214d19b790907f9de3255b7402a4e86b0446bb7e29dd8eb477393e6a705e",
-      "source": "twilight-zone/videos/08_willoughby_train_v2_loop.mp4",
-      "source_sha256": "2e99db7fe65793baf83760e0240f4b4ba8bf112ece9d303e76b08847b2ba4798",
+      "bytes": 37468,
+      "sha256": "c4a21003e62b849b794d0e56abbf5af0f9a0f3918934824abbd51e9f4a80f41e",
+      "source": "twilight-zone/videos/08_willoughby_train_v3_loop.mp4",
+      "source_sha256": "c8ca6fca23c15801242d4eab8ce5114bf17ed08cfcb1647763ab85a371855d4a",
       "scene": "twz_008"
     },
     {
       "path": "twilight-zone/device/twz_008.lpv",
       "kind": "clip",
-      "bytes": 2494833,
-      "sha256": "be5e41b1f242428754851c3ab3c2fb83161f35ec5e1f0f20296b07489250f6d4",
-      "source": "twilight-zone/videos/08_willoughby_train_v2_loop.mp4",
-      "source_sha256": "2e99db7fe65793baf83760e0240f4b4ba8bf112ece9d303e76b08847b2ba4798",
+      "bytes": 3800697,
+      "sha256": "380b977b12c635045443ff1a0cfa564bbef194000a490751220fba6996b3dabe",
+      "source": "twilight-zone/videos/08_willoughby_train_v3_loop.mp4",
+      "source_sha256": "c8ca6fca23c15801242d4eab8ce5114bf17ed08cfcb1647763ab85a371855d4a",
       "scene": "twz_008",
-      "frames": 61,
+      "frames": 103,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T02:40:17Z"
+  "updated_utc": "2026-10-14T13:05:40Z"
 }
