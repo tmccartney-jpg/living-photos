@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 145694498,
+  "total_bytes": 145769576,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -611,6 +611,15 @@
       "fps": 15
     },
     {
+      "path": "twilight-zone/device/twz_ov01.jpg",
+      "kind": "still",
+      "bytes": 75078,
+      "sha256": "ac6a65f2717c2ee08780e8c80aadb46241c5994e5127d0d5269892b20df52b04",
+      "source": "twilight-zone/stills/override_rms_van.jpg",
+      "source_sha256": "36474ccff3078165f8bdfa26861627fe4beedbc0cd3013634f879b3cfe0f0bc6",
+      "scene": "twz_ov01"
+    },
+    {
       "path": "twilight-zone/device/twz_sp01.jpg",
       "kind": "still",
       "bytes": 48033,
@@ -993,5 +1002,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T15:02:22Z"
+  "updated_utc": "2026-10-14T18:48:21Z"
 }
