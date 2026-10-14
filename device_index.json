@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 60685245,
+  "total_bytes": 47416346,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -64,22 +64,11 @@
     {
       "path": "twilight-zone/device/twz_003.jpg",
       "kind": "still",
-      "bytes": 37033,
-      "sha256": "2723b72aa9681f8d8da703fcd2dd892c5b4b74e8a4def43f29d5cc2b8c1ed794",
-      "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
-      "source_sha256": "bdff72dd5dcad7806be71f23e51f7bd23f56a18b54657350a42d32eff2efc173",
+      "bytes": 58843,
+      "sha256": "ba1006fb0a194f600e6006c870d81a2a6da51d04c59a7cafddc7e297b8b9d333",
+      "source": "twilight-zone/stills/03_four_dollar_room_v2.jpg",
+      "source_sha256": "59a03dac41778034c940b1c2fb456c345fb7d3a936ac8bb2d1a410225364bd00",
       "scene": "twz_003"
-    },
-    {
-      "path": "twilight-zone/device/twz_003.lpv",
-      "kind": "clip",
-      "bytes": 3452795,
-      "sha256": "11023f0cb3e57d880385331c69d78b8e9b4b5e6cfe6da290fb9b97509749fa6a",
-      "source": "twilight-zone/videos/train_platform_doubling_003.mp4",
-      "source_sha256": "bdff72dd5dcad7806be71f23e51f7bd23f56a18b54657350a42d32eff2efc173",
-      "scene": "twz_003",
-      "frames": 90,
-      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_004.jpg",
@@ -104,22 +93,11 @@
     {
       "path": "twilight-zone/device/twz_005.jpg",
       "kind": "still",
-      "bytes": 37197,
-      "sha256": "6ba7a2a4c36a09e15b1b9baab8374aed9285ffb2b46d2364ee7c0d3014b78aed",
-      "source": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
-      "source_sha256": "1d4450d6a72961da7e9cc73ccd681f268cbc604462619dd0f4c1aeb19712e971",
+      "bytes": 50207,
+      "sha256": "e496cbeb24f564a3482cf1cfdcd7347b603eb7812de499ccea05a7264275daa2",
+      "source": "twilight-zone/stills/05_hitch_hiker_road_v2.jpg",
+      "source_sha256": "bcbcd4782c7f2bbf07d311d51f2b4f3da9ff5940f31404207094f06880a4e708",
       "scene": "twz_005"
-    },
-    {
-      "path": "twilight-zone/device/twz_005.lpv",
-      "kind": "clip",
-      "bytes": 3372875,
-      "sha256": "0f92aa452da89d6803164c032a9d59a89e1a6b69e041c0c0143b9aa21bd0936c",
-      "source": "twilight-zone/videos/attic_window_curtain_parted_005.mp4",
-      "source_sha256": "1d4450d6a72961da7e9cc73ccd681f268cbc604462619dd0f4c1aeb19712e971",
-      "scene": "twz_005",
-      "frames": 90,
-      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_006.jpg",
@@ -144,42 +122,20 @@
     {
       "path": "twilight-zone/device/twz_007.jpg",
       "kind": "still",
-      "bytes": 33013,
-      "sha256": "3658ec7c9c88e9f001a2d0e454f8dde716d088bba4ed5f1f0312dab1d7a00783",
-      "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
-      "source_sha256": "3f8ecb36366d22aa8f340919ef5587111de8dd2b91b3c14bef251663bfd91a17",
+      "bytes": 66627,
+      "sha256": "4ce50b117f7ccad40b9b9dcda5022d8c34dccfe4cbc366a1dc9cd421ad4354fe",
+      "source": "twilight-zone/stills/07_peaksville_parlor_v2.jpg",
+      "source_sha256": "2481ac3acab6c33d5f595e374273674160851e7e797066269f2621bb8a75f938",
       "scene": "twz_007"
-    },
-    {
-      "path": "twilight-zone/device/twz_007.lpv",
-      "kind": "clip",
-      "bytes": 2690500,
-      "sha256": "f235f664c209a8cf50429d060b231b34debd84ed10bf078f5818a7cdc1fc710b",
-      "source": "twilight-zone/videos/wheat_field_turned_scarecrow_007.mp4",
-      "source_sha256": "3f8ecb36366d22aa8f340919ef5587111de8dd2b91b3c14bef251663bfd91a17",
-      "scene": "twz_007",
-      "frames": 90,
-      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_008.jpg",
       "kind": "still",
-      "bytes": 41383,
-      "sha256": "77d708c658c6a4f78fc1ca39c4a392d148d5597bd0a88314b2babc4bbff73cc5",
-      "source": "twilight-zone/videos/motel_sign_008.mp4",
-      "source_sha256": "65f8b9719cd9e4f76ba968b754f6a2429b84cb3406834613d1554f6f098f17df",
+      "bytes": 71847,
+      "sha256": "62568fdccbbafac656f775eb9fff56378a513217b9dc92c9a968e4f4530e4e73",
+      "source": "twilight-zone/stills/08_willoughby_train_v2.jpg",
+      "source_sha256": "667b3de999db2eb97495e1d20ba7c89b2769a3203096c03b74f00269602fe29b",
       "scene": "twz_008"
-    },
-    {
-      "path": "twilight-zone/device/twz_008.lpv",
-      "kind": "clip",
-      "bytes": 3886914,
-      "sha256": "c3c01e58cd9526f3b638c2c02c01f9e6524604687f8ebc5b7646acfa8378ae45",
-      "source": "twilight-zone/videos/motel_sign_008.mp4",
-      "source_sha256": "65f8b9719cd9e4f76ba968b754f6a2429b84cb3406834613d1554f6f098f17df",
-      "scene": "twz_008",
-      "frames": 90,
-      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_009.jpg",
@@ -273,19 +229,19 @@
     {
       "path": "twilight-zone/device/twz_014.jpg",
       "kind": "still",
-      "bytes": 56494,
-      "sha256": "eccf63ad1757325e56402a0ce8ce520a0d22c6395555c3f71cbb7a0c140aa6d5",
-      "source": "twilight-zone/stills/card_catalog_open_drawer_014.jpg",
-      "source_sha256": "1ba3bf108e7cc066c65432861b8e49c46926c9707aa4cd40e010c65d6046ec0e",
+      "bytes": 70711,
+      "sha256": "5ac891769a2a7e1392e3171b7f7e691255820ea7c062d7d8bddea25941f063f8",
+      "source": "twilight-zone/stills/14_department_store_v2.jpg",
+      "source_sha256": "b383c33aac4a402fe7d56596d9ea27012609fd5eb396cf9f44f8313288d1f488",
       "scene": "twz_014"
     },
     {
       "path": "twilight-zone/device/twz_015.jpg",
       "kind": "still",
-      "bytes": 51356,
-      "sha256": "5ace8ac0be537585457894b65d5f0eae30f26d07d56820a3d3807f80444b8b82",
-      "source": "twilight-zone/stills/grandfather_clock_015.jpg",
-      "source_sha256": "d77caead6c4d537152763675222e8923d07046d56793f89d74ca51842f7649b8",
+      "bytes": 72426,
+      "sha256": "7d7d5b83cb4c3bffbd917b9ddd9708d8ea276eca49a598fc756973f6838b28c8",
+      "source": "twilight-zone/stills/15_midnight_sun_v2.jpg",
+      "source_sha256": "38962b63188bfe74007739f19423ecde7ccf934d2a470d626b4b6457c65b0e97",
       "scene": "twz_015"
     },
     {
@@ -663,5 +619,5 @@
       "scene": "twz_sp19"
     }
   ],
-  "updated_utc": "2026-10-13T23:45:54Z"
+  "updated_utc": "2026-10-14T00:13:53Z"
 }
