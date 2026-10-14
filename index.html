@@ -76,6 +76,7 @@
   <div class="controls">
     <button id="presenceBtn" class="presence clear">Presence: CLEAR</button>
     <button id="nextBtn">Next scene ▸</button>
+    <button id="autoBtn" class="on">Auto: every 12 s</button>
     <button id="introBtn">Play intro</button>
     <button id="orientBtn">Portrait</button>
     <button id="resetBtn">Reset counts</button>
@@ -107,6 +108,8 @@
     set(v) { try { localStorage.setItem('lp_counts', JSON.stringify(v)); } catch {} }
   };
   let counts = store.get();
+  const AUTO_MS = 12000;               // auto-advance: 12 s per scene, like the PC "All Scenes" view
+  let auto = true, autoTimer = null;
   let scenes = [], state = {}, bag = [], lastShown = null, current = null, present = false;
 
   const bust = u => u + (u.includes('?') ? '&' : '?') + 't=' + Date.now();
@@ -153,6 +156,8 @@
 
   function show(s) {
     current = s; lastShown = s.id;
+    clearTimeout(autoTimer);
+    if (auto) autoTimer = setTimeout(next, AUTO_MS);
     const n = counts[s.id] || 0;
     const list = s.captions || (s.caption ? [s.caption] : []);
     const idx = list.length ? n % list.length : 0;
@@ -220,6 +225,13 @@
 
   $('presenceBtn').onclick = () => { present = !present; applyPresence(); };
   $('nextBtn').onclick = next;
+  $('autoBtn').onclick = () => {
+    auto = !auto;
+    $('autoBtn').textContent = auto ? 'Auto: every 12 s' : 'Auto: off';
+    $('autoBtn').classList.toggle('on', auto);
+    clearTimeout(autoTimer);
+    if (auto) autoTimer = setTimeout(next, AUTO_MS);
+  };
   $('introBtn').onclick = async () => { await playIntro(); if (current) show(current); };
   $('orientBtn').onclick = () => {
     const p = $('bezel').classList.toggle('portrait');
