@@ -1048,7 +1048,7 @@
       },
       "presence": "freeze",
       "device": {
-        "clip": null,
+        "clip": "device/twz_sp05.lpv",
         "still": "device/twz_sp05.jpg"
       }
     },

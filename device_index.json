@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 47416346,
+  "total_bytes": 52166807,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -486,11 +486,22 @@
     {
       "path": "twilight-zone/device/twz_sp05.jpg",
       "kind": "still",
-      "bytes": 85792,
-      "sha256": "fc77e0bb815b1646dc1fc6ab404ba9ec8b51a0eb51ce2ed9f2a298c0a6107ed6",
-      "source": "twilight-zone/stills/sp05_thanksgiving.jpg",
-      "source_sha256": "062e71d88d0ad126eda28356cf80eeb09dcb7b87b64b3b486edb3790479ee777",
+      "bytes": 54936,
+      "sha256": "10019cdf892a63bb8bf8c9a562071798dd359a3b5392edd38dc1b5a79a66ef89",
+      "source": "twilight-zone/videos/sp05_thanksgiving_pingpong.mp4",
+      "source_sha256": "9da8bea98b82ec911bc881a1ab02953d209a571aca92baea1d6d96b2ef6d9b8e",
       "scene": "twz_sp05"
+    },
+    {
+      "path": "twilight-zone/device/twz_sp05.lpv",
+      "kind": "clip",
+      "bytes": 4781317,
+      "sha256": "ad5670c325933075acf1c8c474d0bfd90370aee475af500860335207933ad345",
+      "source": "twilight-zone/videos/sp05_thanksgiving_pingpong.mp4",
+      "source_sha256": "9da8bea98b82ec911bc881a1ab02953d209a571aca92baea1d6d96b2ef6d9b8e",
+      "scene": "twz_sp05",
+      "frames": 90,
+      "fps": 15
     },
     {
       "path": "twilight-zone/device/twz_sp06.jpg",
@@ -619,5 +630,5 @@
       "scene": "twz_sp19"
     }
   ],
-  "updated_utc": "2026-10-14T00:13:53Z"
+  "updated_utc": "2026-10-14T00:41:41Z"
 }
