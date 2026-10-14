@@ -368,6 +368,100 @@ def special_for(lib, day, state):
 
 
 # ---------------------------------------------------------------- main step
+def scene_entry(lib, key, caption, cap_i=0):
+    """The scene block the frames read from rotation.json."""
+    theme = lib.theme_of(key)
+    s = lib.scene(key)
+    mdir = os.path.dirname({t["theme"]: t for t in THEMES}[theme]["manifest"])
+    return {
+        "key": key,
+        "id": s["id"],
+        "theme": theme,
+        "video": f'{mdir}/{s["video"]}' if s.get("video") else None,     # None = still only (no clip yet)
+        "still": f'{mdir}/{s["still"]}' if s.get("still") else None,
+        "presence": s.get("presence", "freeze"),   # freeze = hold the current frame; rest = jump to frame 0
+        "motion": s.get("motion", "loop"),         # loop = clip repeats; once = plays once, then holds its last frame
+        "device": {k: (f"{mdir}/{v}" if v else None) for k, v in (s.get("device") or {}).items()},
+        "caption": caption,
+        "caption_index": cap_i,
+        "episode_tag": s.get("episode_tag"),
+        "episode": s.get("episode"),               # {"title", "season", "number", "year"}: small line under the caption
+        "special": (s.get("special") or {}).get("label") if s["pool"] == "special" else None,
+    }
+
+
+# ---------------------------------------------------------------- override
+# state.json "override": {"scene": "023", "caption": "..."}  (empty / missing = off)
+# Shows that scene + caption from the next rotation run (a push to state.json runs it within
+# minutes) until the NEXT daily switch (change_at, 09:30), then the normal rotation comes back by
+# itself. Leaving the field filled in does nothing more: the same override is never applied twice.
+# No firmware change: the override is written as rotation.json "previous_scene", which every frame
+# shows until change_at on rotation.json "date".
+def find_scene(lib, ref):
+    ref = str(ref or "").strip()
+    if not ref:
+        return None
+    if ref in lib.scenes:
+        return ref
+    want = ref.lower().replace("twz_", "")
+    for k, (th, s) in lib.scenes.items():
+        sid = s["id"].lower()
+        if sid == ref.lower() or sid.replace("twz_", "").replace("sev_", "") == want:
+            return k
+    return None
+
+
+def now_local():
+    return dt.datetime.now(TZ) if TZ else dt.datetime.now()
+
+
+def override_wanted(state, lib):
+    o = state.get("override") or {}
+    ref, cap = str(o.get("scene") or "").strip(), str(o.get("caption") or "").strip()
+    if not ref and not cap:
+        return None
+    key = find_scene(lib, ref)
+    if key is None:
+        print(f"override: scene '{ref}' not found - ignored")
+        return None
+    return {"scene": key, "caption": cap or (lib.scene(key).get("captions") or [""])[0]}
+
+
+def apply_override(state, lib, rot):
+    """Returns the (possibly) updated rotation, or None when nothing changed."""
+    want = override_wanted(state, lib)
+    last = rot.get("override_last") or {}
+    now = now_local()
+    if want is None:
+        # cleared before it ran out: put back what it replaced
+        if last.get("replaced_previous") is not None and now.strftime("%Y-%m-%d %H:%M") < last.get("until", ""):
+            if (rot.get("previous_scene") or {}).get("override"):
+                rot = dict(rot)
+                rot["previous_scene"] = last["replaced_previous"]
+                rot["override_last"] = {**last, "replaced_previous": None, "cleared": now.isoformat(timespec="minutes")}
+                print("override cleared - normal scene restored")
+                return rot
+        return None
+    if last.get("scene") == want["scene"] and last.get("caption") == want["caption"]:
+        return None                                   # already shown (or shown and expired)
+    hh, mm = map(int, CHANGE_AT.split(":"))
+    switch_today = now.replace(hour=hh, minute=mm, second=0, microsecond=0)
+    next_day = now.date() if now < switch_today else now.date() + dt.timedelta(days=1)
+    if (parse_date(rot.get("date")) or dt.date.min) < next_day:
+        rot = run_day(next_day, state, lib, rot)       # pick the next real scene early; frames hold it until change_at
+    rot = dict(rot)
+    entry = scene_entry(lib, want["scene"], want["caption"])
+    entry["override"] = True
+    replaced = rot.get("previous_scene")
+    rot["previous_scene"] = entry
+    rot["override_last"] = {"scene": want["scene"], "caption": want["caption"],
+                            "applied": now.isoformat(timespec="minutes"),
+                            "until": f'{rot["date"]} {rot.get("change_at", CHANGE_AT)}',
+                            "replaced_previous": replaced}
+    print(f'override: {want["scene"]} "{want["caption"]}" until {rot["override_last"]["until"]}')
+    return rot
+
+
 def run_day(day, state, lib, rot, quiet=False):
     rot = dict(rot)
     rot.pop("order", None)                       # old single-bag format
@@ -413,21 +507,7 @@ def run_day(day, state, lib, rot, quiet=False):
         "schema_version": 1,
         "date": day.isoformat(),
         "timezone": "America/New_York",
-        "scene": {
-            "key": key,
-            "id": s["id"],
-            "theme": theme,
-            "video": f'{mdir}/{s["video"]}' if s.get("video") else None,     # None = still only (no clip yet)
-            "still": f'{mdir}/{s["still"]}' if s.get("still") else None,
-            "presence": s.get("presence", "freeze"),   # freeze = hold the current frame; rest = jump to frame 0
-            "motion": s.get("motion", "loop"),         # loop = clip repeats; once = plays once, then holds its last frame
-            "device": {k: (f"{mdir}/{v}" if v else None) for k, v in (s.get("device") or {}).items()},
-            "caption": caps[cap_i],
-            "caption_index": cap_i,
-            "episode_tag": s.get("episode_tag"),
-            "episode": s.get("episode"),               # {"title", "season", "number", "year"}: small line under the caption
-            "special": (s.get("special") or {}).get("label") if s["pool"] == "special" else None,
-        },
+        "scene": scene_entry(lib, key, caps[cap_i], cap_i),
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
                   "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},
         "change_at": (state.get("change_at_once") or {}).get(day.isoformat(), CHANGE_AT),   # one-off later change
@@ -470,6 +550,13 @@ def main():
         print("(simulation only - nothing written)")
         return
 
+    ov = apply_override(state, lib, rot)
+    if ov is not None:
+        save_json("rotation.json", ov)
+        save_json("state.json", state)
+        lib.save()
+        return
+
     if (parse_date(rot.get("date")) or dt.date.min) >= day and not a.force:
         print(f"rotation.json is already for {rot.get('date')}; nothing to do")
         return
@@ -480,7 +567,10 @@ def main():
             s = lib.scene(last["key"])
             s["times_shown"] = max(0, s["times_shown"] - 1)
 
+    last = rot.get("override_last")
     rot = run_day(day, state, lib, rot)
+    if last:
+        rot["override_last"] = {**last, "replaced_previous": None}   # remember it so it never re-applies
     save_json("rotation.json", rot)
     save_json("state.json", state)
     lib.save()

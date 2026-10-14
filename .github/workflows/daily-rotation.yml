@@ -19,6 +19,11 @@ on:
     - cron: "7 1 * * *"      # 9:07 pm EDT / 8:07 pm EST
     - cron: "7 2 * * *"      # 10:07 pm EDT / 9:07 pm EST
     - cron: "7 3 * * *"      # 11:07 pm EDT / 10:07 pm EST
+  # Editing state.json on GitHub (e.g. setting an "override") runs it within a minute or two.
+  # (The rotation's own commits use GITHUB_TOKEN, which never re-triggers workflows.)
+  push:
+    branches: [main]
+    paths: ["state.json"]
   workflow_dispatch:
     inputs:
       force:
