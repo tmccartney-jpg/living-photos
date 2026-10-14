@@ -40,6 +40,12 @@
     font: italic clamp(13px, 2.4vw, 20px)/1.35 Georgia, "Times New Roman", serif; color: #eeeae0; text-align: center;
     text-shadow: 0 1px 3px rgba(0,0,0,.9); transition: opacity .6s; }
   .fade { opacity: 0; }
+  .caption { padding-bottom: 34px; }
+  .epline { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; color: #a8a49a;
+    font: clamp(10px, 1.5vw, 13px)/1 system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: .04em;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9); transition: opacity .6s; }
+  /* viewer mode: just the picture and the buttons (technical details stay in the page, hidden) */
+  .info, .help, #resetBtn { display: none; }
 
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
   button { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
@@ -70,6 +76,7 @@
       <video id="vid" muted playsinline loop preload="auto"></video>
       <img id="still" alt="" style="display:none">
       <div class="caption" id="caption"></div>
+      <div class="epline" id="ep"></div>
     </div>
   </div>
 
@@ -179,6 +186,8 @@
     $('err').textContent = '';
     setTimeout(() => cap.classList.remove('fade'), 400);
     cap.textContent = list[idx] || '';
+    const e = s.episode || {};
+    $('ep').textContent = e.title ? [e.title, e.season ? `S${e.season} E${e.number}` : '', e.year || ''].filter(Boolean).join('  |  ') : '';
 
     $('iScene').textContent = `${s.id} · ${s.video ? s.video.replace('videos/', '') : 'still: ' + (s.still || '').replace('stills/', '')}`;
     $('iTags').textContent = `${s.episode_tag} · ${(s.mood_tags || []).join(', ')}`;
@@ -187,10 +196,10 @@
   }
 
   // Intro: static portrait image until intro_motion is true
-  function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; still.style.visibility = ''; }
+  function clearIntro() { screen.querySelectorAll('.intro, .titlecard').forEach(el => el.remove()); vid.style.visibility = ''; still.style.visibility = ''; $('ep').style.visibility = ''; }
   function playIntro() {
     return new Promise(resolve => {
-      clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; still.style.visibility = 'hidden'; cap.classList.add('fade');
+      clearIntro(); vid.pause(); vid.style.visibility = 'hidden'; still.style.visibility = 'hidden'; cap.classList.add('fade'); $('ep').style.visibility = 'hidden';
       const done = () => setTimeout(() => { resolve(); }, 3500);
       if (state.intro_motion) {
         const v = document.createElement('video');
