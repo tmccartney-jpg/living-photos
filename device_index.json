@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 150200726,
+  "total_bytes": 147432017,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -153,21 +153,21 @@
     {
       "path": "twilight-zone/device/twz_008.jpg",
       "kind": "still",
-      "bytes": 47420,
-      "sha256": "64dd74f02dc0e7ea69a35a32d4205863cb849d75661a811e69e445a7f3499bb2",
-      "source": "twilight-zone/videos/08_willoughby_train_v4_loop.mp4",
-      "source_sha256": "0f46a80d9646949e319e515adf7bc7b46406ec53a64f31a99f930814ce96391d",
+      "bytes": 46252,
+      "sha256": "4ddab6c1d3ba01136f79f88c6e67ad60e04f687a9d5f5c69de561bfd7617c3e9",
+      "source": "twilight-zone/videos/08_willoughby_train_v5_once.mp4",
+      "source_sha256": "71e84909409acc6a7f1fc4022e29f1917632d819a71ddbd027ec417bc6be883b",
       "scene": "twz_008"
     },
     {
       "path": "twilight-zone/device/twz_008.lpv",
       "kind": "clip",
-      "bytes": 4874710,
-      "sha256": "42141a65ac2176c6f7ce9b0fc7601bff049a3bf264fb64cc6c07ce8e2496e4b3",
-      "source": "twilight-zone/videos/08_willoughby_train_v4_loop.mp4",
-      "source_sha256": "0f46a80d9646949e319e515adf7bc7b46406ec53a64f31a99f930814ce96391d",
+      "bytes": 2057375,
+      "sha256": "dc6b18ae05a037aaa64ca8778ccd484ba36cd68cd76ea237cc304f538c4797ba",
+      "source": "twilight-zone/videos/08_willoughby_train_v5_once.mp4",
+      "source_sha256": "71e84909409acc6a7f1fc4022e29f1917632d819a71ddbd027ec417bc6be883b",
       "scene": "twz_008",
-      "frames": 103,
+      "frames": 46,
       "fps": 15
     },
     {
@@ -533,21 +533,21 @@
     {
       "path": "twilight-zone/device/twz_027.jpg",
       "kind": "still",
-      "bytes": 27001,
-      "sha256": "551677fe302a10d2a66a57bf625d36cb4e19a07aef77f40e9a7d2f7dd7d17ba0",
-      "source": "twilight-zone/videos/pool_hall_027.mp4",
-      "source_sha256": "ed2fd244df85fe0b33c215c41bf09fcd14f082b9381e1bfec70aaee56b59c807",
+      "bytes": 30827,
+      "sha256": "5770dfc557f7ef88c0963e6e9b3f11fe51d85008e32aead2a2918857ffa79039",
+      "source": "twilight-zone/videos/27_pool_hall_v2_smoke_loop.mp4",
+      "source_sha256": "d0e5337a837802d19178c30b528dc57c1f82a15509e96d464d129c56878ddb72",
       "scene": "twz_027"
     },
     {
       "path": "twilight-zone/device/twz_027.lpv",
       "kind": "clip",
-      "bytes": 2787611,
-      "sha256": "c12b6c8cad74e8824bfda75ec4243d17a35f33386dd8227b52054ccd0cb437e9",
-      "source": "twilight-zone/videos/pool_hall_027.mp4",
-      "source_sha256": "ed2fd244df85fe0b33c215c41bf09fcd14f082b9381e1bfec70aaee56b59c807",
+      "bytes": 2833579,
+      "sha256": "def988a13d15d0cdd285e896eb9a868233876175813b270fc1ea1665ee3434e8",
+      "source": "twilight-zone/videos/27_pool_hall_v2_smoke_loop.mp4",
+      "source_sha256": "d0e5337a837802d19178c30b528dc57c1f82a15509e96d464d129c56878ddb72",
       "scene": "twz_027",
-      "frames": 90,
+      "frames": 92,
       "fps": 15
     },
     {
@@ -993,5 +993,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T14:05:12Z"
+  "updated_utc": "2026-10-14T14:15:38Z"
 }
