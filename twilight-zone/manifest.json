@@ -4,7 +4,7 @@
   "scenes": [
     {
       "id": "twz_001",
-      "video": "videos/bus_stop_001.mp4",
+      "video": "videos/bus_stop_001_loop.mp4",
       "still": "stills/bus_stop_001.jpg",
       "captions": [
         "The bus to Cortland is late. The double never is."

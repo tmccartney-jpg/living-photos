@@ -46,6 +46,8 @@
     text-shadow: 0 1px 3px rgba(0,0,0,.9); transition: opacity .6s; }
   /* viewer mode: just the picture and the buttons (technical details stay in the page, hidden) */
   .info, .help, #resetBtn { display: none; }
+  .sceneno { position: absolute; top: 8px; left: 10px; color: rgba(255,255,255,.55);
+    font: 12px/1 system-ui, -apple-system, sans-serif; letter-spacing: .05em; text-shadow: 0 1px 2px #000; }
 
   .controls { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
   button { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 8px;
@@ -77,6 +79,7 @@
       <img id="still" alt="" style="display:none">
       <div class="caption" id="caption"></div>
       <div class="epline" id="ep"></div>
+      <div class="sceneno" id="sceneno"></div>
     </div>
   </div>
 
@@ -84,6 +87,7 @@
     <button id="presenceBtn" class="presence clear">Presence: CLEAR</button>
     <button id="nextBtn">Next scene ▸</button>
     <button id="autoBtn" class="on">Auto: every 12 s</button>
+    <button id="orderBtn">Order: shuffled</button>
     <button id="introBtn">Play intro</button>
     <button id="orientBtn">Portrait</button>
     <button id="resetBtn">Reset counts</button>
@@ -116,7 +120,7 @@
   };
   let counts = store.get();
   const AUTO_MS = 12000;               // auto-advance: 12 s per scene, like the PC "All Scenes" view
-  let auto = true, autoTimer = null;
+  let auto = true, autoTimer = null, inOrder = false;
   let scenes = [], state = {}, bag = [], lastShown = null, current = null, present = false;
 
   const bust = u => u + (u.includes('?') ? '&' : '?') + 't=' + Date.now();
@@ -157,6 +161,11 @@
 
   function next() {
     if (!scenes.length) { cap.textContent = 'No active scenes in the manifest yet.'; return; }
+    if (inOrder) {                       // 001, 002 ... 030, then sp01 ... sp19, then round again
+      const list = [...scenes].sort((a, b) => a.id.localeCompare(b.id));
+      const i = current ? list.findIndex(x => x.id === current.id) : -1;
+      show(list[(i + 1) % list.length]); return;
+    }
     if (!bag.length) refill();
     show(bag.shift());
   }
@@ -186,6 +195,7 @@
     $('err').textContent = '';
     setTimeout(() => cap.classList.remove('fade'), 400);
     cap.textContent = list[idx] || '';
+    $('sceneno').textContent = s.id.replace('twz_', '');
     const e = s.episode || {};
     $('ep').textContent = e.title ? [e.title, e.season ? `S${e.season} E${e.number}` : '', e.year || ''].filter(Boolean).join('  |  ') : '';
 
@@ -234,6 +244,12 @@
 
   $('presenceBtn').onclick = () => { present = !present; applyPresence(); };
   $('nextBtn').onclick = next;
+  $('orderBtn').onclick = () => {
+    inOrder = !inOrder;
+    $('orderBtn').textContent = inOrder ? 'Order: by number' : 'Order: shuffled';
+    $('orderBtn').classList.toggle('on', inOrder);
+    if (inOrder) { current = null; next(); }
+  };
   $('autoBtn').onclick = () => {
     auto = !auto;
     $('autoBtn').textContent = auto ? 'Auto: every 12 s' : 'Auto: off';
@@ -252,6 +268,7 @@
     if (e.target.tagName === 'BUTTON' && e.code === 'Space') e.preventDefault();
     if (e.code === 'Space') { e.preventDefault(); $('presenceBtn').click(); }
     else if (e.key === 'n' || e.key === 'N') next();
+    else if (e.key === 'l' || e.key === 'L') $('orderBtn').click();
     else if (e.key === 'i' || e.key === 'I') $('introBtn').click();
   });
 
