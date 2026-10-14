@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 150120088,
+  "total_bytes": 150554800,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -264,21 +264,21 @@
     {
       "path": "twilight-zone/device/twz_013.jpg",
       "kind": "still",
-      "bytes": 53891,
-      "sha256": "e99cb52d726a85e50c394d66d445c88d4b9204db08f90e334d64e90fe1b1ecab",
-      "source": "twilight-zone/videos/13_porch_swing_pingpong.mp4",
-      "source_sha256": "c3293bff1c56f8ef88e3ba4e760fe4507cf108240896af7e68ba04573aae9044",
+      "bytes": 50181,
+      "sha256": "7f0c1f7c78907a1e9da1216371eeb0a73f84e819664405639e5037f2981b2dea",
+      "source": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
+      "source_sha256": "8313e39bb5f654a04382d76ceeb7f1e4c23465dca8450fbe38b9d60da31e2d4d",
       "scene": "twz_013"
     },
     {
       "path": "twilight-zone/device/twz_013.lpv",
       "kind": "clip",
-      "bytes": 4508680,
-      "sha256": "4602b216fa8cde119f485b13b38f8682f1f4103f71531a822b5e420f216750bb",
-      "source": "twilight-zone/videos/13_porch_swing_pingpong.mp4",
-      "source_sha256": "c3293bff1c56f8ef88e3ba4e760fe4507cf108240896af7e68ba04573aae9044",
+      "bytes": 4947102,
+      "sha256": "f430fa4959a0f548be415d9b85f62cb8a27119f4ecb34d9bfc099eb6c285c437",
+      "source": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
+      "source_sha256": "8313e39bb5f654a04382d76ceeb7f1e4c23465dca8450fbe38b9d60da31e2d4d",
       "scene": "twz_013",
-      "frames": 90,
+      "frames": 98,
       "fps": 15
     },
     {
@@ -1004,5 +1004,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:28:03Z"
+  "updated_utc": "2026-10-14T13:31:11Z"
 }
