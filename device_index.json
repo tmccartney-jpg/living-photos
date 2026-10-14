@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "note": "Every file a frame mirrors to its SD card (plus rotation.json, state.json and the manifests). Download a file when its sha256 differs from the SD copy; delete SD files not listed here.",
-  "total_bytes": 146833729,
+  "total_bytes": 146837263,
   "files": [
     {
       "path": "intros/device/tz_egg.lpv",
@@ -453,19 +453,19 @@
     {
       "path": "twilight-zone/device/twz_023.jpg",
       "kind": "still",
-      "bytes": 55347,
-      "sha256": "89fc9b6b5d8e46b45d77dc97171daeb76e0bc1b580e59e32fb5dbedceafb831c",
-      "source": "twilight-zone/videos/23_park_carousel_v3_loop.mp4",
-      "source_sha256": "1fdd076fd0f5c37a952a5741fe4bc5c7a4a4076455b17dc6798df1592efb741b",
+      "bytes": 54783,
+      "sha256": "b1ef4b437eb865c018036543d99ffab39c8f78ddb15713ddd447642c52063dba",
+      "source": "twilight-zone/videos/23_park_carousel_v4_loop.mp4",
+      "source_sha256": "fccc321176c0d71beb916ef9ad1d8ab4eff54964c07f3c13787d8038d5c91d5b",
       "scene": "twz_023"
     },
     {
       "path": "twilight-zone/device/twz_023.lpv",
       "kind": "clip",
-      "bytes": 3489364,
-      "sha256": "8e5a3561f60127fa4451ea464c6d75a68d843e1d00f8fafe51a98c5396106d84",
-      "source": "twilight-zone/videos/23_park_carousel_v3_loop.mp4",
-      "source_sha256": "1fdd076fd0f5c37a952a5741fe4bc5c7a4a4076455b17dc6798df1592efb741b",
+      "bytes": 3493462,
+      "sha256": "6afcb4bce3b9fa8031b2411f9964aad527ac20e426dc31679c5fe0bedf6bb840",
+      "source": "twilight-zone/videos/23_park_carousel_v4_loop.mp4",
+      "source_sha256": "fccc321176c0d71beb916ef9ad1d8ab4eff54964c07f3c13787d8038d5c91d5b",
       "scene": "twz_023",
       "frames": 64,
       "fps": 15
@@ -993,5 +993,5 @@
       "fps": 15
     }
   ],
-  "updated_utc": "2026-10-14T13:48:24Z"
+  "updated_utc": "2026-10-14T14:01:50Z"
 }
