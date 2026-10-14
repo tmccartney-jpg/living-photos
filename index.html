@@ -4,6 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Living Photos</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Living Photos" />
 <style>
   :root {
     --bg: #0b0b0c;
@@ -113,9 +117,10 @@
         fetch(bust(BASE + 'manifest.json')).then(r => r.json()),
         fetch(bust('state.json')).then(r => r.ok ? r.json() : {}).catch(() => ({}))
       ]);
-      scenes = (m.scenes || []).filter(x => x.pool === 'active');
+      // every scene the frame can show: the rotation plus the birthday / holiday specials
+      scenes = (m.scenes || []).filter(x => ['active', 'reserve', 'retired', 'special'].includes(x.pool) && (x.video || x.still));
       state = s;
-      $('feedInfo').textContent = `${scenes.length} active scene${scenes.length === 1 ? '' : 's'} · theme: ${state.active_theme || m.theme}`;
+      $('feedInfo').textContent = `${scenes.length} scene${scenes.length === 1 ? '' : 's'} · theme: ${state.active_theme || m.theme}`;
       await playIntro();
       next();
     } catch (e) {
