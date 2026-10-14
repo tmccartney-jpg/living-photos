@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Kevin's Frame</title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="Kevin's Frame" />
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  /* the frame's 800x480 screen, as big as fits */
+  .screen { position: relative; width: min(100vw, calc(100vh * 800 / 480)); aspect-ratio: 800 / 480; background: #000; overflow: hidden; }
+  .screen video, .screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 6% 34px;
+    background: linear-gradient(transparent, rgba(0,0,0,.78));
+    font: italic clamp(13px, 2.4vw, 22px)/1.35 Georgia, "Times New Roman", serif; color: #eeeae0; text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9); }
+  .ep { position: absolute; left: 0; right: 0; bottom: 10px; text-align: center; color: #a8a49a;
+    font: clamp(10px, 1.5vw, 14px)/1 system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: .04em;
+    text-shadow: 0 1px 3px rgba(0,0,0,.9); }
+  .tag { position: fixed; right: 10px; bottom: 8px; color: #555; font: 11px system-ui, sans-serif; opacity: 0; transition: opacity .4s; }
+  body.showtag .tag { opacity: 1; }
+</style>
+</head>
+<body>
+  <div class="screen">
+    <video id="vid" muted playsinline loop preload="auto"></video>
+    <img id="still" alt="" style="display:none">
+    <div class="caption" id="cap"></div>
+    <div class="ep" id="ep"></div>
+  </div>
+  <div class="tag" id="tag"></div>
+<script>
+// Shows what Kevin's frame shows right now: today's scene from rotation.json (yesterday's until
+// change_at), still while state.json scene_motion is off, looping (as if the room is empty) once it's on.
+(() => {
+  const $ = id => document.getElementById(id);
+  const vid = $('vid'), still = $('still');
+  const bust = u => u + '?t=' + Date.now();
+  let shownKey = null, shownMotion = null;
+
+  function nowNY() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York',
+      year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false })
+      .formatToParts(new Date()).map(x => [x.type, x.value]));
+    return { date: `${p.year}-${p.month}-${p.day}`, mins: (+p.hour % 24) * 60 + (+p.minute) };
+  }
+
+  function pick(rot) {
+    if (!rot.previous_scene) return rot.scene;
+    const n = nowNY(), [h, m] = (rot.change_at || '09:30').split(':').map(Number);
+    if (n.date < rot.date || (n.date === rot.date && n.mins < h * 60 + m)) return rot.previous_scene;
+    return rot.scene;
+  }
+
+  function show(s, motion) {
+    $('cap').textContent = s.caption || '';
+    const e = s.episode || {};
+    $('ep').textContent = e.title ? [e.title, e.season ? `S${e.season} E${e.number}` : '', e.year || ''].filter(Boolean).join('  |  ') : '';
+    $('tag').textContent = `${s.id} · ${motion ? 'motion on (room empty)' : 'motion off'}`;
+    if (s.video) {
+      still.style.display = 'none'; vid.style.display = '';
+      vid.poster = s.still || ''; vid.src = s.video; vid.load();
+      vid.onloadeddata = () => {
+        if (motion) vid.play().catch(() => {});
+        else { vid.play().then(() => { vid.pause(); vid.currentTime = 0; }).catch(() => {}); }
+      };
+    } else {
+      vid.pause(); vid.removeAttribute('src'); vid.style.display = 'none';
+      still.src = s.still; still.style.display = '';
+    }
+  }
+
+  async function refresh() {
+    try {
+      const [rot, st] = await Promise.all([
+        fetch(bust('rotation.json')).then(r => r.json()),
+        fetch(bust('state.json')).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+      ]);
+      const s = pick(rot), motion = !!st.scene_motion;
+      if (s && (s.key !== shownKey || motion !== shownMotion)) { shownKey = s.key; shownMotion = motion; show(s, motion); }
+    } catch (e) { $('tag').textContent = 'Could not load today\'s scene'; document.body.classList.add('showtag'); }
+  }
+
+  // tap: briefly show which scene and whether motion is on
+  document.body.addEventListener('click', () => {
+    document.body.classList.add('showtag');
+    setTimeout(() => document.body.classList.remove('showtag'), 3000);
+  });
+
+  refresh();
+  setInterval(refresh, 60000);     // picks up the 9:30 change and GitHub updates on its own
+})();
+</script>
+</body>
+</html>
