@@ -486,9 +486,9 @@
       ],
       "episode_tag": "the_masks",
       "mood_tags": [],
-      "pool": "active",
-      "last_shown": null,
-      "times_shown": 0,
+      "pool": "retired",
+      "last_shown": "2026-10-14",
+      "times_shown": 1,
       "weight": 1,
       "release_date": null,
       "device": {
@@ -518,7 +518,7 @@
         "conformity",
         "inverted_normalcy"
       ],
-      "pool": "reserve",
+      "pool": "active",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,

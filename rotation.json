@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_017",
+    "id": "twz_017",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
+    "still": "twilight-zone/stills/masked_figures_017.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_017.lpv",
+      "still": "twilight-zone/device/twz_017.jpg"
+    },
+    "caption": "Take it off now. See what's underneath.",
+    "caption_index": 0,
+    "episode_tag": "the_masks",
+    "episode": {
+      "title": "The Masks",
+      "season": 5,
+      "number": 25,
+      "year": 1964
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_019",
     "id": "twz_019",
     "theme": "twilight-zone",
@@ -24,35 +54,6 @@
       "year": 1960
     }
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "10:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_021",
-    "id": "twz_021",
-    "theme": "twilight-zone",
-    "video": null,
-    "still": "twilight-zone/stills/airplane_wing_in_the_storm_021.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": null,
-      "still": "twilight-zone/device/twz_021.jpg"
-    },
-    "caption": "There's something on the wing. There always is.",
-    "caption_index": 0,
-    "episode_tag": "nightmare_at_20_000_feet",
-    "episode": {
-      "title": "Nightmare at 20,000 Feet",
-      "season": 5,
-      "number": 3,
-      "year": 1963
-    }
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -63,20 +64,20 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 5,
-    "retired": 3,
+    "reserve": 12,
+    "retired": 4,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_017",
       "twilight-zone/twz_013",
       "twilight-zone/twz_004",
       "twilight-zone/twz_016",
       "twilight-zone/twz_002",
       "twilight-zone/twz_011",
       "twilight-zone/twz_028",
+      "twilight-zone/twz_018",
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
@@ -87,7 +88,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_019"
+    "twilight-zone": "twilight-zone/twz_017"
   },
   "spread": {},
   "history": [
@@ -109,6 +110,11 @@
     {
       "date": "2026-10-13",
       "key": "twilight-zone/twz_019",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-14",
+      "key": "twilight-zone/twz_017",
       "caption_index": 0
     }
   ]
