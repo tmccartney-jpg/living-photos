@@ -4,7 +4,7 @@
   "intro_motion": false,
   "scene_motion": false,
   "override": {
-    "scene": "ov01",
+    "scene": "",
     "caption": ""
   },
   "severance_premiere": null,
