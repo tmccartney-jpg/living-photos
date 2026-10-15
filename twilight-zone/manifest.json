@@ -1501,25 +1501,6 @@
         "clip": "device/twz_sp19.lpv",
         "still": "device/twz_sp19.jpg"
       }
-    },
-    {
-      "id": "twz_ov01",
-      "still": "stills/override_rms_van.jpg",
-      "captions": [
-        ""
-      ],
-      "episode_tag": "override",
-      "mood_tags": [],
-      "pool": "hold",
-      "times_shown": 0,
-      "weight": 1,
-      "release_date": null,
-      "last_shown": null,
-      "note": "Override-only picture (RMS van). Never in the rotation; show it with state.json override scene 'ov01'.",
-      "device": {
-        "clip": null,
-        "still": "device/twz_ov01.jpg"
-      }
     }
   ]
 }
