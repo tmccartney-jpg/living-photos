@@ -33,23 +33,27 @@
   },
   "change_at": "09:30",
   "previous_scene": {
-    "key": "twilight-zone/twz_ov01",
-    "id": "twz_ov01",
+    "key": "twilight-zone/twz_017",
+    "id": "twz_017",
     "theme": "twilight-zone",
-    "video": null,
-    "still": "twilight-zone/stills/override_rms_van.jpg",
+    "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
+    "still": "twilight-zone/stills/masked_figures_017.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": null,
-      "still": "twilight-zone/device/twz_ov01.jpg"
+      "clip": "twilight-zone/device/twz_017.lpv",
+      "still": "twilight-zone/device/twz_017.jpg"
     },
-    "caption": "",
+    "caption": "Take it off now. See what's underneath.",
     "caption_index": 0,
-    "episode_tag": "override",
-    "episode": null,
-    "special": null,
-    "override": true
+    "episode_tag": "the_masks",
+    "episode": {
+      "title": "The Masks",
+      "season": 5,
+      "number": 25,
+      "year": 1964
+    },
+    "special": null
   },
   "crossfade": {
     "active": false,
@@ -125,28 +129,7 @@
     "caption": "",
     "applied": "2026-10-14T14:50-04:00",
     "until": "2026-10-15 09:30",
-    "replaced_previous": {
-      "key": "twilight-zone/twz_017",
-      "id": "twz_017",
-      "theme": "twilight-zone",
-      "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
-      "still": "twilight-zone/stills/masked_figures_017.jpg",
-      "presence": "freeze",
-      "motion": "loop",
-      "device": {
-        "clip": "twilight-zone/device/twz_017.lpv",
-        "still": "twilight-zone/device/twz_017.jpg"
-      },
-      "caption": "Take it off now. See what's underneath.",
-      "caption_index": 0,
-      "episode_tag": "the_masks",
-      "episode": {
-        "title": "The Masks",
-        "season": 5,
-        "number": 25,
-        "year": 1964
-      },
-      "special": null
-    }
+    "replaced_previous": null,
+    "cleared": "2026-10-15T07:49-04:00"
   }
 }
