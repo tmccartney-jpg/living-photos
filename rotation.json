@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_004",
+    "id": "twz_004",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/diner_booth_coffee_steaming_004.mp4",
+    "still": "twilight-zone/stills/diner_booth_coffee_steaming_004.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_004.lpv",
+      "still": "twilight-zone/device/twz_004.jpg"
+    },
+    "caption": "Oakwood's coffee is still hot. Oakwood's people are gone.",
+    "caption_index": 0,
+    "episode_tag": "where_is_everybody",
+    "episode": {
+      "title": "Where Is Everybody?",
+      "season": 1,
+      "number": 1,
+      "year": 1959
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_013",
     "id": "twz_013",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_017",
-    "id": "twz_017",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
-    "still": "twilight-zone/stills/masked_figures_017.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_017.lpv",
-      "still": "twilight-zone/device/twz_017.jpg"
-    },
-    "caption": "Take it off now. See what's underneath.",
-    "caption_index": 0,
-    "episode_tag": "the_masks",
-    "episode": {
-      "title": "The Masks",
-      "season": 5,
-      "number": 25,
-      "year": 1964
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,14 +65,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 11,
-    "retired": 5,
+    "reserve": 10,
+    "retired": 6,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_004",
       "twilight-zone/twz_016",
       "twilight-zone/twz_002",
       "twilight-zone/twz_011",
@@ -82,6 +81,7 @@
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
+      "twilight-zone/twz_007",
       "twilight-zone/twz_006",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_013"
+    "twilight-zone": "twilight-zone/twz_004"
   },
   "spread": {},
   "history": [
@@ -121,6 +121,11 @@
     {
       "date": "2026-10-15",
       "key": "twilight-zone/twz_013",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-16",
+      "key": "twilight-zone/twz_004",
       "caption_index": 0
     }
   ],
