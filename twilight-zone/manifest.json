@@ -457,9 +457,9 @@
         "fate",
         "compulsion"
       ],
-      "pool": "active",
-      "last_shown": null,
-      "times_shown": 0,
+      "pool": "retired",
+      "last_shown": "2026-10-17",
+      "times_shown": 1,
       "weight": 1,
       "release_date": null,
       "device": {
@@ -723,7 +723,7 @@
       ],
       "episode_tag": "kick_the_can",
       "mood_tags": [],
-      "pool": "reserve",
+      "pool": "active",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,

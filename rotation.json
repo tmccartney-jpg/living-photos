@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_016",
+    "id": "twz_016",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/fortune_machine_016.mp4",
+    "still": "twilight-zone/stills/fortune_machine_016.jpg",
+    "presence": "rest",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_016.lpv",
+      "still": "twilight-zone/device/twz_016.jpg"
+    },
+    "caption": "Ask it again. It already knows you will.",
+    "caption_index": 0,
+    "episode_tag": "nick_of_time",
+    "episode": {
+      "title": "Nick of Time",
+      "season": 2,
+      "number": 7,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_004",
     "id": "twz_004",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_013",
-    "id": "twz_013",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
-    "still": "twilight-zone/stills/porch_swing_vs_wind_013.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_013.lpv",
-      "still": "twilight-zone/device/twz_013.jpg"
-    },
-    "caption": "It snowed on the crops tonight. Anthony was in a mood.",
-    "caption_index": 0,
-    "episode_tag": "its_a_good_life",
-    "episode": {
-      "title": "It's a Good Life",
-      "season": 3,
-      "number": 8,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,14 +65,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 10,
-    "retired": 6,
+    "reserve": 9,
+    "retired": 7,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_016",
       "twilight-zone/twz_002",
       "twilight-zone/twz_011",
       "twilight-zone/twz_028",
@@ -82,6 +81,7 @@
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
       "twilight-zone/twz_007",
+      "twilight-zone/twz_025",
       "twilight-zone/twz_006",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_004"
+    "twilight-zone": "twilight-zone/twz_016"
   },
   "spread": {},
   "history": [
@@ -126,6 +126,11 @@
     {
       "date": "2026-10-16",
       "key": "twilight-zone/twz_004",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-17",
+      "key": "twilight-zone/twz_016",
       "caption_index": 0
     }
   ],
