@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_011",
+    "id": "twz_011",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/barbershop_mirror_011.mp4",
+    "still": "twilight-zone/stills/barbershop_mirror_011.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_011.lpv",
+      "still": "twilight-zone/device/twz_011.jpg"
+    },
+    "caption": "Every face in the mirror belonged to somebody else first.",
+    "caption_index": 0,
+    "episode_tag": "the_four_of_us_are_dying",
+    "episode": {
+      "title": "The Four of Us Are Dying",
+      "season": 1,
+      "number": 13,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_002",
     "id": "twz_002",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_016",
-    "id": "twz_016",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/fortune_machine_016.mp4",
-    "still": "twilight-zone/stills/fortune_machine_016.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_016.lpv",
-      "still": "twilight-zone/device/twz_016.jpg"
-    },
-    "caption": "Ask it again. It already knows you will.",
-    "caption_index": 0,
-    "episode_tag": "nick_of_time",
-    "episode": {
-      "title": "Nick of Time",
-      "season": 2,
-      "number": 7,
-      "year": 1960
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,20 +65,20 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 8,
-    "retired": 8,
+    "reserve": 7,
+    "retired": 9,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_011",
       "twilight-zone/twz_028",
       "twilight-zone/twz_018",
       "twilight-zone/twz_024",
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
+      "twilight-zone/twz_010",
       "twilight-zone/twz_007",
       "twilight-zone/twz_023",
       "twilight-zone/twz_025",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_002"
+    "twilight-zone": "twilight-zone/twz_011"
   },
   "spread": {},
   "history": [
@@ -136,6 +136,11 @@
     {
       "date": "2026-10-18",
       "key": "twilight-zone/twz_002",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-19",
+      "key": "twilight-zone/twz_011",
       "caption_index": 0
     }
   ],
