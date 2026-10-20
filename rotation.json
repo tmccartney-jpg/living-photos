@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_028",
+    "id": "twz_028",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/28_cylinder_loop.mp4",
+    "still": "twilight-zone/stills/the_cylinder_028.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_028.lpv",
+      "still": "twilight-zone/device/twz_028.jpg"
+    },
+    "caption": "Everyone in here thinks they're a person.",
+    "caption_index": 0,
+    "episode_tag": "five_characters_in_search_of_an_exit",
+    "episode": {
+      "title": "Five Characters in Search of an Exit",
+      "season": 3,
+      "number": 14,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_011",
     "id": "twz_011",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_002",
-    "id": "twz_002",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/cornfield_farmhouse_002.mp4",
-    "still": "twilight-zone/stills/cornfield_farmhouse_002.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_002.lpv",
-      "still": "twilight-zone/device/twz_002.jpg"
-    },
-    "caption": "Anthony sent him to the cornfield. It's a good thing he did.",
-    "caption_index": 0,
-    "episode_tag": "its_a_good_life",
-    "episode": {
-      "title": "It's a Good Life",
-      "season": 3,
-      "number": 8,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,14 +65,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 7,
-    "retired": 9,
+    "reserve": 6,
+    "retired": 10,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_028",
       "twilight-zone/twz_018",
       "twilight-zone/twz_024",
       "twilight-zone/twz_029",
@@ -81,6 +80,7 @@
       "twilight-zone/twz_010",
       "twilight-zone/twz_007",
       "twilight-zone/twz_023",
+      "twilight-zone/twz_014",
       "twilight-zone/twz_025",
       "twilight-zone/twz_006",
       "twilight-zone/twz_030",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_011"
+    "twilight-zone": "twilight-zone/twz_028"
   },
   "spread": {},
   "history": [
@@ -141,6 +141,11 @@
     {
       "date": "2026-10-19",
       "key": "twilight-zone/twz_011",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-20",
+      "key": "twilight-zone/twz_028",
       "caption_index": 0
     }
   ],
