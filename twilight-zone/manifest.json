@@ -216,7 +216,7 @@
       ],
       "episode_tag": "a_stop_at_willoughby",
       "mood_tags": [],
-      "pool": "reserve",
+      "pool": "active",
       "last_shown": null,
       "times_shown": 0,
       "weight": 1,
@@ -518,9 +518,9 @@
         "conformity",
         "inverted_normalcy"
       ],
-      "pool": "active",
-      "last_shown": null,
-      "times_shown": 0,
+      "pool": "retired",
+      "last_shown": "2026-10-21",
+      "times_shown": 1,
       "weight": 1,
       "release_date": null,
       "device": {
