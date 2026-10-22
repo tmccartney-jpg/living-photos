@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_024",
+    "id": "twz_024",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/24_doll_on_shelf_turn.mp4",
+    "still": "twilight-zone/stills/doll_on_the_shelf_024.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_024.lpv",
+      "still": "twilight-zone/device/twz_024.jpg"
+    },
+    "caption": "She says she doesn't like you.",
+    "caption_index": 0,
+    "episode_tag": "living_doll",
+    "episode": {
+      "title": "Living Doll",
+      "season": 5,
+      "number": 6,
+      "year": 1963
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_018",
     "id": "twz_018",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_028",
-    "id": "twz_028",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/28_cylinder_loop.mp4",
-    "still": "twilight-zone/stills/the_cylinder_028.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_028.lpv",
-      "still": "twilight-zone/device/twz_028.jpg"
-    },
-    "caption": "Everyone in here thinks they're a person.",
-    "caption_index": 0,
-    "episode_tag": "five_characters_in_search_of_an_exit",
-    "episode": {
-      "title": "Five Characters in Search of an Exit",
-      "season": 3,
-      "number": 14,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,14 +65,13 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 5,
-    "retired": 11,
+    "reserve": 4,
+    "retired": 12,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_024",
       "twilight-zone/twz_029",
       "twilight-zone/twz_009",
       "twilight-zone/twz_022",
@@ -82,6 +81,7 @@
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
       "twilight-zone/twz_006",
+      "twilight-zone/twz_027",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_008",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_018"
+    "twilight-zone": "twilight-zone/twz_024"
   },
   "spread": {},
   "history": [
@@ -151,6 +151,11 @@
     {
       "date": "2026-10-21",
       "key": "twilight-zone/twz_018",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-22",
+      "key": "twilight-zone/twz_024",
       "caption_index": 0
     }
   ],
