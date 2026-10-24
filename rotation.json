@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_009",
+    "id": "twz_009",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/09_rocking_chair_v2_pingpong.mp4",
+    "still": "twilight-zone/stills/childs_rocking_chair_009.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_009.lpv",
+      "still": "twilight-zone/device/twz_009.jpg"
+    },
+    "caption": "Helen keeps finding herself, age nine, waiting.",
+    "caption_index": 0,
+    "episode_tag": "nightmare_as_a_child",
+    "episode": {
+      "title": "Nightmare as a Child",
+      "season": 1,
+      "number": 29,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_029",
     "id": "twz_029",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_024",
-    "id": "twz_024",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/24_doll_on_shelf_turn.mp4",
-    "still": "twilight-zone/stills/doll_on_the_shelf_024.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_024.lpv",
-      "still": "twilight-zone/device/twz_024.jpg"
-    },
-    "caption": "She says she doesn't like you.",
-    "caption_index": 0,
-    "episode_tag": "living_doll",
-    "episode": {
-      "title": "Living Doll",
-      "season": 5,
-      "number": 6,
-      "year": 1963
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -65,20 +65,20 @@
   },
   "pools": {
     "active": 14,
-    "reserve": 3,
-    "retired": 13,
+    "reserve": 2,
+    "retired": 14,
     "retired_final": 0,
     "pending": 0
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_009",
       "twilight-zone/twz_022",
       "twilight-zone/twz_010",
       "twilight-zone/twz_007",
       "twilight-zone/twz_023",
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
+      "twilight-zone/twz_003",
       "twilight-zone/twz_006",
       "twilight-zone/twz_027",
       "twilight-zone/twz_030",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_029"
+    "twilight-zone": "twilight-zone/twz_009"
   },
   "spread": {},
   "history": [
@@ -161,6 +161,11 @@
     {
       "date": "2026-10-23",
       "key": "twilight-zone/twz_029",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-24",
+      "key": "twilight-zone/twz_009",
       "caption_index": 0
     }
   ],
