@@ -13,7 +13,7 @@
       "mood_tags": [
         "isolation"
       ],
-      "pool": "reserve",
+      "pool": "active",
       "last_shown": "2026-10-10",
       "times_shown": 1,
       "weight": 1,
@@ -636,9 +636,9 @@
       ],
       "episode_tag": "to_serve_man",
       "mood_tags": [],
-      "pool": "active",
-      "last_shown": null,
-      "times_shown": 0,
+      "pool": "retired",
+      "last_shown": "2026-10-25",
+      "times_shown": 1,
       "weight": 1,
       "release_date": null,
       "device": {
@@ -752,7 +752,7 @@
       ],
       "episode_tag": "the_invaders",
       "mood_tags": [],
-      "pool": "retired",
+      "pool": "reserve",
       "last_shown": "2026-10-11",
       "times_shown": 1,
       "weight": 1,

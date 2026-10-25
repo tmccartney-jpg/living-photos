@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-24",
+  "date": "2026-10-25",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_022",
+    "id": "twz_022",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/22_cookbook_loop.mp4",
+    "still": "twilight-zone/stills/the_cookbook_022.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_022.lpv",
+      "still": "twilight-zone/device/twz_022.jpg"
+    },
+    "caption": "Read past the first page.",
+    "caption_index": 0,
+    "episode_tag": "to_serve_man",
+    "episode": {
+      "title": "To Serve Man",
+      "season": 3,
+      "number": 24,
+      "year": 1962
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_009",
     "id": "twz_009",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_029",
-    "id": "twz_029",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/29_ventriloquist_dummy_pingpong.mp4",
-    "still": "twilight-zone/stills/ventriloquist_dummy_029.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_029.lpv",
-      "still": "twilight-zone/device/twz_029.jpg"
-    },
-    "caption": "Who's working whom?",
-    "caption_index": 0,
-    "episode_tag": "the_dummy",
-    "episode": {
-      "title": "The Dummy",
-      "season": 3,
-      "number": 33,
-      "year": 1962
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_022",
       "twilight-zone/twz_010",
       "twilight-zone/twz_007",
       "twilight-zone/twz_023",
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
       "twilight-zone/twz_003",
+      "twilight-zone/twz_001",
       "twilight-zone/twz_006",
       "twilight-zone/twz_027",
       "twilight-zone/twz_030",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_009"
+    "twilight-zone": "twilight-zone/twz_022"
   },
   "spread": {},
   "history": [
@@ -166,6 +166,11 @@
     {
       "date": "2026-10-24",
       "key": "twilight-zone/twz_009",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-25",
+      "key": "twilight-zone/twz_022",
       "caption_index": 0
     }
   ],
