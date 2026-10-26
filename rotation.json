@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-25",
+  "date": "2026-10-26",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_010",
+    "id": "twz_010",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/little_girl_lost_010.mp4",
+    "still": "twilight-zone/stills/little_girl_lost_010.jpg",
+    "presence": "rest",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_010.lpv",
+      "still": "twilight-zone/device/twz_010.jpg"
+    },
+    "caption": "Tina's voice is coming from inside the wall.",
+    "caption_index": 0,
+    "episode_tag": "little_girl_lost",
+    "episode": {
+      "title": "Little Girl Lost",
+      "season": 3,
+      "number": 26,
+      "year": 1962
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_022",
     "id": "twz_022",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_009",
-    "id": "twz_009",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/09_rocking_chair_v2_pingpong.mp4",
-    "still": "twilight-zone/stills/childs_rocking_chair_009.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_009.lpv",
-      "still": "twilight-zone/device/twz_009.jpg"
-    },
-    "caption": "Helen keeps finding herself, age nine, waiting.",
-    "caption_index": 0,
-    "episode_tag": "nightmare_as_a_child",
-    "episode": {
-      "title": "Nightmare as a Child",
-      "season": 1,
-      "number": 29,
-      "year": 1960
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_010",
       "twilight-zone/twz_007",
       "twilight-zone/twz_023",
       "twilight-zone/twz_014",
@@ -80,6 +79,7 @@
       "twilight-zone/twz_003",
       "twilight-zone/twz_001",
       "twilight-zone/twz_006",
+      "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_022"
+    "twilight-zone": "twilight-zone/twz_010"
   },
   "spread": {},
   "history": [
@@ -171,6 +171,11 @@
     {
       "date": "2026-10-25",
       "key": "twilight-zone/twz_022",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-26",
+      "key": "twilight-zone/twz_010",
       "caption_index": 0
     }
   ],
