@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-26",
+  "date": "2026-10-27",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_007",
+    "id": "twz_007",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/07_peaksville_parlor_v4_static_clown.mp4",
+    "still": "twilight-zone/stills/07_peaksville_parlor_v2.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_007.lpv",
+      "still": "twilight-zone/device/twz_007.jpg"
+    },
+    "caption": "Everybody in Peaksville watches what Anthony wants.",
+    "caption_index": 0,
+    "episode_tag": "its_a_good_life",
+    "episode": {
+      "title": "It's a Good Life",
+      "season": 3,
+      "number": 8,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_010",
     "id": "twz_010",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_022",
-    "id": "twz_022",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/22_cookbook_loop.mp4",
-    "still": "twilight-zone/stills/the_cookbook_022.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_022.lpv",
-      "still": "twilight-zone/device/twz_022.jpg"
-    },
-    "caption": "Read past the first page.",
-    "caption_index": 0,
-    "episode_tag": "to_serve_man",
-    "episode": {
-      "title": "To Serve Man",
-      "season": 3,
-      "number": 24,
-      "year": 1962
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_007",
       "twilight-zone/twz_023",
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
@@ -81,6 +80,7 @@
       "twilight-zone/twz_006",
       "twilight-zone/twz_026",
       "twilight-zone/twz_027",
+      "twilight-zone/twz_021",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_008",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_010"
+    "twilight-zone": "twilight-zone/twz_007"
   },
   "spread": {},
   "history": [
@@ -176,6 +176,11 @@
     {
       "date": "2026-10-26",
       "key": "twilight-zone/twz_010",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-27",
+      "key": "twilight-zone/twz_007",
       "caption_index": 0
     }
   ],
