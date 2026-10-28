@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-27",
+  "date": "2026-10-28",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_023",
+    "id": "twz_023",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/23_park_carousel_v4_loop.mp4",
+    "still": "twilight-zone/stills/park_carousel_023.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_023.lpv",
+      "still": "twilight-zone/device/twz_023.jpg"
+    },
+    "caption": "You can visit. You just can't stay.",
+    "caption_index": 0,
+    "episode_tag": "walking_distance",
+    "episode": {
+      "title": "Walking Distance",
+      "season": 1,
+      "number": 5,
+      "year": 1959
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_007",
     "id": "twz_007",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_010",
-    "id": "twz_010",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/little_girl_lost_010.mp4",
-    "still": "twilight-zone/stills/little_girl_lost_010.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_010.lpv",
-      "still": "twilight-zone/device/twz_010.jpg"
-    },
-    "caption": "Tina's voice is coming from inside the wall.",
-    "caption_index": 0,
-    "episode_tag": "little_girl_lost",
-    "episode": {
-      "title": "Little Girl Lost",
-      "season": 3,
-      "number": 26,
-      "year": 1962
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_023",
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
       "twilight-zone/twz_003",
@@ -81,6 +80,7 @@
       "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_021",
+      "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_008",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_007"
+    "twilight-zone": "twilight-zone/twz_023"
   },
   "spread": {},
   "history": [
@@ -181,6 +181,11 @@
     {
       "date": "2026-10-27",
       "key": "twilight-zone/twz_007",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-28",
+      "key": "twilight-zone/twz_023",
       "caption_index": 0
     }
   ],
