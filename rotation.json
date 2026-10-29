@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_014",
+    "id": "twz_014",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/14_department_store_v2_turn.mp4",
+    "still": "twilight-zone/stills/14_department_store_v2.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_014.lpv",
+      "still": "twilight-zone/device/twz_014.jpg"
+    },
+    "caption": "The saleswoman on nine stands very, very still.",
+    "caption_index": 0,
+    "episode_tag": "the_after_hours",
+    "episode": {
+      "title": "The After Hours",
+      "season": 1,
+      "number": 34,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_023",
     "id": "twz_023",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_007",
-    "id": "twz_007",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/07_peaksville_parlor_v4_static_clown.mp4",
-    "still": "twilight-zone/stills/07_peaksville_parlor_v2.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_007.lpv",
-      "still": "twilight-zone/device/twz_007.jpg"
-    },
-    "caption": "Everybody in Peaksville watches what Anthony wants.",
-    "caption_index": 0,
-    "episode_tag": "its_a_good_life",
-    "episode": {
-      "title": "It's a Good Life",
-      "season": 3,
-      "number": 8,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_014",
       "twilight-zone/twz_025",
       "twilight-zone/twz_003",
       "twilight-zone/twz_001",
@@ -80,6 +79,7 @@
       "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_021",
+      "twilight-zone/twz_019",
       "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_023"
+    "twilight-zone": "twilight-zone/twz_014"
   },
   "spread": {},
   "history": [
@@ -186,6 +186,11 @@
     {
       "date": "2026-10-28",
       "key": "twilight-zone/twz_023",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-29",
+      "key": "twilight-zone/twz_014",
       "caption_index": 0
     }
   ],
