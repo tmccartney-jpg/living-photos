@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-10-29",
+  "date": "2026-10-30",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_sp04",
+    "id": "twz_sp04",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/sp04_halloween_loop.mp4",
+    "still": "twilight-zone/stills/sp04_halloween.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_sp04.lpv",
+      "still": "twilight-zone/device/twz_sp04.jpg"
+    },
+    "caption": "Unusual masking has been noted. Proceed with caution.",
+    "caption_index": 0,
+    "episode_tag": "the_grave",
+    "episode": {
+      "title": "The Grave",
+      "season": 3,
+      "number": 7,
+      "year": 1961
+    },
+    "special": "Halloween"
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_014",
     "id": "twz_014",
     "theme": "twilight-zone",
@@ -22,36 +52,6 @@
       "season": 1,
       "number": 34,
       "year": 1960
-    },
-    "special": null
-  },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_023",
-    "id": "twz_023",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/23_park_carousel_v4_loop.mp4",
-    "still": "twilight-zone/stills/park_carousel_023.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_023.lpv",
-      "still": "twilight-zone/device/twz_023.jpg"
-    },
-    "caption": "You can visit. You just can't stay.",
-    "caption_index": 0,
-    "episode_tag": "walking_distance",
-    "episode": {
-      "title": "Walking Distance",
-      "season": 1,
-      "number": 5,
-      "year": 1959
     },
     "special": null
   },
@@ -191,6 +191,11 @@
     {
       "date": "2026-10-29",
       "key": "twilight-zone/twz_014",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-30",
+      "key": "twilight-zone/twz_sp04",
       "caption_index": 0
     }
   ],
