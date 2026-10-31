@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "date": "2026-10-30",
+  "date": "2026-10-31",
   "timezone": "America/New_York",
   "scene": {
     "key": "twilight-zone/twz_sp04",
@@ -33,27 +33,27 @@
   },
   "change_at": "09:30",
   "previous_scene": {
-    "key": "twilight-zone/twz_014",
-    "id": "twz_014",
+    "key": "twilight-zone/twz_sp04",
+    "id": "twz_sp04",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/14_department_store_v2_turn.mp4",
-    "still": "twilight-zone/stills/14_department_store_v2.jpg",
+    "video": "twilight-zone/videos/sp04_halloween_loop.mp4",
+    "still": "twilight-zone/stills/sp04_halloween.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_014.lpv",
-      "still": "twilight-zone/device/twz_014.jpg"
+      "clip": "twilight-zone/device/twz_sp04.lpv",
+      "still": "twilight-zone/device/twz_sp04.jpg"
     },
-    "caption": "The saleswoman on nine stands very, very still.",
+    "caption": "Unusual masking has been noted. Proceed with caution.",
     "caption_index": 0,
-    "episode_tag": "the_after_hours",
+    "episode_tag": "the_grave",
     "episode": {
-      "title": "The After Hours",
-      "season": 1,
-      "number": 34,
-      "year": 1960
+      "title": "The Grave",
+      "season": 3,
+      "number": 7,
+      "year": 1961
     },
-    "special": null
+    "special": "Halloween"
   },
   "crossfade": {
     "active": false,
@@ -195,6 +195,11 @@
     },
     {
       "date": "2026-10-30",
+      "key": "twilight-zone/twz_sp04",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-10-31",
       "key": "twilight-zone/twz_sp04",
       "caption_index": 0
     }
