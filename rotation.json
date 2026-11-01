@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "date": "2026-10-31",
+  "date": "2026-11-01",
   "timezone": "America/New_York",
   "scene": {
-    "key": "twilight-zone/twz_sp04",
-    "id": "twz_sp04",
+    "key": "twilight-zone/twz_025",
+    "id": "twz_025",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/sp04_halloween_loop.mp4",
-    "still": "twilight-zone/stills/sp04_halloween.jpg",
+    "video": "twilight-zone/videos/25_kick_the_can_loop.mp4",
+    "still": "twilight-zone/stills/kick_the_can_025.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_sp04.lpv",
-      "still": "twilight-zone/device/twz_sp04.jpg"
+      "clip": "twilight-zone/device/twz_025.lpv",
+      "still": "twilight-zone/device/twz_025.jpg"
     },
-    "caption": "Unusual masking has been noted. Proceed with caution.",
+    "caption": "Somebody's still playing.",
     "caption_index": 0,
-    "episode_tag": "the_grave",
+    "episode_tag": "kick_the_can",
     "episode": {
-      "title": "The Grave",
+      "title": "Kick the Can",
       "season": 3,
-      "number": 7,
-      "year": 1961
+      "number": 21,
+      "year": 1962
     },
-    "special": "Halloween"
+    "special": null
   },
   "intro": {
     "theme": "twilight-zone",
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_025",
       "twilight-zone/twz_003",
       "twilight-zone/twz_001",
       "twilight-zone/twz_006",
       "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_021",
+      "twilight-zone/twz_017",
       "twilight-zone/twz_019",
       "twilight-zone/twz_005",
       "twilight-zone/twz_030",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_014"
+    "twilight-zone": "twilight-zone/twz_025"
   },
   "spread": {},
   "history": [
@@ -201,6 +201,11 @@
     {
       "date": "2026-10-31",
       "key": "twilight-zone/twz_sp04",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-01",
+      "key": "twilight-zone/twz_025",
       "caption_index": 0
     }
   ],
