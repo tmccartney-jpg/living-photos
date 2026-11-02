@@ -2,7 +2,7 @@
   "schema_version": 1,
   "active_theme": "twilight-zone",
   "intro_motion": false,
-  "scene_motion": false,
+  "scene_motion": true,
   "override": {
     "scene": "",
     "caption": ""
