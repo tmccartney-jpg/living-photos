@@ -214,12 +214,5 @@
       "caption_index": 0
     }
   ],
-  "override_last": {
-    "scene": "twilight-zone/twz_ov01",
-    "caption": "",
-    "applied": "2026-10-14T14:50-04:00",
-    "until": "2026-10-15 09:30",
-    "replaced_previous": null,
-    "cleared": "2026-10-15T07:49-04:00"
-  }
+  "override_last": {}
 }
