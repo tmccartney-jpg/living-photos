@@ -497,6 +497,10 @@ def apply_override(state, lib, rot):
                 rot["override_last"] = {**last, "replaced_previous": None, "cleared": now.isoformat(timespec="minutes")}
                 print("override cleared - normal scene restored")
                 return rot
+        if last.get("scene"):                         # field emptied: forget it, so the same one can run again later
+            rot = dict(rot)
+            rot["override_last"] = {}
+            return rot
         return None
     if last.get("scene") == want["scene"] and last.get("caption") == want["caption"]:
         return None                                   # already shown (or shown and expired)
