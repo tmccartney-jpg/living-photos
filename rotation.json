@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-01",
+  "date": "2026-11-02",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_003",
+    "id": "twz_003",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/03_four_dollar_room_v2_pingpong.mp4",
+    "still": "twilight-zone/stills/03_four_dollar_room_v2.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_003.lpv",
+      "still": "twilight-zone/device/twz_003.jpg"
+    },
+    "caption": "Jackie's reflection is done waiting for him to change.",
+    "caption_index": 0,
+    "episode_tag": "nervous_man_in_a_four_dollar_room",
+    "episode": {
+      "title": "Nervous Man in a Four Dollar Room",
+      "season": 2,
+      "number": 3,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_025",
     "id": "twz_025",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_sp04",
-    "id": "twz_sp04",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/sp04_halloween_loop.mp4",
-    "still": "twilight-zone/stills/sp04_halloween.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_sp04.lpv",
-      "still": "twilight-zone/device/twz_sp04.jpg"
-    },
-    "caption": "Unusual masking has been noted. Proceed with caution.",
-    "caption_index": 0,
-    "episode_tag": "the_grave",
-    "episode": {
-      "title": "The Grave",
-      "season": 3,
-      "number": 7,
-      "year": 1961
-    },
-    "special": "Halloween"
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_003",
       "twilight-zone/twz_001",
       "twilight-zone/twz_006",
       "twilight-zone/twz_026",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_020",
       "twilight-zone/twz_008",
       "twilight-zone/twz_015",
-      "twilight-zone/twz_012"
+      "twilight-zone/twz_012",
+      "twilight-zone/twz_013"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_025"
+    "twilight-zone": "twilight-zone/twz_003"
   },
   "spread": {},
   "history": [
@@ -206,6 +206,11 @@
     {
       "date": "2026-11-01",
       "key": "twilight-zone/twz_025",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-02",
+      "key": "twilight-zone/twz_003",
       "caption_index": 0
     }
   ],
