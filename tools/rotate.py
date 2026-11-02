@@ -341,10 +341,46 @@ def special_matches(rule, day):
     return False
 
 
+def nth_weekday_date(year, month, py_weekday, nth):
+    d = dt.date(year, month, 1)
+    d += dt.timedelta(days=(py_weekday - d.weekday()) % 7)
+    return d + dt.timedelta(weeks=nth - 1)
+
+
+def last_weekday_date(year, month, py_weekday):
+    d = dt.date(year, month, calendar.monthrange(year, month)[1])
+    return d - dt.timedelta(days=(d.weekday() - py_weekday) % 7)
+
+
+def office_holidays(year):
+    """Days Kevin's office is closed besides weekends: the major holidays (Tony, Nov 1 2026).
+    Fixed-date holidays on a Saturday are observed the Friday before, on a Sunday the Monday after."""
+    days = set()
+    for m, d in ((1, 1), (7, 4), (12, 25)):
+        h = dt.date(year, m, d)
+        days.add(h)
+        if h.weekday() == 5:
+            days.add(h - dt.timedelta(days=1))
+        if h.weekday() == 6:
+            days.add(h + dt.timedelta(days=1))
+    days.add(last_weekday_date(year, 5, 0))           # Memorial Day
+    days.add(nth_weekday_date(year, 9, 0, 1))         # Labor Day
+    tg = nth_weekday_date(year, 11, 3, 4)              # Thanksgiving + the Friday after
+    days.update({tg, tg + dt.timedelta(days=1)})
+    return days
+
+
+def office_open(day):
+    if day.weekday() >= 5:
+        return False
+    return not any(day in office_holidays(y) for y in (day.year - 1, day.year, day.year + 1))
+
+
 def special_for(lib, day, state):
     """The special scene for `day`, or None.
-    Weekend dates (Kevin's office is closed) are also shown on the Friday before; if that
-    Friday has its own special, on the Monday after. They still show on the day itself."""
+    Specials that fall when Kevin's office is closed (weekends and major holidays) are also
+    shown on the last open day before; if that day has its own special, on the first open day
+    after. They still show on the day itself."""
     if state.get("special_days") is False:           # state.json switch (default on)
         return None
     ready = [k for k in sorted(lib.keys(pool="special"))
@@ -352,19 +388,29 @@ def special_for(lib, day, state):
     on = lambda d: [k for k in ready if special_matches(lib.scene(k).get("special"), d)]
     one = dt.timedelta(days=1)
     exact = on(day)
-    wd = day.weekday()                               # Monday = 0
-    if wd < 5 and exact:
+    if not office_open(day):
+        return exact[0] if exact else None
+
+    def closed_run(start, step):                     # closed days next to an open day
+        out, d = [], start + step
+        while not office_open(d) and len(out) < 10:
+            out.append(d)
+            d += step
+        return out, d
+
+    if exact:
         return exact[0]
-    if wd == 4:                                      # Friday: this weekend's specials
-        wk = on(day + one) + on(day + 2 * one)
-        if wk:
-            return wk[0]
-    if wd == 0:                                      # Monday: whatever last Friday couldn't take
-        wk = on(day - 2 * one) + on(day - one)
-        rest = wk if on(day - 3 * one) else wk[1:]
+    after, _ = closed_run(day, one)                  # the closed stretch right after today
+    ahead = [k for d in after for k in on(d)]
+    if ahead:
+        return ahead[0]
+    before, prev_open = closed_run(day, -one)        # the closed stretch right before today
+    behind = [k for d in sorted(before) for k in on(d)]
+    if behind:
+        rest = behind if on(prev_open) else behind[1:]   # the open day before took the first, unless busy
         if rest:
             return rest[0]
-    return exact[0] if exact else None
+    return None
 
 
 # ---------------------------------------------------------------- main step
