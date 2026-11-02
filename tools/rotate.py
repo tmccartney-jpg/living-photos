@@ -376,20 +376,23 @@ def office_open(day):
     return not any(day in office_holidays(y) for y in (day.year - 1, day.year, day.year + 1))
 
 
-def special_for(lib, day, state):
-    """The special scene for `day`, or None.
-    Specials that fall when Kevin's office is closed (weekends and major holidays) are also
-    shown on the last open day before; if that day has its own special, on the first open day
-    after. They still show on the day itself."""
+SPLIT_AT = "13:00"     # a day with two specials: the first until this time, the second after
+
+
+def specials_for(lib, day, state):
+    """The special scenes for `day` (at most two), in showing order.
+    Specials that fall when Kevin's office is closed (weekends and major holidays) are shown on
+    the last open day before. When that gives a day two specials, both show: the first until
+    SPLIT_AT, the second after. A third (rare) goes to the first open day after.
+    On a closed day itself, its own special still shows."""
     if state.get("special_days") is False:           # state.json switch (default on)
-        return None
+        return []
     ready = [k for k in sorted(lib.keys(pool="special"))
              if lib.scene(k).get("video") or lib.scene(k).get("still")]
     on = lambda d: [k for k in ready if special_matches(lib.scene(k).get("special"), d)]
     one = dt.timedelta(days=1)
-    exact = on(day)
     if not office_open(day):
-        return exact[0] if exact else None
+        return on(day)[:1]
 
     def closed_run(start, step):                     # closed days next to an open day
         out, d = [], start + step
@@ -398,19 +401,26 @@ def special_for(lib, day, state):
             d += step
         return out, d
 
-    if exact:
-        return exact[0]
-    after, _ = closed_run(day, one)                  # the closed stretch right after today
-    ahead = [k for d in after for k in on(d)]
-    if ahead:
-        return ahead[0]
-    before, prev_open = closed_run(day, -one)        # the closed stretch right before today
-    behind = [k for d in sorted(before) for k in on(d)]
-    if behind:
-        rest = behind if on(prev_open) else behind[1:]   # the open day before took the first, unless busy
-        if rest:
-            return rest[0]
-    return None
+    def full(d):                                     # own specials + the closed stretch after
+        after, _ = closed_run(d, one)
+        out = []
+        for k in on(d) + [k for x in after for k in on(x)]:
+            if k not in out:
+                out.append(k)
+        return out
+
+    before, prev_open = closed_run(day, -one)
+    leftover = [k for k in full(prev_open)[2:] if any(k in on(x) for x in before)]
+    out = []
+    for k in leftover + full(day):
+        if k not in out:
+            out.append(k)
+    return out[:2]
+
+
+def special_for(lib, day, state):
+    s = specials_for(lib, day, state)
+    return s[-1] if s else None
 
 
 # ---------------------------------------------------------------- main step
@@ -522,7 +532,15 @@ def run_day(day, state, lib, rot, quiet=False):
     # today's theme: Severance with probability `share` (deterministic per day)
     sev_ready = any(lib.scene(k)["pool"] in ("active", "reserve", "retired") for k in lib.keys(theme="severance"))
     want = "severance" if (sev_ready and spread(rot, "scene", share, day)) else "twilight-zone"
-    key = special_for(lib, day, state)
+    sp = specials_for(lib, day, state)
+    key = sp[-1] if sp else None
+    split = None
+    if len(sp) == 2:                                 # two specials today: first until SPLIT_AT
+        m = lib.scene(sp[0])
+        mcaps = m.get("captions") or [""]
+        split = scene_entry(lib, sp[0], mcaps[m["times_shown"] % len(mcaps)], m["times_shown"] % len(mcaps))
+        m["times_shown"] += 1
+        m["last_shown"] = day.isoformat()
     if key is None:
         key, _ = draw(lib, rot, day, want, yesterday)
     if key is None:
@@ -556,8 +574,8 @@ def run_day(day, state, lib, rot, quiet=False):
         "scene": scene_entry(lib, key, caps[cap_i], cap_i),
         "intro": {"theme": intro_theme, "file": intro_file, "motion": intro_file.endswith(".mp4"),
                   "device": "intros/device/" + os.path.splitext(os.path.basename(t_by[intro_theme]["intro_png"]))[0] + ".jpg"},
-        "change_at": (state.get("change_at_once") or {}).get(day.isoformat(), CHANGE_AT),   # one-off later change
-        "previous_scene": previous,
+        "change_at": SPLIT_AT if split else (state.get("change_at_once") or {}).get(day.isoformat(), CHANGE_AT),
+        "previous_scene": split or previous,         # split day: the morning special (from last night until SPLIT_AT)
         "crossfade": {
             "active": in_cf,
             "start": state.get("crossfade_start"),
