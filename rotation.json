@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_001",
+    "id": "twz_001",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/bus_stop_001_loop.mp4",
+    "still": "twilight-zone/stills/bus_stop_001.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_001.lpv",
+      "still": "twilight-zone/device/twz_001.jpg"
+    },
+    "caption": "The bus to Cortland is late. The double never is.",
+    "caption_index": 0,
+    "episode_tag": "mirror_image",
+    "episode": {
+      "title": "Mirror Image",
+      "season": 1,
+      "number": 21,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_003",
     "id": "twz_003",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_025",
-    "id": "twz_025",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/25_kick_the_can_loop.mp4",
-    "still": "twilight-zone/stills/kick_the_can_025.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_025.lpv",
-      "still": "twilight-zone/device/twz_025.jpg"
-    },
-    "caption": "Somebody's still playing.",
-    "caption_index": 0,
-    "episode_tag": "kick_the_can",
-    "episode": {
-      "title": "Kick the Can",
-      "season": 3,
-      "number": 21,
-      "year": 1962
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_001",
       "twilight-zone/twz_006",
       "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_021",
       "twilight-zone/twz_017",
       "twilight-zone/twz_019",
+      "twilight-zone/twz_004",
       "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_003"
+    "twilight-zone": "twilight-zone/twz_001"
   },
   "spread": {},
   "history": [
@@ -212,7 +212,11 @@
       "date": "2026-11-02",
       "key": "twilight-zone/twz_003",
       "caption_index": 0
+    },
+    {
+      "date": "2026-11-03",
+      "key": "twilight-zone/twz_001",
+      "caption_index": 0
     }
-  ],
-  "override_last": {}
+  ]
 }
