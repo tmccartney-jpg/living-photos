@@ -70,3 +70,8 @@ To modify a locked behavior or reference fact:
 5. ~~Remaining Twilight Zone scene concepts~~ — all 30 in the manifest 2026-10-10 (9 living, 21 still-only until their Kling clips are made)
 6. "Kevin discovers the mechanism" easter-egg scene — now on the list (2026-10-11): the clip, and what triggers it
 7. Kling clips for the 13 still-only TZ scenes; Severance clips as episodes air
+8. Ambient motion for when motion is left on long-term (decided 2026-11-03, not built yet) — once the secret is out, motion stops being tied to the room and the frame acts like a living painting:
+   - Every 10–30 min at **random** (Tony's choice over a set rhythm), the scene plays once or twice, then stops.
+   - When a burst ends it **freezes on the frame where it stopped** (not back to the still). The ping-pong clips let the next burst resume from that frame with no jump; the 09:30 intro covers the daily scene change.
+   - **Quiet hours**: holds still overnight and when the office is closed.
+   - Timing and quiet hours to live in `state.json` so they can be tuned from GitHub; needs a firmware build.
