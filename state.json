@@ -43,5 +43,11 @@
   },
   "change_at_once": {
     "2026-10-13": "10:30"
+  },
+  "reports": {
+    "enabled": true,
+    "client_id": "Iv23liPmAarRw5dAAjBg",
+    "repo": "tmccartney-jpg/living-photos-reports",
+    "every_min": 60
   }
 }
