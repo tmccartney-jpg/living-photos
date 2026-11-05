@@ -212,13 +212,10 @@ static void rep_create(lv_obj_t *scr)
     lv_obj_set_pos(title, 4, 0);
 
     rep_code = make_label(p, &lv_font_montserrat_24, COL_TICK);
-    lv_obj_set_style_text_letter_space(rep_code, 6, 0);
-    lv_obj_set_style_transform_zoom(rep_code, 512, 0);    // twice the 24 px font
-    lv_obj_set_width(rep_code, 270);
+    lv_obj_set_style_text_letter_space(rep_code, 8, 0);   // plain text: zoomed labels did not draw (fw 14)
+    lv_obj_set_width(rep_code, 552);
     lv_obj_set_style_text_align(rep_code, LV_TEXT_ALIGN_CENTER, 0);
-    lv_obj_set_style_transform_pivot_x(rep_code, 135, 0);
-    lv_obj_set_style_transform_pivot_y(rep_code, 14, 0);
-    lv_obj_set_pos(rep_code, 141, 66);
+    lv_obj_set_pos(rep_code, 0, 70);
 
     rep_how = make_label(p, &lv_font_montserrat_20, COL_TEXT);
     lv_obj_set_width(rep_how, 552);
@@ -268,8 +265,8 @@ static void rep_update(void)
         break;
     case REP_CODE:
         lv_label_set_text(rep_code, r.code);
-        snprintf(b, sizeof(b), "On your phone go to  github.com/login/device\nenter this code, then tap Authorize  (%d:%02d left)",
-                 r.expires_s / 60, r.expires_s % 60);
+        snprintf(b, sizeof(b), "Code:  %s\nOn your phone go to  github.com/login/device\nenter the code, then tap Authorize  (%d:%02d left)",
+                 r.code, r.expires_s / 60, r.expires_s % 60);
         lv_label_set_text(rep_how, b);
         break;
     case REP_LINKED:
