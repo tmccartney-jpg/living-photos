@@ -345,7 +345,7 @@ static void do_link(const rcfg_t *c)
 // ---------------------------------------------------------------- statistics (sampled once a second)
 
 typedef struct {
-    uint32_t n, present, raw_present, sensor_ok, stare_alive;
+    uint32_t n, present, raw_present, sensor_ok, stare_alive, dark;
     uint32_t changes0;
     uint32_t dist_n;
     uint16_t dist[DIST_BUCKETS];
@@ -379,6 +379,7 @@ static void stats_sample(void)
     if (p.raw_present) st.raw_present++;
     if (p.sensor_ok) st.sensor_ok++;
     if (e.stare_active) st.stare_alive++;
+    if (quiet_dark()) st.dark++;
     if (p.raw_present && s.distance_cm > 0) {
         int b = s.distance_cm / 10;
         if (b >= DIST_BUCKETS) b = DIST_BUCKETS - 1;
@@ -466,6 +467,7 @@ static char *build_line(int every_min)
     cJSON_AddNumberToObject(pr, "sensor_seen_pct", st.n ? (double)(st.raw_present * 100 / st.n) : 0);
     cJSON_AddNumberToObject(pr, "sensor_ok_pct", st.n ? (double)(st.sensor_ok * 100 / st.n) : 0);
     cJSON_AddNumberToObject(pr, "changes", (double)(p.changes - st.changes0));
+    cJSON_AddNumberToObject(pr, "dark_pct", st.n ? (double)(st.dark * 100 / st.n) : 0);
     cJSON_AddStringToObject(pr, "now", p.present ? "present" : "away");
     cJSON_AddStringToObject(pr, "source", presence_source_name(p.source));
 

@@ -16,6 +16,13 @@
 //   "stare_s": 15,
 //   "stare_far_cm": 65,             (default 65: Kevin's chair is ~75-90 cm away, so sitting back down ends it)
 //   "stare_grace_s": 5,
+//   "quiet": {                      (fw 15) screen dark outside office hours, wakes when someone is seen
+//     "enabled": true,
+//     "awake_from": "08:00",        lit from ...
+//     "awake_to": "18:00",          ... until (local time, US Eastern)
+//     "days": [1,2,3,4,5],          days it is lit (0 = Sunday ... 6 = Saturday)
+//     "linger_min": 2               after someone was seen, stay lit this long
+//   },                              missing / enabled false = always lit (as before)
 //   "easter_egg": {                 (its max_cm / jitter_cm / still_max also define "close and still"
 //                                    for the stare)
 //     "enabled": false,
@@ -47,6 +54,11 @@ typedef struct {
     uint32_t stare_s;
     int stare_far_cm;                 // farther than this ...
     uint32_t stare_grace_s;           // ... for this long ends the stare
+
+    bool quiet_on;                    // quiet hours (fw 15)
+    int awake_from_min, awake_to_min; // minutes after midnight
+    uint8_t awake_days;               // bit 0 = Sunday ... bit 6 = Saturday
+    uint32_t linger_s;
 } tuning_t;
 
 typedef struct {
@@ -60,6 +72,7 @@ typedef struct {
 } egg_status_t;
 
 bool stare_active(void);              // frame: scene should move although someone is present
+bool quiet_dark(void);               // quiet hours: screen is dark, frame holds still
 
 void tuning_start(void);              // after sdcard_start()
 void tuning_get(tuning_t *out);

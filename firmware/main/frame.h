@@ -27,6 +27,7 @@ void frame_show_scene(void);                  // LVGL lock held
 void frame_show_diag(void);                   // LVGL lock held
 void frame_show_other(lv_obj_t *scr);         // another full screen (Wi-Fi setup); scene pauses
 bool frame_scene_visible(void);               // LVGL lock held
+bool frame_overlay_open(void);                // diagnostics / Wi-Fi setup showing (any task)
 void frame_test_next(void);
 int  frame_preview_cycle(void);               // diagnostics: Preview off -> 10 s -> 20 s -> 30 s -> off; returns the new value
 int  frame_preview_secs(void);                // 0 = off

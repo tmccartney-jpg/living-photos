@@ -187,3 +187,17 @@ share    = 0.05 + 0.95 × progress²        (0 before episode 1; 100% at the fin
 ## Scale Target
 
 30 physical frames, one active/reserve/retired pool shared across all frames pulling from the same manifest (single source of truth), unless per-frame content is later decided to differ.
+
+## Quiet hours (fw 15)
+
+`state.json` → `"quiet"`: the screen goes dark outside office hours and the frame stops playing.
+Anyone walking in lights it again; it stays lit `linger_min` minutes after the last time someone was seen.
+Diagnostics / Wi-Fi setup always keep it lit.
+
+```json
+"quiet": { "enabled": true, "awake_from": "08:00", "awake_to": "18:00", "days": [1,2,3,4,5], "linger_min": 2 }
+```
+
+- Times are US Eastern; `days` 0 = Sunday … 6 = Saturday. A window like 22:00–06:00 works across midnight.
+- `enabled: false` (or no block) = always lit, as before. Changes reach the frame within ~30 s of a sync.
+- Health reports include `dark_pct` (share of the hour the screen was dark).

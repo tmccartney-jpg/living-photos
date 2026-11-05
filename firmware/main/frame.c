@@ -818,6 +818,7 @@ static void play_scene(const scene_t *sc)
             if (!scene_motion_on()) p.present = true; // motion switched off: behave as if watched
             else if (stare_active()) p.present = false; // reveal "stare": someone stared it to life
             if (preview_secs) p.present = false;      // preview: always moving
+            if (quiet_dark()) p.present = true;       // quiet hours: screen dark, nothing to play
             if (is_clip) {
                 if (!p.present) {
                     at_rest = false;
@@ -939,6 +940,8 @@ void frame_show_other(lv_obj_t *scr)
 }
 
 bool frame_scene_visible(void) { return scr_scene && lv_scr_act() == scr_scene; }
+
+bool frame_overlay_open(void) { return diag_open; }   // diagnostics or Wi-Fi setup on screen
 
 void frame_show_diag(void)
 {

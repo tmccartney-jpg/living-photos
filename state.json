@@ -49,5 +49,18 @@
     "client_id": "Iv23liPmAarRw5dAAjBg",
     "repo": "tmccartney-jpg/living-photos-reports",
     "every_min": 60
+  },
+  "quiet": {
+    "enabled": true,
+    "awake_from": "08:00",
+    "awake_to": "18:00",
+    "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "linger_min": 2
   }
 }

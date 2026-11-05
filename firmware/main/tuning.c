@@ -2,15 +2,18 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <time.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/idf_additions.h"
 #include "esp_log.h"
+#include "driver/i2c.h"
 #include "esp_timer.h"
 #include "esp_heap_caps.h"
 #include "cJSON.h"
 #include "sdcard.h"
 #include "presence.h"
+#include "frame.h"
 #include "tuning.h"
 
 #pragma GCC diagnostic ignored "-Wformat-truncation"
@@ -25,6 +28,43 @@ static volatile int64_t egg_fired_us;     // 0 = not fired / taken
 static volatile bool stare_on;
 
 bool stare_active(void) { return stare_on; }
+
+// ---------------------------------------------------------------- quiet hours (fw 15)
+// CH422G output byte (see ota.c / sdcard.c): backlight is bit 2; SD CS and USB_SEL stay low.
+#define CH422G_I2C_PORT  0
+#define CH422G_OUT_ADDR  0x38
+#define CH422G_BL_ON     0x0E
+#define CH422G_BL_OFF    0x0A
+static volatile bool dark;
+bool quiet_dark(void) { return dark; }
+
+static void backlight(bool on)
+{
+    uint8_t out = on ? CH422G_BL_ON : CH422G_BL_OFF;
+    i2c_master_write_to_device(CH422G_I2C_PORT, CH422G_OUT_ADDR, &out, 1, pdMS_TO_TICKS(500));
+}
+
+static int hhmm(const cJSON *o, const char *k, int def)     // "08:30" -> 510
+{
+    const cJSON *v = cJSON_GetObjectItemCaseSensitive(o, k);
+    int h, m;
+    if (cJSON_IsString(v) && sscanf(v->valuestring, "%d:%d", &h, &m) == 2 && h >= 0 && h <= 24 && m >= 0 && m < 60)
+        return h * 60 + m;
+    return def;
+}
+
+// true while the clock says the frame should be lit anyway
+static bool office_hours(const tuning_t *t)
+{
+    time_t tt = time(NULL);
+    struct tm lt;
+    localtime_r(&tt, &lt);
+    if (lt.tm_year + 1900 < 2025) return true;               // no clock yet: stay lit
+    if (!(t->awake_days & (1u << lt.tm_wday))) return false;
+    int m = lt.tm_hour * 60 + lt.tm_min;
+    if (t->awake_from_min <= t->awake_to_min) return m >= t->awake_from_min && m < t->awake_to_min;
+    return m >= t->awake_from_min || m < t->awake_to_min;     // window across midnight
+}
 
 void tuning_get(tuning_t *out)
 {
@@ -110,6 +150,21 @@ static void load(void)
     if (t.stare_far_cm > 400) t.stare_far_cm = 400;
     int grace = jint(root, "stare_grace_s", 5);
     t.stare_grace_s = (uint32_t)(grace < 1 ? 1 : grace > 60 ? 60 : grace);
+    const cJSON *q = cJSON_GetObjectItemCaseSensitive(root, "quiet");
+    if (cJSON_IsObject(q)) {
+        t.quiet_on = cJSON_IsTrue(cJSON_GetObjectItemCaseSensitive(q, "enabled"));
+        t.awake_from_min = hhmm(q, "awake_from", 8 * 60);
+        t.awake_to_min = hhmm(q, "awake_to", 18 * 60);
+        const cJSON *d = cJSON_GetObjectItemCaseSensitive(q, "days");
+        t.awake_days = 0x3E;                                  // Mon-Fri
+        if (cJSON_IsArray(d)) {
+            t.awake_days = 0;
+            const cJSON *x;
+            cJSON_ArrayForEach(x, d) if (cJSON_IsNumber(x) && x->valueint >= 0 && x->valueint <= 6) t.awake_days |= 1u << x->valueint;
+        }
+        int lm = jint(q, "linger_min", 2);
+        t.linger_s = (uint32_t)(lm < 1 ? 1 : lm > 120 ? 120 : lm) * 60;
+    }
     const cJSON *e = cJSON_GetObjectItemCaseSensitive(root, "easter_egg");
     if (cJSON_IsObject(e)) {
         t.egg_enabled = cJSON_IsTrue(cJSON_GetObjectItemCaseSensitive(e, "enabled"));
@@ -133,6 +188,9 @@ static void load(void)
                  t.frame_decides ? "frame (state.json)" : "sensor", t.max_gate, (unsigned long)(t.away_ms / 1000));
     if (old.stare_mode != t.stare_mode)
         ESP_LOGI(TAG, "reveal: %s", t.stare_mode ? "stare (a %lu s look brings the scene to life)" : "hidden");
+    if (old.quiet_on != t.quiet_on || old.awake_from_min != t.awake_from_min || old.awake_to_min != t.awake_to_min || old.awake_days != t.awake_days)
+        ESP_LOGI(TAG, "quiet hours %s (lit %02d:%02d-%02d:%02d, days 0x%02x)", t.quiet_on ? "on" : "off",
+                 t.awake_from_min / 60, t.awake_from_min % 60, t.awake_to_min / 60, t.awake_to_min % 60, t.awake_days);
     if (old.egg_enabled != t.egg_enabled)
         ESP_LOGI(TAG, "easter egg %s", t.egg_enabled ? "armed" : "off");
     portENTER_CRITICAL(&lock);
@@ -152,6 +210,7 @@ static void tuning_task(void *arg)
     enum { RING = 25 };                   // 5 s of distance samples at 200 ms
     int ring[RING] = {0}, ri = 0, filled = 0;
     int64_t last_load = -60000000, still_since = 0, last_fire = 0, last_log = 0, gone_since = 0;
+    int64_t seen_us = 0, last_bl = 0;
     bool egg_done = false;                // egg already fired during this still period
 
     while (1) {
@@ -165,6 +224,20 @@ static void tuning_task(void *arg)
         hmmd_get_state(&s);
         presence_t p;
         presence_get(&p);
+
+        // quiet hours: dark outside office hours unless someone was seen recently or a menu is open
+        if (p.present || p.raw_present) seen_us = now;
+        bool want_dark = t.quiet_on && !office_hours(&t) && !frame_overlay_open() &&
+                         !(seen_us && now - seen_us < (int64_t)t.linger_s * 1000000);
+        if (want_dark != dark) {
+            dark = want_dark;
+            backlight(!dark);
+            last_bl = now;
+            ESP_LOGI(TAG, "quiet hours: screen %s", dark ? "dark" : "lit");
+        } else if (dark && now - last_bl > 30000000) {         // keep it dark (e.g. after a night update)
+            backlight(false);
+            last_bl = now;
+        }
 
         uint32_t peak = 0;
         for (int g = 0; g < HMMD_GATES; g++) if (s.energy[g] > peak) peak = s.energy[g];
