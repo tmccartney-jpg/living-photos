@@ -22,6 +22,7 @@
 #include "sync.h"
 #include "ota.h"
 #include "tuning.h"
+#include "report.h"
 #include "nvs_flash.h"
 #include "esp_heap_caps.h"
 
@@ -96,6 +97,7 @@ void app_main(void)
     }
     sync_start();               // GitHub -> SD card every 5 minutes
     ota_start();                // firmware updates; keeps a new build only if the frame runs
+    report_start();             // fw 14: hourly health report to the private reports repo (once linked)
     vTaskDelay(pdMS_TO_TICKS(3000));
     ESP_LOGI(TAG, "internal RAM free after start-up: %u KB (lowest %u KB)",
              (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),

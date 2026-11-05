@@ -18,6 +18,7 @@
 #include "sync.h"
 #include "ota.h"
 #include "tuning.h"
+#include "report.h"
 #include "diag.h"
 
 #define COL_BG       0x101014
@@ -170,11 +171,126 @@ static void source_btn_cb(lv_event_t *e)
     presence_cycle_source();
 }
 
+// ---------------------------------------------------------------- Reports pop-up (fw 14)
+static lv_obj_t *rep_layer, *rep_code, *rep_how, *rep_msg;
+static lv_obj_t *rep_btn_get, *rep_btn_now, *rep_btn_unlink, *rep_btn_cancel;
+
+static void rep_open_cb(lv_event_t *e)  { (void)e; lv_obj_clear_flag(rep_layer, LV_OBJ_FLAG_HIDDEN); }
+static void rep_close_cb(lv_event_t *e) { (void)e; lv_obj_add_flag(rep_layer, LV_OBJ_FLAG_HIDDEN); }
+static void rep_get_cb(lv_event_t *e)   { (void)e; report_link(); }
+static void rep_now_cb(lv_event_t *e)   { (void)e; report_now(); }
+static void rep_unlink_cb(lv_event_t *e){ (void)e; report_unlink(); }
+static void rep_cancel_cb(lv_event_t *e){ (void)e; report_cancel(); }
+
+static lv_obj_t *rep_button(lv_obj_t *parent, int x, int y, int w, const char *txt, lv_event_cb_t cb, uint32_t col)
+{
+    lv_obj_t *b = lv_btn_create(parent);
+    lv_obj_set_pos(b, x, y);
+    lv_obj_set_size(b, w, 40);
+    lv_obj_set_style_bg_color(b, lv_color_hex(col), 0);
+    lv_obj_add_event_cb(b, cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *l = make_label(b, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(l, txt);
+    lv_obj_center(l);
+    return b;
+}
+
+static void rep_create(lv_obj_t *scr)
+{
+    rep_layer = lv_obj_create(scr);                       // dims the diagnostics behind it
+    lv_obj_remove_style_all(rep_layer);
+    lv_obj_set_pos(rep_layer, 0, 0);
+    lv_obj_set_size(rep_layer, 800, 480);
+    lv_obj_set_style_bg_color(rep_layer, lv_color_hex(0x000000), 0);
+    lv_obj_set_style_bg_opa(rep_layer, LV_OPA_70, 0);
+    lv_obj_add_flag(rep_layer, LV_OBJ_FLAG_CLICKABLE);
+    lv_obj_clear_flag(rep_layer, LV_OBJ_FLAG_SCROLLABLE);
+
+    lv_obj_t *p = make_panel(rep_layer, 110, 60, 580, 360, COL_PANEL);
+    lv_obj_t *title = make_label(p, &lv_font_montserrat_20, COL_DIM);
+    lv_label_set_text(title, "Health reports");
+    lv_obj_set_pos(title, 4, 0);
+
+    rep_code = make_label(p, &lv_font_montserrat_24, COL_TICK);
+    lv_obj_set_style_text_letter_space(rep_code, 6, 0);
+    lv_obj_set_style_transform_zoom(rep_code, 512, 0);    // twice the 24 px font
+    lv_obj_set_width(rep_code, 270);
+    lv_obj_set_style_text_align(rep_code, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_style_transform_pivot_x(rep_code, 135, 0);
+    lv_obj_set_style_transform_pivot_y(rep_code, 14, 0);
+    lv_obj_set_pos(rep_code, 141, 66);
+
+    rep_how = make_label(p, &lv_font_montserrat_20, COL_TEXT);
+    lv_obj_set_width(rep_how, 552);
+    lv_label_set_long_mode(rep_how, LV_LABEL_LONG_WRAP);
+    lv_obj_set_style_text_align(rep_how, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_pos(rep_how, 0, 128);
+
+    rep_msg = make_label(p, &lv_font_montserrat_16, COL_DIM);
+    lv_obj_set_width(rep_msg, 552);
+    lv_label_set_long_mode(rep_msg, LV_LABEL_LONG_WRAP);
+    lv_obj_set_style_text_align(rep_msg, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_pos(rep_msg, 0, 214);
+
+    rep_btn_get    = rep_button(p, 4,   284, 150, "Get code",    rep_get_cb,    COL_BAR);
+    rep_btn_now    = rep_button(p, 4,   284, 150, "Report now",  rep_now_cb,    COL_BAR);
+    rep_btn_cancel = rep_button(p, 4,   284, 150, "Cancel",      rep_cancel_cb, COL_AWAY);
+    rep_btn_unlink = rep_button(p, 164, 284, 120, "Unlink",      rep_unlink_cb, COL_AWAY);
+    rep_button(p, 436, 284, 116, "Close", rep_close_cb, COL_AWAY);
+    lv_obj_add_flag(rep_layer, LV_OBJ_FLAG_HIDDEN);
+}
+
+static void vis(lv_obj_t *o, bool show)
+{
+    if (show) lv_obj_clear_flag(o, LV_OBJ_FLAG_HIDDEN);
+    else lv_obj_add_flag(o, LV_OBJ_FLAG_HIDDEN);
+}
+
+static void rep_update(void)
+{
+    if (!rep_layer || lv_obj_has_flag(rep_layer, LV_OBJ_FLAG_HIDDEN)) return;
+    rep_info_t r;
+    report_get(&r);
+    char b[160];
+    switch (r.state) {
+    case REP_NOT_SET_UP:
+        lv_label_set_text(rep_code, "");
+        lv_label_set_text(rep_how, "Not set up yet.\nThe GitHub App details go in state.json first.");
+        break;
+    case REP_UNLINKED:
+    case REP_FAILED:
+        lv_label_set_text(rep_code, "");
+        lv_label_set_text(rep_how, "Tap Get code, then enter the code on your phone at\ngithub.com/login/device");
+        break;
+    case REP_ASKING:
+        lv_label_set_text(rep_code, "...");
+        lv_label_set_text(rep_how, "Asking GitHub for a code");
+        break;
+    case REP_CODE:
+        lv_label_set_text(rep_code, r.code);
+        snprintf(b, sizeof(b), "On your phone go to  github.com/login/device\nenter this code, then tap Authorize  (%d:%02d left)",
+                 r.expires_s / 60, r.expires_s % 60);
+        lv_label_set_text(rep_how, b);
+        break;
+    case REP_LINKED:
+        lv_label_set_text(rep_code, "Linked");
+        lv_label_set_text(rep_how, "This frame sends a health report every hour.");
+        break;
+    }
+    lv_label_set_text(rep_msg, r.msg);
+    vis(rep_btn_get, r.state == REP_UNLINKED || r.state == REP_FAILED);
+    vis(rep_btn_cancel, r.state == REP_ASKING || r.state == REP_CODE);
+    vis(rep_btn_now, r.state == REP_LINKED);
+    vis(rep_btn_unlink, r.state == REP_LINKED);
+}
+
 static void update_cb(lv_timer_t *t)
 {
     (void)t;
     if (lv_scr_act() != scr_diag) return;
-    if (lv_disp_get_inactive_time(NULL) > 60000) {   // 60 s without a touch: back to the scene
+    rep_update();
+    if (lv_disp_get_inactive_time(NULL) > 60000 && !report_busy()) {   // 60 s without a touch: back to the scene
+        if (rep_layer) lv_obj_add_flag(rep_layer, LV_OBJ_FLAG_HIDDEN);
         frame_show_scene();
         return;
     }
@@ -396,7 +512,7 @@ void diag_create(void)
     lv_obj_center(lbl_preview);
 
     lbl_gate_title = make_label(scr, &lv_font_montserrat_16, COL_DIM);
-    lv_label_set_text(lbl_gate_title, "Gate energy (yellow = trigger)");
+    lv_label_set_text(lbl_gate_title, "Gates (yellow = trigger)");
     lv_obj_set_pos(lbl_gate_title, 474, 17);
     for (int g = 0; g < HMMD_GATES; g++) {
         int y = ROWS_Y + g * ROW_PITCH;
@@ -475,6 +591,17 @@ void diag_create(void)
     lbl_radio = make_label(btn_radio, &lv_font_montserrat_16, COL_TEXT);
     lv_label_set_text(lbl_radio, LV_SYMBOL_REFRESH " Sync");
     lv_obj_center(lbl_radio);
+
+    lv_obj_t *btn_rep = lv_btn_create(scr);            // fw 14: health reports
+    lv_obj_set_pos(btn_rep, 690, 8);
+    lv_obj_set_size(btn_rep, 94, 34);
+    lv_obj_set_style_bg_color(btn_rep, lv_color_hex(COL_PANEL), 0);
+    lv_obj_add_event_cb(btn_rep, rep_open_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_t *lbl_rep = make_label(btn_rep, &lv_font_montserrat_16, COL_TEXT);
+    lv_label_set_text(lbl_rep, "Reports");
+    lv_obj_center(lbl_rep);
+
+    rep_create(scr);                                   // hidden pop-up, on top of everything above
 
     diag_corner_hold(scr, 120, 46, diag_toggle);   // same gesture leaves
 
