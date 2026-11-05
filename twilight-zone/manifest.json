@@ -834,7 +834,9 @@
       "video": "videos/sp01_new_year_pingpong.mp4",
       "still": "stills/sp01_new_year.jpg",
       "captions": [
-        "The clock strikes midnight. A new year begins in the Twilight Zone."
+        "The clock strikes midnight. A new year begins in the Twilight Zone.",
+        "Another year, wound and ticking. Don't let it run down.",
+        "Midnight came right on schedule. Mostly."
       ],
       "episode_tag": "ninety_years_without_slumbering",
       "mood_tags": [],
@@ -866,7 +868,9 @@
       "video": "videos/sp02_memorial_day_once.mp4",
       "still": "stills/sp02_memorial_day.jpg",
       "captions": [
-        "Remembrance demands quiet passage through the shadows."
+        "Remembrance demands quiet passage through the shadows.",
+        "For those who answered the call. Remembered.",
+        "The bugle is quiet. The memory isn't."
       ],
       "episode_tag": "the_purple_testament",
       "mood_tags": [],
@@ -899,7 +903,9 @@
       "video": "videos/sp03_labor_day_loop.mp4",
       "still": "stills/sp03_labor_day.jpg",
       "captions": [
-        "No machine has replaced this crew. Enjoy the day off."
+        "No machine has replaced this crew. Enjoy the day off.",
+        "Mr. Whipple tried to automate everyone. This crew is irreplaceable.",
+        "The machines can wait until Tuesday."
       ],
       "episode_tag": "the_brain_center_at_whipples",
       "mood_tags": [],
@@ -932,7 +938,9 @@
       "video": "videos/sp04_halloween_loop.mp4",
       "still": "stills/sp04_halloween.jpg",
       "captions": [
-        "Unusual masking has been noted. Proceed with caution."
+        "Unusual masking has been noted. Proceed with caution.",
+        "Pinto Sykes promised to reach out. Tonight he might.",
+        "Don't visit the cemetery at midnight. Unless it's tonight."
       ],
       "episode_tag": "the_grave",
       "mood_tags": [],
@@ -965,7 +973,9 @@
       "video": "videos/sp05_thanksgiving_loop.mp4",
       "still": "stills/sp05_thanksgiving.jpg",
       "captions": [
-        "Stop the clock. Have seconds."
+        "Stop the clock. Have seconds.",
+        "McNulty stopped the clock. You can stop for pie.",
+        "Time stands still for second helpings."
       ],
       "episode_tag": "a_kind_of_a_stopwatch",
       "mood_tags": [],
@@ -998,7 +1008,9 @@
       "video": "videos/sp06_christmas_loop.mp4",
       "still": "stills/sp06_christmas.jpg",
       "captions": [
-        "Merry Christmas, from the other side of the signpost."
+        "Merry Christmas, from the other side of the signpost.",
+        "Henry Corwin's bag never runs empty. Merry Christmas.",
+        "Santa took a wrong turn into the Twilight Zone. Good thing."
       ],
       "episode_tag": "the_night_of_the_meek",
       "mood_tags": [],
@@ -1030,7 +1042,9 @@
       "video": "videos/sp07_tom_loop.mp4",
       "still": "stills/sp07_tom.jpg",
       "captions": [
-        "Tom Echorst, author of another year. Lee approved the final draft."
+        "Tom Echorst, author of another year. Lee approved the final draft.",
+        "Happy birthday, Tom. Lee's editing the next chapter.",
+        "Tom's story gets another year. Lee keeps the tape."
       ],
       "episode_tag": "a_world_of_his_own",
       "mood_tags": [],
@@ -1062,7 +1076,9 @@
       "video": "videos/sp08_randy_loop.mp4",
       "still": "stills/sp08_randy.jpg",
       "captions": [
-        "Randy Bullock steps up to the plate. Another year, another swing."
+        "Randy Bullock steps up to the plate. Another year, another swing.",
+        "Randy Bullock, still throwing heat. Happy birthday.",
+        "Bottom of the ninth, another year. Randy's on the mound."
       ],
       "episode_tag": "the_mighty_casey",
       "mood_tags": [],
@@ -1094,7 +1110,9 @@
       "video": "videos/sp09_amber_loop.mp4",
       "still": "stills/sp09_amber.jpg",
       "captions": [
-        "Every birthday deserves a guardian angel. Today it's Amber's turn."
+        "Every birthday deserves a guardian angel. Today it's Amber's turn.",
+        "Amber's guardian angel says she gets the day off.",
+        "Happy birthday, Amber. The angel's buying."
       ],
       "episode_tag": "mr_bevis",
       "mood_tags": [],
@@ -1126,7 +1144,9 @@
       "video": "videos/sp10_vern_loop.mp4",
       "still": "stills/sp10_vern.jpg",
       "captions": [
-        "Vern Andrews makes his greatest pitch yet: another year."
+        "Vern Andrews makes his greatest pitch yet: another year.",
+        "Vern's suitcase holds one more birthday.",
+        "Mr. Death was talked out of it. Vern gets another year."
       ],
       "episode_tag": "one_for_the_angels",
       "mood_tags": [],
@@ -1158,7 +1178,9 @@
       "video": "videos/sp11_bill_loop.mp4",
       "still": "stills/sp11_bill.jpg",
       "captions": [
-        "The machines have agreed to behave today. Happy birthday, Bill."
+        "The machines have agreed to behave today. Happy birthday, Bill.",
+        "Bill's typewriter typed \"happy birthday\" all by itself.",
+        "Every machine in the building wishes Bill a happy birthday."
       ],
       "episode_tag": "a_thing_about_machines",
       "mood_tags": [],
@@ -1190,7 +1212,9 @@
       "video": "videos/sp12_ella_loop.mp4",
       "still": "stills/sp12_ella.jpg",
       "captions": [
-        "One Ella Wilcox, celebrated today in the zone of gladness."
+        "One Ella Wilcox, celebrated today in the zone of gladness.",
+        "Happy birthday, Ella. Somebody's grandmother is proud.",
+        "Built for kindness, made for Ella's birthday."
       ],
       "episode_tag": "i_sing_the_body_electric",
       "mood_tags": [],
@@ -1222,7 +1246,9 @@
       "video": "videos/sp13_adam_loop.mp4",
       "still": "stills/sp13_adam.jpg",
       "captions": [
-        "Adam Truax, teller of tall tales. This one happens to be true: happy birthday."
+        "Adam Truax, teller of tall tales. This one happens to be true: happy birthday.",
+        "Adam's tall tales get taller every year.",
+        "The aliens believed Adam. So do we. Happy birthday."
       ],
       "episode_tag": "hocus-pocus_and_frisby",
       "mood_tags": [],
@@ -1254,7 +1280,9 @@
       "video": "videos/sp14_tammy_loop.mp4",
       "still": "stills/sp14_tammy.jpg",
       "captions": [
-        "The longest day of the year belongs to Tammy Truax."
+        "The longest day of the year belongs to Tammy Truax.",
+        "Jump in, Tammy. The cake's on the other side.",
+        "Happy birthday, Tammy. The water's fine."
       ],
       "episode_tag": "the_bewitchin_pool",
       "mood_tags": [],
@@ -1286,7 +1314,9 @@
       "video": "videos/sp15_ethan_july4_loop.mp4",
       "still": "stills/sp15_ethan_july4.jpg",
       "captions": [
-        "Fireworks for the nation. Candles for Ethan."
+        "Fireworks for the nation. Candles for Ethan.",
+        "Independence Day for the country. Birthday for Ethan.",
+        "Ethan, a hundred yards over the rim of another year."
       ],
       "episode_tag": "a_hundred_yards_over_the_rim",
       "mood_tags": [],
@@ -1318,7 +1348,9 @@
       "video": "videos/sp16_joe_lyle_loop.mp4",
       "still": "stills/sp16_joe_lyle.jpg",
       "captions": [
-        "Two birthdays, one day. Joe and Lyle, submitted for your approval."
+        "Two birthdays, one day. Joe and Lyle, submitted for your approval.",
+        "Two of a kind. Happy birthday, Joe and Lyle.",
+        "Joe and Lyle: twice the candles, half the cake."
       ],
       "episode_tag": "two",
       "mood_tags": [],
@@ -1350,7 +1382,9 @@
       "video": "videos/sp17_jeff_loop.mp4",
       "still": "stills/sp17_jeff.jpg",
       "captions": [
-        "Jeff Truax gets one big tall wish this year."
+        "Jeff Truax gets one big tall wish this year.",
+        "Wish big, Jeff. It's your birthday.",
+        "Bolie Jackson made one tall wish. Jeff gets two."
       ],
       "episode_tag": "the_big_tall_wish",
       "mood_tags": [],
@@ -1382,7 +1416,9 @@
       "video": "videos/sp18_rich_loop.mp4",
       "still": "stills/sp18_rich.jpg",
       "captions": [
-        "Every shipment lands on time. Even Rich's birthday."
+        "Every shipment lands on time. Even Rich's birthday.",
+        "Flight 33 just landed on Rich's birthday.",
+        "Rich DiOrio, cleared for landing on another year."
       ],
       "episode_tag": "the_odyssey_of_flight_33",
       "mood_tags": [],
@@ -1414,7 +1450,9 @@
       "video": "videos/sp19_kevin_loop.mp4",
       "still": "stills/sp19_kevin.jpg",
       "captions": [
-        "Kevin Wilcox: four wishes, one birthday. Choose carefully."
+        "Kevin Wilcox: four wishes, one birthday. Choose carefully.",
+        "Kevin found the bottle. Four wishes. Use them wisely.",
+        "Happy birthday, Kevin. The genie's on the clock."
       ],
       "episode_tag": "the_man_in_the_bottle",
       "mood_tags": [],
