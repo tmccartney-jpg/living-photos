@@ -11,8 +11,11 @@
 //   },
 //   "reveal": "hidden" | "stare",   hidden = scenes move only while nobody is near (default)
 //                                   stare  = also come alive when someone stands close and still
-//                                            for "stare_s" seconds, until they walk away
+//                                            for "stare_s" seconds; it goes back to sleep once they have
+//                                            been farther than "stare_far_cm" for "stare_grace_s" seconds
 //   "stare_s": 15,
+//   "stare_far_cm": 65,             (default 65: Kevin's chair is ~75-90 cm away, so sitting back down ends it)
+//   "stare_grace_s": 5,
 //   "easter_egg": {                 (its max_cm / jitter_cm / still_max also define "close and still"
 //                                    for the stare)
 //     "enabled": false,
@@ -42,6 +45,8 @@ typedef struct {
 
     bool stare_mode;                  // reveal == "stare"
     uint32_t stare_s;
+    int stare_far_cm;                 // farther than this ...
+    uint32_t stare_grace_s;           // ... for this long ends the stare
 } tuning_t;
 
 typedef struct {

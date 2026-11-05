@@ -105,6 +105,11 @@ static void load(void)
     t.stare_mode = cJSON_IsString(rv) && !strcmp(rv->valuestring, "stare");
     t.stare_s = (uint32_t)jint(root, "stare_s", 15);
     if (t.stare_s < 3) t.stare_s = 3;
+    t.stare_far_cm = jint(root, "stare_far_cm", 65);
+    if (t.stare_far_cm < 30) t.stare_far_cm = 30;
+    if (t.stare_far_cm > 400) t.stare_far_cm = 400;
+    int grace = jint(root, "stare_grace_s", 5);
+    t.stare_grace_s = (uint32_t)(grace < 1 ? 1 : grace > 60 ? 60 : grace);
     const cJSON *e = cJSON_GetObjectItemCaseSensitive(root, "easter_egg");
     if (cJSON_IsObject(e)) {
         t.egg_enabled = cJSON_IsTrue(cJSON_GetObjectItemCaseSensitive(e, "enabled"));
@@ -186,7 +191,8 @@ static void tuning_task(void *arg)
             ESP_LOGI(TAG, "easter egg fired (dist %d cm, range %d cm, peak %lu)", dist, range, (unsigned long)peak);
         }
 
-        // stare: a long still look brings the scene to life until the person has gone for 3 s
+        // stare: a long still look brings the scene to life; it goes back to sleep once the viewer
+        // has stepped back past stare_far_cm (or left) for stare_grace_s
         if (!t.stare_mode) {
             stare_on = false;
         } else if (!stare_on && close_still && still_s >= (int)t.stare_s) {
@@ -194,9 +200,13 @@ static void tuning_task(void *arg)
             gone_since = 0;
             ESP_LOGI(TAG, "stare: scene comes alive");
         } else if (stare_on) {
-            if (p.raw_present) gone_since = 0;
+            bool near = p.raw_present && dist > 0 && dist <= t.stare_far_cm;
+            if (near) gone_since = 0;
             else if (!gone_since) gone_since = now;
-            else if (now - gone_since >= 3000000) { stare_on = false; ESP_LOGI(TAG, "stare: viewer gone"); }
+            else if (now - gone_since >= (int64_t)t.stare_grace_s * 1000000) {
+                stare_on = false;
+                ESP_LOGI(TAG, "stare: viewer stepped away (%s)", p.raw_present ? "still in the room" : "gone");
+            }
         }
 
         // data for tuning: one line a second while someone is near
