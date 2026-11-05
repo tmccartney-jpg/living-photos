@@ -7,7 +7,9 @@
       "video": "videos/bus_stop_001_loop.mp4",
       "still": "stills/bus_stop_001.jpg",
       "captions": [
-        "The bus to Cortland is late. The double never is."
+        "The bus to Cortland is late. The double never is.",
+        "Same coat, same face. Two of them waiting for one bus.",
+        "Paul says she imagined the other one. Paul will learn."
       ],
       "episode_tag": "mirror_image",
       "mood_tags": [
@@ -27,18 +29,16 @@
         "season": 1,
         "number": 21,
         "year": 1960
-      },
-      "captions_later": [
-        "Same coat, same face. Two of them waiting for one bus.",
-        "Paul says she imagined the other one. Paul will learn."
-      ]
+      }
     },
     {
       "id": "twz_002",
       "video": "videos/cornfield_farmhouse_002.mp4",
       "still": "stills/cornfield_farmhouse_002.jpg",
       "captions": [
-        "Anthony sent him to the cornfield. It's a good thing he did."
+        "Anthony sent him to the cornfield. It's a good thing he did.",
+        "Everyone in Peaksville thinks happy thoughts. They have to.",
+        "No one goes past the end of the road anymore."
       ],
       "episode_tag": "its_a_good_life",
       "mood_tags": [],
@@ -56,18 +56,16 @@
         "season": 3,
         "number": 8,
         "year": 1961
-      },
-      "captions_later": [
-        "Everyone in Peaksville thinks happy thoughts. They have to.",
-        "No one goes past the end of the road anymore."
-      ]
+      }
     },
     {
       "id": "twz_003",
       "video": "videos/03_four_dollar_room_v2_pingpong.mp4",
       "still": "stills/03_four_dollar_room_v2.jpg",
       "captions": [
-        "Jackie's reflection is done waiting for him to change."
+        "Jackie's reflection is done waiting for him to change.",
+        "The man in the mirror wants the room. And the life.",
+        "Four dollars a night. Two of him checked in."
       ],
       "episode_tag": "nervous_man_in_a_four_dollar_room",
       "mood_tags": [],
@@ -85,18 +83,16 @@
         "season": 2,
         "number": 3,
         "year": 1960
-      },
-      "captions_later": [
-        "The man in the mirror wants the room. And the life.",
-        "Four dollars a night. Two of him checked in."
-      ]
+      }
     },
     {
       "id": "twz_004",
       "video": "videos/diner_booth_coffee_steaming_004.mp4",
       "still": "stills/diner_booth_coffee_steaming_004.jpg",
       "captions": [
-        "Oakwood's coffee is still hot. Oakwood's people are gone."
+        "Oakwood's coffee is still hot. Oakwood's people are gone.",
+        "Mike Ferris can't remember who he is. The town won't say.",
+        "Somebody's always watching. Nobody's ever here."
       ],
       "episode_tag": "where_is_everybody",
       "mood_tags": [],
@@ -114,18 +110,16 @@
         "season": 1,
         "number": 1,
         "year": 1959
-      },
-      "captions_later": [
-        "Mike Ferris can't remember who he is. The town won't say.",
-        "Somebody's always watching. Nobody's ever here."
-      ]
+      }
     },
     {
       "id": "twz_005",
       "video": "videos/05_hitch_hiker_road_v2_loop.mp4",
       "still": "stills/05_hitch_hiker_road_v2.jpg",
       "captions": [
-        "Nan keeps passing the same man on the road."
+        "Nan keeps passing the same man on the road.",
+        "He's always just ahead, thumb out, waiting for her.",
+        "Her mother says Nan never came home from the accident."
       ],
       "episode_tag": "the_hitch_hiker",
       "mood_tags": [],
@@ -143,17 +137,15 @@
         "season": 1,
         "number": 16,
         "year": 1960
-      },
-      "captions_later": [
-        "He's always just ahead, thumb out, waiting for her.",
-        "Her mother says Nan never came home from the accident."
-      ]
+      }
     },
     {
       "id": "twz_006",
       "still": "stills/rotary_phone_off_the_hook_006.jpg",
       "captions": [
-        "Grandma gave Billy the phone before she died. She still calls."
+        "Grandma gave Billy the phone before she died. She still calls.",
+        "Billy talks to Grandma every night. Grandma's been gone a week.",
+        "Someone on the line wants Billy to come away with her."
       ],
       "episode_tag": "long_distance_call",
       "mood_tags": [],
@@ -171,18 +163,16 @@
         "season": 2,
         "number": 22,
         "year": 1961
-      },
-      "captions_later": [
-        "Billy talks to Grandma every night. Grandma's been gone a week.",
-        "Someone on the line wants Billy to come away with her."
-      ]
+      }
     },
     {
       "id": "twz_007",
       "video": "videos/07_peaksville_parlor_v4_static_clown.mp4",
       "still": "stills/07_peaksville_parlor_v2.jpg",
       "captions": [
-        "Everybody in Peaksville watches what Anthony wants."
+        "Everybody in Peaksville watches what Anthony wants.",
+        "Don't think anything bad about the cornfield.",
+        "Anthony wished it, so it's real."
       ],
       "episode_tag": "its_a_good_life",
       "mood_tags": [],
@@ -200,19 +190,16 @@
         "season": 3,
         "number": 8,
         "year": 1961
-      },
-      "captions_later": [
-        "The scarecrow turned to face Anthony. Good thing, too.",
-        "Don't think anything bad about the cornfield.",
-        "Anthony wished it, so it's real."
-      ]
+      }
     },
     {
       "id": "twz_008",
       "still": "stills/08_willoughby_train_v2.jpg",
       "presence": "rest",
       "captions": [
-        "Next stop, Willoughby. Peaceful, restful, 1888."
+        "Next stop, Willoughby. Peaceful, restful, 1888.",
+        "Gart Williams finally stepped off the train.",
+        "The only way to Willoughby is the 5:25."
       ],
       "episode_tag": "a_stop_at_willoughby",
       "mood_tags": [],
@@ -231,10 +218,6 @@
         "number": 30,
         "year": 1960
       },
-      "captions_later": [
-        "Gart Williams finally stepped off the train.",
-        "The only way to Willoughby is the 5:25."
-      ],
       "video": "videos/08_willoughby_train_v5_once.mp4",
       "motion": "once"
     },
@@ -243,7 +226,9 @@
       "video": "videos/09_rocking_chair_v2_pingpong.mp4",
       "still": "stills/childs_rocking_chair_009.jpg",
       "captions": [
-        "Helen keeps finding herself, age nine, waiting."
+        "Helen keeps finding herself, age nine, waiting.",
+        "The little girl on the steps knows Helen better than Helen does.",
+        "Markie remembers what Helen worked so hard to forget."
       ],
       "episode_tag": "nightmare_as_a_child",
       "mood_tags": [],
@@ -261,11 +246,7 @@
         "season": 1,
         "number": 29,
         "year": 1960
-      },
-      "captions_later": [
-        "The little girl on the steps knows Helen better than Helen does.",
-        "Markie remembers what Helen worked so hard to forget."
-      ]
+      }
     },
     {
       "id": "twz_010",
@@ -273,7 +254,9 @@
       "still": "stills/little_girl_lost_010.jpg",
       "presence": "rest",
       "captions": [
-        "Tina's voice is coming from inside the wall."
+        "Tina's voice is coming from inside the wall.",
+        "Her father reached in after her. Bill held on from this side.",
+        "The dog went in first. The dog came back."
       ],
       "episode_tag": "little_girl_lost",
       "mood_tags": [],
@@ -291,18 +274,16 @@
         "season": 3,
         "number": 26,
         "year": 1962
-      },
-      "captions_later": [
-        "Her father reached in after her. Bill held on from this side.",
-        "The dog went in first. The dog came back."
-      ]
+      }
     },
     {
       "id": "twz_011",
       "video": "videos/barbershop_mirror_011.mp4",
       "still": "stills/barbershop_mirror_011.jpg",
       "captions": [
-        "Every face in the mirror belonged to somebody else first."
+        "Every face in the mirror belonged to somebody else first.",
+        "Arch Hammer can wear any face he's looked at.",
+        "The last face he borrowed already had enemies."
       ],
       "episode_tag": "the_four_of_us_are_dying",
       "mood_tags": [],
@@ -321,11 +302,7 @@
         "season": 1,
         "number": 13,
         "year": 1960
-      },
-      "captions_later": [
-        "Arch Hammer can wear any face he's looked at.",
-        "The last face he borrowed already had enemies."
-      ]
+      }
     },
     {
       "id": "twz_012",
@@ -333,7 +310,9 @@
       "still": "stills/radio_dial_012.jpg",
       "presence": "rest",
       "captions": [
-        "Ed's old radio still plays 1938. Only for Ed."
+        "Ed's old radio still plays 1938. Only for Ed.",
+        "Ed turns the dial back twenty years. Vinnie is waiting there.",
+        "The old shows only come on when you're alone."
       ],
       "episode_tag": "static",
       "mood_tags": [],
@@ -351,18 +330,16 @@
         "season": 2,
         "number": 20,
         "year": 1961
-      },
-      "captions_later": [
-        "Ed turns the dial back twenty years. Vinnie is waiting there.",
-        "The old shows only come on when you're alone."
-      ]
+      }
     },
     {
       "id": "twz_013",
       "video": "videos/13_porch_swing_v2_pingpong.mp4",
       "still": "stills/porch_swing_vs_wind_013.jpg",
       "captions": [
-        "It snowed on the crops tonight. Anthony was in a mood."
+        "It snowed on the crops tonight. Anthony was in a mood.",
+        "Smile at Anthony. Everyone in Peaksville does.",
+        "TV night is Anthony's night. Nobody complains."
       ],
       "episode_tag": "its_a_good_life",
       "mood_tags": [],
@@ -380,18 +357,16 @@
         "season": 3,
         "number": 8,
         "year": 1961
-      },
-      "captions_later": [
-        "Smile at Anthony. Everyone in Peaksville does.",
-        "TV night is Anthony's night. Nobody complains."
-      ]
+      }
     },
     {
       "id": "twz_014",
       "video": "videos/14_department_store_v2_turn.mp4",
       "still": "stills/14_department_store_v2.jpg",
       "captions": [
-        "The saleswoman on nine stands very, very still."
+        "The saleswoman on nine stands very, very still.",
+        "There is no ninth floor. Marsha bought a thimble there anyway.",
+        "Every mannequin gets one month outside. Marsha overstayed."
       ],
       "episode_tag": "the_after_hours",
       "mood_tags": [],
@@ -409,18 +384,16 @@
         "season": 1,
         "number": 34,
         "year": 1960
-      },
-      "captions_later": [
-        "There is no ninth floor. Marsha bought a thimble there anyway.",
-        "Every mannequin gets one month outside. Marsha overstayed."
-      ]
+      }
     },
     {
       "id": "twz_015",
       "video": "videos/15_midnight_sun_v2_loop.mp4",
       "still": "stills/15_midnight_sun_v2.jpg",
       "captions": [
-        "It's never this hot at midnight."
+        "It's never this hot at midnight.",
+        "The Earth is falling toward the sun. Norma keeps painting.",
+        "Wake up, Norma. It's getting colder."
       ],
       "episode_tag": "the_midnight_sun",
       "mood_tags": [],
@@ -438,11 +411,7 @@
         "season": 3,
         "number": 10,
         "year": 1961
-      },
-      "captions_later": [
-        "The Earth is falling toward the sun. Norma keeps painting.",
-        "Wake up, Norma. It's getting colder."
-      ]
+      }
     },
     {
       "id": "twz_016",
@@ -450,7 +419,9 @@
       "still": "stills/fortune_machine_016.jpg",
       "presence": "rest",
       "captions": [
-        "Ask it again. It already knows you will."
+        "Ask it again. It already knows you will.",
+        "A penny a question. Don's still paying.",
+        "The Mystic Seer only answers yes or no. That's all it needs."
       ],
       "episode_tag": "nick_of_time",
       "mood_tags": [
@@ -471,18 +442,16 @@
         "season": 2,
         "number": 7,
         "year": 1960
-      },
-      "captions_later": [
-        "A penny a question. Don's still paying.",
-        "The Mystic Seer only answers yes or no. That's all it needs."
-      ]
+      }
     },
     {
       "id": "twz_017",
       "video": "videos/17_masked_figures_pingpong.mp4",
       "still": "stills/masked_figures_017.jpg",
       "captions": [
-        "Take it off now. See what's underneath."
+        "Take it off now. See what's underneath.",
+        "Wear the masks until midnight, Jason says.",
+        "Mardi Gras ends at midnight. The faces don't."
       ],
       "episode_tag": "the_masks",
       "mood_tags": [],
@@ -500,18 +469,16 @@
         "season": 5,
         "number": 25,
         "year": 1964
-      },
-      "captions_later": [
-        "Wear the masks until midnight, Jason says.",
-        "Mardi Gras ends at midnight. The faces don't."
-      ]
+      }
     },
     {
       "id": "twz_018",
       "video": "videos/hospital_bandages_018.mp4",
       "still": "stills/hospital_bandages_018.jpg",
       "captions": [
-        "Everyone here already knows what you'll look like."
+        "Everyone here already knows what you'll look like.",
+        "The bandages come off today.",
+        "They only want you to be normal."
       ],
       "episode_tag": "eye_of_the_beholder",
       "mood_tags": [
@@ -532,11 +499,7 @@
         "season": 2,
         "number": 6,
         "year": 1960
-      },
-      "captions_later": [
-        "The bandages come off today.",
-        "They only want you to be normal."
-      ]
+      }
     },
     {
       "id": "twz_019",
@@ -544,7 +507,9 @@
       "still": "stills/maple_street_019.jpg",
       "presence": "rest",
       "captions": [
-        "The lights went out on Maple Street. Then the neighbors turned."
+        "The lights went out on Maple Street. Then the neighbors turned.",
+        "It was the neighbors all along.",
+        "Only Les Goodman's car started by itself."
       ],
       "episode_tag": "the_monsters_are_due_on_maple_street",
       "mood_tags": [],
@@ -563,10 +528,6 @@
         "number": 22,
         "year": 1960
       },
-      "captions_later": [
-        "It was the neighbors all along.",
-        "Only Les Goodman's car started by itself."
-      ],
       "motion": "once"
     },
     {
@@ -574,7 +535,9 @@
       "video": "videos/20_broken_spectacles_loop.mp4",
       "still": "stills/broken_spectacles_020.jpg",
       "captions": [
-        "All the time in the world, and none of it to read."
+        "All the time in the world, and none of it to read.",
+        "Henry Bemis finally has time to read. Mind the glasses.",
+        "The bank vault saved Henry. The steps were less kind."
       ],
       "episode_tag": "time_enough_at_last",
       "mood_tags": [],
@@ -592,18 +555,16 @@
         "season": 1,
         "number": 8,
         "year": 1959
-      },
-      "captions_later": [
-        "Henry Bemis finally has time to read. Mind the glasses.",
-        "The bank vault saved Henry. The steps were less kind."
-      ]
+      }
     },
     {
       "id": "twz_021",
       "video": "videos/21_airplane_wing_v2_loop.mp4",
       "still": "stills/airplane_wing_in_the_storm_021.jpg",
       "captions": [
-        "There's something on the wing. There always is."
+        "There's something on the wing. There always is.",
+        "Bob Wilson's seen it twice. The stewardess hasn't.",
+        "Close the curtain, Mr. Wilson. It's still out there."
       ],
       "episode_tag": "nightmare_at_20_000_feet",
       "mood_tags": [],
@@ -621,18 +582,16 @@
         "season": 5,
         "number": 3,
         "year": 1963
-      },
-      "captions_later": [
-        "Bob Wilson's seen it twice. The stewardess hasn't.",
-        "Close the curtain, Mr. Wilson. It's still out there."
-      ]
+      }
     },
     {
       "id": "twz_022",
       "video": "videos/22_cookbook_loop.mp4",
       "still": "stills/the_cookbook_022.jpg",
       "captions": [
-        "Read past the first page."
+        "Read past the first page.",
+        "The Kanamits brought a book. Someone finally translated it.",
+        "Board the ship. Dinner's waiting."
       ],
       "episode_tag": "to_serve_man",
       "mood_tags": [],
@@ -650,18 +609,16 @@
         "season": 3,
         "number": 24,
         "year": 1962
-      },
-      "captions_later": [
-        "The Kanamits brought a book. Someone finally translated it.",
-        "Board the ship. Dinner's waiting."
-      ]
+      }
     },
     {
       "id": "twz_023",
       "video": "videos/23_park_carousel_v4_loop.mp4",
       "still": "stills/park_carousel_023.jpg",
       "captions": [
-        "You can visit. You just can't stay."
+        "You can visit. You just can't stay.",
+        "Martin walked home to Homewood. It was 1934 again.",
+        "Don't startle the boy on the carousel. He's Martin too."
       ],
       "episode_tag": "walking_distance",
       "mood_tags": [],
@@ -679,18 +636,16 @@
         "season": 1,
         "number": 5,
         "year": 1959
-      },
-      "captions_later": [
-        "Martin walked home to Homewood. It was 1934 again.",
-        "Don't startle the boy on the carousel. He's Martin too."
-      ]
+      }
     },
     {
       "id": "twz_024",
       "video": "videos/24_doll_on_shelf_turn.mp4",
       "still": "stills/doll_on_the_shelf_024.jpg",
       "captions": [
-        "She says she doesn't like you."
+        "She says she doesn't like you.",
+        "Erich threw Tina out twice. She came back.",
+        "Talky Tina only says the nice things to Christie."
       ],
       "episode_tag": "living_doll",
       "mood_tags": [],
@@ -708,18 +663,16 @@
         "season": 5,
         "number": 6,
         "year": 1963
-      },
-      "captions_later": [
-        "Erich threw Tina out twice. She came back.",
-        "Talky Tina only says the nice things to Christie."
-      ]
+      }
     },
     {
       "id": "twz_025",
       "video": "videos/25_kick_the_can_loop.mp4",
       "still": "stills/kick_the_can_025.jpg",
       "captions": [
-        "Somebody's still playing."
+        "Somebody's still playing.",
+        "Charles says kick the can keeps you young. He might be right.",
+        "Sunnyvale Rest Home is quiet tonight. The yard isn't."
       ],
       "episode_tag": "kick_the_can",
       "mood_tags": [],
@@ -737,18 +690,16 @@
         "season": 3,
         "number": 21,
         "year": 1962
-      },
-      "captions_later": [
-        "Charles says kick the can keeps you young. He might be right.",
-        "Sunnyvale Rest Home is quiet tonight. The yard isn't."
-      ]
+      }
     },
     {
       "id": "twz_026",
       "video": "videos/26_attic_farmhouse_v2_pingpong.mp4",
       "still": "stills/the_attic_farmhouse_026.jpg",
       "captions": [
-        "It's small. It's not alone."
+        "It's small. It's not alone.",
+        "She fought them off with a hatchet.",
+        "Read the side of the ship. It's written in English."
       ],
       "episode_tag": "the_invaders",
       "mood_tags": [],
@@ -766,11 +717,7 @@
         "season": 2,
         "number": 15,
         "year": 1961
-      },
-      "captions_later": [
-        "She fought them off with a hatchet.",
-        "Read the side of the ship. It's written in English."
-      ]
+      }
     },
     {
       "id": "twz_027",
@@ -778,7 +725,9 @@
       "still": "stills/pool_hall_027.jpg",
       "presence": "rest",
       "captions": [
-        "The best ones never stop playing."
+        "The best ones never stop playing.",
+        "Jesse Cardiff wanted to beat Fats Brown. Careful what you win.",
+        "Fats Brown is still taking challengers. The stakes haven't changed."
       ],
       "episode_tag": "a_game_of_pool",
       "mood_tags": [],
@@ -796,18 +745,16 @@
         "season": 3,
         "number": 5,
         "year": 1961
-      },
-      "captions_later": [
-        "Jesse Cardiff wanted to beat Fats Brown. Careful what you win.",
-        "Fats Brown is still taking challengers. The stakes haven't changed."
-      ]
+      }
     },
     {
       "id": "twz_028",
       "video": "videos/28_cylinder_loop.mp4",
       "still": "stills/the_cylinder_028.jpg",
       "captions": [
-        "Everyone in here thinks they're a person."
+        "Everyone in here thinks they're a person.",
+        "A major, a clown, a hobo, a ballerina and a bagpiper. No way out.",
+        "Climb out of the cylinder. Then look up."
       ],
       "episode_tag": "five_characters_in_search_of_an_exit",
       "mood_tags": [],
@@ -825,18 +772,16 @@
         "season": 3,
         "number": 14,
         "year": 1961
-      },
-      "captions_later": [
-        "A major, a clown, a hobo, a ballerina and a bagpiper. No way out.",
-        "Climb out of the cylinder. Then look up."
-      ]
+      }
     },
     {
       "id": "twz_029",
       "video": "videos/29_ventriloquist_dummy_pingpong.mp4",
       "still": "stills/ventriloquist_dummy_029.jpg",
       "captions": [
-        "Who's working whom?"
+        "Who's working whom?",
+        "Jerry swears Willie talks back when the act is over.",
+        "Willie has a new partner now. He does the talking."
       ],
       "episode_tag": "the_dummy",
       "mood_tags": [],
@@ -854,11 +799,7 @@
         "season": 3,
         "number": 33,
         "year": 1962
-      },
-      "captions_later": [
-        "Jerry swears Willie talks back when the act is over.",
-        "Willie has a new partner now. He does the talking."
-      ]
+      }
     },
     {
       "id": "twz_030",
@@ -866,7 +807,9 @@
       "still": "stills/morgue_door_030.jpg",
       "presence": "rest",
       "captions": [
-        "Room for one more."
+        "Room for one more.",
+        "Liz keeps waking up in front of Room 22.",
+        "Don't board Flight 22."
       ],
       "episode_tag": "twenty_two",
       "mood_tags": [],
@@ -884,11 +827,7 @@
         "season": 2,
         "number": 17,
         "year": 1961
-      },
-      "captions_later": [
-        "Liz keeps waking up in front of Room 22.",
-        "Don't board Flight 22."
-      ]
+      }
     },
     {
       "id": "twz_sp01",
