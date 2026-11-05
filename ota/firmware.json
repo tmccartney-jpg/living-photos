@@ -1,7 +1,7 @@
 {
-  "build": 13,
+  "build": 14,
   "bin": "ota/aura_fw.bin",
-  "bytes": 1617680,
-  "sha256": "14d704fc2de3509d137dad08afebdf787fde226d8c88a33b26f43d3994e45251",
-  "source": "5f5d16efbe1b284535c281db58ff60893b508448"
+  "bytes": 1630704,
+  "sha256": "89b63c45c77ac229e379a5333878dc3ccef01e70026aaefb5479355f3f37fb57",
+  "source": "60d2a63f074d9845bc0767795127bb23b5f3751e"
 }
