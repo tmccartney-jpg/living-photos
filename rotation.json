@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-04",
+  "date": "2026-11-05",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_026",
+    "id": "twz_026",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/26_attic_farmhouse_v2_pingpong.mp4",
+    "still": "twilight-zone/stills/the_attic_farmhouse_026.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_026.lpv",
+      "still": "twilight-zone/device/twz_026.jpg"
+    },
+    "caption": "It's small. It's not alone.",
+    "caption_index": 0,
+    "episode_tag": "the_invaders",
+    "episode": {
+      "title": "The Invaders",
+      "season": 2,
+      "number": 15,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_006",
     "id": "twz_006",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_001",
-    "id": "twz_001",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/bus_stop_001_loop.mp4",
-    "still": "twilight-zone/stills/bus_stop_001.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_001.lpv",
-      "still": "twilight-zone/device/twz_001.jpg"
-    },
-    "caption": "The bus to Cortland is late. The double never is.",
-    "caption_index": 0,
-    "episode_tag": "mirror_image",
-    "episode": {
-      "title": "Mirror Image",
-      "season": 1,
-      "number": 21,
-      "year": 1960
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_026",
       "twilight-zone/twz_027",
       "twilight-zone/twz_021",
       "twilight-zone/twz_017",
@@ -83,13 +82,14 @@
       "twilight-zone/twz_020",
       "twilight-zone/twz_008",
       "twilight-zone/twz_015",
+      "twilight-zone/twz_002",
       "twilight-zone/twz_012",
       "twilight-zone/twz_013",
       "twilight-zone/twz_016"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_006"
+    "twilight-zone": "twilight-zone/twz_026"
   },
   "spread": {},
   "history": [
@@ -221,6 +221,11 @@
     {
       "date": "2026-11-04",
       "key": "twilight-zone/twz_006",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-05",
+      "key": "twilight-zone/twz_026",
       "caption_index": 0
     }
   ]
