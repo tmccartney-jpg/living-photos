@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_027",
+    "id": "twz_027",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/27_pool_hall_v2_smoke_loop.mp4",
+    "still": "twilight-zone/stills/pool_hall_027.jpg",
+    "presence": "rest",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_027.lpv",
+      "still": "twilight-zone/device/twz_027.jpg"
+    },
+    "caption": "The best ones never stop playing.",
+    "caption_index": 0,
+    "episode_tag": "a_game_of_pool",
+    "episode": {
+      "title": "A Game of Pool",
+      "season": 3,
+      "number": 5,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_026",
     "id": "twz_026",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_006",
-    "id": "twz_006",
-    "theme": "twilight-zone",
-    "video": null,
-    "still": "twilight-zone/stills/rotary_phone_off_the_hook_006.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": null,
-      "still": "twilight-zone/device/twz_006.jpg"
-    },
-    "caption": "Grandma gave Billy the phone before she died. She still calls.",
-    "caption_index": 0,
-    "episode_tag": "long_distance_call",
-    "episode": {
-      "title": "Long Distance Call",
-      "season": 2,
-      "number": 22,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_027",
       "twilight-zone/twz_021",
       "twilight-zone/twz_017",
       "twilight-zone/twz_019",
@@ -80,6 +79,7 @@
       "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
+      "twilight-zone/twz_011",
       "twilight-zone/twz_008",
       "twilight-zone/twz_015",
       "twilight-zone/twz_002",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_026"
+    "twilight-zone": "twilight-zone/twz_027"
   },
   "spread": {},
   "history": [
@@ -226,6 +226,11 @@
     {
       "date": "2026-11-05",
       "key": "twilight-zone/twz_026",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-06",
+      "key": "twilight-zone/twz_027",
       "caption_index": 0
     }
   ]
