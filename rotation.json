@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-06",
+  "date": "2026-11-07",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_021",
+    "id": "twz_021",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/21_airplane_wing_v2_loop.mp4",
+    "still": "twilight-zone/stills/airplane_wing_in_the_storm_021.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_021.lpv",
+      "still": "twilight-zone/device/twz_021.jpg"
+    },
+    "caption": "Bob Wilson's seen it twice. The stewardess hasn't.",
+    "caption_index": 1,
+    "episode_tag": "nightmare_at_20_000_feet",
+    "episode": {
+      "title": "Nightmare at 20,000 Feet",
+      "season": 5,
+      "number": 3,
+      "year": 1963
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_027",
     "id": "twz_027",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_026",
-    "id": "twz_026",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/26_attic_farmhouse_v2_pingpong.mp4",
-    "still": "twilight-zone/stills/the_attic_farmhouse_026.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_026.lpv",
-      "still": "twilight-zone/device/twz_026.jpg"
-    },
-    "caption": "It's small. It's not alone.",
-    "caption_index": 0,
-    "episode_tag": "the_invaders",
-    "episode": {
-      "title": "The Invaders",
-      "season": 2,
-      "number": 15,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_021",
       "twilight-zone/twz_017",
       "twilight-zone/twz_019",
       "twilight-zone/twz_004",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_002",
       "twilight-zone/twz_012",
       "twilight-zone/twz_013",
+      "twilight-zone/twz_028",
       "twilight-zone/twz_016"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_027"
+    "twilight-zone": "twilight-zone/twz_021"
   },
   "spread": {},
   "history": [
@@ -232,6 +232,11 @@
       "date": "2026-11-06",
       "key": "twilight-zone/twz_027",
       "caption_index": 0
+    },
+    {
+      "date": "2026-11-07",
+      "key": "twilight-zone/twz_021",
+      "caption_index": 1
     }
   ]
 }
