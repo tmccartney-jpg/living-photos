@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_017",
+    "id": "twz_017",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/17_masked_figures_pingpong.mp4",
+    "still": "twilight-zone/stills/masked_figures_017.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_017.lpv",
+      "still": "twilight-zone/device/twz_017.jpg"
+    },
+    "caption": "Wear the masks until midnight, Jason says.",
+    "caption_index": 1,
+    "episode_tag": "the_masks",
+    "episode": {
+      "title": "The Masks",
+      "season": 5,
+      "number": 25,
+      "year": 1964
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_021",
     "id": "twz_021",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_027",
-    "id": "twz_027",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/27_pool_hall_v2_smoke_loop.mp4",
-    "still": "twilight-zone/stills/pool_hall_027.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_027.lpv",
-      "still": "twilight-zone/device/twz_027.jpg"
-    },
-    "caption": "The best ones never stop playing.",
-    "caption_index": 0,
-    "episode_tag": "a_game_of_pool",
-    "episode": {
-      "title": "A Game of Pool",
-      "season": 3,
-      "number": 5,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_017",
       "twilight-zone/twz_019",
       "twilight-zone/twz_004",
       "twilight-zone/twz_005",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_012",
       "twilight-zone/twz_013",
       "twilight-zone/twz_028",
+      "twilight-zone/twz_018",
       "twilight-zone/twz_016"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_021"
+    "twilight-zone": "twilight-zone/twz_017"
   },
   "spread": {},
   "history": [
@@ -236,6 +236,11 @@
     {
       "date": "2026-11-07",
       "key": "twilight-zone/twz_021",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-08",
+      "key": "twilight-zone/twz_017",
       "caption_index": 1
     }
   ]
