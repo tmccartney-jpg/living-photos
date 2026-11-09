@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-08",
+  "date": "2026-11-09",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_019",
+    "id": "twz_019",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/19_maple_street_lightsout_once.mp4",
+    "still": "twilight-zone/stills/maple_street_019.jpg",
+    "presence": "rest",
+    "motion": "once",
+    "device": {
+      "clip": "twilight-zone/device/twz_019.lpv",
+      "still": "twilight-zone/device/twz_019.jpg"
+    },
+    "caption": "It was the neighbors all along.",
+    "caption_index": 1,
+    "episode_tag": "the_monsters_are_due_on_maple_street",
+    "episode": {
+      "title": "The Monsters Are Due on Maple Street",
+      "season": 1,
+      "number": 22,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_017",
     "id": "twz_017",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_021",
-    "id": "twz_021",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/21_airplane_wing_v2_loop.mp4",
-    "still": "twilight-zone/stills/airplane_wing_in_the_storm_021.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_021.lpv",
-      "still": "twilight-zone/device/twz_021.jpg"
-    },
-    "caption": "Bob Wilson's seen it twice. The stewardess hasn't.",
-    "caption_index": 1,
-    "episode_tag": "nightmare_at_20_000_feet",
-    "episode": {
-      "title": "Nightmare at 20,000 Feet",
-      "season": 5,
-      "number": 3,
-      "year": 1963
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_019",
       "twilight-zone/twz_004",
       "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_011",
       "twilight-zone/twz_008",
+      "twilight-zone/twz_024",
       "twilight-zone/twz_015",
       "twilight-zone/twz_002",
       "twilight-zone/twz_012",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_017"
+    "twilight-zone": "twilight-zone/twz_019"
   },
   "spread": {},
   "history": [
@@ -241,6 +241,11 @@
     {
       "date": "2026-11-08",
       "key": "twilight-zone/twz_017",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-09",
+      "key": "twilight-zone/twz_019",
       "caption_index": 1
     }
   ]
