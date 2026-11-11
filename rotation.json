@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_005",
+    "id": "twz_005",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/05_hitch_hiker_road_v2_loop.mp4",
+    "still": "twilight-zone/stills/05_hitch_hiker_road_v2.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_005.lpv",
+      "still": "twilight-zone/device/twz_005.jpg"
+    },
+    "caption": "Nan keeps passing the same man on the road.",
+    "caption_index": 0,
+    "episode_tag": "the_hitch_hiker",
+    "episode": {
+      "title": "The Hitch-Hiker",
+      "season": 1,
+      "number": 16,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_004",
     "id": "twz_004",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_019",
-    "id": "twz_019",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/19_maple_street_lightsout_once.mp4",
-    "still": "twilight-zone/stills/maple_street_019.jpg",
-    "presence": "rest",
-    "motion": "once",
-    "device": {
-      "clip": "twilight-zone/device/twz_019.lpv",
-      "still": "twilight-zone/device/twz_019.jpg"
-    },
-    "caption": "It was the neighbors all along.",
-    "caption_index": 1,
-    "episode_tag": "the_monsters_are_due_on_maple_street",
-    "episode": {
-      "title": "The Monsters Are Due on Maple Street",
-      "season": 1,
-      "number": 22,
-      "year": 1960
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_005",
       "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_011",
@@ -80,6 +79,7 @@
       "twilight-zone/twz_024",
       "twilight-zone/twz_015",
       "twilight-zone/twz_002",
+      "twilight-zone/twz_009",
       "twilight-zone/twz_012",
       "twilight-zone/twz_029",
       "twilight-zone/twz_013",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_004"
+    "twilight-zone": "twilight-zone/twz_005"
   },
   "spread": {},
   "history": [
@@ -252,6 +252,11 @@
       "date": "2026-11-10",
       "key": "twilight-zone/twz_004",
       "caption_index": 1
+    },
+    {
+      "date": "2026-11-11",
+      "key": "twilight-zone/twz_005",
+      "caption_index": 0
     }
   ]
 }
