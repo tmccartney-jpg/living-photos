@@ -59,6 +59,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-11: Added to the motion-unlock rule (Tony's decision) — captions appear instantly, with no fade or slide-in, until `intro_motion` is set to `true`, so nothing reveals that the frame moves; the caption fade comes back with the same switch. Re-locked.
 - 2026-10-11: Added `scene_motion` to `state.json` (Tony's decision) — scenes hold still until it is set to `true`, so the frame passes as an ordinary photo for the first week; flipped on GitHub, it reaches the frame with the next sync (no firmware update). Firmware build 7. Re-locked.
 - 2026-11-11: Turned on `intro_motion` and the easter egg (Tony's decision), egg `max_cm` 50 → 40. Reports showed Kevin sits ~35 cm away (p10/median 35–55 cm) and inside 50 cm for a third to two-thirds of each hour, so 40 cm fires on a lean-in, not normal work. `reveal` stays hidden until the egg is caught.
+- 2026-11-11: Revised open item 8 (Tony's decision) — ambient bursts every 60–90 min (was 10–30); after the reveal the daily scene change waits for Kevin's arrival within ~40–45 cm, with the intro played on arrival.
 
 ---
 
@@ -71,8 +72,10 @@ To modify a locked behavior or reference fact:
 5. ~~Remaining Twilight Zone scene concepts~~ — all 30 in the manifest 2026-10-10 (9 living, 21 still-only until their Kling clips are made)
 6. "Kevin discovers the mechanism" easter-egg scene — now on the list (2026-10-11): the clip, and what triggers it
 7. Kling clips for the 13 still-only TZ scenes; Severance clips as episodes air
-8. Ambient motion for when motion is left on long-term (decided 2026-11-03, not built yet) — once the secret is out, motion stops being tied to the room and the frame acts like a living painting:
-   - Every 10–30 min at **random** (Tony's choice over a set rhythm), the scene plays once or twice, then stops.
-   - When a burst ends it **freezes on the frame where it stopped** (not back to the still). The ping-pong clips let the next burst resume from that frame with no jump; the 09:30 intro covers the daily scene change.
+8. Ambient motion for when motion is left on long-term (decided 2026-11-03, revised 2026-11-11, not built yet) — once the secret is out (`reveal` = `stare`), the frame acts like a living painting:
+   - **Daily arrival** (Tony's decision 2026-11-11): the scene change no longer flips at 09:30. It waits for Kevin's first arrival of the day, counted when someone comes within ~40–45 cm (catches him walking up to the frame, not a doorway walk-by). On arrival the intro plays, then the new scene comes up, plays a burst, and freezes.
+   - **Bursts every 60–90 min at random** (was 10–30 min; Tony: more often is distracting). The scene plays once or twice, then stops.
+   - When a burst ends it **freezes on the frame where it stopped** (not back to the still). The ping-pong clips let the next burst resume from that frame with no jump.
+   - **Staring still works**: close and still for `stare_s` brings the scene to life on demand, whatever the burst timer is doing.
    - **Quiet hours**: holds still overnight and when the office is closed.
-   - Timing and quiet hours to live in `state.json` so they can be tuned from GitHub; needs a firmware build.
+   - Timing, arrival distance and quiet hours to live in `state.json` so they can be tuned from GitHub; needs a firmware build.
