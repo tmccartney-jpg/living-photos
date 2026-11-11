@@ -58,6 +58,7 @@ To modify a locked behavior or reference fact:
 - 2026-10-11: Unlocked `Reference.md` manifest schema (Tony's decision) — added `motion` (`loop` default | `once`). A `once` clip plays a single time while nobody is present, then holds its last frame for the rest of the day (first use: `twz_003`, the train-platform reflection turns and stares). `rotate.py` passes it through in `rotation.json`. Re-locked.
 - 2026-10-11: Added to the motion-unlock rule (Tony's decision) — captions appear instantly, with no fade or slide-in, until `intro_motion` is set to `true`, so nothing reveals that the frame moves; the caption fade comes back with the same switch. Re-locked.
 - 2026-10-11: Added `scene_motion` to `state.json` (Tony's decision) — scenes hold still until it is set to `true`, so the frame passes as an ordinary photo for the first week; flipped on GitHub, it reaches the frame with the next sync (no firmware update). Firmware build 7. Re-locked.
+- 2026-11-11: Turned on `intro_motion` and the easter egg (Tony's decision), egg `max_cm` 50 → 40. Reports showed Kevin sits ~35 cm away (p10/median 35–55 cm) and inside 50 cm for a third to two-thirds of each hour, so 40 cm fires on a lean-in, not normal work. `reveal` stays hidden until the egg is caught.
 
 ---
 
