@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-11",
+  "date": "2026-11-12",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_030",
+    "id": "twz_030",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/morgue_door_030.mp4",
+    "still": "twilight-zone/stills/morgue_door_030.jpg",
+    "presence": "rest",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_030.lpv",
+      "still": "twilight-zone/device/twz_030.jpg"
+    },
+    "caption": "Room for one more.",
+    "caption_index": 0,
+    "episode_tag": "twenty_two",
+    "episode": {
+      "title": "Twenty Two",
+      "season": 2,
+      "number": 17,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_005",
     "id": "twz_005",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_004",
-    "id": "twz_004",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/diner_booth_coffee_steaming_004.mp4",
-    "still": "twilight-zone/stills/diner_booth_coffee_steaming_004.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_004.lpv",
-      "still": "twilight-zone/device/twz_004.jpg"
-    },
-    "caption": "Mike Ferris can't remember who he is. The town won't say.",
-    "caption_index": 1,
-    "episode_tag": "where_is_everybody",
-    "episode": {
-      "title": "Where Is Everybody?",
-      "season": 1,
-      "number": 1,
-      "year": 1959
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_030",
       "twilight-zone/twz_020",
       "twilight-zone/twz_011",
       "twilight-zone/twz_008",
       "twilight-zone/twz_024",
       "twilight-zone/twz_015",
       "twilight-zone/twz_002",
+      "twilight-zone/twz_022",
       "twilight-zone/twz_009",
       "twilight-zone/twz_012",
       "twilight-zone/twz_029",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_005"
+    "twilight-zone": "twilight-zone/twz_030"
   },
   "spread": {},
   "history": [
@@ -256,6 +256,11 @@
     {
       "date": "2026-11-11",
       "key": "twilight-zone/twz_005",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-12",
+      "key": "twilight-zone/twz_030",
       "caption_index": 0
     }
   ]
