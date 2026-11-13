@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_020",
+    "id": "twz_020",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/20_broken_spectacles_loop.mp4",
+    "still": "twilight-zone/stills/broken_spectacles_020.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_020.lpv",
+      "still": "twilight-zone/device/twz_020.jpg"
+    },
+    "caption": "All the time in the world, and none of it to read.",
+    "caption_index": 0,
+    "episode_tag": "time_enough_at_last",
+    "episode": {
+      "title": "Time Enough at Last",
+      "season": 1,
+      "number": 8,
+      "year": 1959
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_030",
     "id": "twz_030",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_005",
-    "id": "twz_005",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/05_hitch_hiker_road_v2_loop.mp4",
-    "still": "twilight-zone/stills/05_hitch_hiker_road_v2.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_005.lpv",
-      "still": "twilight-zone/device/twz_005.jpg"
-    },
-    "caption": "Nan keeps passing the same man on the road.",
-    "caption_index": 0,
-    "episode_tag": "the_hitch_hiker",
-    "episode": {
-      "title": "The Hitch-Hiker",
-      "season": 1,
-      "number": 16,
-      "year": 1960
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_020",
       "twilight-zone/twz_011",
       "twilight-zone/twz_008",
       "twilight-zone/twz_024",
@@ -81,6 +80,7 @@
       "twilight-zone/twz_022",
       "twilight-zone/twz_009",
       "twilight-zone/twz_012",
+      "twilight-zone/twz_010",
       "twilight-zone/twz_029",
       "twilight-zone/twz_013",
       "twilight-zone/twz_028",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_030"
+    "twilight-zone": "twilight-zone/twz_020"
   },
   "spread": {},
   "history": [
@@ -261,6 +261,11 @@
     {
       "date": "2026-11-12",
       "key": "twilight-zone/twz_030",
+      "caption_index": 0
+    },
+    {
+      "date": "2026-11-13",
+      "key": "twilight-zone/twz_020",
       "caption_index": 0
     }
   ]
