@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-13",
+  "date": "2026-11-14",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_011",
+    "id": "twz_011",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/barbershop_mirror_011.mp4",
+    "still": "twilight-zone/stills/barbershop_mirror_011.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_011.lpv",
+      "still": "twilight-zone/device/twz_011.jpg"
+    },
+    "caption": "Arch Hammer can wear any face he's looked at.",
+    "caption_index": 1,
+    "episode_tag": "the_four_of_us_are_dying",
+    "episode": {
+      "title": "The Four of Us Are Dying",
+      "season": 1,
+      "number": 13,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_020",
     "id": "twz_020",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_030",
-    "id": "twz_030",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/morgue_door_030.mp4",
-    "still": "twilight-zone/stills/morgue_door_030.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_030.lpv",
-      "still": "twilight-zone/device/twz_030.jpg"
-    },
-    "caption": "Room for one more.",
-    "caption_index": 0,
-    "episode_tag": "twenty_two",
-    "episode": {
-      "title": "Twenty Two",
-      "season": 2,
-      "number": 17,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_011",
       "twilight-zone/twz_008",
       "twilight-zone/twz_024",
       "twilight-zone/twz_015",
@@ -84,12 +83,13 @@
       "twilight-zone/twz_029",
       "twilight-zone/twz_013",
       "twilight-zone/twz_028",
+      "twilight-zone/twz_007",
       "twilight-zone/twz_018",
       "twilight-zone/twz_016"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_020"
+    "twilight-zone": "twilight-zone/twz_011"
   },
   "spread": {},
   "history": [
@@ -267,6 +267,11 @@
       "date": "2026-11-13",
       "key": "twilight-zone/twz_020",
       "caption_index": 0
+    },
+    {
+      "date": "2026-11-14",
+      "key": "twilight-zone/twz_011",
+      "caption_index": 1
     }
   ]
 }
