@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_008",
+    "id": "twz_008",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/08_willoughby_train_v5_once.mp4",
+    "still": "twilight-zone/stills/08_willoughby_train_v2.jpg",
+    "presence": "rest",
+    "motion": "once",
+    "device": {
+      "clip": "twilight-zone/device/twz_008.lpv",
+      "still": "twilight-zone/device/twz_008.jpg"
+    },
+    "caption": "Next stop, Willoughby. Peaceful, restful, 1888.",
+    "caption_index": 0,
+    "episode_tag": "a_stop_at_willoughby",
+    "episode": {
+      "title": "A Stop at Willoughby",
+      "season": 1,
+      "number": 30,
+      "year": 1960
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_011",
     "id": "twz_011",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_020",
-    "id": "twz_020",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/20_broken_spectacles_loop.mp4",
-    "still": "twilight-zone/stills/broken_spectacles_020.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_020.lpv",
-      "still": "twilight-zone/device/twz_020.jpg"
-    },
-    "caption": "All the time in the world, and none of it to read.",
-    "caption_index": 0,
-    "episode_tag": "time_enough_at_last",
-    "episode": {
-      "title": "Time Enough at Last",
-      "season": 1,
-      "number": 8,
-      "year": 1959
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_008",
       "twilight-zone/twz_024",
       "twilight-zone/twz_015",
       "twilight-zone/twz_002",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_028",
       "twilight-zone/twz_007",
       "twilight-zone/twz_018",
-      "twilight-zone/twz_016"
+      "twilight-zone/twz_016",
+      "twilight-zone/twz_023"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_011"
+    "twilight-zone": "twilight-zone/twz_008"
   },
   "spread": {},
   "history": [
@@ -272,6 +272,11 @@
       "date": "2026-11-14",
       "key": "twilight-zone/twz_011",
       "caption_index": 1
+    },
+    {
+      "date": "2026-11-15",
+      "key": "twilight-zone/twz_008",
+      "caption_index": 0
     }
   ]
 }
