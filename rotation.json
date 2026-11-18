@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_002",
+    "id": "twz_002",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/cornfield_farmhouse_002.mp4",
+    "still": "twilight-zone/stills/cornfield_farmhouse_002.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_002.lpv",
+      "still": "twilight-zone/device/twz_002.jpg"
+    },
+    "caption": "Everyone in Peaksville thinks happy thoughts. They have to.",
+    "caption_index": 1,
+    "episode_tag": "its_a_good_life",
+    "episode": {
+      "title": "It's a Good Life",
+      "season": 3,
+      "number": 8,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_015",
     "id": "twz_015",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_024",
-    "id": "twz_024",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/24_doll_on_shelf_turn.mp4",
-    "still": "twilight-zone/stills/doll_on_the_shelf_024.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_024.lpv",
-      "still": "twilight-zone/device/twz_024.jpg"
-    },
-    "caption": "Erich threw Tina out twice. She came back.",
-    "caption_index": 1,
-    "episode_tag": "living_doll",
-    "episode": {
-      "title": "Living Doll",
-      "season": 5,
-      "number": 6,
-      "year": 1963
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_002",
       "twilight-zone/twz_022",
       "twilight-zone/twz_009",
       "twilight-zone/twz_012",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_016",
       "twilight-zone/twz_014",
       "twilight-zone/twz_025",
-      "twilight-zone/twz_023"
+      "twilight-zone/twz_023",
+      "twilight-zone/twz_003"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_015"
+    "twilight-zone": "twilight-zone/twz_002"
   },
   "spread": {},
   "history": [
@@ -287,6 +287,11 @@
       "date": "2026-11-17",
       "key": "twilight-zone/twz_015",
       "caption_index": 0
+    },
+    {
+      "date": "2026-11-18",
+      "key": "twilight-zone/twz_002",
+      "caption_index": 1
     }
   ]
 }
