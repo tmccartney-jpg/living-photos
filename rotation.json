@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-22",
+  "date": "2026-11-23",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_029",
+    "id": "twz_029",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/29_ventriloquist_dummy_pingpong.mp4",
+    "still": "twilight-zone/stills/ventriloquist_dummy_029.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_029.lpv",
+      "still": "twilight-zone/device/twz_029.jpg"
+    },
+    "caption": "Jerry swears Willie talks back when the act is over.",
+    "caption_index": 1,
+    "episode_tag": "the_dummy",
+    "episode": {
+      "title": "The Dummy",
+      "season": 3,
+      "number": 33,
+      "year": 1962
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_010",
     "id": "twz_010",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_012",
-    "id": "twz_012",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/radio_dial_012.mp4",
-    "still": "twilight-zone/stills/radio_dial_012.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_012.lpv",
-      "still": "twilight-zone/device/twz_012.jpg"
-    },
-    "caption": "Ed's old radio still plays 1938. Only for Ed.",
-    "caption_index": 0,
-    "episode_tag": "static",
-    "episode": {
-      "title": "Static",
-      "season": 2,
-      "number": 20,
-      "year": 1961
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_029",
       "twilight-zone/twz_013",
       "twilight-zone/twz_028",
       "twilight-zone/twz_007",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_001",
       "twilight-zone/twz_003",
       "twilight-zone/twz_026",
-      "twilight-zone/twz_006"
+      "twilight-zone/twz_006",
+      "twilight-zone/twz_021"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_010"
+    "twilight-zone": "twilight-zone/twz_029"
   },
   "spread": {},
   "history": [
@@ -311,6 +311,11 @@
     {
       "date": "2026-11-22",
       "key": "twilight-zone/twz_010",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-23",
+      "key": "twilight-zone/twz_029",
       "caption_index": 1
     }
   ]
