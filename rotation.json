@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_013",
+    "id": "twz_013",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
+    "still": "twilight-zone/stills/porch_swing_vs_wind_013.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_013.lpv",
+      "still": "twilight-zone/device/twz_013.jpg"
+    },
+    "caption": "Smile at Anthony. Everyone in Peaksville does.",
+    "caption_index": 1,
+    "episode_tag": "its_a_good_life",
+    "episode": {
+      "title": "It's a Good Life",
+      "season": 3,
+      "number": 8,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_029",
     "id": "twz_029",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_010",
-    "id": "twz_010",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/little_girl_lost_010.mp4",
-    "still": "twilight-zone/stills/little_girl_lost_010.jpg",
-    "presence": "rest",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_010.lpv",
-      "still": "twilight-zone/device/twz_010.jpg"
-    },
-    "caption": "Her father reached in after her. Bill held on from this side.",
-    "caption_index": 1,
-    "episode_tag": "little_girl_lost",
-    "episode": {
-      "title": "Little Girl Lost",
-      "season": 3,
-      "number": 26,
-      "year": 1962
-    },
-    "special": null
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_013",
       "twilight-zone/twz_028",
       "twilight-zone/twz_007",
       "twilight-zone/twz_018",
       "twilight-zone/twz_016",
       "twilight-zone/twz_014",
       "twilight-zone/twz_027",
+      "twilight-zone/twz_017",
       "twilight-zone/twz_025",
       "twilight-zone/twz_023",
       "twilight-zone/twz_001",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_029"
+    "twilight-zone": "twilight-zone/twz_013"
   },
   "spread": {},
   "history": [
@@ -316,6 +316,11 @@
     {
       "date": "2026-11-23",
       "key": "twilight-zone/twz_029",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-24",
+      "key": "twilight-zone/twz_013",
       "caption_index": 1
     }
   ]
