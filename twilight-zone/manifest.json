@@ -987,8 +987,8 @@
         "nth": 4,
         "label": "Thanksgiving"
       },
-      "last_shown": null,
-      "times_shown": 0,
+      "last_shown": "2026-11-25",
+      "times_shown": 1,
       "weight": 1,
       "release_date": null,
       "episode": {

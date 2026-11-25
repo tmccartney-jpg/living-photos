@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_sp05",
+    "id": "twz_sp05",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/sp05_thanksgiving_loop.mp4",
+    "still": "twilight-zone/stills/sp05_thanksgiving.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_sp05.lpv",
+      "still": "twilight-zone/device/twz_sp05.jpg"
+    },
+    "caption": "Stop the clock. Have seconds.",
+    "caption_index": 0,
+    "episode_tag": "a_kind_of_a_stopwatch",
+    "episode": {
+      "title": "A Kind of a Stopwatch",
+      "season": 5,
+      "number": 4,
+      "year": 1963
+    },
+    "special": "Thanksgiving"
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_013",
     "id": "twz_013",
     "theme": "twilight-zone",
@@ -22,36 +52,6 @@
       "season": 3,
       "number": 8,
       "year": 1961
-    },
-    "special": null
-  },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_029",
-    "id": "twz_029",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/29_ventriloquist_dummy_pingpong.mp4",
-    "still": "twilight-zone/stills/ventriloquist_dummy_029.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_029.lpv",
-      "still": "twilight-zone/device/twz_029.jpg"
-    },
-    "caption": "Jerry swears Willie talks back when the act is over.",
-    "caption_index": 1,
-    "episode_tag": "the_dummy",
-    "episode": {
-      "title": "The Dummy",
-      "season": 3,
-      "number": 33,
-      "year": 1962
     },
     "special": null
   },
@@ -322,6 +322,11 @@
       "date": "2026-11-24",
       "key": "twilight-zone/twz_013",
       "caption_index": 1
+    },
+    {
+      "date": "2026-11-25",
+      "key": "twilight-zone/twz_sp05",
+      "caption_index": 0
     }
   ]
 }
