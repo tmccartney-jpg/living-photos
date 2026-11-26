@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-25",
+  "date": "2026-11-26",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_sp05",
+    "id": "twz_sp05",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/sp05_thanksgiving_loop.mp4",
+    "still": "twilight-zone/stills/sp05_thanksgiving.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_sp05.lpv",
+      "still": "twilight-zone/device/twz_sp05.jpg"
+    },
+    "caption": "McNulty stopped the clock. You can stop for pie.",
+    "caption_index": 1,
+    "episode_tag": "a_kind_of_a_stopwatch",
+    "episode": {
+      "title": "A Kind of a Stopwatch",
+      "season": 5,
+      "number": 4,
+      "year": 1963
+    },
+    "special": "Thanksgiving"
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_sp05",
     "id": "twz_sp05",
     "theme": "twilight-zone",
@@ -24,36 +54,6 @@
       "year": 1963
     },
     "special": "Thanksgiving"
-  },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_013",
-    "id": "twz_013",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/13_porch_swing_v2_pingpong.mp4",
-    "still": "twilight-zone/stills/porch_swing_vs_wind_013.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_013.lpv",
-      "still": "twilight-zone/device/twz_013.jpg"
-    },
-    "caption": "Smile at Anthony. Everyone in Peaksville does.",
-    "caption_index": 1,
-    "episode_tag": "its_a_good_life",
-    "episode": {
-      "title": "It's a Good Life",
-      "season": 3,
-      "number": 8,
-      "year": 1961
-    },
-    "special": null
   },
   "crossfade": {
     "active": false,
@@ -327,6 +327,11 @@
       "date": "2026-11-25",
       "key": "twilight-zone/twz_sp05",
       "caption_index": 0
+    },
+    {
+      "date": "2026-11-26",
+      "key": "twilight-zone/twz_sp05",
+      "caption_index": 1
     }
   ]
 }
