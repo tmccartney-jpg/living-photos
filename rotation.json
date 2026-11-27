@@ -1,29 +1,29 @@
 {
   "schema_version": 1,
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "timezone": "America/New_York",
   "scene": {
-    "key": "twilight-zone/twz_sp05",
-    "id": "twz_sp05",
+    "key": "twilight-zone/twz_028",
+    "id": "twz_028",
     "theme": "twilight-zone",
-    "video": "twilight-zone/videos/sp05_thanksgiving_loop.mp4",
-    "still": "twilight-zone/stills/sp05_thanksgiving.jpg",
+    "video": "twilight-zone/videos/28_cylinder_loop.mp4",
+    "still": "twilight-zone/stills/the_cylinder_028.jpg",
     "presence": "freeze",
     "motion": "loop",
     "device": {
-      "clip": "twilight-zone/device/twz_sp05.lpv",
-      "still": "twilight-zone/device/twz_sp05.jpg"
+      "clip": "twilight-zone/device/twz_028.lpv",
+      "still": "twilight-zone/device/twz_028.jpg"
     },
-    "caption": "McNulty stopped the clock. You can stop for pie.",
+    "caption": "A major, a clown, a hobo, a ballerina and a bagpiper. No way out.",
     "caption_index": 1,
-    "episode_tag": "a_kind_of_a_stopwatch",
+    "episode_tag": "five_characters_in_search_of_an_exit",
     "episode": {
-      "title": "A Kind of a Stopwatch",
-      "season": 5,
-      "number": 4,
-      "year": 1963
+      "title": "Five Characters in Search of an Exit",
+      "season": 3,
+      "number": 14,
+      "year": 1961
     },
-    "special": "Thanksgiving"
+    "special": null
   },
   "intro": {
     "theme": "twilight-zone",
@@ -44,8 +44,8 @@
       "clip": "twilight-zone/device/twz_sp05.lpv",
       "still": "twilight-zone/device/twz_sp05.jpg"
     },
-    "caption": "Stop the clock. Have seconds.",
-    "caption_index": 0,
+    "caption": "McNulty stopped the clock. You can stop for pie.",
+    "caption_index": 1,
     "episode_tag": "a_kind_of_a_stopwatch",
     "episode": {
       "title": "A Kind of a Stopwatch",
@@ -72,13 +72,13 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_028",
       "twilight-zone/twz_007",
       "twilight-zone/twz_018",
       "twilight-zone/twz_016",
       "twilight-zone/twz_014",
       "twilight-zone/twz_027",
       "twilight-zone/twz_017",
+      "twilight-zone/twz_019",
       "twilight-zone/twz_025",
       "twilight-zone/twz_023",
       "twilight-zone/twz_001",
@@ -89,7 +89,7 @@
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_013"
+    "twilight-zone": "twilight-zone/twz_028"
   },
   "spread": {},
   "history": [
@@ -331,6 +331,11 @@
     {
       "date": "2026-11-26",
       "key": "twilight-zone/twz_sp05",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-27",
+      "key": "twilight-zone/twz_028",
       "caption_index": 1
     }
   ]
