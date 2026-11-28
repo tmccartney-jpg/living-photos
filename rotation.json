@@ -1,8 +1,38 @@
 {
   "schema_version": 1,
-  "date": "2026-11-27",
+  "date": "2026-11-28",
   "timezone": "America/New_York",
   "scene": {
+    "key": "twilight-zone/twz_007",
+    "id": "twz_007",
+    "theme": "twilight-zone",
+    "video": "twilight-zone/videos/07_peaksville_parlor_v4_static_clown.mp4",
+    "still": "twilight-zone/stills/07_peaksville_parlor_v2.jpg",
+    "presence": "freeze",
+    "motion": "loop",
+    "device": {
+      "clip": "twilight-zone/device/twz_007.lpv",
+      "still": "twilight-zone/device/twz_007.jpg"
+    },
+    "caption": "Don't think anything bad about the cornfield.",
+    "caption_index": 1,
+    "episode_tag": "its_a_good_life",
+    "episode": {
+      "title": "It's a Good Life",
+      "season": 3,
+      "number": 8,
+      "year": 1961
+    },
+    "special": null
+  },
+  "intro": {
+    "theme": "twilight-zone",
+    "file": "intros/tz_intro.png",
+    "motion": false,
+    "device": "intros/device/tz_intro.jpg"
+  },
+  "change_at": "09:30",
+  "previous_scene": {
     "key": "twilight-zone/twz_028",
     "id": "twz_028",
     "theme": "twilight-zone",
@@ -25,36 +55,6 @@
     },
     "special": null
   },
-  "intro": {
-    "theme": "twilight-zone",
-    "file": "intros/tz_intro.png",
-    "motion": false,
-    "device": "intros/device/tz_intro.jpg"
-  },
-  "change_at": "09:30",
-  "previous_scene": {
-    "key": "twilight-zone/twz_sp05",
-    "id": "twz_sp05",
-    "theme": "twilight-zone",
-    "video": "twilight-zone/videos/sp05_thanksgiving_loop.mp4",
-    "still": "twilight-zone/stills/sp05_thanksgiving.jpg",
-    "presence": "freeze",
-    "motion": "loop",
-    "device": {
-      "clip": "twilight-zone/device/twz_sp05.lpv",
-      "still": "twilight-zone/device/twz_sp05.jpg"
-    },
-    "caption": "McNulty stopped the clock. You can stop for pie.",
-    "caption_index": 1,
-    "episode_tag": "a_kind_of_a_stopwatch",
-    "episode": {
-      "title": "A Kind of a Stopwatch",
-      "season": 5,
-      "number": 4,
-      "year": 1963
-    },
-    "special": "Thanksgiving"
-  },
   "crossfade": {
     "active": false,
     "start": null,
@@ -72,7 +72,6 @@
   },
   "orders": {
     "twilight-zone": [
-      "twilight-zone/twz_007",
       "twilight-zone/twz_018",
       "twilight-zone/twz_016",
       "twilight-zone/twz_014",
@@ -85,11 +84,12 @@
       "twilight-zone/twz_003",
       "twilight-zone/twz_026",
       "twilight-zone/twz_006",
+      "twilight-zone/twz_004",
       "twilight-zone/twz_021"
     ]
   },
   "last_by_theme": {
-    "twilight-zone": "twilight-zone/twz_028"
+    "twilight-zone": "twilight-zone/twz_007"
   },
   "spread": {},
   "history": [
@@ -336,6 +336,11 @@
     {
       "date": "2026-11-27",
       "key": "twilight-zone/twz_028",
+      "caption_index": 1
+    },
+    {
+      "date": "2026-11-28",
+      "key": "twilight-zone/twz_007",
       "caption_index": 1
     }
   ]
